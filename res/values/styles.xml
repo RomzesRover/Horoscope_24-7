@@ -5,5 +5,26 @@
         <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
         <item name="vpiTabTextStyle">@style/Widget.TabPageIndicator.Text</item>
         <item name="android:windowBackground">@color/white</item>
+        
+    <item name="android:editTextStyle">@style/Holo.EditText.Light</item>
+    <item name="android:checkboxStyle">@style/Holo.CompoundButton.CheckBox.Light</item>
+    <item name="android:radioButtonStyle">@style/Holo.CompoundButton.RadioButton.Light</item>
+    <item name="android:buttonStyle">@style/Holo.Button.Light</item>
+    <item name="android:imageButtonStyle">@style/Holo.ImageButton</item>
+    <item name="android:spinnerStyle">@style/Holo.Spinner</item>
+    <item name="android:dropDownSpinnerStyle">@style/Holo.Spinner.Light</item>
+    <item name="android:spinnerDropDownItemStyle">@style/Holo.TextView.SpinnerItem.DropDown</item>
+    <item name="android:progressBarStyleHorizontal">@style/Holo.ProgressBar</item>
+    <item name="android:seekBarStyle">@style/Holo.SeekBar</item>
+    <item name="android:ratingBarStyle">@style/Holo.RatingBar</item>
+    <item name="android:ratingBarStyleIndicator">@style/Holo.RatingBar.Indicator.Light</item>
+    <item name="android:ratingBarStyleSmall">@style/Holo.RatingBar.Small.Light</item>
+    <item name="android:buttonStyleToggle">@style/Holo.Button.Toggle.Light</item>
+    <item name="android:listViewStyle">@style/Holo.ListView.Light</item>
+    <item name="android:listViewWhiteStyle">@style/Holo.ListView.Light</item>
+    <item name="android:spinnerItemStyle">@style/Holo.TextView.SpinnerItem</item>
+    <item name="numberPickerStyle">@style/Holo.NumberPicker</item>
+    <item name="android:dropDownListViewStyle">@style/Holo.ListView.DropDown.Light</item>
+    <item name="android:selectableItemBackground">@drawable/item_background_holo_light</item>
     </style>
 </resources>
