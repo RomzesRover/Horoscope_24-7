@@ -83,12 +83,13 @@ public class ActivityResultPage extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_result_page);
+	    final ActionBar ab = getSupportActionBar();
+	    ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));			//for miui and other
 	    
 	    sPref = getSharedPreferences("T", 1);
 	    zodiacNumber=sPref.getInt("zodiacNumber", 13);		//����� �������
 	    providerNumber=sPref.getInt("providerNumber",7);	//����� ����������
 	    Log.d("ActivityResultPage", "zdNb:"+String.valueOf(zodiacNumber)+" prNb:"+String.valueOf(providerNumber));
-	    final ActionBar ab = getSupportActionBar();
 	    if (zodiacNumber>=13 || providerNumber>=7 || zodiacNumber<=0 || providerNumber<0){
 	    	Intent aka = new Intent(this, ActivityHoroSettings1.class);
 	    	startActivity(aka);

@@ -7,6 +7,7 @@ import org.holoeverywhere.widget.Button;
 import org.jsoup.Jsoup;
 
 import com.BBsRs.horoscopefree.R;
+import com.actionbarsherlock.app.ActionBar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class ActivityLoader extends Activity {
-	SharedPreferences sPref;    // для стр настроек жж
+	SharedPreferences sPref;    // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 	 Editor ed;
 	 boolean animation=false;
 	 int currentVersion;
@@ -40,13 +41,13 @@ public class ActivityLoader extends Activity {
 
 		@Override
 		public void onFinish() {
-			Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+			Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		        public void run() {
 			if (isNetworkAvailable()){
 				//
 				sPref = getSharedPreferences("T", 1);
-				 	ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
-				    ed.putBoolean("canBack", false);						//знак, по номеру
+				 	ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
+				    ed.putBoolean("canBack", false);						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			        ed.commit();
 				try {
 					currentVersion=Integer.parseInt(Jsoup.connect("http://brothers-rovers.3dn.ru/currentInfo5.0.txt").get().text());
@@ -65,9 +66,9 @@ public class ActivityLoader extends Activity {
 				        }
 					} else {
 						sPref = getSharedPreferences("T", 1);
-						ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
+						ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
 						if (currentVersion != 1120)
-					    ed.putInt("currentVersion", currentVersion);						//знак, по номеру
+					    ed.putInt("currentVersion", currentVersion);						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					    ed.putString("help or info", "info");
 				        ed.commit();
 				        Intent step1 = new Intent(getApplicationContext(), ActivityLoaderVersion.class);
@@ -102,7 +103,7 @@ public class ActivityLoader extends Activity {
 					e.printStackTrace();
 				}
 			} else {
-				//если нет сети !!!
+				//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ !!!
 				connectionError(layoutErrorView,logo,reconnect);
 			}
 		        }
@@ -120,6 +121,8 @@ public class ActivityLoader extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loader);
+        //final ActionBar ab = getSupportActionBar();
+        //ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));
         layoutErrorView = (RelativeLayout)findViewById(R.id.errorLayout);
  	 	logo = (ImageView)findViewById(R.id.logo);
  	 	reconnect = (Button)findViewById(R.id.retry);

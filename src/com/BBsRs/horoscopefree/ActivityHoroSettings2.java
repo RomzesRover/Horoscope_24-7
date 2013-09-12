@@ -17,7 +17,7 @@ import com.BBsRs.horoscopefree.R;
 import com.actionbarsherlock.app.ActionBar;
 
 public class ActivityHoroSettings2 extends Activity {
-	SharedPreferences sPref;    // для стр настроек жж
+	SharedPreferences sPref;    // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 	ListViewAdapter listViewAdapter;
 	/** Called when the activity is first created. */
 	@Override
@@ -27,46 +27,47 @@ public class ActivityHoroSettings2 extends Activity {
 	    final ActionBar ab = getSupportActionBar();
 		ab.setTitle(getResources().getString(R.string.menu_settings));
 		ab.setSubtitle(getResources().getString(R.string.step2));
+		ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));			//for miui and other
 	    // TODO Auto-generated method stub
 	    final ListView listSign = (ListView)findViewById(R.id.listView1);
-	    									//нам нужен номер знака, чтобы сразу отметить нужный знак
+	    									//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	    sPref = getSharedPreferences("T", 1);
-	    									//по классу адаптора деалем list view
-//        //по классу адаптора деалем list view
+	    									//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ list view
+//        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ list view
         listViewAdapter = new ListViewAdapter(getApplicationContext(),getResources().getStringArray(R.array.zodiac_signs));
 	    listSign.setAdapter(listViewAdapter);
 	    if (sPref.getInt("zodiacNumber", 1)>0 && sPref.getInt("zodiacNumber", 1)<13){
 	    listViewAdapter.onSetChecked(sPref.getInt("zodiacNumber", 1)-1);
-	    listSign.setSelectionFromTop(sPref.getInt("zodiacNumber", 1)-1, sPref.getInt("zodiacNumber", 1)-1);	}//листаем вьюху к совему знаку
+	    listSign.setSelectionFromTop(sPref.getInt("zodiacNumber", 1)-1, sPref.getInt("zodiacNumber", 1)-1);	}//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	    listSign.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				listViewAdapter.onSetChecked(arg2);
-				Editor ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
-				ed.putInt("zodiacNumber", arg2+1);						//знак, по номеру
+				Editor ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
+				ed.putInt("zodiacNumber", arg2+1);						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				ed.commit();
 			}
 	    });
 	   
-	    									//кнопаньки!
+	    									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!
 	    final Button step1 = (Button)findViewById(R.id.buttonStepOne);
 	    final Button step3 = (Button)findViewById(R.id.buttonStepThree);
 	    
-											//переход к 1му шагу
+											//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1пїЅпїЅ пїЅпїЅпїЅпїЅ
 	    step1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 		        Intent step1 = new Intent(getApplicationContext(), ActivityHoroSettings1.class);
-				startActivity(step1);		//анимация
+				startActivity(step1);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				overridePendingTransition(R.anim.push_left_out,R.anim.push_left_in);
 				finish();
 			}
 		});
-	    									//переход к 3му шагу
+	    									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 3пїЅпїЅ пїЅпїЅпїЅпїЅ
 	    step3.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 		        Intent step1 = new Intent(getApplicationContext(), ActivityHoroSettings3.class);
-				startActivity(step1);		//анимация
+				startActivity(step1);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 				finish();
 			}
@@ -76,7 +77,7 @@ public class ActivityHoroSettings2 extends Activity {
 	@Override
 	public void onBackPressed(){
 		Intent step1 = new Intent(getApplicationContext(), ActivityHoroSettings1.class);
-		startActivity(step1);		//анимация
+		startActivity(step1);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		overridePendingTransition(R.anim.push_left_out,R.anim.push_left_in);
 		finish();
 	}

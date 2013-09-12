@@ -47,6 +47,7 @@ public class ActivityLoaderVersion extends Activity {
 	    delayForThread=getResources().getInteger(R.integer.DelayForThreads);
 	    
 	    final ActionBar ab = getSupportActionBar();
+	    ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));			//for miui and other
 	    sPref = getSharedPreferences("T", 1);
 	    if (sPref.getString("help or info", "info").equals("info")){
 	    	if(savedInstanceState != null){
@@ -99,7 +100,7 @@ public class ActivityLoaderVersion extends Activity {
 	        public void run() {
 	        	webV.setBackgroundColor(Color.TRANSPARENT);
 	        	webV.loadDataWithBaseURL(null,html
-	                    ,"text/html", "utf-8",null); // указываем страницу загрузки
+	                    ,"text/html", "utf-8",null); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        	allNormalLayout.setVisibility(View.VISIBLE);
 	        	progressBar.setVisibility(View.GONE);
 	        	errorLayout.setVisibility(View.GONE);
@@ -133,9 +134,9 @@ public class ActivityLoaderVersion extends Activity {
 	
 	
 	public void Load(final String url){
-		thr=new Thread(new Runnable() {				//делаем в новом потоке
+		thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        		Thread.sleep(delayForThread);
 					doc = Jsoup.connect(url).userAgent("Opera").get();
 					html=doc.html().replaceAll("src=\"/", "src=\"http://brothers-rovers.3dn.ru/");

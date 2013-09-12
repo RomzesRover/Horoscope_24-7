@@ -24,8 +24,8 @@ public class ActivityHoroSettings1 extends Activity {
 
 	/** Called when the activity is first created. */
 	
-	SharedPreferences sPref;    // для стр настроек жж
-	boolean textFr=true;		//для текста имени
+	SharedPreferences sPref;    // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+	boolean textFr=true;		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	EditText edName;
 	
 	@Override
@@ -35,16 +35,17 @@ public class ActivityHoroSettings1 extends Activity {
 	    final ActionBar ab = getSupportActionBar();
 		ab.setTitle(getResources().getString(R.string.menu_settings));
 		ab.setSubtitle(getResources().getString(R.string.step1));
+		ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));			//for miui and other
 	    // TODO Auto-generated method stub
-	    									//анимация появления элеметнов первого шага
+	    									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	    final Button step2 = (Button)findViewById(R.id.buttonStepTwo);
-		//обьекты с которых ерем данные
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	    edName = (EditText)findViewById(R.id.editTextName);
 		final DatePicker edDateBirth = (DatePicker)findViewById(R.id.datePicker1);
 		final TimePicker edTimeBirth = (TimePicker)findViewById(R.id.timePicker1);
 		final TextView txt = (TextView)findViewById(R.id.TextView01);
-	    									//едит текст делаем как надо. черным при вводе и убираем херню всякую
-		loadData(edName, edDateBirth, edTimeBirth,txt);				//загружаем данные, если они есть :)
+	    									//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		loadData(edName, edDateBirth, edTimeBirth,txt);				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
 		
 	    edName.setOnFocusChangeListener(new OnFocusChangeListener(){
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -61,29 +62,29 @@ public class ActivityHoroSettings1 extends Activity {
 			}
 	    	
 	    });
-	    									//при переходе ко второму шагу
+	    									//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	    step2.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				
-											//очищаем фокус, чтобы избежать ошибок!
+											//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!
 				edDateBirth.clearFocus();
 				edName.clearFocus();
 				edTimeBirth.clearFocus();
 				sPref = getSharedPreferences("T", 1);
-		        Editor ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
-		        ed.putString("name", String.valueOf(edName.getText()));  		//имя
-			    ed.putInt("dayBorn", edDateBirth.getDayOfMonth());				//день
-			    ed.putInt("monthBorn", edDateBirth.getMonth());				//месяц
-			    ed.putInt("yearBorn", edDateBirth.getYear());					//год
-			    ed.putInt("minuteBorn", edTimeBirth.getCurrentMinute()); 		//минуты
-			    ed.putInt("hourBorn", edTimeBirth.getCurrentHour());			//часы
-			    																//знак от дня и месяца
-			    ed.putInt("zodiacNumber", zodiacNumber(edDateBirth.getDayOfMonth(),edDateBirth.getMonth()+1));						//знак, по номеру
+		        Editor ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
+		        ed.putString("name", String.valueOf(edName.getText()));  		//пїЅпїЅпїЅ
+			    ed.putInt("dayBorn", edDateBirth.getDayOfMonth());				//пїЅпїЅпїЅпїЅ
+			    ed.putInt("monthBorn", edDateBirth.getMonth());				//пїЅпїЅпїЅпїЅпїЅ
+			    ed.putInt("yearBorn", edDateBirth.getYear());					//пїЅпїЅпїЅ
+			    ed.putInt("minuteBorn", edTimeBirth.getCurrentMinute()); 		//пїЅпїЅпїЅпїЅпїЅпїЅ
+			    ed.putInt("hourBorn", edTimeBirth.getCurrentHour());			//пїЅпїЅпїЅпїЅ
+			    																//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			    ed.putInt("zodiacNumber", zodiacNumber(edDateBirth.getDayOfMonth(),edDateBirth.getMonth()+1));						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			    //Toast.makeText(getApplicationContext(), getResources().getString(R.string.Automatic)+"\n"+getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber(edDateBirth.getDayOfMonth(),edDateBirth.getMonth())], Toast.LENGTH_LONG).show();
 		        ed.commit();
-		        							//стартуем второй шаг
+		        							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		        Intent step2 = new Intent(getApplicationContext(), ActivityHoroSettings2.class);
-				startActivity(step2);		//анимация перехода
+				startActivity(step2);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 				finish();
 			}
@@ -102,7 +103,7 @@ public class ActivityHoroSettings1 extends Activity {
 		time.setCurrentMinute(sPref.getInt("minuteBorn", cal.get(Calendar.MINUTE)));
 		
 	}
-	int zodiacNumber (int day, int month){					//функция определения знака зодиака по дате рождения
+	int zodiacNumber (int day, int month){					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if((month == 1) && (day <= 20) || (month == 12) && (day >= 22)) {
 			return 10;
 		 } else if((month == 1) || (month == 2) && (day <= 19)) {
@@ -134,7 +135,7 @@ public class ActivityHoroSettings1 extends Activity {
 	public void onBackPressed(){
 		if (sPref.getBoolean("canBack", false)){
 			Intent step2 = new Intent(getApplicationContext(), ActivityResultPage.class);
-			startActivity(step2);		//анимация перехода
+			startActivity(step2);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
 			Editor ed=sPref.edit();
 			ed.putBoolean("canBack", false);

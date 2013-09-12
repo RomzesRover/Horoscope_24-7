@@ -17,7 +17,7 @@ import com.BBsRs.horoscopefree.R;
 import com.actionbarsherlock.app.ActionBar;
 
 public class ActivityHoroSettings3 extends Activity {
-	 SharedPreferences sPref;    // для стр настроек жж
+	 SharedPreferences sPref;    // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 	 ListViewAdapterForProviders listViewAdapterForProviders;
 	/** Called when the activity is first created. */
 	@Override
@@ -28,6 +28,7 @@ public class ActivityHoroSettings3 extends Activity {
 	    final ActionBar ab = getSupportActionBar();
 		ab.setTitle(getResources().getString(R.string.menu_settings));
 		ab.setSubtitle(getResources().getString(R.string.step3));
+		ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));			//for miui and other
         
 	    // TODO Auto-generated method stub
 	    ListView listProvider = (ListView)findViewById(R.id.listView1);
@@ -35,19 +36,19 @@ public class ActivityHoroSettings3 extends Activity {
 	    listProvider.setAdapter(listViewAdapterForProviders);
 	    listViewAdapterForProviders.onSetChecked(sPref.getInt("providerNumber",Integer.parseInt(getResources().getString(R.string.Lg))));
 	    if (sPref.getInt("providerNumber",25)==25){
-	    	Editor ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
-			ed.putInt("providerNumber", Integer.parseInt(getResources().getString(R.string.Lg)));						//знак, по номеру
+	    	Editor ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
+			ed.putInt("providerNumber", Integer.parseInt(getResources().getString(R.string.Lg)));						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			ed.commit();
 	    }
-	    listProvider.setSelectionFromTop(sPref.getInt("providerNumber",Integer.parseInt(getResources().getString(R.string.Lg))),sPref.getInt("providerNumber",Integer.parseInt(getResources().getString(R.string.Lg))));	//листаем вьюху к совему знаку
+	    listProvider.setSelectionFromTop(sPref.getInt("providerNumber",Integer.parseInt(getResources().getString(R.string.Lg))),sPref.getInt("providerNumber",Integer.parseInt(getResources().getString(R.string.Lg))));	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //	    
 	    listProvider.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				listViewAdapterForProviders.onSetChecked(arg2);
-				Editor ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
-				ed.putInt("providerNumber", arg2);						//знак, по номеру
+				Editor ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
+				ed.putInt("providerNumber", arg2);						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				ed.commit();
 			}
 	    });
@@ -76,7 +77,7 @@ public class ActivityHoroSettings3 extends Activity {
 	public void onBackPressed(){
 		if (sPref.getBoolean("canBack", false)){
 			Intent step2 = new Intent(getApplicationContext(), ActivityResultPage.class);
-			startActivity(step2);		//анимация перехода
+			startActivity(step2);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
 			Editor ed=sPref.edit();
 			ed.putBoolean("canBack", false);
@@ -85,7 +86,7 @@ public class ActivityHoroSettings3 extends Activity {
 		}
 		else {
 			Intent step1 = new Intent(getApplicationContext(), ActivityHoroSettings2.class);
-			startActivity(step1);		//анимация
+			startActivity(step1);		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			overridePendingTransition(R.anim.push_left_out,R.anim.push_left_in);
 			finish();
 		}
