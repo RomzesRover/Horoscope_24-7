@@ -1,8 +1,9 @@
-<resources>
-    <style name="Horoscope_v5" parent="@style/Holo.Theme.Light.DarkActionBar">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="Horoscope_v5" parent="@style/Holo.Theme.Light">
    		<item name="vpiCirclePageIndicatorStyle">@style/Widget.CirclePageIndicator</item>
         <item name="vpiTitlePageIndicatorStyle">@style/Widget.TitlePageIndicator</item>
         <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
         <item name="vpiTabTextStyle">@style/Widget.TabPageIndicator.Text</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 </resources>
