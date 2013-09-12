@@ -6,9 +6,6 @@ import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.Button;
 import org.jsoup.Jsoup;
 
-import com.BBsRs.horoscopefree.R;
-import com.actionbarsherlock.app.ActionBar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -89,6 +86,19 @@ public class ActivityLoader extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
+					String prpr = sPref.getString("name", "");
+			        if (prpr.length()<1){
+			        	Intent step1 = new Intent(getApplicationContext(), ActivityHoroSettings1.class);
+						startActivity(step1);
+						finish();
+			        } else {
+			        	Intent step1 = new Intent(getApplicationContext(), ActivityResultPage.class);
+						startActivity(step1);
+						finish();
+			        }
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NullPointerException e) {
 					String prpr = sPref.getString("name", "");
 			        if (prpr.length()<1){
 			        	Intent step1 = new Intent(getApplicationContext(), ActivityHoroSettings1.class);

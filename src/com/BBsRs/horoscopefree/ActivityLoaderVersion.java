@@ -149,6 +149,13 @@ public class ActivityLoaderVersion extends Activity {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
+					Log.e(tag, "Load Error "+url);
+					Error();
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+					// TODO Auto-generated catch block
+					Log.e(tag, "Load Error "+url);
+					Error();
 					e.printStackTrace();
 				}}
         });
@@ -158,17 +165,19 @@ public class ActivityLoaderVersion extends Activity {
 	@Override
 	public void onPause(){
 		super.onPause();
-		if (!animation)
+		if (!animation){
 			overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+			sPref = getSharedPreferences("T", 1);
+			if (sPref.getBoolean("canBack", false)){
+				overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
+				Editor ed=sPref.edit();
+				ed.putBoolean("canBack", false);
+			    ed.commit();
+			}
+			}
 		else 
 			overridePendingTransition(R.anim.nulling_animation, R.anim.nulling_animation);
-		sPref = getSharedPreferences("T", 1);
-		if (sPref.getBoolean("canBack", false)){
-			overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
-			Editor ed=sPref.edit();
-			ed.putBoolean("canBack", false);
-		    ed.commit();
-		}
+		
 	}
 	
 	@Override
