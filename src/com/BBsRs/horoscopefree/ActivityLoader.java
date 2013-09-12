@@ -40,9 +40,16 @@ public class ActivityLoader extends Activity {
 		public void onFinish() {
 			Thread thr=new Thread(new Runnable() {				//������ � ����� ������
 		        public void run() {
+		        	sPref = getSharedPreferences("T", 1);
+		        	
+		        	if (!sPref.getBoolean("agree", false)){
+		        		Intent step1 = new Intent(getApplicationContext(), ActivityAgreement.class);
+						startActivity(step1);
+						finish();
+		        	} else {
+		        	
 			if (isNetworkAvailable()){
 				//
-				sPref = getSharedPreferences("T", 1);
 				 	ed = sPref.edit();   // ���� ������ �� ���������, ������ �� ��� ���� :)
 				    ed.putBoolean("canBack", false);						//����, �� ������
 			        ed.commit();
@@ -112,10 +119,12 @@ public class ActivityLoader extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
+			}
+			else {
 				//���� ��� ���� !!!
 				connectionError(layoutErrorView,logo,reconnect);
 			}
+		        	}
 		        }
 	        });
 		thr.start();

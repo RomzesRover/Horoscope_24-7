@@ -44,6 +44,7 @@
             </intent-filter>
             <meta-data android:resource="@xml/app_widget" android:name="android.appwidget.provider" android:value="true"/>
         </receiver>
+         <activity android:name="ActivityAgreement"></activity>
     </application>
 
 </manifest>
