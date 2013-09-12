@@ -147,7 +147,7 @@ public class HoroFrYahooComLoader {
 	        	try {							//загрузка сегондя
 					Thread.sleep(delayForThread);
 					Calendar c = Calendar.getInstance();
-					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
+					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/amour"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
 					resultS[1]="<span style=\"color: rgb(255, 69, 0);\"><span style=\"font-size: 18pt;\"><span style=\"font-size: 14pt;\"><span style=\"font-size: 16pt;\">"+
 							doc.getElementById("tab-date").text()						//date
@@ -178,7 +178,7 @@ public class HoroFrYahooComLoader {
 	        	try {							//загрузка сегондя
 					Thread.sleep(delayForThread); 
 					Calendar c = Calendar.getInstance();
-					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)+1))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
+					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/amour"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)+1))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
 					resultS[2]="<span style=\"color: rgb(255, 69, 0);\"><span style=\"font-size: 18pt;\"><span style=\"font-size: 14pt;\"><span style=\"font-size: 16pt;\">"+
 							doc.getElementById("tab-date").text()						//date
@@ -209,7 +209,7 @@ public class HoroFrYahooComLoader {
 	        	try {							//загрузка сегондя
 					Thread.sleep(delayForThread); 
 					Calendar c = Calendar.getInstance();
-					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)-1))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
+					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/amour"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)-1))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
 					resultS[0]="<span style=\"color: rgb(255, 69, 0);\"><span style=\"font-size: 18pt;\"><span style=\"font-size: 14pt;\"><span style=\"font-size: 16pt;\">"+
 							doc.getElementById("tab-date").text()						//date
@@ -240,7 +240,7 @@ public class HoroFrYahooComLoader {
 	        	try {							//загрузка сегондя
 					Thread.sleep(delayForThread); 
 					Calendar c = Calendar.getInstance();
-					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[1]+monthPlusZero(String.valueOf(c.get(Calendar.WEEK_OF_YEAR)))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
+					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/amour"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[1]+monthPlusZero(String.valueOf(c.get(Calendar.WEEK_OF_YEAR)))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
 					resultS[3]="<span style=\"color: rgb(255, 69, 0);\"><span style=\"font-size: 18pt;\"><span style=\"font-size: 14pt;\"><span style=\"font-size: 16pt;\">"+
 							doc.getElementById("tab-date").text()						//date
@@ -271,7 +271,7 @@ public class HoroFrYahooComLoader {
 	        	try {							//загрузка сегондя
 					Thread.sleep(delayForThread); 
 					Calendar c = Calendar.getInstance();
-					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9").replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[2]+months[c.get(Calendar.MONTH)]+".html")
+					Document doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9").replace("*", "%C3%A9")+"/amour"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[2]+months[c.get(Calendar.MONTH)]+".html")
 							.userAgent(context.getResources().getString(R.string.user_agent))
 							.timeout(context.getResources().getInteger(R.integer.user_timeout))
 							.get();
