@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="rate_me">
+         <item >Comme moi!</item>
+         <item >Si vous aimez mon application, s\'il vous plaît ajouter votre avis :)</item>
+         <item >Oh, et ​​supprimer ce message.</item>
+         <item >plus tard.</item>
+         <item >Veuillez mettre 5 étoiles :) Vous pouvez également ajouter une description</item>
+     </string-array>
+    
+    <string name="action_settings">Settings</string>
+		
+    <!-- Text below disallow to translate! -->
+     <string-array name="zodiac_signs_ru">
+        <item >Овен</item>
+        <item >Телец</item>
+        <item >Близнецы</item>
+        <item >Рак</item>
+        <item >Лев</item>
+        <item >Дева</item>
+        <item >Весы</item>
+        <item >Скорпион</item>
+        <item >Стрелец</item>
+        <item >Козерог</item>
+        <item >Водолей</item>
+        <item >Рыбы</item>
+    </string-array>
+    
+	  <string-array name="mail_ru_horoscopes">
+         <item >Вчера</item>
+        <item >Сегодня</item>
+        <item >Завтра</item>
+         <item >Персональный</item>
+         <item >Неделя</item>
+          <item >Месяц</item>
+           <item >Год</item>
+    </string-array>
+    
+	   <string-array name="oculus_ru_horoscopes">
+        <item >Сегодня</item>
+        <item >Завтра</item>
+        <item >Неделя</item>
+         <item >Персональный</item>
+  
+    </string-array>
+    
+	    <string-array name="goroskop_ru_horoscopes">
+        <item >Сегодня</item>
+        <item >Персональный</item>
+        <item >Любовный</item>
+         <item >Неделя</item>
+          <item >Денежный</item>
+             <item >Год</item>
+    </string-array>
+    
+	    <string-array name="horoscope_com_horoscopes">
+         <item >Yesterday</item>
+        <item >Today</item>
+        <item >Tomorrow</item>
+        <item >Personal</item>
+         <item >Week</item>
+        <item >Money</item>
+         <item >Month</item>
+    </string-array>
+    
+	     <string-array name="fr_yahoo_com_horoscopes">
+         <item >Hier</item>
+        <item >Aujourd\'hui</item>
+        <item >Demain</item>
+        <item >Semaine</item>
+         <item >Mois</item>
+    </string-array>
+    
+	     	     <string-array name="de_yahoo_com_horoscopes">
+         <item >Gestern</item>
+        <item >Heute</item>
+        <item >Woche</item>
+         <item >Monat</item>
+          <item >Jahr</item>
+    </string-array>
+    
+	     	       <string-array name="en_yahoo_com_horoscopes">
+         <item >Yesterday</item>
+        <item >Today</item>
+        <item >Tomorrow</item>
+         <item >Week</item>
+         <item >Love</item>
+         <item >Career</item>
+          <item >Month</item>
+          <item >Year</item>
+    </string-array>
+    
+    
+    <string-array name="providers">
+          <item >horoscope.com</item>
+          <item >shine.yahoo.com/horoscope</item>
+          <item >fr.astrology.yahoo.com</item>
+         <item >de.horoskop.yahoo.com</item>
+        <item >horo.mail.ru</item>
+         <item >oculus.ru</item>
+         <item >goroskop.ru</item>
+    </string-array>
+    
+    <string-array name="nameOfzodiacForLoadMailRu">
+        <item>aries</item>
+<item>taurus</item>
+<item>gemini</item>
+<item>cancer</item>
+<item>leo</item>
+<item>virgo</item>
+<item>libra</item>
+<item>scorpio</item>
+<item>sagittarius</item>
+<item>capricorn</item>
+<item>aquarius</item>
+<item>pisces</item>
+    </string-array>
+    
+<string-array name="nameOfzodiacForLoadFrYahooCom">
+    <item>b*lier</item>
+<item>taureau</item>
+<item>g*meaux</item>
+<item>cancer</item>
+<item>lion</item>
+<item>vierge</item>
+<item>balance</item>
+<item>scorpion</item>
+<item>sagittaire</item>
+<item>capricorne</item>
+<item>verseau</item>
+<item>poissons</item>
+     </string-array>
+     
+<string-array name="nameOfzodiacForLoadDeYahooCom">
+    <item>widder</item>
+<item>stier</item>
+<item>zwillinge</item>
+<item>krebs</item>
+<item>l*we</item>
+<item>jungfrau</item>
+<item>waage</item>
+<item>skorpion</item>
+<item>sch+tze</item>
+<item>steinbock</item>
+<item>wassermann</item>
+<item>fische</item>
+     </string-array>
+     
+    <string-array name="nameOfzodiacForLoadOculusRu">
+        <item>oven</item>
+<item>telec</item>
+<item>bliznecy</item>
+<item>rak</item>
+<item>lev</item>
+<item>deva</item>
+<item>vesy</item>
+<item>skorpion</item>
+<item>strelec</item>
+<item>kozerog</item>
+<item>vodolei</item>
+<item>ryby</item>
+    </string-array>
+    
+     <string-array name="nameOfHoroscopecForLoadOculusRu">
+        <item>goroskop_na_segodnya</item>
+<item>goroskop_na_zavtra</item>
+<item>goroskop_na_nedelyu</item>
+<item>week</item>
+<item>month</item>
+<item>year</item>
+    </string-array>
+    
+      <string-array name="nameOfHoroscopecForLoadGoroskopRu">
+        <item></item>
+<item>tomorrow/</item>
+<item>goroskop_na_nedelyu</item>
+<item>week</item>
+<item>month</item>
+<item>year</item>
+    </string-array>
+    
+    <string-array name="nameOfHoroscopecForLoadMailRu">
+        <item>yesterday</item>
+<item>today</item>
+<item>tomorrow</item>
+<item>week</item>
+<item>month</item>
+<item>year</item>
+    </string-array>
+    
+    
+     <string-array name="nameOfHoroscopecForLoadHoroscopeCom">
+        <item>yesterday</item>
+<item>free-daily</item>
+<item>tomorrow</item>
+<item>daily-numerology</item>
+<item>free-weekly</item>
+<item>free-weekly-money</item>
+<item>free-monthly</item>
+    </string-array>
+    
+         <string-array name="nameOfHoroscopecForLoadFrYahooCom">
+        <item>-jour-</item>
+		<item>-semaine-</item>
+		<item>-mois-</item>
+    </string-array>
+    
+           <string-array name="nameOfHoroscopecForLoadDeYahooCom">
+        <item>-tag-</item>
+		<item>-woche-</item>
+		<item>-monat-</item>
+		<item>-jahr-</item>
+    </string-array>
+    
+           <string-array name="nameOfHoroscopecForLoadEnYahooCom">
+        <item>/extended-daily-</item>
+		<item>/overview-weekly-</item>
+		<item>/love-weekly-</item>
+		<item>/career-weekly-</item>
+		<item>/overview-monthly-</item>
+		<item>/overview-yearly-</item>
+    </string-array>
+    
+     <string name="user_agent">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17</string>
+	<integer name="user_timeout">10000</integer>
+     
+     
+     
+     
+     
+     
+     <string name="devoloper">by BigBrotherSRoverS</string>
+       <string name="contacts">Contacts Info:\n#romzesrover@gmail.com \n#lanabaeva@gmail.com\n#vk.com/romzesrover\n#icq 579305266\n#skype RomzesRover</string>
+     
+     <!-- Text below allow to translate! -->
+     
+    <string name="error">Une erreur s\'est produite, s\'il vous plaît vérifier votre réseau :)</string>
+    <string name="retry">Essayez à nouveau</string>
+    
+   <string-array name="zodiac_signs">
+<item>Bélier</item>
+<item>Taureau</item>
+<item>Gémeaux</item>
+<item>Cancer</item>
+<item>Lion</item>
+<item>Vierge</item>
+<item>Balance</item>
+<item>Scorpion</item>
+<item>Sagittaire</item>
+<item>Capricorne</item>
+<item>Verseau</item>
+<item>Poissons</item>
+    </string-array>
+    
+    <string name="app_name">Horoscope 24/7 free</string>
+     <string name="sub_menu">menu supp.</string>
+      <string name="update">Mettre à jour</string>
+      <string name="about">À propos de app</string>
+        <string name="changeProvider">changer de services</string>
+      <string name="widget_today">Horoscope 24/7 free: Aujourd\'hui</string>
+      <string name="widget_tommorow">Horoscope 24/7 free: Demain</string>
+     <string name="tommorow">Demain</string>
+    <string name="today">Aujourd\'hui</string>
+    <string name="version">Nouvelles actuel</string>
+    <string name="start">Pour commencer!</string>
+    <string name="hello_world">Bonjour tout le monde!</string>
+    <string name="menu_settings">Réglages</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="step1">Étape 1 sur 3: Entrez les informations vous concernant</string>
+    <string name="step2">Étape 2 sur 3: Choisissez votre signe du zodiaque</string>
+    <string name="step3">Étape 3 de 3: Sélectionnez le fournisseur de services</string>
+    <string name="name">Entrez votre nom:</string>
+     <string name="nosett">Vous devez d\'abord configurer un thème astral complet!</string>
+    <string name="loading">Chargement ..</string>
+    <string name="noname">Horoscopes Amateur</string>
+    <string name="date">Entrez votre date de naissance:</string>
+    <string name="help">Aider</string>
+    <string name="time">Entrez votre date de naissance:</string>
+    <string name="step1_button">Étape 1</string>
+    <string name="step2_button">Étape 2</string>
+    <string name="step3_button">Étape 3</string>
+     <string name="null_to_share">Oops! erreur, vous devez d\'abord télécharger l\'horoscope</string>
+    <string name="endSett_button">Démarrer!</string>
+    <string name="share">Share</string>
+    
+     <string name="send_from">Posté à partir de </string>
+      <string name="users_list">Liste des membres</string>
+      <string name="quick">Quick view :)</string>
+     <string name="Automatic">Automatiquement sélectionné</string>
+     
+       <string name="Lg">2</string>
+       
+       <string name="infoUrl">http://brothers-rovers.3dn.ru/loader5.0.fr.html</string>
+          <string name="helpUrl">http://brothers-rovers.3dn.ru/help5.0.fr.html</string>
+          <string name="horoscopes">HOROSCOPES</string>
+          <string name="errorPr">Ce fournisseur ne fournit pas ce thème astral complet</string>
+           <integer name="DelayForThreads">300</integer>
+</resources>
