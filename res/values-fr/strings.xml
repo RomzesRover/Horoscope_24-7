@@ -183,7 +183,7 @@
            <string-array name="nameOfHoroscopecForLoadEnYahooCom">
         <item>/extended-daily-</item>
 		<item>/overview-weekly-</item>
-		<item>/love-weekly-</item>
+		<item>/love-weekly-</item>Гороскоп 24/7 free
 		<item>/career-weekly-</item>
 		<item>/overview-monthly-</item>
 		<item>/overview-yearly-</item>
@@ -220,13 +220,13 @@
 <item>Poissons</item>
     </string-array>
     
-    <string name="app_name">Horoscope 24/7 free</string>
+    <string name="app_name">Horoscope 24/7</string>
      <string name="sub_menu">menu supp.</string>
       <string name="update">Mettre à jour</string>
       <string name="about">À propos de app</string>
         <string name="changeProvider">changer de services</string>
-      <string name="widget_today">Horoscope 24/7 free: Aujourd\'hui</string>
-      <string name="widget_tommorow">Horoscope 24/7 free: Demain</string>
+      <string name="widget_today">Horoscope 24/7: Aujourd\'hui</string>
+      <string name="widget_tommorow">Horoscope 24/7: Demain</string>
      <string name="tommorow">Demain</string>
     <string name="today">Aujourd\'hui</string>
     <string name="version">Nouvelles actuel</string>

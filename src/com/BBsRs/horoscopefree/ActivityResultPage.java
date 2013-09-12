@@ -626,7 +626,7 @@ public class ActivityResultPage extends Activity {
 	      shareIntent.putExtra(Intent.EXTRA_TEXT, text);
 	      return shareIntent;
 	}	
-	
+	/*
 	public void onBackPressed(){
 		sPref = getSharedPreferences("T", 1);
         if (sPref.getBoolean("itsFake", true)){
@@ -654,6 +654,6 @@ public class ActivityResultPage extends Activity {
     	
     		build.show(); // ������� �����
     		} else {finish();}
-	}
+	}*/
 
 }

@@ -220,13 +220,13 @@
  <item>Fische</item>
     </string-array>
     
-    <string name="app_name">Horoskop 24/7 free</string>
+    <string name="app_name">Horoskop 24/7</string>
      <string name="sub_menu">Menü</string>
       <string name="update">Aktualisieren</string>
       <string name="about">Über App</string>
         <string name="changeProvider">Zurück zu Service</string>
-      <string name="widget_today">Horoskop 24/7 free: Heute</string>
-      <string name="widget_tommorow">Horoskop 24/7 free: Morgen</string>
+      <string name="widget_today">Horoskop 24/7: Heute</string>
+      <string name="widget_tommorow">Horoskop 24/7: Morgen</string>
      <string name="tommorow">Morgen</string>
     <string name="today">Heute</string>
     <string name="version">Aktuelles</string>

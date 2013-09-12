@@ -221,13 +221,13 @@
         <item >Fish</item>
     </string-array>
     
-    <string name="app_name">Horoscope 24/7 free</string>
+    <string name="app_name">Horoscope 24/7</string>
      <string name="sub_menu">Sub Menu</string>
       <string name="update">Update</string>
       <string name="about">About</string>
         <string name="changeProvider">Change provider</string>
-      <string name="widget_today">Horoscope 24/7 free: Today</string>
-     <string name="widget_tommorow">Horoscope 24/7 free: Tomorrow</string>
+      <string name="widget_today">Horoscope 24/7: Today</string>
+     <string name="widget_tommorow">Horoscope 24/7: Tomorrow</string>
     <string name="today">Today</string>
      <string name="tommorow">Tomorrow</string>
     <string name="version">To-date information</string>

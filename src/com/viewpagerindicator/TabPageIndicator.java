@@ -220,6 +220,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
             mIndex = index;
 
             TextView textView = (TextView)findViewById(android.R.id.text1);
+            textView.setMaxLines(1);
             textView.setText(text);
         }
 

@@ -220,13 +220,13 @@
         <item >Рыбы</item>
     </string-array>
     
-    <string name="app_name">Гороскоп 24/7 free</string>
+    <string name="app_name">Гороскоп 24/7</string>
      <string name="sub_menu">Доп. меню</string>
       <string name="update">Обновить</string>
       <string name="about">О Приложении</string>
         <string name="changeProvider">Сменить провайдера</string>
-      <string name="widget_today">Гороскоп 24/7 free: Сегодня</string>
-      <string name="widget_tommorow">Гороскоп 24/7 free: Завтра</string>
+      <string name="widget_today">Гороскоп 24/7: Сегодня</string>
+      <string name="widget_tommorow">Гороскоп 24/7: Завтра</string>
      <string name="tommorow">Завтра</string>
     <string name="today">Сегодня</string>
     <string name="version">Актуальная информация</string>
