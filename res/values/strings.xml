@@ -37,13 +37,6 @@
            <item >Год</item>
     </string-array>
     
-	   <string-array name="oculus_ru_horoscopes">
-        <item >Сегодня</item>
-        <item >Завтра</item>
-        <item >Неделя</item>
-         <item >Персональный</item>
-  
-    </string-array>
     
 	    <string-array name="goroskop_ru_horoscopes">
         <item >Сегодня</item>
@@ -91,14 +84,12 @@
           <item >Year</item>
     </string-array>
     
-    
     <string-array name="providers">
           <item >horoscope.com</item>
           <item >shine.yahoo.com/horoscope</item>
           <item >fr.astrology.yahoo.com</item>
          <item >de.horoskop.yahoo.com</item>
         <item >horo.mail.ru</item>
-         <item >oculus.ru</item>
          <item >goroskop.ru</item>
     </string-array>
     
@@ -147,29 +138,6 @@
 <item>fische</item>
      </string-array>
      
-    <string-array name="nameOfzodiacForLoadOculusRu">
-        <item>oven</item>
-<item>telec</item>
-<item>bliznecy</item>
-<item>rak</item>
-<item>lev</item>
-<item>deva</item>
-<item>vesy</item>
-<item>skorpion</item>
-<item>strelec</item>
-<item>kozerog</item>
-<item>vodolei</item>
-<item>ryby</item>
-    </string-array>
-    
-     <string-array name="nameOfHoroscopecForLoadOculusRu">
-        <item>goroskop_na_segodnya</item>
-<item>goroskop_na_zavtra</item>
-<item>goroskop_na_nedelyu</item>
-<item>week</item>
-<item>month</item>
-<item>year</item>
-    </string-array>
     
       <string-array name="nameOfHoroscopecForLoadGoroskopRu">
         <item></item>

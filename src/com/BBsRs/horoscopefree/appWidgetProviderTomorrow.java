@@ -22,13 +22,13 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
 	SharedPreferences sPref; 
 	int zodiacNumber,day,lg; String resDay="", title="";
 	int providerNumber;
-	Document  doc; // для загрузки и грамонтого парсинга 
+	Document  doc; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	public static String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
 	public static String ACTION_WIDGET_UPDATE = "ACTION_WIDGET_UPDATE";
 	
 	@Override
 	public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds){
-		//Создаем новый RemoteViews
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ RemoteViews
 		
         final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.a);
         android.os.SystemClock.sleep(1000);
@@ -47,15 +47,15 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
         
         
         sPref=context.getSharedPreferences("T", 1); 
-        zodiacNumber=sPref.getInt("zodiacNumber", 13);		//номер знака
-        providerNumber=sPref.getInt("providerNumber",7);	//номер провайдера
+        zodiacNumber=sPref.getInt("zodiacNumber", 13);		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        providerNumber=sPref.getInt("providerNumber",7);	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         sPref = context.getSharedPreferences("T", 1);
-        Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+        Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {        
 	    switch(providerNumber){
         case 4:
         	//horo.mail
-        	try {							//загрузка сегондя
+        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         		doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[2]+"/").userAgent("Opera").get();
 				resDay=doc.getElementById("tm_tomorrow").child(0).text()+"\n"+ifFf(doc.getElementById("tm_tomorrow").child(1).text()+"\n\n")+doc.getElementById("tm_tomorrow").child(2).text()+"\n\n"+doc.getElementById("tm_tomorrow").child(3).text();
 			} catch (NotFoundException e) {
@@ -68,7 +68,7 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
         	break;
         case 0:
         	//horoscope.com
-        	try {							//загрузка сегондя
+        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         		doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[2]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent("Opera").get();
        			resDay=doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(1).text();
 			} catch (NotFoundException e) {
@@ -81,7 +81,7 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
         	break;
         case 1:
         	//en.yahoo
-        	try {							//загрузка сегондя
+        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         		Calendar c = Calendar.getInstance();
         		doc = Jsoup.connect("http://shine.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1].replace("*", "%C3%B6").replace("+", "%C3%BC")+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadEnYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+String.valueOf(c.get(Calendar.DAY_OF_MONTH)+1)+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				
@@ -96,7 +96,7 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
         	break;
         case 2:
         	//fr.yahoo.com
-        	try {							//загрузка сегондя
+        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         		Calendar c = Calendar.getInstance();
         		doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+String.valueOf(c.get(Calendar.DAY_OF_MONTH)+1)+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				resDay=doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
@@ -110,7 +110,7 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
         	break;
         case 3:
         	//de.yahoo.com
-        	try {							//загрузка сегондя
+        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         		resDay=context.getResources().getString(R.string.errorPr);
 			} catch (NotFoundException e) {
 				// TODO Auto-generated catch block
@@ -118,19 +118,6 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
 			}
         	break;
         case 5:
-        	//oculus.ru
-        	try {							//загрузка сегондя
-        		doc = Jsoup.connect("http://oculus.ru/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadOculusRu)[1]+"/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadOculusRu)[zodiacNumber-1]+".html").userAgent("Opera").get();
-				resDay=doc.getElementsByClass("centerTitleBox").first().child(1).text()+"\n"+doc.getElementsByClass("oculus-epz-text").first().text().replaceFirst(context.getResources().getStringArray(R.array.zodiac_signs_ru)[zodiacNumber-1], "");
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	break;
-        case 6:
         	//goroskop.ru
         	try {
             	resDay=context.getResources().getString(R.string.errorPr);
@@ -144,10 +131,10 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
         	resDay=context.getString(R.string.nosett);
         	break;
         }
-	    remoteViews.setTextViewText(R.id.name, sPref.getString("name",context.getResources().getString(R.string.noname)));		//ставим имя
-        remoteViews.setTextViewText(R.id.resDay, resDay);		//ставим текст гороскопа
+	    remoteViews.setTextViewText(R.id.name, sPref.getString("name",context.getResources().getString(R.string.noname)));		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+        remoteViews.setTextViewText(R.id.resDay, resDay);		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (zodiacNumber!=13)
-        remoteViews.setTextViewText(R.id.sign, context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+" - "+context.getResources().getString(R.string.tommorow));		//стави знак
+        remoteViews.setTextViewText(R.id.sign, context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+" - "+context.getResources().getString(R.string.tommorow));		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
 	        }
         });
@@ -157,7 +144,7 @@ public class appWidgetProviderTomorrow extends AppWidgetProvider {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 	    // TODO Auto-generated method stub
-		//Ловим наш Broadcast, проверяем и выводим сообщение
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Broadcast, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         final String action = intent.getAction();
         if (ACTION_WIDGET_RECEIVER.equals(action)) {
         	sPref = context.getSharedPreferences("T", 1);

@@ -8,7 +8,6 @@ import loader.HoroEnYahooComLoader;
 import loader.HoroFrYahooComLoader;
 import loader.HoroGoroskopRuLoader;
 import loader.HoroMailRuLoader;
-import loader.HoroOculusRuLoader;
 import loader.HoroscopeComLoader;
 
 import org.holoeverywhere.app.Activity;
@@ -58,7 +57,7 @@ public class ActivityResultPage extends Activity {
 	
 	Menu mainMenu; // local variable for menu
 	
-	SharedPreferences sPref; 			// для стр настроек жж
+	SharedPreferences sPref; 			// пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 	
 	private WebView[] webViews;
 	private RelativeLayout[] errorLayout, allNormalLayout;
@@ -66,7 +65,6 @@ public class ActivityResultPage extends Activity {
 	
 	HoroscopeComLoader horoscopeComLoader;
 	HoroMailRuLoader horoMailRuLoader;
-	HoroOculusRuLoader horoOculusRuLoader;
 	HoroGoroskopRuLoader horoGoroskopRuLoader;
 	HoroFrYahooComLoader horoFrYahooComLoader;
 	HoroDeYahooComLoader horoDeYahooComLoader;
@@ -87,8 +85,8 @@ public class ActivityResultPage extends Activity {
 	    setContentView(R.layout.activity_result_page);
 	    
 	    sPref = getSharedPreferences("T", 1);
-	    zodiacNumber=sPref.getInt("zodiacNumber", 13);		//номер зодиака
-	    providerNumber=sPref.getInt("providerNumber",7);	//номер провайдера
+	    zodiacNumber=sPref.getInt("zodiacNumber", 13);		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	    providerNumber=sPref.getInt("providerNumber",7);	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	    Log.d("ActivityResultPage", "zdNb:"+String.valueOf(zodiacNumber)+" prNb:"+String.valueOf(providerNumber));
 	    final ActionBar ab = getSupportActionBar();
 	    if (zodiacNumber>=13 || providerNumber>=7 || zodiacNumber<=0 || providerNumber<0){
@@ -235,73 +233,6 @@ public class ActivityResultPage extends Activity {
 			});
 	    	break;
 	    case 5:
-	    	//horo oculus ru
-	    	webViews = new WebView[4];
-	    	errorLayout = new RelativeLayout[4];
-	    	allNormalLayout = new RelativeLayout[4];
-	    	progressBar = new ProgressBar[4];
-	    			
-	    	inflater = LayoutInflater.from(this);
-	        views = new ArrayList<View>();
-	        
-	        for (int i=0; i<4; i++){
-	        	 page = inflater.inflate(R.layout.simple_text_tab_element, null);
-	 	        webViews[i]=(WebView)page.findViewById(R.id.simpleHoroText);
-	 	        errorLayout[i] = (RelativeLayout)page.findViewById(R.id.errorLayout);
-	 	        allNormalLayout[i] = (RelativeLayout)page.findViewById(R.id.allNormalLayout);
-	 	        progressBar[i] = (ProgressBar)page.findViewById(R.id.progressBar1);
-	 	        webViews[i].setBackgroundColor(Color.TRANSPARENT);
-	 	        views.add(page);
-	        }
-	       
-
-	        horoOculusRuLoader = new HoroOculusRuLoader(getApplicationContext(), webViews, errorLayout, allNormalLayout, progressBar);
-	        horoOculusRuLoader.load(0);
-	        
-	        adapter = new NewPagerAdapter(views, getResources().getStringArray(R.array.oculus_ru_horoscopes));
-	        pager = (ViewPager)findViewById( R.id.viewpager );
-	        indicator = (TabPageIndicator)findViewById( R.id.indicator );
-	        pager.setAdapter( adapter );
-	        pager.setCurrentItem(0);
-	        indicator.setViewPager( pager );
-	        indicator.setCurrentItem(0);
-	        
-	        titles = getResources().getStringArray(R.array.oculus_ru_horoscopes);
-	    	checked = new boolean[titles.length];
-	    	checked[0]=true;
-	    	currentSelected=0;
-	    	adapterListMenu = new SlidingMenuAdapter(getApplicationContext(), titles,checked); list.setAdapter(adapterListMenu);
-	    	
-	        pager.setOnPageChangeListener(new OnPageChangeListener(){
-				@Override
-				public void onPageScrollStateChanged(int arg0) {}
-				@Override
-				public void onPageScrolled(int arg0, float arg1, int arg2) {}
-				@Override
-				public void onPageSelected(int arg0) {
-					indicator.setCurrentItem(arg0);
-					
-					adapterListMenu.onSetChecked(arg0, currentSelected);
-					currentSelected=arg0;
-					
-						 horoOculusRuLoader.load(arg0);
-				}
-	        	
-	        });
-	        
-	        
-			list.setOnItemClickListener(new OnItemClickListener(){
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,
-						int arg2, long arg3) {
-					adapterListMenu.onSetChecked(arg2, currentSelected);
-					pager.setCurrentItem(arg2);
-					currentSelected=arg2;
-				}
-				
-			});
-	    	break;
-	    case 6:
 	    	//horo goroskop ru
 	    	webViews = new WebView[6];
 	    	errorLayout = new RelativeLayout[6];
@@ -587,9 +518,6 @@ public class ActivityResultPage extends Activity {
       		  toShare=horoMailRuLoader.getHoroscopesForShare()[pager.getCurrentItem()];
       		  break;
       	  case 5:
-      		  toShare=horoOculusRuLoader.getHoroscopesForShare()[pager.getCurrentItem()];
-      		  break;
-      	  case 6:
       		  toShare=horoGoroskopRuLoader.getHoroscopesForShare()[pager.getCurrentItem()];
       		  break;
       	  case 2:
@@ -612,7 +540,7 @@ public class ActivityResultPage extends Activity {
       	  if (toShare!=null)
       		  shareIntent.putExtra(Intent.EXTRA_TEXT, (toShare+
 						"\n\n#"+getResources().getStringArray(R.array.providers)[providerNumber]+
-    		  			"\n\n"+getResources().getText(R.string.send_from)+" «"+getResources().getText(R.string.app_name)+"»"+"\nPowered by: #BigBrothersRovers"));
+    		  			"\n\n"+getResources().getText(R.string.send_from)+" пїЅ"+getResources().getText(R.string.app_name)+"пїЅ"+"\nPowered by: #BigBrothersRovers"));
 			else {
 				Toast.makeText(getApplicationContext(), getResources().getString(R.string.null_to_share), Toast.LENGTH_LONG).show();
 				return true;	
@@ -650,9 +578,6 @@ public class ActivityResultPage extends Activity {
 	      		  horoMailRuLoader.update(pager.getCurrentItem());
 	      		  break;
 	      	  case 5:
-	      		  horoOculusRuLoader.update(pager.getCurrentItem());
-	      		  break;
-	      	  case 6:
 	      		  horoGoroskopRuLoader.update(pager.getCurrentItem());
 	      		  break;
 	      	  case 2:
@@ -704,18 +629,18 @@ public class ActivityResultPage extends Activity {
 	public void onBackPressed(){
 		sPref = getSharedPreferences("T", 1);
         if (sPref.getBoolean("itsFake", true)){
-    		final Context context = ActivityResultPage.this; // создаем контекст
-    		AlertDialog.Builder build = new AlertDialog.Builder(context); // создаем диалог 
-    		build.setTitle(getResources().getStringArray(R.array.rate_me)[0]); // заголовок диалога
-    		build.setMessage(getResources().getStringArray(R.array.rate_me)[1]); // сообщение  
+    		final Context context = ActivityResultPage.this; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    		AlertDialog.Builder build = new AlertDialog.Builder(context); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
+    		build.setTitle(getResources().getStringArray(R.array.rate_me)[0]); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    		build.setMessage(getResources().getStringArray(R.array.rate_me)[1]); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  
     		build.setPositiveButton(getResources().getStringArray(R.array.rate_me)[2], new DialogInterface.OnClickListener() {
     			public void onClick(DialogInterface dialog, int which) {
     				Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopefree"));
     				marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
     				startActivity(marketIntent);
     				Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();
-    				Editor ed = sPref.edit();   // пока ничего не сохраняем, делаем всё как надо :)
-    			    ed.putBoolean("itsFake", false);						//знак, по номеру
+    				Editor ed = sPref.edit();   // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ :)
+    			    ed.putBoolean("itsFake", false);						//пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     		        ed.commit();
     			}
     		});
@@ -726,7 +651,7 @@ public class ActivityResultPage extends Activity {
     		});
             
     	
-    		build.show(); // выводим дилог
+    		build.show(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     		} else {finish();}
 	}
 
