@@ -156,16 +156,20 @@ public class HoroFrYahooComLoader {
 							+"</span></span></span></p>";
 					horoscopes[1]=context.getResources().getStringArray(R.array.fr_yahoo_com_horoscopes)[1]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
 					setResult(1);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(1);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(1); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(1);
 					e.printStackTrace();
 				}}
         });
@@ -187,16 +191,20 @@ public class HoroFrYahooComLoader {
 							+"</span></span></span></p>";
 					horoscopes[2]=context.getResources().getStringArray(R.array.fr_yahoo_com_horoscopes)[2]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
 					setResult(2);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(2);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(2); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(2);
 					e.printStackTrace();
 				}}
         });
@@ -218,16 +226,20 @@ public class HoroFrYahooComLoader {
 							+"</span></span></span></p>";
 					horoscopes[0]=context.getResources().getStringArray(R.array.fr_yahoo_com_horoscopes)[0]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
 					setResult(0);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(0);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(0); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(0);
 					e.printStackTrace();
 				}}
         });
@@ -249,16 +261,20 @@ public class HoroFrYahooComLoader {
 							+"</span></span></span></p>";
 					horoscopes[3]=context.getResources().getStringArray(R.array.fr_yahoo_com_horoscopes)[3]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
 					setResult(3);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(3);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(3); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(3);
 					e.printStackTrace();
 				}}
         });
@@ -283,16 +299,20 @@ public class HoroFrYahooComLoader {
 							+"</span></span></span></p>";
 					horoscopes[4]=context.getResources().getStringArray(R.array.fr_yahoo_com_horoscopes)[4]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
 					setResult(4);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(4);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(4); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(4);
 					e.printStackTrace();
 				}}
         });

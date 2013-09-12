@@ -31,8 +31,8 @@ public class HoroMailRuLoader {
 	
 	int zodiacNumber;
 	
-	String[] resultS = new String[7];			//это текст html
-	String[] horoscopes = new String[7];		//это просто текст для шаринга...
+	String[] resultS = new String[7];			//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ html
+	String[] horoscopes = new String[7];		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
 	
 	boolean [] loaded = new boolean[7];
 	
@@ -40,7 +40,7 @@ public class HoroMailRuLoader {
 	
 	int delayForThread;
 	
-	String[] months = {"Января", "Февраля","Марта", "Апреля", "Май", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"};
+	String[] months = {"пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ","пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"};
 	
 	public HoroMailRuLoader (Context context, WebView[] webViews, RelativeLayout[] errorLayout, RelativeLayout[] allNormalLayout, ProgressBar[] progressBar ){
 		this.context=context;
@@ -49,7 +49,7 @@ public class HoroMailRuLoader {
 		this.allNormalLayout=allNormalLayout;
 		this.progressBar=progressBar;
 		sPref = this.context.getSharedPreferences("T", 1);
-		zodiacNumber=sPref.getInt("zodiacNumber", 0);		//номер зодиака
+		zodiacNumber=sPref.getInt("zodiacNumber", 0);		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		delayForThread=this.context.getResources().getInteger(R.integer.DelayForThreads);
 	}
 	
@@ -61,7 +61,7 @@ public class HoroMailRuLoader {
 		final Runnable updaterText = new Runnable() {
 	        public void run() {
 	        	webViews[id].loadDataWithBaseURL(null,resultS[id]
-	                    ,"text/html", "utf-8",null); // указываем страницу загрузки
+	                    ,"text/html", "utf-8",null); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        	progressBar[id].setVisibility(View.GONE);
 	        	webViews[id].setVisibility(View.VISIBLE);
 	        	allNormalLayout[id].setVisibility(View.VISIBLE);
@@ -149,37 +149,41 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadToday(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread);
 					Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
 					resultS[1]="<div style=\"float:left; width:70px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-					doc.getElementById("tm_today").child(0).child(0).text()+		//дата
+					doc.getElementById("tm_today").child(0).child(0).text()+		//пїЅпїЅпїЅпїЅ
 					"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-					doc.getElementById("tm_today").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//месяц
+					doc.getElementById("tm_today").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//пїЅпїЅпїЅпїЅпїЅ
 					"</span></span></div><div>"+
-					ifF(doc.getElementById("tm_today").child(1).text()+																														//горо
-							"</div><div><br></div><div>")																				//месяц
+					ifF(doc.getElementById("tm_today").child(1).text()+																														//пїЅпїЅпїЅпїЅ
+							"</div><div><br></div><div>")																				//пїЅпїЅпїЅпїЅпїЅ
 					+
 					doc.getElementById("tm_today").child(2).text()
-					+					//горо
+					+					//пїЅпїЅпїЅпїЅ
 					"</div><div><br></div><div>"+
-					doc.getElementById("tm_today").child(3).text()+"</div>";		//горо2
+					doc.getElementById("tm_today").child(3).text()+"</div>";		//пїЅпїЅпїЅпїЅ2
 					
 					horoscopes[1]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[1]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_today").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_today").child(1).text()+"\n\n")+doc.getElementById("tm_today").child(2).text()+"\n\n"+doc.getElementById("tm_today").child(3).text();
 					setResult(1);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(1);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(1); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(1);
 					e.printStackTrace();
 				}}
         });
@@ -187,35 +191,39 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadTomorrow(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[2]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					resultS[2]= "<div style=\"float:left; width:70px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-							doc.getElementById("tm_tomorrow").child(0).child(0).text()+		//дата
+							doc.getElementById("tm_tomorrow").child(0).child(0).text()+		//пїЅпїЅпїЅпїЅ
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_tomorrow").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//месяц
+							doc.getElementById("tm_tomorrow").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//пїЅпїЅпїЅпїЅпїЅ
 							"</span></span></div><div>"+
-							ifF(doc.getElementById("tm_tomorrow").child(1).text()+																														//горо
-									"</div><div><br></div><div>")																				//месяц
+							ifF(doc.getElementById("tm_tomorrow").child(1).text()+																														//пїЅпїЅпїЅпїЅ
+									"</div><div><br></div><div>")																				//пїЅпїЅпїЅпїЅпїЅ
 							+
-							doc.getElementById("tm_tomorrow").child(2).text()+					//горо
+							doc.getElementById("tm_tomorrow").child(2).text()+					//пїЅпїЅпїЅпїЅ
 							"</div><div><br></div><div>"+
 							doc.getElementById("tm_tomorrow").child(3).text()+"</div>";
 					
 					horoscopes[2]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[2]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_tomorrow").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_tomorrow").child(1).text()+"\n\n")+doc.getElementById("tm_tomorrow").child(2).text()+"\n\n"+doc.getElementById("tm_tomorrow").child(3).text();
 					setResult(2);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(2);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(2); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(2);
 					e.printStackTrace();
 				}}
         });
@@ -223,35 +231,39 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadYesterday(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[0]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					resultS[0]= "<div style=\"float:left; width:70px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-							doc.getElementById("tm_yesterday").child(0).child(0).text()+		//дата
+							doc.getElementById("tm_yesterday").child(0).child(0).text()+		//пїЅпїЅпїЅпїЅ
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_yesterday").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//месяц
+							doc.getElementById("tm_yesterday").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//пїЅпїЅпїЅпїЅпїЅ
 							"</span></span></div><div>"+
-							ifF(doc.getElementById("tm_yesterday").child(1).text()+																														//горо
-									"</div><div><br></div><div>")																				//месяц
+							ifF(doc.getElementById("tm_yesterday").child(1).text()+																														//пїЅпїЅпїЅпїЅ
+									"</div><div><br></div><div>")																				//пїЅпїЅпїЅпїЅпїЅ
 							+
-							doc.getElementById("tm_yesterday").child(2).text()+					//горо
+							doc.getElementById("tm_yesterday").child(2).text()+					//пїЅпїЅпїЅпїЅ
 							"</div><div><br></div><div>"+
 							doc.getElementById("tm_yesterday").child(3).text()+"</div>"; 
 
 					horoscopes[0]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[0]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_yesterday").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_yesterday").child(1).text()+"\n\n")+doc.getElementById("tm_yesterday").child(2).text()+"\n\n"+doc.getElementById("tm_yesterday").child(3).text();				
 					setResult(0);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(0);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(0); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(0);
 					e.printStackTrace();
 				}}
         });
@@ -259,34 +271,38 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadPersonal(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Calendar c = Calendar.getInstance(); 
 					Document doc = Jsoup.connect("http://horo.mail.ru/numerology_calc.html?method=31&day1="+String.valueOf(sPref.getInt("dayBorn", 10))+"&month1="+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"&year1="+String.valueOf(sPref.getInt("yearBorn", 1995))+"&day2="+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+"&month2="+String.valueOf(c.get(Calendar.MONTH)+1)+"&year2="+String.valueOf(c.get(Calendar.YEAR))).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
 					resultS[3]="<div style=\"float:left; width:70px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-					String.valueOf(c.get(Calendar.DAY_OF_MONTH))+		//дата
+					String.valueOf(c.get(Calendar.DAY_OF_MONTH))+		//пїЅпїЅпїЅпїЅ
 					"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-					months[c.get(Calendar.MONTH)].replaceAll("[0-9]*", "").toUpperCase()+														//месяц
-					"</span></span></div><div>"+																		//месяц
-					"Ваш День Рождения: "+doc.getElementsByClass("content").first().child(1).child(0).text()+
+					months[c.get(Calendar.MONTH)].replaceAll("[0-9]*", "").toUpperCase()+														//пїЅпїЅпїЅпїЅпїЅ
+					"</span></span></div><div>"+																		//пїЅпїЅпїЅпїЅпїЅ
+					"пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+doc.getElementsByClass("content").first().child(1).child(0).text()+
 					doc.getElementsByClass("content").first().child(3).html()+
-					"</div>";		//горо2
+					"</div>";		//пїЅпїЅпїЅпїЅ2
 					
-					 horoscopes[3]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[3]+" : #"+sPref.getString("name", context.getResources().getString(R.string.noname))+"\n\n"+"Гороскоп на: "+doc.getElementsByClass("content").first().child(1).child(2).text()+"\nВаш День Рождения: "+doc.getElementsByClass("content").first().child(1).child(0).text()+"\n"+doc.getElementsByClass("content").first().child(3).text();
+					 horoscopes[3]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[3]+" : #"+sPref.getString("name", context.getResources().getString(R.string.noname))+"\n\n"+"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ: "+doc.getElementsByClass("content").first().child(1).child(2).text()+"\nпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: "+doc.getElementsByClass("content").first().child(1).child(0).text()+"\n"+doc.getElementsByClass("content").first().child(3).text();
 					setResult(3);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(3);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(3); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(3);
 					e.printStackTrace();
 				}}
         });
@@ -294,18 +310,18 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadWeek(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[3]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					resultS[4]= "<div style=\"float:left; width:110px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-							doc.getElementById("tm_week").child(0).child(0).text()+		//дата
+							doc.getElementById("tm_week").child(0).child(0).text()+		//пїЅпїЅпїЅпїЅ
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_week").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll("ДО", "")+	
+							doc.getElementById("tm_week").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll("пїЅпїЅ", "")+	
 							"</span></span></div><div>"+
-							ifF(doc.getElementById("tm_week").child(1).text()+																														//горо
-									"</div><div><br></div><div>")																				//месяц
+							ifF(doc.getElementById("tm_week").child(1).text()+																														//пїЅпїЅпїЅпїЅ
+									"</div><div><br></div><div>")																				//пїЅпїЅпїЅпїЅпїЅ
 							+
 							doc.getElementById("tm_week").child(2).text()+"</div>"+
 							"</div><div><br></div><div>"+
@@ -316,16 +332,20 @@ public class HoroMailRuLoader {
 
 					horoscopes[4]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[4]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_week").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_week").child(1).text()+"\n\n")+doc.getElementById("tm_week").child(2).text()+"\n\n"+doc.getElementById("tm_week").child(3).text()+"\n\n"+doc.getElementById("tm_week").child(4).text();
 					setResult(4);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(4);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(4); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(4);
 					e.printStackTrace();
 				}}
         });
@@ -333,18 +353,18 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadMonth(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[4]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					resultS[5]= "<div style=\"float:left; width:110px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-							doc.getElementById("tm_month").child(0).child(0).text()+		//дата
+							doc.getElementById("tm_month").child(0).child(0).text()+		//пїЅпїЅпїЅпїЅ
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_month").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll("ДО", "")+														//месяц
+							doc.getElementById("tm_month").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll("пїЅпїЅ", "")+														//пїЅпїЅпїЅпїЅпїЅ
 							"</span></span></div><div>"+
-							ifF(doc.getElementById("tm_month").child(1).text()+																														//горо
-									"</div><div><br></div><div>")																				//месяц
+							ifF(doc.getElementById("tm_month").child(1).text()+																														//пїЅпїЅпїЅпїЅ
+									"</div><div><br></div><div>")																				//пїЅпїЅпїЅпїЅпїЅ
 							+
 							doc.getElementById("tm_month").child(2).text()+"</div>"+
 							"</div><div><br></div><div>"+
@@ -355,16 +375,20 @@ public class HoroMailRuLoader {
 
 					horoscopes[5]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[5]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_month").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_month").child(1).text()+"\n\n")+doc.getElementById("tm_month").child(2).text()+"\n\n"+doc.getElementById("tm_month").child(3).text()+"\n\n"+doc.getElementById("tm_month").child(4).text();
 					setResult(5);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(5);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(5); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(5);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(5);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(5);
 					e.printStackTrace();
 				}}
         });
@@ -372,18 +396,18 @@ public class HoroMailRuLoader {
 	}
 	
 	public void LoadYear(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[5]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					resultS[6]= "<div style=\"float:left; width:110px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
-							doc.getElementById("tm_year").child(0).child(0).text()+		//дата
+							doc.getElementById("tm_year").child(0).child(0).text()+		//пїЅпїЅпїЅпїЅ
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_year").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//месяц
+							doc.getElementById("tm_year").child(0).text().replaceAll("[0-9]*", "").toUpperCase()+														//пїЅпїЅпїЅпїЅпїЅ
 							"</span></span></div><div>"+
-							ifF(doc.getElementById("tm_year").child(1).text()+																														//горо
-									"</div><div><br></div><div>")																				//месяц
+							ifF(doc.getElementById("tm_year").child(1).text()+																														//пїЅпїЅпїЅпїЅ
+									"</div><div><br></div><div>")																				//пїЅпїЅпїЅпїЅпїЅ
 							+
 							doc.getElementById("tm_year").child(2).text()+"</div>"+
 							"</div><div><br></div><div>"+
@@ -399,16 +423,20 @@ public class HoroMailRuLoader {
 
 					horoscopes[6]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[6]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_year").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_year").child(1).text()+"\n\n")+doc.getElementById("tm_year").child(2).text()+"\n\n"+doc.getElementById("tm_year").child(3).text()+"\n\n"+doc.getElementById("tm_year").child(4).text()+"\n\n"+doc.getElementById("tm_year").child(5).text()+"\n\n"+doc.getElementById("tm_year").child(6).text()+"\n\n"+doc.getElementById("tm_year").child(7).text();
 					setResult(6);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(6);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(6); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(6);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(6);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(6);
 					e.printStackTrace();
 				}}
         });

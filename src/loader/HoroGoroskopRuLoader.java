@@ -30,8 +30,8 @@ public class HoroGoroskopRuLoader {
 	
 	int zodiacNumber;
 	
-	String[] resultS = new String[6];			//это текст html
-	String[] horoscopes = new String[6];		//это просто текст для шаринга...
+	String[] resultS = new String[6];			//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ html
+	String[] horoscopes = new String[6];		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
 	String todayN; 	
 	
 	boolean [] loaded = new boolean[6];
@@ -40,7 +40,7 @@ public class HoroGoroskopRuLoader {
 	
 	int delayForThread;
 	
-	String[] months = {"Января", "Февраля","Марта", "Апреля", "Май", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"};
+	String[] months = {"пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ","пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"};
 	
 	public HoroGoroskopRuLoader (Context context, WebView[] webViews, RelativeLayout[] errorLayout, RelativeLayout[] allNormalLayout, ProgressBar[] progressBar ){
 		this.context=context;
@@ -49,7 +49,7 @@ public class HoroGoroskopRuLoader {
 		this.allNormalLayout=allNormalLayout;
 		this.progressBar=progressBar;
 		sPref = this.context.getSharedPreferences("T", 1);
-		zodiacNumber=sPref.getInt("zodiacNumber", 0);		//номер зодиака
+		zodiacNumber=sPref.getInt("zodiacNumber", 0);		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		delayForThread=this.context.getResources().getInteger(R.integer.DelayForThreads);
 	}
 	
@@ -61,7 +61,7 @@ public class HoroGoroskopRuLoader {
 		final Runnable updaterText = new Runnable() {
 	        public void run() {
 	        	webViews[id].loadDataWithBaseURL(null,resultS[id]
-	                    ,"text/html", "utf-8",null); // указываем страницу загрузки
+	                    ,"text/html", "utf-8",null); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        	progressBar[id].setVisibility(View.GONE);
 	        	webViews[id].setVisibility(View.VISIBLE);
 	        	allNormalLayout[id].setVisibility(View.VISIBLE);
@@ -146,9 +146,9 @@ public class HoroGoroskopRuLoader {
 	}
 	
 	public void LoadToday(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread);
 					Document doc = Jsoup.connect("http://goroskop.ru/publish/open_article/29/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -162,16 +162,20 @@ public class HoroGoroskopRuLoader {
 					todayN=doc.getElementById("gContent").child(0).child(0).text();					//save to personal date
 					 horoscopes[0]=context.getResources().getStringArray(R.array.goroskop_ru_horoscopes)[0]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("gContent").child(0).child(0).text()+	"\n"+doc.getElementById("article").child(1).text()+"\n"+doc.getElementById("article").child(2).text();
 					setResult(0);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(0);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(0); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(0);
 					e.printStackTrace();
 				}}
         });
@@ -180,9 +184,9 @@ public class HoroGoroskopRuLoader {
 
 
 	public void LoadPersonal(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://www.goroskop.ru/publish/open_class/170/?year="+String.valueOf(sPref.getInt("yearBorn",1995))+"&month="+String.valueOf(sPref.getInt("monthBorn",4)+1)+"&day="+String.valueOf(sPref.getInt("dayBorn", 10))+"&hour="+String.valueOf(sPref.getInt("hourBorn", 22))+"&minutes="+String.valueOf(sPref.getInt("minuteBorn",10))).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
     				
@@ -198,16 +202,20 @@ public class HoroGoroskopRuLoader {
 					for (int i=0; i<resPersonalstr.length(); i++){
 					if (resPersonalstr.charAt(i)==':') {if (n!=4) { horoscopes[1]+="\n\n";}; if (n>6) {n=10;};horoscopes[1]+=( doc.getElementById("gContent").child(6).child(n).text()); n=n+2; horoscopes[1]+=":"+"\n";} else {horoscopes[1]+=resPersonalstr.charAt(i);}}
     				setResult(1);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(1);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(1); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(1);
 					e.printStackTrace();
 				}}
         });
@@ -215,9 +223,9 @@ public class HoroGoroskopRuLoader {
 	}
 	
 	public void LoadLove(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://goroskop.ru/publish/open_article/41/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
     				
@@ -230,16 +238,20 @@ public class HoroGoroskopRuLoader {
     				
     				 horoscopes[2]=context.getResources().getStringArray(R.array.goroskop_ru_horoscopes)[2]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("gContent").child(0).child(0).text()+	"\n"+doc.getElementById("article").child(1).text()+	"\n"+doc.getElementById("article").child(2).text();
     				 setResult(2);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(2);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(2); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(2);
 					e.printStackTrace();
 				}}
         });
@@ -247,9 +259,9 @@ public class HoroGoroskopRuLoader {
 	}
 	
 	public void LoadWeek(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://goroskop.ru/publish/open_article/38/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
     				
@@ -262,16 +274,20 @@ public class HoroGoroskopRuLoader {
     				
     				 horoscopes[3]=context.getResources().getStringArray(R.array.goroskop_ru_horoscopes)[3]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("gContent").child(0).child(0).text()+	"\n"+doc.getElementById("article").child(1).text()+"\n"+doc.getElementById("article").child(2).text();
     				setResult(3);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(3);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(3); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(3);
 					e.printStackTrace();
 				}}
         });
@@ -279,9 +295,9 @@ public class HoroGoroskopRuLoader {
 	}
 	
 	public void LoadMoney(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://goroskop.ru/publish/open_article/1443/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
     				
@@ -294,16 +310,20 @@ public class HoroGoroskopRuLoader {
     				
     				 horoscopes[4]=context.getResources().getStringArray(R.array.goroskop_ru_horoscopes)[4]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("gContent").child(0).child(0).text()+	"\n"+doc.getElementById("article").child(1).text()+"\n"+doc.getElementById("article").child(2).text();
     				setResult(4);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(4);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(4); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(4);
 					e.printStackTrace();
 				}}
         });
@@ -312,9 +332,9 @@ public class HoroGoroskopRuLoader {
 	
 	
 	public void LoadYear(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc;
 					if (zodiacNumber>=10){doc = Jsoup.connect("http://goroskop.ru/publish/open_article/819"+String.valueOf(zodiacNumber)).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();}
@@ -329,16 +349,20 @@ public class HoroGoroskopRuLoader {
     				
     				 horoscopes[5]=context.getResources().getStringArray(R.array.goroskop_ru_horoscopes)[5]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+context.getResources().getStringArray(R.array.goroskop_ru_horoscopes)[5]+"\n\n"+doc.getElementById("article").text();
     				setResult(5);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(5);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(5); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(5);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(5);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(5);
 					e.printStackTrace();
 				}}
         });

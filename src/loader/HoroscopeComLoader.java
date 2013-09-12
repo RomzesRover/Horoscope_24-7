@@ -30,8 +30,8 @@ public class HoroscopeComLoader {
 	
 	int zodiacNumber;
 	
-	String[] resultS = new String[7];			//это текст html
-	String[] horoscopes = new String[7];		//это просто текст для шаринга...
+	String[] resultS = new String[7];			//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ html
+	String[] horoscopes = new String[7];		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
 	
 	boolean [] loaded = new boolean[7];
 	
@@ -46,7 +46,7 @@ public class HoroscopeComLoader {
 		this.allNormalLayout=allNormalLayout;
 		this.progressBar=progressBar;
 		sPref = this.context.getSharedPreferences("T", 1);
-		zodiacNumber=sPref.getInt("zodiacNumber", 0);		//номер зодиака
+		zodiacNumber=sPref.getInt("zodiacNumber", 0);		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		delayForThread=this.context.getResources().getInteger(R.integer.DelayForThreads);
 	}
 	
@@ -58,7 +58,7 @@ public class HoroscopeComLoader {
 		final Runnable updaterText = new Runnable() {
 	        public void run() {
 	        	webViews[id].loadDataWithBaseURL(null,resultS[id]
-	                    ,"text/html", "utf-8",null); // указываем страницу загрузки
+	                    ,"text/html", "utf-8",null); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        	progressBar[id].setVisibility(View.GONE);
 	        	webViews[id].setVisibility(View.VISIBLE);
 	        	allNormalLayout[id].setVisibility(View.VISIBLE);
@@ -146,9 +146,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadToday(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread);
 					Document doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[1]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -159,16 +159,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[1]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[1]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(1).text();
 					setResult(1);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(1);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(1); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(1);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(1);
 					e.printStackTrace();
 				}}
         });
@@ -176,9 +180,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadTomorrow(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[2]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -189,16 +193,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[2]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[2]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(1).text();
 					setResult(2);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(2);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(2); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(2);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(2);
 					e.printStackTrace();
 				}}
         });
@@ -206,9 +214,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadYesterday(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[0]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -219,16 +227,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[0]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[0]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(1).text();
 					setResult(0);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(0);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(0); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(0);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(0);
 					e.printStackTrace();
 				}}
         });
@@ -236,9 +248,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadPersonal(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://horoscope.com/horoscope/numerology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[3]+".aspx?nDate="+String.valueOf(sPref.getInt("dayBorn", 10))+"&nMonth="+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"&nYear="+String.valueOf(sPref.getInt("yearBorn", 1995))).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -249,16 +261,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[3]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[3]+" : #"+sPref.getString("name", context.getResources().getString(R.string.noname))+"\n\n"+doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(0).text();
 					setResult(3);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(3);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(3); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(3);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(3);
 					e.printStackTrace();
 				}}
         });
@@ -266,9 +282,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadWeek(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[4]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -279,16 +295,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[4]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[4]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(0).text();
 					setResult(4);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(4);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(4); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(4);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(4);
 					e.printStackTrace();
 				}}
         });
@@ -296,9 +316,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadMoney(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://astrology.horoscope.com/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[5]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 
@@ -309,16 +329,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[5]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[5]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(0).text();
 					setResult(5);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(5);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(5); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(5);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(5);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(5);
 					e.printStackTrace();
 				}}
         });
@@ -326,9 +350,9 @@ public class HoroscopeComLoader {
 	}
 	
 	public void LoadMonth(){
-		Thread thr=new Thread(new Runnable() {				//делаем в новом потоке
+		Thread thr=new Thread(new Runnable() {				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	        public void run() {
-	        	try {							//загрузка сегондя
+	        	try {							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					Thread.sleep(delayForThread); 
 					Document doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[6]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 					
@@ -339,16 +363,20 @@ public class HoroscopeComLoader {
 							+"</span></span></span></p>";
 					horoscopes[6]=context.getResources().getStringArray(R.array.horoscope_com_horoscopes)[6]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementsByClass("col420").get(0).child(0).child(8).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(0).text();
 					setResult(6);
-				} catch (NotFoundException e) {
-					Log.e(tag, "data Error");
-					// TODO Auto-generated catch block
+	        	} catch (NotFoundException e) {
+					Log.e(tag, "data Error"); Error(6);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					Log.e(tag, "Load Error"); Error(6); 
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					Log.e(tag, "Interrupted Load Error"); Error(6);
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+	        		Log.e(tag, "null Load Error"); Error(6);
+					e.printStackTrace();
+				} catch (Exception e) {
+	        		Log.e(tag, "other Load Error"); Error(6);
 					e.printStackTrace();
 				}}
         });
