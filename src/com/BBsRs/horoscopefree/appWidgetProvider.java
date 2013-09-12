@@ -16,11 +16,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources.NotFoundException;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 public class appWidgetProvider extends AppWidgetProvider {
 	SharedPreferences sPref; 
 	int zodiacNumber,day,lg; String resDay="", title="";
+	String tag = "WidgetToday";
 	int providerNumber;
 	Document  doc; // ��� �������� � ���������� �������� 
 	public static String ACTION_WIDGET_RECEIVER = "ActionReceiverWidget";
@@ -57,26 +59,46 @@ public class appWidgetProvider extends AppWidgetProvider {
         	try {							//�������� �������
 				doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadMailRu)[1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				resDay=doc.getElementById("tm_today").child(0).text()+"\n"+ifFf(doc.getElementById("tm_today").child(1).text()+"\n\n")+doc.getElementById("tm_today").child(2).text()+"\n\n"+doc.getElementById("tm_today").child(3).text();
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+        } catch (NotFoundException e) {
+			Log.e(tag, "data Error");
+			resDay = context.getResources().getString(R.string.error);
+			e.printStackTrace();
+		} catch (IOException e) {
+			Log.e(tag, "Load Error"); 
+			resDay = context.getResources().getString(R.string.error);
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+    		Log.e(tag, "null Load Error");
+    		resDay = context.getResources().getString(R.string.error);
+			e.printStackTrace();
+		} catch (Exception e) {
+    		Log.e(tag, "other Load Error");
+    		resDay = context.getResources().getString(R.string.error);
+			e.printStackTrace();
+		}
         	break;
         case 0:
         	//horoscope.com
         	try {							//�������� �������
 				doc = Jsoup.connect("http://my.horoscope.com/astrology/"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[1]+"-horoscope-"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				resDay=doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"\n"+doc.getElementsByClass("fontdef1").get(1).text();
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	} catch (NotFoundException e) {
+    			Log.e(tag, "data Error");
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			Log.e(tag, "Load Error"); 
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (NullPointerException e) {
+        		Log.e(tag, "null Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (Exception e) {
+        		Log.e(tag, "other Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		}
         	break;
         case 1:
         	//en.yahoo
@@ -87,13 +109,23 @@ public class appWidgetProvider extends AppWidgetProvider {
 						.timeout(context.getResources().getInteger(R.integer.user_timeout))
 						.get();
         		resDay=doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	} catch (NotFoundException e) {
+    			Log.e(tag, "data Error");
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			Log.e(tag, "Load Error"); 
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (NullPointerException e) {
+        		Log.e(tag, "null Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (Exception e) {
+        		Log.e(tag, "other Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		}
         	break;
         case 2:
         	//fr.yahoo.com
@@ -101,13 +133,23 @@ public class appWidgetProvider extends AppWidgetProvider {
         		Calendar c = Calendar.getInstance();
         		doc = Jsoup.connect("http://fr.astrology.yahoo.com/horoscope/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadFrYahooCom)[zodiacNumber-1].replace("*", "%C3%A9")+"/general"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadFrYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				resDay=doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	} catch (NotFoundException e) {
+    			Log.e(tag, "data Error");
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			Log.e(tag, "Load Error"); 
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (NullPointerException e) {
+        		Log.e(tag, "null Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (Exception e) {
+        		Log.e(tag, "other Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		}
         	break;
         case 3:
         	//de.yahoo.com
@@ -115,26 +157,46 @@ public class appWidgetProvider extends AppWidgetProvider {
         		Calendar c = Calendar.getInstance();
         		doc = Jsoup.connect("http://de.horoskop.yahoo.com/horoskop/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadDeYahooCom)[zodiacNumber-1].replace("*", "%C3%B6").replace("+", "%C3%BC")+"/astro"+context.getResources().getStringArray(R.array.nameOfHoroscopecForLoadDeYahooCom)[0]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+".html").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				resDay=doc.getElementById("tab-date").text()+"\n"+doc.getElementsByClass("astro-tab-body").first().text();
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	} catch (NotFoundException e) {
+    			Log.e(tag, "data Error");
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			Log.e(tag, "Load Error"); 
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (NullPointerException e) {
+        		Log.e(tag, "null Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (Exception e) {
+        		Log.e(tag, "other Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		}
         	break;
         case 5:
         	//goroskop.ru
         	try {
 				doc = Jsoup.connect("http://goroskop.ru/publish/open_article/29/"+context.getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[zodiacNumber-1]+"/").userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();
 				resDay=doc.getElementById("gContent").child(0).child(0).text()+	"\n"+doc.getElementById("article").child(1).text()+"\n"+doc.getElementById("article").child(2).text();
-			} catch (NotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	} catch (NotFoundException e) {
+    			Log.e(tag, "data Error");
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			Log.e(tag, "Load Error"); 
+    			resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (NullPointerException e) {
+        		Log.e(tag, "null Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		} catch (Exception e) {
+        		Log.e(tag, "other Load Error");
+        		resDay = context.getResources().getString(R.string.error);
+    			e.printStackTrace();
+    		}
         	
         	break;
         default:
