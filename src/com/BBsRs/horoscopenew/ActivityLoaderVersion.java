@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopefree;
+package com.BBsRs.horoscopenew;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
-import com.BBsRs.horoscopefree.R;
+import com.BBsRs.horoscopenew.R;
 import com.actionbarsherlock.app.ActionBar;
 
 public class ActivityLoaderVersion extends Activity {

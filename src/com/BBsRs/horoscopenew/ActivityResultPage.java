@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopefree;
+package com.BBsRs.horoscopenew;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,6 +39,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 
+import com.BBsRs.horoscopenew.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;

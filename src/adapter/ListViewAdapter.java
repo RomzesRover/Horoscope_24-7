@@ -10,13 +10,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.BBsRs.horoscopefree.R;
-				//адаптер для знаков :), с картинками...
+import com.BBsRs.horoscopenew.R;
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ :), пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
 public class ListViewAdapter extends ArrayAdapter<String> {
 
 	 private final Context context;
 	    private final String[] signs;
-	    SharedPreferences sPref;    // для стр настроек жж
+	    SharedPreferences sPref;    // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 	    LayoutInflater inflater;
 	    boolean[] checked;
 
@@ -58,9 +58,9 @@ public class ListViewAdapter extends ArrayAdapter<String> {
 	        else 
 	        	holder.rlLt.setBackgroundResource(R.drawable.list_selector_normal);
 	        
-	        holder.textSign.setText(signs[position]);					//стави текст новости
+	        holder.textSign.setText(signs[position]);					//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        
-	        													//загрузчик картинок
+	        													//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	        switch(position){
 	        case 0:
 	        	holder.imageSign.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_sign__01));
@@ -99,7 +99,7 @@ public class ListViewAdapter extends ArrayAdapter<String> {
 	        	holder.imageSign.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_sign__12));
 	        	break;
 	        }
-	        //возващаяем вьюху в список*/
+	        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/
 	        return rowView;
 	    }
 	    

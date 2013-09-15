@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopefree;
+package com.BBsRs.horoscopenew;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.BBsRs.horoscopenew.R;
 import com.ebookfrenzy.inappbilling.util.IabHelper;
 import com.ebookfrenzy.inappbilling.util.IabResult;
 import com.ebookfrenzy.inappbilling.util.Inventory;

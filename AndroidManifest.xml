@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.BBsRs.horoscopefree"
+    package="com.BBsRs.horoscopenew"
     android:versionCode="22"
     android:versionName="5.1 Beta" 
     android:installLocation="auto" >
@@ -33,8 +33,8 @@
         <activity android:name="com.BBsRs.horoscopefree.ActivityHoroSettings1"></activity>
         <activity android:name="com.BBsRs.horoscopefree.ActivityHoroSettings2"></activity>
         <activity android:name="com.BBsRs.horoscopefree.ActivityHoroSettings3"></activity>
-        <activity android:name="ActivityAgreement"></activity>
-        <activity android:name="ActivityInAppBilling"></activity>
+        <activity android:name="com.BBsRs.horoscopefree.ActivityAgreement"></activity>
+        <activity android:name="com.BBsRs.horoscopefree.ActivityInAppBilling"></activity>
         <activity android:name="com.BBsRs.horoscopefree.ActivityResultPage" android:configChanges="keyboard|orientation|screenSize"></activity>
         
         <receiver android:name="com.BBsRs.horoscopefree.appWidgetProvider" android:enabled="true" android:label="@string/widget_today">

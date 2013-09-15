@@ -17,7 +17,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
-import com.BBsRs.horoscopefree.R;
+import com.BBsRs.horoscopenew.R;
 
 public class HoroMailRuLoader {
 	

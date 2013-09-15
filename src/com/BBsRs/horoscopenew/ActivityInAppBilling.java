@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopefree;
+package com.BBsRs.horoscopenew;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.Button;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.BBsRs.horoscopenew.R;
 import com.ebookfrenzy.inappbilling.util.IabHelper;
 import com.ebookfrenzy.inappbilling.util.IabResult;
 import com.ebookfrenzy.inappbilling.util.Inventory;

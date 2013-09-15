@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopefree;
+package com.BBsRs.horoscopenew;
 
 import java.util.Calendar;
 
@@ -17,7 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 
-import com.BBsRs.horoscopefree.R;
+import com.BBsRs.horoscopenew.R;
 import com.actionbarsherlock.app.ActionBar;
 
 public class ActivityHoroSettings1 extends Activity {

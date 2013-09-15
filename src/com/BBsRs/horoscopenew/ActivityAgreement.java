@@ -1,8 +1,9 @@
-package com.BBsRs.horoscopefree;
+package com.BBsRs.horoscopenew;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.Button;
 
+import com.BBsRs.horoscopenew.R;
 import com.actionbarsherlock.app.ActionBar;
 
 import android.content.Intent;
