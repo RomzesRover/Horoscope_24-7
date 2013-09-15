@@ -55,7 +55,7 @@ public class ActivityResultPage extends Activity {
 																			//data for in app billing !
 	private static final String TAG = "<Horoscope 24/7>.inappbilling";
 	IabHelper mHelper;
-	static final String ITEM_SKU = "android.test.purchased";
+	static final String ITEM_SKU = "horoscope_full";
 	boolean buyed = false;
 	
 	AlertDialog alert = null;
