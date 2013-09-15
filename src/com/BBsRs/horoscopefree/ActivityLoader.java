@@ -39,7 +39,7 @@ public class ActivityLoader extends Activity {
 	static final String ITEM_SKU = "android.test.purchased";
 	
 	AlertDialog alert=null;															//alert dialog
-	
+    	
 	
 	SharedPreferences sPref;    // ��� ��� �������� ��
 	 Editor ed;
@@ -185,6 +185,8 @@ public class ActivityLoader extends Activity {
     	});
     	
     	/*---------INIT IN APP BILLING END------------*/
+    	
+    	consumeItem();											//check if buyed
          
          	 sPref = getSharedPreferences("T", 1);
          	 TextView days = (TextView)findViewById(R.id.days);
@@ -193,12 +195,12 @@ public class ActivityLoader extends Activity {
          	 if (sPref.getInt("dayTo", -1)==-1){
          		 
 	         Calendar cal=Calendar.getInstance();				//+8days
-	         cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH)+0);
+	         cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH)+8);
 	         
 	         Log.i("P", "day="+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+" month="+String.valueOf(c.get(Calendar.MONTH)+1)+" year="+String.valueOf(c.get(Calendar.YEAR)));
 	         Log.i("F", "day="+String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+" month="+String.valueOf(cal.get(Calendar.MONTH)+1)+" year="+String.valueOf(cal.get(Calendar.YEAR)));
 	         
-	         days.setText("Trial to: "+String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+"."+String.valueOf(cal.get(Calendar.MONTH)+1)+"."+String.valueOf(cal.get(Calendar.YEAR)));
+	         days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+"."+getResources().getStringArray(R.array.moths_of_year)[c.get(Calendar.MONTH)]+"."+String.valueOf(cal.get(Calendar.YEAR)));
 	         ed = sPref.edit();  
 	         ed.putInt("dayTo", cal.get(Calendar.DAY_OF_MONTH));
 	         ed.putInt("monthTo", cal.get(Calendar.MONTH)+1);
@@ -213,7 +215,7 @@ public class ActivityLoader extends Activity {
       	     CountDownTimer.start();							//start timer
          	 } else {
          		Log.i("Pa", "Past");
-         		days.setText("Trial to: "+String.valueOf(sPref.getInt("dayTo", -1))+"."+String.valueOf(sPref.getInt("monthTo", -1))+"."+String.valueOf(sPref.getInt("yearTo", -1)));	
+         		days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+"."+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthTo", -1)-1]+"."+String.valueOf(sPref.getInt("yearTo", -1)));	
          																		//check can we or no
          		if (sPref.getInt("dayTo", -1)==c.get(Calendar.DAY_OF_MONTH) && 
          				sPref.getInt("monthTo", -1)==c.get(Calendar.MONTH)+1 &&
@@ -251,7 +253,7 @@ public class ActivityLoader extends Activity {
 		    				//add 30 days to trial
 		    				Calendar calE = Calendar.getInstance();  				
 		    				calE.set(sPref.getInt("yearFi", -1), sPref.getInt("monthFi", -1)-1, sPref.getInt("dayFi", -1));
-		    				calE.set(Calendar.DAY_OF_MONTH, calE.get(Calendar.DAY_OF_MONTH)+30);
+		    				calE.set(Calendar.DAY_OF_MONTH, calE.get(Calendar.DAY_OF_MONTH)+31);
 		    				
 		    				ed = sPref.edit();  
 		    		         ed.putInt("dayTo", calE.get(Calendar.DAY_OF_MONTH));
