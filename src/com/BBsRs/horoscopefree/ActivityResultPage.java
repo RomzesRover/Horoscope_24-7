@@ -11,20 +11,16 @@ import loader.HoroMailRuLoader;
 import loader.HoroscopeComLoader;
 
 import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.ProgressBar;
 import org.holoeverywhere.widget.Toast;
 
 import adapter.NewPagerAdapter;
 import adapter.SlidingMenuAdapter;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;

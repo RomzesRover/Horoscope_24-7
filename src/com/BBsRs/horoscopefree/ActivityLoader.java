@@ -37,13 +37,14 @@ public class ActivityLoader extends Activity {
 	private static final String TAG = "<Horoscope 24/7>.inappbilling";
 	IabHelper mHelper;
 	static final String ITEM_SKU = "android.test.purchased";
+	boolean buyed = false;
 	
-	AlertDialog alert=null;															//alert dialog
+	AlertDialog alert = null;															//alert dialog
     	
 	
 	SharedPreferences sPref;    // ��� ��� �������� ��
 	 Editor ed;
-	 boolean animation=false;
+	 boolean animation = false;
 	 int currentVersion;
 	private timer CountDownTimer;					// for timer
 	  RelativeLayout  layoutErrorView ;
@@ -180,18 +181,20 @@ public class ActivityLoader extends Activity {
 				result);
     	      } else {             
     	      	    Log.d(TAG, "In-app Billing is set up OK");
+    	      	    consumeItem();										//check if buyed
 	      }
     	   }
     	});
     	
     	/*---------INIT IN APP BILLING END------------*/
     	
-    	consumeItem();											//check if buyed
+    	
          
          	 sPref = getSharedPreferences("T", 1);
          	 TextView days = (TextView)findViewById(R.id.days);
          	 Calendar c = Calendar.getInstance();  				//current date
-         
+         	 													
+         	 if (!buyed){
          	 if (sPref.getInt("dayTo", -1)==-1){
          		 
 	         Calendar cal=Calendar.getInstance();				//+8days
@@ -283,7 +286,8 @@ public class ActivityLoader extends Activity {
          	   		 CountDownTimer = new timer (2000, 1000);   		//timer to 2 seconds (tick one second)
          	         CountDownTimer.start();							//start timer
          			
-         		}
+         			}
+         	 	}
          	 }
          
        
@@ -338,10 +342,12 @@ public class ActivityLoader extends Activity {
 			 if (result.isSuccess()) {		    	 
 				 //full version in using we can start loading
 				 if (alert!=null) alert.dismiss();
+				 buyed = true;
 		   		 CountDownTimer = new timer (2000, 1000);   		//timer to 2 seconds (tick one second)
 		         CountDownTimer.start();
+		         Log.i(TAG, "succes buyed");
 			 } else {
-			         // handle error
+			     Log.i(TAG, "not buyed");
 			 }
 		  }
 	};
