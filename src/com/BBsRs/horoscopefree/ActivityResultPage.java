@@ -1,6 +1,7 @@
 package com.BBsRs.horoscopefree;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import loader.HoroDeYahooComLoader;
@@ -11,17 +12,22 @@ import loader.HoroMailRuLoader;
 import loader.HoroscopeComLoader;
 
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.ProgressBar;
 import org.holoeverywhere.widget.Toast;
 
 import adapter.NewPagerAdapter;
 import adapter.SlidingMenuAdapter;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -38,9 +44,21 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.ShareActionProvider;
 import com.actionbarsherlock.widget.ShareActionProvider.OnShareTargetSelectedListener;
+import com.ebookfrenzy.inappbilling.util.IabHelper;
+import com.ebookfrenzy.inappbilling.util.IabResult;
+import com.ebookfrenzy.inappbilling.util.Inventory;
+import com.ebookfrenzy.inappbilling.util.Purchase;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class ActivityResultPage extends Activity {
+																			//data for in app billing !
+	private static final String TAG = "<Horoscope 24/7>.inappbilling";
+	IabHelper mHelper;
+	static final String ITEM_SKU = "android.test.purchased";
+	boolean buyed = false;
+	
+	AlertDialog alert = null;
+	private final Handler handler = new Handler();
 	
 	LayoutInflater inflater;
 	View page ;
@@ -81,6 +99,27 @@ public class ActivityResultPage extends Activity {
 	    setContentView(R.layout.activity_result_page);
 	    final ActionBar ab = getSupportActionBar();
 	    ab.setLogo(getResources().getDrawable(R.drawable.ic_launcher));			//for miui and other
+	    
+	    /*---------INIT IN APP BILLING------------*/
+	 	String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArtgOpup2MUXEwcmJl+lNGY3PahRNUndNdDSNWHiYE6DTb9BcuuUx5BuPZikfrRCDqF2ZMbxt6lL7V1gGLR3sMqgfHGWQqt7DO9+78QkIWnmeU+phwn7RFsx9YRnZXb9Nfs9IwMMri42QK5C+cCk7lr2j6HWQHSaxABw2z4tgcx4TlE/b7A3lDAvfa56h2Scv7f6mf3Ob+Cwr8ugvf36rEfjfbsIWwQm5KaB9KbDdBAN/n3LolMjbyO4jHj/6BmN+qr4TaD9gDU8BvKwSxslh05Xs4b9wzyDmX1Ip5ICwLNr43CFQyn1qcYIJ7GqWymqEbAay6FKPjqRK7bmeGazRCQIDAQAB";
+        
+    	mHelper = new IabHelper(this, base64EncodedPublicKey);
+    
+    	mHelper.startSetup(new 
+		IabHelper.OnIabSetupFinishedListener() {
+    	   	  public void onIabSetupFinished(IabResult result) 
+		  {
+    	        if (!result.isSuccess()) {
+    	           Log.d(TAG, "In-app Billing setup failed: " + 
+				result);
+    	      } else {             
+    	      	    Log.d(TAG, "In-app Billing is set up OK");
+    	      	    consumeItem();										//check if buyed
+	      }
+    	   }
+    	});
+    	
+    	/*---------INIT IN APP BILLING END------------*/
 	    
 	    sPref = getSharedPreferences("T", 1);
 	    zodiacNumber=sPref.getInt("zodiacNumber", 13);		//����� �������
@@ -497,7 +536,9 @@ public class ActivityResultPage extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+	  sPref = getSharedPreferences("T", 1);
       getSupportMenuInflater().inflate(R.menu.activity_result_page_manu, menu);
+      menu.findItem(R.id.trialPeriod).setTitle(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+"."+String.valueOf(sPref.getInt("monthTo", -1))+"."+String.valueOf(sPref.getInt("yearTo", -1)));
       mainMenu=menu;
       MenuItem actionItem = menu.findItem(R.id.menu_share);
       actionProvider = (ShareActionProvider) actionItem.getActionProvider();
@@ -612,6 +653,65 @@ public class ActivityResultPage extends Activity {
 				startActivity(step1);
 				overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 	    	  break;
+	      case R.id.trialPeriod:
+	    	  final Context context = ActivityResultPage.this; 								// create context
+   			AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+      		build.setTitle(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthTo", -1)-1]+" "+String.valueOf(sPref.getInt("yearTo", -1))); 			// set title
+
+      		LayoutInflater inflater = (LayoutInflater)context.getSystemService
+      			      (Context.LAYOUT_INFLATER_SERVICE);
+      		
+      		View content = inflater.inflate(R.layout.dialog_content, null);
+      		
+      		RelativeLayout paidRt = (RelativeLayout)content.findViewById(R.id.paidRt);
+      		paidRt.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						mHelper.launchPurchaseFlow(ActivityResultPage.this, ITEM_SKU, 10001,   
+				     			   mPurchaseFinishedListener, "");
+					}
+				});
+      		
+      		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
+      		if (!sPref.getBoolean("canAdd30", true))  freeRt.setVisibility(View.GONE);
+      		freeRt.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						// show intent market
+						Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopefree"));
+	    				marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+	    				startActivity(marketIntent);
+	    				Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();
+	    				
+	    				//add 30 days to trial
+	    				Calendar calE = Calendar.getInstance();  				
+	    				calE.set(sPref.getInt("yearFi", -1), sPref.getInt("monthFi", -1)-1, sPref.getInt("dayFi", -1));
+	    				calE.set(Calendar.DAY_OF_MONTH, calE.get(Calendar.DAY_OF_MONTH)+31);
+	    				Editor ed;
+	    				ed = sPref.edit();  
+	    		         ed.putInt("dayTo", calE.get(Calendar.DAY_OF_MONTH));
+	    		         ed.putInt("monthTo", calE.get(Calendar.MONTH)+1);
+	    		         ed.putInt("yearTo", calE.get(Calendar.YEAR));
+	    		         ed.putBoolean("canAdd30", false);
+	    			     ed.commit();
+	    			     
+	    			     Log.i("F_add", "day="+String.valueOf(calE.get(Calendar.DAY_OF_MONTH))+" month="+String.valueOf(calE.get(Calendar.MONTH)+1)+" year="+String.valueOf(calE.get(Calendar.YEAR)));
+	    			     
+	    			     finish();
+					}
+				});
+      		
+      		build.setView(content);
+      		
+      		build.setNegativeButton(getResources().getStringArray(R.array.rate_me)[3], new DialogInterface.OnClickListener() {	
+      			public void onClick(DialogInterface dialog, int which) {
+      				alert.dismiss();
+      			}
+      		});
+      		alert = build.create();															// show dialog
+      		alert.setCanceledOnTouchOutside(true);
+      		alert.show();
+	    	  break;
 	      }
 		return true;
 	}
@@ -622,34 +722,80 @@ public class ActivityResultPage extends Activity {
 	      shareIntent.putExtra(Intent.EXTRA_TEXT, text);
 	      return shareIntent;
 	}	
-	/*
-	public void onBackPressed(){
-		sPref = getSharedPreferences("T", 1);
-        if (sPref.getBoolean("itsFake", true)){
-    		final Context context = ActivityResultPage.this; // ������� ��������
-    		AlertDialog.Builder build = new AlertDialog.Builder(context); // ������� ������ 
-    		build.setTitle(getResources().getStringArray(R.array.rate_me)[0]); // ��������� �������
-    		build.setMessage(getResources().getStringArray(R.array.rate_me)[1]); // ���������  
-    		build.setPositiveButton(getResources().getStringArray(R.array.rate_me)[2], new DialogInterface.OnClickListener() {
-    			public void onClick(DialogInterface dialog, int which) {
-    				Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopefree"));
-    				marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-    				startActivity(marketIntent);
-    				Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();
-    				Editor ed = sPref.edit();   // ���� ������ �� ���������, ������ �� ��� ���� :)
-    			    ed.putBoolean("itsFake", false);						//����, �� ������
-    		        ed.commit();
-    			}
-    		});
-    		build.setNegativeButton(getResources().getStringArray(R.array.rate_me)[3], new DialogInterface.OnClickListener() {	
-    			public void onClick(DialogInterface dialog, int which) {
-    				finish();
-    			}
-    		});
-            
-    	
-    		build.show(); // ������� �����
-    		} else {finish();}
-	}*/
 
+	public void consumeItem() {
+		mHelper.queryInventoryAsync(mReceivedInventoryListener);
+	}
+	
+	IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener 
+	= new IabHelper.OnIabPurchaseFinishedListener() {
+	public void onIabPurchaseFinished(IabResult result, 
+                    Purchase purchase) 
+	{
+	   if (result.isFailure()) {
+	      // Handle error
+	      return;
+	 }      
+	 else if (purchase.getSku().equals(ITEM_SKU)) {
+	     consumeItem();
+	    //buyButton.setEnabled(false);
+	 		}
+	      
+		}
+	};
+		
+	IabHelper.QueryInventoryFinishedListener mReceivedInventoryListener 
+	   = new IabHelper.QueryInventoryFinishedListener() {
+		   public void onQueryInventoryFinished(IabResult result,
+		      Inventory inventory) {
+		      if (result.isFailure()) {
+			  // Handle failure
+		      } else {
+		    	  Log.d(TAG, "Query inventory was successful.");
+		    	  	
+	                 
+	                 Purchase TimePurchase = inventory.getPurchase(ITEM_SKU);
+	                 if (TimePurchase != null ) {
+	                     Log.d(TAG, "We have time. Consuming it.");
+	                     mHelper.consumeAsync(inventory.getPurchase(ITEM_SKU), mConsumeFinishedListener);
+	                     return;
+	                 }
+		      }
+	    }
+	};
+	
+	IabHelper.OnConsumeFinishedListener mConsumeFinishedListener =
+			  new IabHelper.OnConsumeFinishedListener() {
+			   public void onConsumeFinished(Purchase purchase, 
+		             IabResult result) {
+
+			 if (result.isSuccess()) {		    	 
+				 //full version in using we can start loading
+				 if (alert!=null) alert.dismiss();
+				 buyed = true;
+				 mainMenu.findItem(R.id.trialPeriod).setVisible(false);
+		         Log.i(TAG, "succes buyed");
+			 } else {
+			     Log.i(TAG, "not buyed");
+			 }
+		  }
+	};
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (mHelper != null) mHelper.dispose();
+		mHelper = null;
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, 
+	     Intent data) 
+	{
+	      if (!mHelper.handleActivityResult(requestCode, 
+	              resultCode, data)) {     
+	    	super.onActivityResult(requestCode, resultCode, data);
+	      }
+	}
+	
 }

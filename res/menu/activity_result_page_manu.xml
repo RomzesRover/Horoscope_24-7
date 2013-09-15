@@ -11,6 +11,7 @@
       <item android:id="@+id/settings" android:title="@string/menu_settings" />
       <item android:id="@+id/changeProviderQ" android:title="@string/changeProvider"/>
       <item android:id="@+id/about" android:title="@string/about"/>
+      <item android:id="@+id/trialPeriod" android:title="@string/trial_until"/>
     </menu>
      </item>
 </menu>

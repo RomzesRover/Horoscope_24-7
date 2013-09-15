@@ -203,7 +203,7 @@ public class ActivityLoader extends Activity {
 	         Log.i("P", "day="+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+" month="+String.valueOf(c.get(Calendar.MONTH)+1)+" year="+String.valueOf(c.get(Calendar.YEAR)));
 	         Log.i("F", "day="+String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+" month="+String.valueOf(cal.get(Calendar.MONTH)+1)+" year="+String.valueOf(cal.get(Calendar.YEAR)));
 	         
-	         days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+"."+getResources().getStringArray(R.array.moths_of_year)[c.get(Calendar.MONTH)]+"."+String.valueOf(cal.get(Calendar.YEAR)));
+	         days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+" "+getResources().getStringArray(R.array.moths_of_year)[c.get(Calendar.MONTH)]+" "+String.valueOf(cal.get(Calendar.YEAR)));
 	         ed = sPref.edit();  
 	         ed.putInt("dayTo", cal.get(Calendar.DAY_OF_MONTH));
 	         ed.putInt("monthTo", cal.get(Calendar.MONTH)+1);
@@ -218,7 +218,7 @@ public class ActivityLoader extends Activity {
       	     CountDownTimer.start();							//start timer
          	 } else {
          		Log.i("Pa", "Past");
-         		days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+"."+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthTo", -1)-1]+"."+String.valueOf(sPref.getInt("yearTo", -1)));	
+         		days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthTo", -1)-1]+" "+String.valueOf(sPref.getInt("yearTo", -1)));	
          																		//check can we or no
          		if (sPref.getInt("dayTo", -1)==c.get(Calendar.DAY_OF_MONTH) && 
          				sPref.getInt("monthTo", -1)==c.get(Calendar.MONTH)+1 &&
