@@ -221,9 +221,12 @@ public class ActivityLoader extends Activity {
          		Log.i("Pa", "Past");
          		days.setText(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthTo", -1)-1]+" "+String.valueOf(sPref.getInt("yearTo", -1)));	
          																		//check can we or no
-         		if (sPref.getInt("dayTo", -1)==c.get(Calendar.DAY_OF_MONTH) && 
-         				sPref.getInt("monthTo", -1)==c.get(Calendar.MONTH)+1 &&
-         				sPref.getInt("yearTo", -1)==c.get(Calendar.YEAR)){
+         		if (	(sPref.getInt("dayTo", -1)<=c.get(Calendar.DAY_OF_MONTH) && 
+         				sPref.getInt("monthTo", -1)==(c.get(Calendar.MONTH)+1) &&
+         				sPref.getInt("yearTo", -1)==c.get(Calendar.YEAR)) ||
+         				(sPref.getInt("monthTo", -1)<(c.get(Calendar.MONTH)+1) &&
+         				sPref.getInt("yearTo", -1)==c.get(Calendar.YEAR)) ||
+         				(sPref.getInt("yearTo", -1)<c.get(Calendar.YEAR))){
          			//end of trial try to buy it
          			final Context context = ActivityLoader.this; 								// create context
          			AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
