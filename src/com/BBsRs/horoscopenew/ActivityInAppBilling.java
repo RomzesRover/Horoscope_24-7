@@ -24,6 +24,8 @@ public class ActivityInAppBilling extends Activity {
 	private Button clickButton;
 	private Button buyButton;
 	
+	boolean mIsPremium = false;
+	
 	
 	
 	
@@ -51,6 +53,7 @@ public class ActivityInAppBilling extends Activity {
 					result);
         	      } else {             
         	      	    Log.d(TAG, "In-app Billing is set up OK");
+        	      	    mHelper.queryInventoryAsync(mGotInventoryListener);	//check if we have premium
 		      }
         	   }
         	});
@@ -66,10 +69,6 @@ public class ActivityInAppBilling extends Activity {
 		});
 	}
 	
-	public void consumeItem() {
-		mHelper.queryInventoryAsync(mReceivedInventoryListener);
-	}
-	
 	IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener 
 	= new IabHelper.OnIabPurchaseFinishedListener() {
 	public void onIabPurchaseFinished(IabResult result, 
@@ -80,14 +79,14 @@ public class ActivityInAppBilling extends Activity {
 	      return;
 	 }      
 	 else if (purchase.getSku().equals(ITEM_SKU)) {
-	     consumeItem();
-	    buyButton.setEnabled(false);
+		 mIsPremium = true;
+         updateUI();
 	 		}
 	      
 		}
 	};
 		
-	IabHelper.QueryInventoryFinishedListener mReceivedInventoryListener 
+	IabHelper.QueryInventoryFinishedListener mGotInventoryListener
 	   = new IabHelper.QueryInventoryFinishedListener() {
 		   public void onQueryInventoryFinished(IabResult result,
 		      Inventory inventory) {
@@ -95,29 +94,12 @@ public class ActivityInAppBilling extends Activity {
 			  // Handle failure
 		      } else {
 		    	  Log.d(TAG, "Query inventory was successful.");
-		    	  	
-	                 
-	                 Purchase TimePurchase = inventory.getPurchase(ITEM_SKU);
-	                 if (TimePurchase != null ) {
-	                     Log.d(TAG, "We have time. Consuming it.");
-	                     mHelper.consumeAsync(inventory.getPurchase(ITEM_SKU), mConsumeFinishedListener);
-	                     return;
-	                 }
+		          Purchase premiumPurchase = inventory.getPurchase(ITEM_SKU);
+		          mIsPremium = (premiumPurchase != null);
+		          Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+		          updateUI();
 		      }
 	    }
-	};
-	
-	IabHelper.OnConsumeFinishedListener mConsumeFinishedListener =
-			  new IabHelper.OnConsumeFinishedListener() {
-			   public void onConsumeFinished(Purchase purchase, 
-		             IabResult result) {
-
-			 if (result.isSuccess()) {		    	 
-			   	  clickButton.setEnabled(true);
-			 } else {
-			         // handle error
-			 }
-		  }
 	};
 	
 	@Override
@@ -135,6 +117,11 @@ public class ActivityInAppBilling extends Activity {
 	              resultCode, data)) {     
 	    	super.onActivityResult(requestCode, resultCode, data);
 	      }
+	}
+	
+	public void updateUI(){
+		buyButton.setEnabled(!mIsPremium);
+		clickButton.setEnabled(mIsPremium);
 	}
 	
 }

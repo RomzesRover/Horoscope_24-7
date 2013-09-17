@@ -54,7 +54,7 @@ public class ActivityResultPage extends Activity {
 	private static final String TAG = "<Horoscope 24/7>.inappbilling";
 	IabHelper mHelper;
 	static final String ITEM_SKU = "horoscope_full";
-	boolean buyed = false;
+	boolean mIsPremium = false;
 	
 	AlertDialog alert = null;
 	
@@ -112,7 +112,7 @@ public class ActivityResultPage extends Activity {
 				result);
     	      } else {             
     	      	    Log.d(TAG, "In-app Billing is set up OK");
-    	      	    consumeItem();										//check if buyed
+    	      	    mHelper.queryInventoryAsync(mGotInventoryListener);										//check if buyed
 	      }
     	   }
     	});
@@ -537,7 +537,7 @@ public class ActivityResultPage extends Activity {
 	  sPref = getSharedPreferences("T", 1);
       getSupportMenuInflater().inflate(R.menu.activity_result_page_manu, menu);
       menu.findItem(R.id.trialPeriod).setTitle(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+"."+String.valueOf(sPref.getInt("monthTo", -1))+"."+String.valueOf(sPref.getInt("yearTo", -1)));
-      if (buyed) menu.findItem(R.id.trialPeriod).setVisible(false);
+      menu.findItem(R.id.trialPeriod).setVisible(!mIsPremium);						//set trial in menu
       mainMenu=menu;
       MenuItem actionItem = menu.findItem(R.id.menu_share);
       actionProvider = (ShareActionProvider) actionItem.getActionProvider();
@@ -676,12 +676,6 @@ public class ActivityResultPage extends Activity {
       		freeRt.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// show intent market
-						Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopefree"));
-	    				marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-	    				startActivity(marketIntent);
-	    				Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();
-	    				
 	    				//add 30 days to trial
 	    				Calendar calE = Calendar.getInstance();  				
 	    				calE.set(sPref.getInt("yearFi", -1), sPref.getInt("monthFi", -1)-1, sPref.getInt("dayFi", -1));
@@ -695,6 +689,15 @@ public class ActivityResultPage extends Activity {
 	    			     ed.commit();
 	    			     
 	    			     Log.i("F_add", "day="+String.valueOf(calE.get(Calendar.DAY_OF_MONTH))+" month="+String.valueOf(calE.get(Calendar.MONTH)+1)+" year="+String.valueOf(calE.get(Calendar.YEAR)));
+	    			     
+	    			     // show intent logo
+			    		startActivity(new Intent(getApplicationContext(), ActivityResultPage.class));
+	    			     
+	    			     // show intent market
+						Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopefree"));
+		    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		    			startActivity(marketIntent);
+		    			Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();
 	    			     
 	    			     finish();
 					}
@@ -721,10 +724,6 @@ public class ActivityResultPage extends Activity {
 	      shareIntent.putExtra(Intent.EXTRA_TEXT, text);
 	      return shareIntent;
 	}	
-
-	public void consumeItem() {
-		mHelper.queryInventoryAsync(mReceivedInventoryListener);
-	}
 	
 	IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener 
 	= new IabHelper.OnIabPurchaseFinishedListener() {
@@ -736,14 +735,14 @@ public class ActivityResultPage extends Activity {
 	      return;
 	 }      
 	 else if (purchase.getSku().equals(ITEM_SKU)) {
-	     consumeItem();
-	    //buyButton.setEnabled(false);
+		 mIsPremium = true;
+		 updateUI();
 	 		}
 	      
 		}
 	};
 		
-	IabHelper.QueryInventoryFinishedListener mReceivedInventoryListener 
+	IabHelper.QueryInventoryFinishedListener mGotInventoryListener 
 	   = new IabHelper.QueryInventoryFinishedListener() {
 		   public void onQueryInventoryFinished(IabResult result,
 		      Inventory inventory) {
@@ -751,33 +750,13 @@ public class ActivityResultPage extends Activity {
 			  // Handle failure
 		      } else {
 		    	  Log.d(TAG, "Query inventory was successful.");
-		    	  	
-	                 
-	                 Purchase TimePurchase = inventory.getPurchase(ITEM_SKU);
-	                 if (TimePurchase != null ) {
-	                     Log.d(TAG, "We have time. Consuming it.");
-	                     mHelper.consumeAsync(inventory.getPurchase(ITEM_SKU), mConsumeFinishedListener);
-	                     return;
-	                 }
+		    	  Log.d(TAG, "Query inventory was successful.");
+		          Purchase premiumPurchase = inventory.getPurchase(ITEM_SKU);
+		          mIsPremium = (premiumPurchase != null);
+		          Log.d(TAG, "User is " + (mIsPremium ? "PREMIUM" : "NOT PREMIUM"));
+		          updateUI();
 		      }
 	    }
-	};
-	
-	IabHelper.OnConsumeFinishedListener mConsumeFinishedListener =
-			  new IabHelper.OnConsumeFinishedListener() {
-			   public void onConsumeFinished(Purchase purchase, 
-		             IabResult result) {
-
-			 if (result.isSuccess()) {		    	 
-				 //full version in using we can start loading
-				 if (alert!=null) alert.dismiss();
-				 buyed = true;
-				 if (mainMenu!=null) mainMenu.findItem(R.id.trialPeriod).setVisible(false);
-		         Log.i(TAG, "succes buyed");
-			 } else {
-			     Log.i(TAG, "not buyed");
-			 }
-		  }
 	};
 	
 	@Override
@@ -795,6 +774,15 @@ public class ActivityResultPage extends Activity {
 	              resultCode, data)) {     
 	    	super.onActivityResult(requestCode, resultCode, data);
 	      }
+	}
+	
+	public void updateUI(){
+		if (mIsPremium){
+			if (alert!=null)
+				alert.dismiss();										//disable an payment alert dialog
+			if (mainMenu!=null)
+				mainMenu.findItem(R.id.trialPeriod).setVisible(false);	//remove item from menu
+		}
 	}
 	
 }

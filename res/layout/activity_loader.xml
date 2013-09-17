@@ -44,7 +44,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:text="@string/trial_buyed"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/vpi__bright_foreground_disabled_holo_light" />
 
