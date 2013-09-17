@@ -4,6 +4,33 @@
 <string name="disagree">Disagree</string>
 <string name="agreement_top">Agreement:</string>
 <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use the free app only 7 days from the date of the first run. Or 14 days, if I agree to leave a review in the online store Google Play\n • After the trial period, I get the opportunity to buy the application\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
+<string name="trial_title">Votre période d'essai est terminée pour cette application</string>
+<string name="trial_byu_google">Acheter cette application</string>
+<string name="trial_byu_google_desc">Vous aurez un temps infini à utiliser</string>
+
+<string name="trial_get_thr">Comme moi!</string>
+<string name="trial_get_thr_desc">Vous aurez 30 jours pour utiliser</string>
+
+<string name="trial_price_paid">$0.99</string>
+<string name="trial_price_free">free</string>
+
+<string name="trial_until">Trial jusqu'à</string>
+<string name="trial_buyed">Le temps infini à utiliser</string>
+
+<string-array name="moths_of_year">
+    <item >Janvier</item>
+	<item >Février</item>
+	<item >Mars</item>
+	<item >Avril</item>
+	<item >Mai</item>
+	<item >Juin</item>
+	<item >Juillet</item>
+	<item >Aoút</item>
+	<item >Septembre</item>
+	<item >Octobre</item>
+	<item >Novembre</item>
+	<item >Décembre</item>	
+</string-array>
 
     <string-array name="rate_me">
          <item >Comme moi!</item>
