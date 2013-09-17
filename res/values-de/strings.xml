@@ -289,7 +289,7 @@
        <string name="Lg">3</string>
        
        <string name="infoUrl">http://brothers-rovers.3dn.ru/loader5.0.de.html</string>
-          <string name="helpUrl">http://brothers-rovers.3dn.ru/help5.0.de.html</string>
+          <string name="helpUrl">http://brothers-rovers.3dn.ru/help5.1.de.html</string>
           <string name="horoscopes">HOROSKOPE</string>
           <string name="errorPr">Dieser Anbieter ist nicht liefern dieses Horoskop</string>
            <integer name="DelayForThreads">300</integer>

@@ -290,7 +290,7 @@
        <string name="Lg">2</string>
        
        <string name="infoUrl">http://brothers-rovers.3dn.ru/loader5.0.fr.html</string>
-          <string name="helpUrl">http://brothers-rovers.3dn.ru/help5.0.fr.html</string>
+          <string name="helpUrl">http://brothers-rovers.3dn.ru/help5.1.fr.html</string>
           <string name="horoscopes">HOROSCOPES</string>
           <string name="errorPr">Ce fournisseur ne fournit pas ce thème astral complet</string>
            <integer name="DelayForThreads">300</integer>
