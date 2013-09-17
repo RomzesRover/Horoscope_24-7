@@ -27,7 +27,6 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -39,7 +38,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 
-import com.BBsRs.horoscopenew.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -59,7 +57,6 @@ public class ActivityResultPage extends Activity {
 	boolean buyed = false;
 	
 	AlertDialog alert = null;
-	private final Handler handler = new Handler();
 	
 	LayoutInflater inflater;
 	View page ;
@@ -70,7 +67,7 @@ public class ActivityResultPage extends Activity {
 
 	int zodiacNumber, providerNumber;
 	
-	Menu mainMenu; // local variable for menu
+	Menu mainMenu = null; // local variable for menu
 	
 	SharedPreferences sPref; 			// ��� ��� �������� ��
 	
@@ -540,6 +537,7 @@ public class ActivityResultPage extends Activity {
 	  sPref = getSharedPreferences("T", 1);
       getSupportMenuInflater().inflate(R.menu.activity_result_page_manu, menu);
       menu.findItem(R.id.trialPeriod).setTitle(getResources().getString(R.string.trial_until)+": "+String.valueOf(sPref.getInt("dayTo", -1))+"."+String.valueOf(sPref.getInt("monthTo", -1))+"."+String.valueOf(sPref.getInt("yearTo", -1)));
+      if (buyed) menu.findItem(R.id.trialPeriod).setVisible(false);
       mainMenu=menu;
       MenuItem actionItem = menu.findItem(R.id.menu_share);
       actionProvider = (ShareActionProvider) actionItem.getActionProvider();
@@ -774,7 +772,7 @@ public class ActivityResultPage extends Activity {
 				 //full version in using we can start loading
 				 if (alert!=null) alert.dismiss();
 				 buyed = true;
-				 mainMenu.findItem(R.id.trialPeriod).setVisible(false);
+				 if (mainMenu!=null) mainMenu.findItem(R.id.trialPeriod).setVisible(false);
 		         Log.i(TAG, "succes buyed");
 			 } else {
 			     Log.i(TAG, "not buyed");
