@@ -362,7 +362,7 @@ public class ActivityLoader extends Activity {
 					    		startActivity(new Intent(getApplicationContext(), ActivityResultPage.class));
 			    			     
 			    			     // show intent market
-								Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopefree"));
+								Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopenew"));
 				    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 				    			startActivity(marketIntent);
 				    			Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();
