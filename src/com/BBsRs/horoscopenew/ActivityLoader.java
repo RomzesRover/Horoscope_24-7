@@ -27,11 +27,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.BBsRs.horoscopenew.R;
-import com.ebookfrenzy.inappbilling.util.IabHelper;
 import com.ebookfrenzy.inappbilling.util.IabResult;
-import com.ebookfrenzy.inappbilling.util.Inventory;
-import com.ebookfrenzy.inappbilling.util.Purchase;
+import com.inappbilling.util.IabHelper;
+import com.inappbilling.util.Inventory;
+import com.inappbilling.util.Purchase;
 
 public class ActivityLoader extends Activity {
 																						//data for in app billing !

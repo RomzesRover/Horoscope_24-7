@@ -15,6 +15,8 @@
 
 package com.ebookfrenzy.inappbilling.util;
 
+import com.inappbilling.util.IabHelper;
+
 /**
  * Represents the result of an in-app billing operation.
  * A result is composed of a response code (an integer) and possibly a

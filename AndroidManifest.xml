@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.BBsRs.horoscopenew"
-    android:versionCode="24"
-    android:versionName="5.1.2" 
+    android:versionCode="25"
+    android:versionName="5.1.3 final" 
     android:installLocation="auto" >
 
     <uses-sdk
@@ -34,7 +34,6 @@
         <activity android:name="com.BBsRs.horoscopenew.ActivityHoroSettings2"></activity>
         <activity android:name="com.BBsRs.horoscopenew.ActivityHoroSettings3"></activity>
         <activity android:name="com.BBsRs.horoscopenew.ActivityAgreement"></activity>
-        <activity android:name="com.BBsRs.horoscopenew.ActivityInAppBilling"></activity>
         <activity android:name="com.BBsRs.horoscopenew.ActivityResultPage" android:configChanges="keyboard|orientation|screenSize"></activity>
         
         <receiver android:name="com.BBsRs.horoscopenew.appWidgetProvider" android:enabled="true" android:label="@string/widget_today">

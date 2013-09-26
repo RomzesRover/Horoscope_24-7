@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-package com.ebookfrenzy.inappbilling.util;
+package com.inappbilling.util;
+
+import com.ebookfrenzy.inappbilling.util.IabResult;
 
 /**
  * Exception thrown when something went wrong with in-app billing.

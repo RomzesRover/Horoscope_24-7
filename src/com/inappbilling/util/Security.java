@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.ebookfrenzy.inappbilling.util;
+package com.inappbilling.util;
 
 import android.text.TextUtils;
 import android.util.Log;

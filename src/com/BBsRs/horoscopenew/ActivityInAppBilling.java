@@ -1,3 +1,9 @@
+/*This is an sample code !!!! 
+ * This module not used in final v of app
+ * You can build an in app billing app based on this sample
+ * thx to http://www.techotopia.com/index.php/Integrating_Google_Play_In-app_Billing_into_an_Android_Application_%E2%80%93_A_Tutorial
+ * RomzesRover, 26 sen 2013
+ * */
 package com.BBsRs.horoscopenew;
 
 import org.holoeverywhere.app.Activity;
@@ -8,11 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.BBsRs.horoscopenew.R;
-import com.ebookfrenzy.inappbilling.util.IabHelper;
 import com.ebookfrenzy.inappbilling.util.IabResult;
-import com.ebookfrenzy.inappbilling.util.Inventory;
-import com.ebookfrenzy.inappbilling.util.Purchase;
+import com.inappbilling.util.IabHelper;
+import com.inappbilling.util.Inventory;
+import com.inappbilling.util.Purchase;
 
 
 

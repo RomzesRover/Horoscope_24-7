@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.ebookfrenzy.inappbilling.util;
+package com.inappbilling.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;

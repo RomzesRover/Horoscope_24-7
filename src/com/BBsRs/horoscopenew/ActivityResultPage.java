@@ -43,10 +43,10 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.ShareActionProvider;
 import com.actionbarsherlock.widget.ShareActionProvider.OnShareTargetSelectedListener;
-import com.ebookfrenzy.inappbilling.util.IabHelper;
 import com.ebookfrenzy.inappbilling.util.IabResult;
-import com.ebookfrenzy.inappbilling.util.Inventory;
-import com.ebookfrenzy.inappbilling.util.Purchase;
+import com.inappbilling.util.IabHelper;
+import com.inappbilling.util.Inventory;
+import com.inappbilling.util.Purchase;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class ActivityResultPage extends Activity {
@@ -749,7 +749,6 @@ public class ActivityResultPage extends Activity {
 		      if (result.isFailure()) {
 			  // Handle failure
 		      } else {
-		    	  Log.d(TAG, "Query inventory was successful.");
 		    	  Log.d(TAG, "Query inventory was successful.");
 		          Purchase premiumPurchase = inventory.getPurchase(ITEM_SKU);
 		          mIsPremium = (premiumPurchase != null);
