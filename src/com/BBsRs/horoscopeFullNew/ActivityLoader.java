@@ -175,7 +175,7 @@ public class ActivityLoader extends Activity {
     	c = Calendar.getInstance();  				//current date
 	 	
 	 	/*---------INIT IN APP BILLING------------*/
-	 	String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArtgOpup2MUXEwcmJl+lNGY3PahRNUndNdDSNWHiYE6DTb9BcuuUx5BuPZikfrRCDqF2ZMbxt6lL7V1gGLR3sMqgfHGWQqt7DO9+78QkIWnmeU+phwn7RFsx9YRnZXb9Nfs9IwMMri42QK5C+cCk7lr2j6HWQHSaxABw2z4tgcx4TlE/b7A3lDAvfa56h2Scv7f6mf3Ob+Cwr8ugvf36rEfjfbsIWwQm5KaB9KbDdBAN/n3LolMjbyO4jHj/6BmN+qr4TaD9gDU8BvKwSxslh05Xs4b9wzyDmX1Ip5ICwLNr43CFQyn1qcYIJ7GqWymqEbAay6FKPjqRK7bmeGazRCQIDAQAB";
+	 	String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOFrLACxS5TNJChRpgGoD3z315y5vm/SDts6uEKIJSXoSB0Q0hWpi7ejYj+5f6WWARqdREhjoKQTe5W2MJV1f6GcY0o+UJR0Ros2dziJm14ffL59wV0W+A/7SCDzu/6u2GDkt6h+5XnDSssT1wbTK+Jfewr0hqQYFrNOtyFhSp52ToZxk9jWLv6OuGgkelfRiKFlqP1LWRK6Wc4nb5yi4iUDV0ZhBGxNQHRt992v6rAMMY+luk8vn/UlXvXEnzvM4NKwsNjXUUQ/rHluhDDf/2HqsdIJy8YPugQmZ4Z/Jaf5nD/Fq3B/c8NaEahJZW218WeuL68/+hQyRMozUfEBYQIDAQAB";
         
     	mHelper = new IabHelper(this, base64EncodedPublicKey);
     
