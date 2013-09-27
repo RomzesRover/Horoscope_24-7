@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.BBsRs.horoscopenew.R;
+import com.BBsRs.horoscopeFullNew.R;
 				//������� ��� ������ :), � ����������...
 public class ListViewAdapterForProviders extends ArrayAdapter<String> {
 

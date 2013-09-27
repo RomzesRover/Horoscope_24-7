@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopenew;
+package com.BBsRs.horoscopeFullNew;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -6,7 +6,7 @@ import java.util.Calendar;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import com.BBsRs.horoscopenew.R;
+import com.BBsRs.horoscopeFullNew.R;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

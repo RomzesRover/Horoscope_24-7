@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopenew;
+package com.BBsRs.horoscopeFullNew;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,6 +38,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RelativeLayout;
 
+import com.BBsRs.horoscopeFullNew.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -694,7 +695,7 @@ public class ActivityResultPage extends Activity {
 			    		startActivity(new Intent(getApplicationContext(), ActivityResultPage.class));
 	    			     
 	    			     // show intent market
-						Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopenew"));
+						Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
 		    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 		    			startActivity(marketIntent);
 		    			Toast.makeText(context, getResources().getStringArray(R.array.rate_me)[4], Toast.LENGTH_LONG).show();

@@ -1,4 +1,4 @@
-package com.BBsRs.horoscopenew;
+package com.BBsRs.horoscopeFullNew;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.Button;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.BBsRs.horoscopenew.R;
+import com.BBsRs.horoscopeFullNew.R;
 import com.actionbarsherlock.app.ActionBar;
 
 public class ActivityHoroSettings3 extends Activity {

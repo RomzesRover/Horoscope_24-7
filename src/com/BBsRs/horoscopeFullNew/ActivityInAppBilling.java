@@ -4,7 +4,7 @@
  * thx to http://www.techotopia.com/index.php/Integrating_Google_Play_In-app_Billing_into_an_Android_Application_%E2%80%93_A_Tutorial
  * RomzesRover, 26 sen 2013
  * */
-package com.BBsRs.horoscopenew;
+package com.BBsRs.horoscopeFullNew;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.Button;
@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.BBsRs.horoscopeFullNew.R;
 import com.ebookfrenzy.inappbilling.util.IabResult;
 import com.inappbilling.util.IabHelper;
 import com.inappbilling.util.Inventory;

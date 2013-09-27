@@ -17,7 +17,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 
-import com.BBsRs.horoscopenew.R;
+import com.BBsRs.horoscopeFullNew.R;
 
 public class HoroDeYahooComLoader {
 	

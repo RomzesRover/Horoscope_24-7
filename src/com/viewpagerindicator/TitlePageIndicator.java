@@ -38,7 +38,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.BBsRs.horoscopenew.R;
+import com.BBsRs.horoscopeFullNew.R;
 
 /**
  * A TitlePageIndicator is a PageIndicator which displays the title of left view
