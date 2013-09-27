@@ -302,9 +302,6 @@ public class ActivityLoader extends Activity {
 		         ed.putInt("dayTo", cal.get(Calendar.DAY_OF_MONTH));
 		         ed.putInt("monthTo", cal.get(Calendar.MONTH)+1);
 		         ed.putInt("yearTo", cal.get(Calendar.YEAR));
-		         ed.putInt("dayFi", c.get(Calendar.DAY_OF_MONTH));
-		         ed.putInt("monthFi", c.get(Calendar.MONTH)+1);
-		         ed.putInt("yearFi", c.get(Calendar.YEAR));
 			     ed.commit();
 			     
 	      		 //trial in using we can start loading
@@ -346,7 +343,7 @@ public class ActivityLoader extends Activity {
 							public void onClick(View v) {
 								//add 30 days to trial
 			    				Calendar calE = Calendar.getInstance();  				
-			    				calE.set(sPref.getInt("yearFi", -1), sPref.getInt("monthFi", -1)-1, sPref.getInt("dayFi", -1));
+			    				calE.set(sPref.getInt("yearTo", -1), sPref.getInt("monthTo", -1)-1, sPref.getInt("dayTo", -1));
 			    				calE.set(Calendar.DAY_OF_MONTH, calE.get(Calendar.DAY_OF_MONTH)+31);
 			    				Editor ed;
 			    				ed = sPref.edit();  

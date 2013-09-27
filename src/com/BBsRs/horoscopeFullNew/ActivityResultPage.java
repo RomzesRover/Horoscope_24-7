@@ -679,7 +679,7 @@ public class ActivityResultPage extends Activity {
 					public void onClick(View v) {
 	    				//add 30 days to trial
 	    				Calendar calE = Calendar.getInstance();  				
-	    				calE.set(sPref.getInt("yearFi", -1), sPref.getInt("monthFi", -1)-1, sPref.getInt("dayFi", -1));
+	    				calE.set(sPref.getInt("yearTo", -1), sPref.getInt("monthTo", -1)-1, sPref.getInt("dayTo", -1));
 	    				calE.set(Calendar.DAY_OF_MONTH, calE.get(Calendar.DAY_OF_MONTH)+31);
 	    				Editor ed;
 	    				ed = sPref.edit();  
