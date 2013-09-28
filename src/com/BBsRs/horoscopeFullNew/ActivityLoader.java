@@ -80,7 +80,7 @@ public class ActivityLoader extends Activity {
 				    ed.putBoolean("canBack", false);						//����, �� ������
 			        ed.commit();
 				try {
-					currentVersion=Integer.parseInt(Jsoup.connect("http://brothers-rovers.3dn.ru/currentInfo5.0.txt").get().text());
+					currentVersion=Integer.parseInt(Jsoup.connect("http://brothers-rovers.3dn.ru/currentInfo5.1.txt").get().text());
 					sPref = getSharedPreferences("T", 1);
 					if (currentVersion==sPref.getInt("currentVersion", 0000 )){
 						// onFinish
@@ -97,8 +97,13 @@ public class ActivityLoader extends Activity {
 					} else {
 						sPref = getSharedPreferences("T", 1);
 						ed = sPref.edit();   // ���� ������ �� ���������, ������ �� ��� ���� :)
-						if (currentVersion != 1120)
-					    ed.putInt("currentVersion", currentVersion);						//����, �� ������
+						
+						if (mIsPremium)
+							ed.putInt("currentVersion", currentVersion);
+						else 
+							if (currentVersion != 1120)
+								ed.putInt("currentVersion", currentVersion);						//����, �� ������
+						
 					    ed.putString("help or info", "info");
 				        ed.commit();
 				        Intent step1 = new Intent(getApplicationContext(), ActivityLoaderVersion.class);
