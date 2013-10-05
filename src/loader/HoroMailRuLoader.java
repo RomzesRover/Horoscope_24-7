@@ -361,7 +361,7 @@ public class HoroMailRuLoader {
 					resultS[5]= "<div style=\"float:left; width:110px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
 							doc.getElementById("tm_month").child(0).child(0).text()+		//����
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_month").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll("��", "")+														//�����
+							doc.getElementById("tm_month").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll(context.getResources().getString(R.string.ru_to_replace_one), "")+														//�����
 							"</span></span></div><div>"+
 							ifF(doc.getElementById("tm_month").child(1).text()+																														//����
 									"</div><div><br></div><div>")																				//�����
