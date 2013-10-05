@@ -40,8 +40,6 @@ public class HoroMailRuLoader {
 	
 	int delayForThread;
 	
-	String[] months = {"������", "�������","�����", "������", "���", "����", "����", "�������", "��������", "�������", "������", "�������"};
-	
 	public HoroMailRuLoader (Context context, WebView[] webViews, RelativeLayout[] errorLayout, RelativeLayout[] allNormalLayout, ProgressBar[] progressBar ){
 		this.context=context;
 		this.webViews=webViews;
@@ -281,9 +279,9 @@ public class HoroMailRuLoader {
 					resultS[3]="<div style=\"float:left; width:70px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
 					String.valueOf(c.get(Calendar.DAY_OF_MONTH))+		//����
 					"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-					months[c.get(Calendar.MONTH)].replaceAll("[0-9]*", "").toUpperCase()+														//�����
+					context.getResources().getStringArray(R.array.ru_to_replace_three)[c.get(Calendar.MONTH)].replaceAll("[0-9]*", "").toUpperCase()+														//�����
 					"</span></span></div><div>"+																		//�����
-					"��� ���� ��������: "+doc.getElementsByClass("content").first().child(1).child(0).text()+
+					context.getResources().getString(R.string.ru_to_replace_two)+" "+doc.getElementsByClass("content").first().child(1).child(0).text()+
 					doc.getElementsByClass("content").first().child(3).html()+
 					"</div>";		//����2
 					
@@ -318,7 +316,7 @@ public class HoroMailRuLoader {
 					resultS[4]= "<div style=\"float:left; width:110px; height:65px; margin:2px;> <span style=\" font-size:=\"\" 36pt\"=\"\" align=\"center\"><span style=\"font-size: 36pt\"><span style=\"color: rgb(255, 69, 0)\">"+
 							doc.getElementById("tm_week").child(0).child(0).text()+		//����
 							"</span></span> <span style=\"color: rgb(105, 105, 105)\"><span style=\"font-size: 10pt\">"+
-							doc.getElementById("tm_week").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll("��", "")+	
+							doc.getElementById("tm_week").child(0).text().replaceAll("[0-9]*", "").toUpperCase().replaceAll(context.getResources().getString(R.string.ru_to_replace_one), "")+	
 							"</span></span></div><div>"+
 							ifF(doc.getElementById("tm_week").child(1).text()+																														//����
 									"</div><div><br></div><div>")																				//�����
@@ -420,7 +418,6 @@ public class HoroMailRuLoader {
 											doc.getElementById("tm_year").child(6).text()+
 											"</div><div><br></div><div>"+
 											doc.getElementById("tm_year").child(7).text()+"</div>"; 
-
 					horoscopes[6]=context.getResources().getStringArray(R.array.mail_ru_horoscopes)[6]+" : #"+context.getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber-1]+"\n\n"+doc.getElementById("tm_year").child(0).text()+"\n\n"+ifFf(doc.getElementById("tm_year").child(1).text()+"\n\n")+doc.getElementById("tm_year").child(2).text()+"\n\n"+doc.getElementById("tm_year").child(3).text()+"\n\n"+doc.getElementById("tm_year").child(4).text()+"\n\n"+doc.getElementById("tm_year").child(5).text()+"\n\n"+doc.getElementById("tm_year").child(6).text()+"\n\n"+doc.getElementById("tm_year").child(7).text();
 					setResult(6);
 	        	} catch (NotFoundException e) {
