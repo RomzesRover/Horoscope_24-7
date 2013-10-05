@@ -43,6 +43,7 @@
     <string name="action_settings">Settings</string>
 		
     <!-- Text below disallow to translate! -->
+    <string name="ru_to_replace_one">ДО</string>
      <string-array name="zodiac_signs_ru">
         <item >Овен</item>
         <item >Телец</item>
