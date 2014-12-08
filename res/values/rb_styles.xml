@@ -13,8 +13,9 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="Holo.Horoscope.Theme.Light.DarkActionBar" parent="@style/Holo.Theme.Light.DarkActionBar">
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
     </style>
 
 </resources>
