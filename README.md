@@ -9,10 +9,10 @@ Link to GooglePlay: https://play.google.com/store/apps/details?id=com.BBsRs.horo
 to compile this project you need to download HoloEverywhere and ActionBarSherlock to your workspace first !
 
 
-Used Libraries:
+Used Libraries: (you can find projects for eclipse in librarires.zip)
 * Jsoup
 * HoloEverywhere
-* ActionBarSherlock
-* ViewPagerIndicator
+* PullToRefresh
+* SmoothProgressBar
 
 thx for all lib makers
