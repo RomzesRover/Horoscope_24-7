@@ -10,6 +10,7 @@
 
     <!-- This data below closed to translate ! Using only for download mail.ru horoscope -->
     <string name="mail_ru_title">horo.mail.ru</string>
+
     <string-array name="mail_ru_horoscopes">
         <item>Вчера</item>
         <item>Сегодня</item>
@@ -82,8 +83,9 @@
     <string-array name="providers_entryValues">
         <item>0</item>
     </string-array>
-    
+
     <string name="application_title">Application</string>
+
     <string-array name="application_titles">
         <item>Settings</item>
         <item>About</item>
@@ -137,5 +139,6 @@
     <string name="default_sign">0</string>
     <string name="default_provider">0</string>
     <string name="default_name">Horoscopes lover</string>
+    <string name="share">Share</string>
 
 </resources>
