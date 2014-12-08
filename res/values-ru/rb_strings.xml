@@ -140,5 +140,6 @@
     <string name="default_provider">0</string>
     <string name="default_name">Любитель гороскопов</string>
     <string name="share">Поделиться</string>
+    <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
 
 </resources>

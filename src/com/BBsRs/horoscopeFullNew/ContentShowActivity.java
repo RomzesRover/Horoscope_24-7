@@ -6,6 +6,7 @@ import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.slider.SliderMenu;
+import org.holoeverywhere.widget.Toast;
 
 import android.os.Bundle;
 
@@ -49,8 +50,16 @@ public class ContentShowActivity extends Activity {
         sliderMenu.add(getResources().getString(R.string.application_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
         sliderMenu.add(getResources().getStringArray(R.array.application_titles)[0], SettingsFragment.class, SliderMenu.BLUE).setTextAppereanceInverse(1);
         sliderMenu.add(getResources().getStringArray(R.array.application_titles)[1], AboutFragment.class, SliderMenu.BLUE).setTextAppereanceInverse(1);
-        //setting up for initial page today horoscope! 
-        sliderMenu.setCurrentPage(2);
+        
+        //check if user still not set up data
+        if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13){
+        	//then show settings page
+        	sliderMenu.setCurrentPage(9);
+        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.pre_use), Toast.LENGTH_LONG).show();
+        }
+        else
+        	//else setting up for initial page today horoscope! 
+        	sliderMenu.setCurrentPage(2);
         
     }
     

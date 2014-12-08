@@ -140,5 +140,6 @@
     <string name="default_provider">0</string>
     <string name="default_name">Horoscopes lover</string>
     <string name="share">Share</string>
+    <string name="pre_use">First if all produce infrormation about yourself :)</string>
 
 </resources>
