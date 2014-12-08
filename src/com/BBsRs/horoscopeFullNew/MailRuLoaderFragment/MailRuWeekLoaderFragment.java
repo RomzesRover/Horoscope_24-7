@@ -104,7 +104,7 @@ public class MailRuWeekLoaderFragment extends Fragment {
 			public void onClick(View v) {
 				mPullToRefreshLayout.setRefreshing(true);
 		        customOnRefreshListener.onRefreshStarted(null);
-		        errorRetryButton.setEnabled(true);
+		        errorRetryButton.setEnabled(false);
 			}
 		});
         

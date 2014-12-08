@@ -104,6 +104,7 @@ public class MailRuTodayLoaderFragment extends Fragment {
 			public void onClick(View v) {
 				mPullToRefreshLayout.setRefreshing(true);
 		        customOnRefreshListener.onRefreshStarted(null);
+		        errorRetryButton.setEnabled(false);
 			}
 		});
         
@@ -133,7 +134,6 @@ public class MailRuTodayLoaderFragment extends Fragment {
 		super.onSaveInstanceState(outState);
 		 outState.putString("data", data);
 		 outState.putBoolean("error", error);
-		 errorRetryButton.setEnabled(true);
 	}
     
     public class  CustomOnRefreshListener implements OnRefreshListener{
