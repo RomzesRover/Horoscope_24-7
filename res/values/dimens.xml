@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_standart_padding">8dp</dimen>
+    <dimen name="slider_menu_custom_padding">8dp</dimen>
+
+</resources>

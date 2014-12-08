@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:holo="http://schemas.android.com/apk/res-auto" >
+
+    <Preference
+        android:icon="@drawable/ic_launcher"
+        android:selectable="false"
+        android:summary="@string/about_base_version_2"
+        android:title="@string/app_name" />
+
+    <PreferenceCategory android:title="@string/about_base" >
+        <Preference
+            android:summary="@string/about_base_version_2"
+            android:title="@string/about_base_version_1" android:icon="@drawable/logo_android"/>
+        <Preference
+            android:summary="@string/about_base_creator_2"
+            android:title="@string/about_base_creator_1" android:icon="@drawable/logo_human"/>
+        <Preference
+            android:summary="@string/about_base_publisher_2"
+            android:title="@string/about_base_publisher_1" android:icon="@drawable/logo_google_play"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/contacts_base" >
+        <Preference
+            android:key="open_vk"
+            android:summary="@string/contacts_vk_2"
+            android:title="@string/contacts_vk_1" android:icon="@drawable/logo_vk_com"/>
+        <Preference
+            android:key="open_gmail"
+            android:summary="@string/contacts_gmail_2"
+            android:title="@string/contacts_gmail_1" android:icon="@drawable/logo_gmail"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/open_source_base" >
+        <Preference
+            android:summary="@string/open_source_base_2"
+            android:title="@string/open_source_base_1" android:icon="@drawable/logo_github"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/libraries_base" >
+        <Preference
+            android:summary="@string/libraries_jsoup_2"
+            android:title="@string/libraries_jsoup_1" android:icon="@drawable/logo_jsoup"/>
+        <Preference
+            android:summary="@string/libraries_holoeverywhere_2"
+            android:title="@string/libraries_holoeverywhere_1" android:icon="@drawable/logo_holoeverywhere"/>
+        <Preference
+            android:summary="@string/libraries_pulltorefresh_2"
+            android:title="@string/libraries_pulltorefresh_1" android:icon="@drawable/logo_pulltorefresh"/>
+        <Preference
+            android:summary="@string/libraries_smoothprogressbar_2"
+            android:title="@string/libraries_smoothprogressbar_1" android:icon="@drawable/logo_smoothprogressbar"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

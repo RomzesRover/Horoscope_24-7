@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:holo="http://schemas.android.com/apk/res-auto" >
+    <PreferenceCategory android:title="@string/preference_base" >
+        <EditTextPreference
+            android:key="preference_name"
+            android:id="@+id/preference_name"
+            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogTitle="@string/preference_name_2"
+            android:summary="@string/preference_name_2"
+            android:title="@string/preference_name_1" android:defaultValue="@string/default_name" android:icon="@drawable/logo_human"/>
+
+        <DatePreference
+            android:key="preference_date_born"
+            android:id="@+id/preference_date_born"
+            android:summary="@string/preference_date_2"
+            android:title="@string/preference_date_1" 
+            android:icon="@drawable/logo_calendar"/>
+
+        <ListPreference
+            android:key="preference_zodiac_sign"
+            android:id="@+id/preference_zodiac_sign"
+            android:defaultValue="@string/default_sign"
+            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogTitle="@string/preference_zodiac_signs_2"
+            android:entries="@array/zodiac_signs"
+            android:entryValues="@array/zodiac_signs_entryValues"
+            android:summary="@string/preference_zodiac_signs_2"
+            android:title="@string/preference_zodiac_signs_1" android:icon="@drawable/logo_zodiac_signs"/>
+        <ListPreference
+            android:key="preference_provider"
+            android:id="@+id/preference_provider"
+            android:defaultValue="@string/default_provider"
+            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogTitle="@string/preference_provider_2"
+            android:entries="@array/providers"
+            android:entryValues="@array/providers_entryValues"
+            android:summary="@string/preference_provider_2"
+            android:title="@string/preference_provider_1" android:icon="@drawable/logo_providers"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
