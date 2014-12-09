@@ -3,5 +3,5 @@
           android:title="@string/share"
           android:showAsAction="always"
           android:icon="@drawable/ic_menu_share"
-          android:actionProviderClass="com.actionbarsherlock.widget.ShareActionProvider"/>
+          android:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
 </menu>

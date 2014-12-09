@@ -16,11 +16,17 @@ import org.jsoup.nodes.Document;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.Html;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -54,11 +60,17 @@ public class MailRuMonthLoaderFragment extends Fragment {
     
     //preferences 
     SharedPreferences sPref;
+    
+    //share action providers, use it to set current horoscope
+    ShareActionProvider actionProvider;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
     	View contentView = inflater.inflate(R.layout.fragment_content_show);
+    	
+    	//enable menu
+    	setHasOptionsMenu(true);
     	
    	 	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -136,6 +148,22 @@ public class MailRuMonthLoaderFragment extends Fragment {
 		 outState.putBoolean("error", error);
 	}
     
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_content_menu, menu);
+        
+        MenuItem actionItem = menu.findItem(R.id.menu_share);
+        actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
+        return;
+    }
+    
+	private Intent createShareIntent(String text) {
+	      Intent shareIntent = new Intent(Intent.ACTION_SEND);
+	      shareIntent.setType("text/plain");
+	      shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+	      return shareIntent;
+	}	
+    
     public class  CustomOnRefreshListener implements OnRefreshListener{
 
 		@Override
@@ -193,6 +221,17 @@ public class MailRuMonthLoaderFragment extends Fragment {
                     	//with fly up animation
                     	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
                     	textContent.startAnimation(flyUpAnimation);
+                    	
+                    	//set shareable content
+                    	actionProvider.setShareIntent(createShareIntent(
+                    			getResources().getString(R.string.share_content_horo_for)
+                    			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[5].toLowerCase()
+                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
+                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+                    			+"\n\n"
+                    			+String.valueOf(textContent.getText())
+                    			+"\n\n"+getResources().getString(R.string.share_send_from)
+                    			+"\n"+getResources().getString(R.string.share_content_url)));
                     }
                     
                     // Notify PullToRefreshLayout that the refresh has finished

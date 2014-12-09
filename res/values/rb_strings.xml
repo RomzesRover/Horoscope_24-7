@@ -44,7 +44,7 @@
         <item>2015</item>
     </string-array>
 
-    <string name="copyright_horo_mail_ru">© Леди Mail.Ru, эксклюзивный прогноз</string>
+    <string name="copyright_horo_mail_ru">© Леди Mail Ru, эксклюзивный прогноз</string>
     <!-- end of data only for download mail.ru horoscope -->
 
 
@@ -140,6 +140,10 @@
     <string name="default_provider">0</string>
     <string name="default_name">Horoscopes lover</string>
     <string name="share">Share</string>
+    <string name="share_content_horo_for">Horoscope for</string>
+    <string name="share_content_horo_for_2">for zodiac sign:</string>
+    <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
+    <string name="share_send_from">Send from appllication Horoscope 24/7</string>
     <string name="pre_use">First if all produce infrormation about yourself :)</string>
     <string name="automatic_determined_sign">Automatic determination of the sign is</string>
 

@@ -44,24 +44,24 @@
         <item>2015</item>
     </string-array>
 
-    <string name="copyright_horo_mail_ru">© Леди Mail.Ru, эксклюзивный прогноз</string>
+    <string name="copyright_horo_mail_ru">© Леди Mail Ru, эксклюзивный прогноз</string>
     <!-- end of data only for download mail.ru horoscope -->
 
 
     <!-- Data below need to be translate text UI -->
-   <string-array name="zodiac_signs">
-        <item >Овен</item>
-        <item >Телец</item>
-        <item >Близнецы</item>
-        <item >Рак</item>
-        <item >Лев</item>
-        <item >Дева</item>
-        <item >Весы</item>
-        <item >Скорпион</item>
-        <item >Стрелец</item>
-        <item >Козерог</item>
-        <item >Водолей</item>
-        <item >Рыбы</item>
+    <string-array name="zodiac_signs">
+        <item>Овен</item>
+        <item>Телец</item>
+        <item>Близнецы</item>
+        <item>Рак</item>
+        <item>Лев</item>
+        <item>Дева</item>
+        <item>Весы</item>
+        <item>Скорпион</item>
+        <item>Стрелец</item>
+        <item>Козерог</item>
+        <item>Водолей</item>
+        <item>Рыбы</item>
     </string-array>
     <string-array name="zodiac_signs_entryValues">
         <item>0</item>
@@ -140,6 +140,10 @@
     <string name="default_provider">0</string>
     <string name="default_name">Любитель гороскопов</string>
     <string name="share">Поделиться</string>
+    <string name="share_content_horo_for">Гороскоп на</string>
+    <string name="share_content_horo_for_2">для знака зодиака:</string>
+    <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
+    <string name="share_send_from">Отправлено из приложения Гороскоп 24/7</string>
     <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
     <string name="automatic_determined_sign">Автоматически определенный знак зодиака</string>
 
