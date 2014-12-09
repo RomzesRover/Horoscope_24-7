@@ -160,10 +160,10 @@ public class MailRuPersonalLoaderFragment extends Fragment {
         if (!error && data.length()>10)
         	//set shareable content
         	actionProvider.setShareIntent(createShareIntent(
-        			getResources().getString(R.string.share_content_horo_for)
-        			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[3].toLowerCase()
-        			+", "+getResources().getString(R.string.share_content_horo_for_2)
-        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+        			getResources().getStringArray(R.array.mail_ru_horoscopes)[3]
+        			+" "+getResources().getString(R.string.share_personal_1)
+        			+" "+getResources().getString(R.string.share_personal_2)
+        			+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
         			+"\n\n"
         			+String.valueOf(textContent.getText())
         			+"\n\n"+getResources().getString(R.string.share_send_from)
@@ -241,10 +241,10 @@ public class MailRuPersonalLoaderFragment extends Fragment {
                     	
                     	//set shareable content
                     	actionProvider.setShareIntent(createShareIntent(
-                    			getResources().getString(R.string.share_content_horo_for)
-                    			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[3].toLowerCase()
-                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
-                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+                    			getResources().getStringArray(R.array.mail_ru_horoscopes)[3]
+                    			+" "+getResources().getString(R.string.share_personal_1)
+                    			+" "+getResources().getString(R.string.share_personal_2)
+                    			+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
                     			+"\n\n"
                     			+String.valueOf(textContent.getText())
                     			+"\n\n"+getResources().getString(R.string.share_send_from)
