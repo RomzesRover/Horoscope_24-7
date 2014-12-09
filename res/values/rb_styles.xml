@@ -13,9 +13,8 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="Holo.Horoscope.Theme.Light.DarkActionBar" parent="@style/Holo.Theme.Light.DarkActionBar">
-        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
-        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
+    <style name="Theme" parent="@style/Holo.Theme.Light.DarkActionBar">
+        
     </style>
 
 </resources>

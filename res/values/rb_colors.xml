@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<color name="slider_menu_custom_text_color">#999</color>
+	<color name="slider_menu_custom_color_pink">#f44</color>
+	<color name="slider_menu_custom_color_black">#000</color>
 </resources>
