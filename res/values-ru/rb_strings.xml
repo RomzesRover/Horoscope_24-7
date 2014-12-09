@@ -48,6 +48,44 @@
     <!-- end of data only for download mail.ru horoscope -->
 
 
+    <!-- This data below closed to translate ! Using only for download goroskop.ru horoscope -->
+    <string name="goroskop_ru_title">goroskop.ru</string>
+
+    <string-array name="goroskop_ru_horoscopes">
+        <item>Сегодня</item>
+        <item>Персональный</item>
+        <item>Любовный</item>
+        <item>Неделя</item>
+        <item>Денежный</item>
+        <item>Год</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadGoroskopRu">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadGoroskopRu">
+        <item></item>
+        <item>tomorrow/</item>
+        <item>goroskop_na_nedelyu</item>
+        <item>week</item>
+        <item>month</item>
+        <item>year</item>
+    </string-array>
+
+    <string name="copyright_goroskop_ru">© «ГОРОСКОП.РУ»</string>
+    <!-- end of data only for download goroskop.ru horoscope -->
+
+
     <!-- Data below need to be translate text UI -->
     <string-array name="zodiac_signs">
         <item>Овен</item>
@@ -79,9 +117,11 @@
     </string-array>
     <string-array name="providers">
         <item>\@mail.ru</item>
+        <item>goroskop.ru</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>0</item>
+        <item>1</item>
     </string-array>
 
     <string name="application_title">Приложение</string>
