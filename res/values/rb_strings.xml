@@ -141,5 +141,6 @@
     <string name="default_name">Horoscopes lover</string>
     <string name="share">Share</string>
     <string name="pre_use">First if all produce infrormation about yourself :)</string>
+    <string name="automatic_determined_sign">Automatic determination of the sign is</string>
 
 </resources>

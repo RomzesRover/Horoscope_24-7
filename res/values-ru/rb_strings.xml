@@ -141,5 +141,6 @@
     <string name="default_name">Любитель гороскопов</string>
     <string name="share">Поделиться</string>
     <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
+    <string name="automatic_determined_sign">Автоматически определенный знак зодиака</string>
 
 </resources>
