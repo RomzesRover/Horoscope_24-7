@@ -154,6 +154,19 @@ public class MailRuWeekLoaderFragment extends Fragment {
         
         MenuItem actionItem = menu.findItem(R.id.menu_share);
         actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
+        
+        //fix share action
+        if (!error && data.length()>10)
+        	//set shareable content
+        	actionProvider.setShareIntent(createShareIntent(
+        			getResources().getString(R.string.share_content_horo_for)
+        			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[4].toLowerCase()
+        			+", "+getResources().getString(R.string.share_content_horo_for_2)
+        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+        			+"\n\n"
+        			+String.valueOf(textContent.getText())
+        			+"\n\n"+getResources().getString(R.string.share_send_from)
+        			+"\n"+getResources().getString(R.string.share_content_url)));
         return;
     }
     
