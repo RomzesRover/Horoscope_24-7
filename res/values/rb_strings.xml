@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-        <!-- This data below closed to translate ! Using only for download from internet -->
+    <!-- This data below closed to translate ! Using only for download from internet -->
     <string name="user_agent">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17</string>
 
     <integer name="user_timeout">10000</integer>
@@ -86,6 +86,46 @@
     <!-- end of data only for download goroskop.ru horoscope -->
 
 
+    <!-- This data below closed to translate ! Using only for download horoscope.com horoscope -->
+    <string name="horoscope_com_title">horoscope.com</string>
+
+    <string-array name="horoscope_com_horoscopes">
+        <item>Yesterday</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>Personal</item>
+        <item>Week</item>
+        <item>Money</item>
+        <item>Month</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadHoroscopeCom">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadHoroscopeCom">
+        <item>yesterday</item>
+        <item>free-daily</item>
+        <item>tomorrow</item>
+        <item>daily-numerology</item>
+        <item>free-weekly</item>
+        <item>free-weekly-money</item>
+        <item>free-monthly</item>
+    </string-array>
+
+    <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
+    <!-- end of data only for download horoscope.com horoscope -->
+
+
     <!-- Data below need to be translate text UI -->
     <string-array name="zodiac_signs">
         <item>Ram</item>
@@ -116,10 +156,14 @@
         <item>11</item>
     </string-array>
     <string-array name="providers">
-        <item>\@mail.ru</item>
+        <item>RUS - \@mail.ru</item>
+        <item>RUS - goroskop.ru</item>
+        <item>ENG - horoscope.com</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
     <string name="application_title">Application</string>
