@@ -10,6 +10,8 @@ import org.holoeverywhere.preference.PreferenceFragment;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
+import org.holoeverywhere.preference.TimePreference;
+import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
 import org.holoeverywhere.widget.Toast;
 
 import android.os.Bundle;
@@ -61,6 +63,25 @@ public class SettingsFragment extends PreferenceFragment {
 			    ed.putString("preference_zodiac_sign", zodiacNumber(day, month+1));
 			    myListPref.setValue(zodiacNumber(day, month+1));
 			    Toast.makeText(getActivity(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(day, month+1))], Toast.LENGTH_LONG).show();
+				ed.commit();
+				return false;
+			}
+        });
+        
+        //setting up date change preference, cuz we need save time.
+        TimePreference myTimePref = (TimePreference) findPreference("preference_time_born");
+        
+        myTimePref.setHour(sPref.getInt("hourBorn", cal.get(Calendar.HOUR_OF_DAY)));
+        myTimePref.setMinute(sPref.getInt("minuteBorn", cal.get(Calendar.MINUTE)));
+        
+        myTimePref.setOnTimeSetListener(new OnTimeSetListener(){
+			@Override
+			public boolean onTimeSet(TimePreference preference, long date,
+					int hour, int minute) {
+				//save time born
+				Editor ed = sPref.edit();   
+				ed.putInt("minuteBorn", minute); 	
+			    ed.putInt("hourBorn", hour);		
 				ed.commit();
 				return false;
 			}

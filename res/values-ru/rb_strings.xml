@@ -170,6 +170,8 @@
     <string name="preference_base">Основные</string>
     <string name="preference_date_1">Дата вашего рождения</string>
     <string name="preference_date_2">Введите когда вы родились</string>
+    <string name="preference_time_1">Время вашего рождения</string>
+    <string name="preference_time_2">Введите когда вы родились</string>
     <string name="preference_zodiac_signs_2">Выберета ваш знак зодиака</string>
     <string name="preference_zodiac_signs_1">Знак зодиака</string>
     <string name="preference_provider_1">Поставщик гороскопа</string>

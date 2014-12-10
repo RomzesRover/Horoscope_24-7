@@ -167,6 +167,8 @@
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Your birth date</string>
     <string name="preference_date_2">Enter when you born</string>
+    <string name="preference_time_1">Your birth time</string>
+    <string name="preference_time_2">Enter when you born</string>
     <string name="preference_zodiac_signs_2">Select your zodiac sign</string>
     <string name="preference_zodiac_signs_1">Zodiac sign</string>
     <string name="preference_provider_1">Horoscope provider</string>
