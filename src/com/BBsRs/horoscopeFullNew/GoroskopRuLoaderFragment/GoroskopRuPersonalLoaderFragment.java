@@ -36,9 +36,9 @@ import android.widget.ScrollView;
 
 import com.BBsRs.horoscopeFullNew.R;
 
-public class GoroskopRuTodayLoaderFragment extends Fragment {
+public class GoroskopRuPersonalLoaderFragment extends Fragment {
 	
-	int UNIVERSAL_ID = 0;
+	int UNIVERSAL_ID = 1;
 	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
@@ -158,16 +158,15 @@ public class GoroskopRuTodayLoaderFragment extends Fragment {
         actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
         
         //fix share action
-        if (!error && data.length()>10)
-        	actionProvider.setShareIntent(createShareIntent(
-        			getResources().getString(R.string.share_content_horo_for)
-        			+" "+getResources().getStringArray(R.array.goroskop_ru_horoscopes)[UNIVERSAL_ID].toLowerCase()
-        			+", "+getResources().getString(R.string.share_content_horo_for_2)
-        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
-        			+"\n\n"
-        			+String.valueOf(textContent.getText())
-        			+"\n\n"+getResources().getString(R.string.share_send_from)
-        			+"\n"+getResources().getString(R.string.share_content_url)));
+    	actionProvider.setShareIntent(createShareIntent(
+    			getResources().getString(R.string.share_content_horo_for)
+    			+" "+getResources().getStringArray(R.array.goroskop_ru_horoscopes)[UNIVERSAL_ID].toLowerCase()
+    			+", "+getResources().getString(R.string.share_content_horo_for_2)
+    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+    			+"\n\n"
+    			+String.valueOf(textContent.getText())
+    			+"\n\n"+getResources().getString(R.string.share_send_from)
+    			+"\n"+getResources().getString(R.string.share_content_url)));
         return;
     }
     
