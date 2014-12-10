@@ -10,8 +10,12 @@ import org.holoeverywhere.widget.Toast;
 
 import android.os.Bundle;
 
+import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuLoveLoaderFragment;
+import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuMoneyLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuPersonalLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuTodayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuTomorrowLoaderFragment;
+import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuPersonalLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuTodayLoaderFragment;
@@ -58,7 +62,11 @@ public class ContentShowActivity extends Activity {
         case 1:
         	sliderMenu.add(getResources().getString(R.string.goroskop_ru_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[0], GoroskopRuTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[1], GoroskopRuPersonalLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[1], GoroskopRuTomorrowLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[2], GoroskopRuPersonalLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[3], GoroskopRuLoveLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[4], GoroskopRuWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[5], GoroskopRuMoneyLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.setCurrentPage(1);
             break;
         }

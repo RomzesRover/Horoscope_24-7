@@ -36,9 +36,9 @@ import android.widget.ScrollView;
 
 import com.BBsRs.horoscopeFullNew.R;
 
-public class GoroskopRuPersonalLoaderFragment extends Fragment {
+public class GoroskopRuTomorrowLoaderFragment extends Fragment {
 	
-	int UNIVERSAL_ID = 2;
+	int UNIVERSAL_ID = 1;
 	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
@@ -160,14 +160,14 @@ public class GoroskopRuPersonalLoaderFragment extends Fragment {
         //fix share action
         if (!error && data.length()>10)
         	actionProvider.setShareIntent(createShareIntent(
-            		getResources().getStringArray(R.array.goroskop_ru_horoscopes)[UNIVERSAL_ID]
-            		+" "+getResources().getString(R.string.share_personal_1)
-            		+" "+getResources().getString(R.string.share_personal_2)
-            		+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
-            		+"\n\n"
-            		+String.valueOf(textContent.getText())
-            		+"\n\n"+getResources().getString(R.string.share_send_from)
-            		+"\n"+getResources().getString(R.string.share_content_url)));
+        			getResources().getString(R.string.share_content_horo_for)
+        			+" "+getResources().getStringArray(R.array.goroskop_ru_horoscopes)[UNIVERSAL_ID].toLowerCase()
+        			+", "+getResources().getString(R.string.share_content_horo_for_2)
+        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+        			+"\n\n"
+        			+String.valueOf(textContent.getText())
+        			+"\n\n"+getResources().getString(R.string.share_send_from)
+        			+"\n"+getResources().getString(R.string.share_content_url)));
         return;
     }
     
@@ -191,9 +191,9 @@ public class GoroskopRuPersonalLoaderFragment extends Fragment {
                     	error=true;
                     	
                         //load and retrieve data from Goroskop.ru
-                    	Document doc = Jsoup.connect("http://www.goroskop.ru/publish/open_class/170/?year="+String.valueOf(sPref.getInt("yearBorn", 1995))+"&month="+String.valueOf(sPref.getInt("monthBorn",4)+1)+"&day="+String.valueOf(sPref.getInt("dayBorn", 10))+"&hour="+String.valueOf(sPref.getInt("hourBorn", 22))+"&minutes="+String.valueOf(sPref.getInt("minuteBorn",10))).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementById("gContent").child(6).html()+"<br /><br />"+getResources().getString(R.string.copyright_goroskop_ru);
-                    	if (!((doc.getElementById("gContent").child(6).html()).length()<10))
+                    	Document doc = Jsoup.connect("http://goroskop.ru/publish/open_article/29/"+getResources().getStringArray(R.array.nameOfzodiacForLoadGoroskopRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadGoroskopRu)[UNIVERSAL_ID]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	data = doc.getElementById("gContent").child(0).child(0).text()+"<br /><br />"+doc.getElementById("article").child(1).html()+doc.getElementById("article").child(2).html()+"<br /><br />"+getResources().getString(R.string.copyright_goroskop_ru);
+                    	if (!((doc.getElementById("article").child(1).html()+doc.getElementById("article").child(2).html()).length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
                     	error=true;
@@ -237,14 +237,14 @@ public class GoroskopRuPersonalLoaderFragment extends Fragment {
                     	
                     	//set shareable content
                     	actionProvider.setShareIntent(createShareIntent(
-                        		getResources().getStringArray(R.array.goroskop_ru_horoscopes)[UNIVERSAL_ID]
-                        		+" "+getResources().getString(R.string.share_personal_1)
-                        		+" "+getResources().getString(R.string.share_personal_2)
-                        		+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
-                        		+"\n\n"
-                        		+String.valueOf(textContent.getText())
-                        		+"\n\n"+getResources().getString(R.string.share_send_from)
-                        		+"\n"+getResources().getString(R.string.share_content_url)));
+                    			getResources().getString(R.string.share_content_horo_for)
+                    			+" "+getResources().getStringArray(R.array.goroskop_ru_horoscopes)[UNIVERSAL_ID].toLowerCase()
+                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
+                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+                    			+"\n\n"
+                    			+String.valueOf(textContent.getText())
+                    			+"\n\n"+getResources().getString(R.string.share_send_from)
+                    			+"\n"+getResources().getString(R.string.share_content_url)));
                     }
                     
                     // Notify PullToRefreshLayout that the refresh has finished
