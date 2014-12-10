@@ -2,6 +2,7 @@
 package com.BBsRs.horoscopeFullNew.MailRuLoaderFragment;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Fragment;
@@ -192,8 +193,11 @@ public class MailRuPersonalLoaderFragment extends Fragment {
                     	// set no error, cuz we can reach it
                     	error=true;
                     	
+                    	//create calender to get today date
+                    	Calendar c = Calendar.getInstance(); 
+                    	
                         //load and retrieve data from horo.mail.ru
-                    	Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopeForLoadMailRu)[UNIVERSAL_ID]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	Document doc = Jsoup.connect("http://horo.mail.ru/numerology/calc/31/?v1="+String.valueOf(sPref.getInt("yearBorn", 1995))+"-"+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"-"+String.valueOf(sPref.getInt("dayBorn", 10))+"&v2="+String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH)+1)+"-"+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	data = doc.getElementsByClass("article__text").first().html()+"<br />"+getResources().getString(R.string.copyright_horo_mail_ru);
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
                     		error=false;
