@@ -55,7 +55,7 @@ public class GoroskopRuTodayLoaderFragment extends Fragment {
     String data = "";
     
     //LOG_TAG for log
-    String LOG_TAG = "Goroskop.ru TODAY";
+    String LOG_TAG = "Goroskop.ru"+UNIVERSAL_ID;
     
     //flag for error
     boolean error=false;
