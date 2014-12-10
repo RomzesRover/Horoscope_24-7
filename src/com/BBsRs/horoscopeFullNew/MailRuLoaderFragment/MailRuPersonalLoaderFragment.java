@@ -2,7 +2,6 @@
 package com.BBsRs.horoscopeFullNew.MailRuLoaderFragment;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Fragment;
@@ -39,6 +38,8 @@ import com.BBsRs.horoscopeFullNew.R;
 
 public class MailRuPersonalLoaderFragment extends Fragment {
 	
+	int UNIVERSAL_ID = 3;
+	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
     TextView textContent;
@@ -54,7 +55,7 @@ public class MailRuPersonalLoaderFragment extends Fragment {
     String data = "";
     
     //LOG_TAG for log
-    String LOG_TAG = "Mail.ru PERSONAL";
+    String LOG_TAG = "Mail.ru"+UNIVERSAL_ID;
     
     //flag for error
     boolean error=false;
@@ -73,7 +74,7 @@ public class MailRuPersonalLoaderFragment extends Fragment {
     	//enable menu
     	setHasOptionsMenu(true);
     	
-   	 	//set up preferences
+    	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
     	
     	//retrieving views from layout
@@ -97,7 +98,7 @@ public class MailRuPersonalLoaderFragment extends Fragment {
         customOnRefreshListener.onRefreshStarted(null);
         //we already load data, put false to checker
         Editor ed = sPref.edit();   
-		ed.putBoolean("changed_3", false);	
+		ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 		ed.commit();
         } else {
         	if (savedInstanceState.getBoolean("error")){
@@ -130,14 +131,14 @@ public class MailRuPersonalLoaderFragment extends Fragment {
         //set titile for action bar
         getSupportActionBar().setTitle(sPref.getString("preference_name", getResources().getString(R.string.default_name)));
         //set subtitle for a current fragment
-        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+" - "+getResources().getStringArray(R.array.mail_ru_horoscopes)[3]);
+        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+" - "+getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]);
         
         //check if settings changed
-        if (sPref.getBoolean("changed_3", false)){
+        if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
         	mPullToRefreshLayout.setRefreshing(true);
         	customOnRefreshListener.onRefreshStarted(null);
         	Editor ed = sPref.edit();   
-			ed.putBoolean("changed_3", false);	
+			ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 			ed.commit();
         }
     }
@@ -160,7 +161,7 @@ public class MailRuPersonalLoaderFragment extends Fragment {
         if (!error && data.length()>10)
         	//set shareable content
         	actionProvider.setShareIntent(createShareIntent(
-        			getResources().getStringArray(R.array.mail_ru_horoscopes)[3]
+        			getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]
         			+" "+getResources().getString(R.string.share_personal_1)
         			+" "+getResources().getString(R.string.share_personal_2)
         			+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
@@ -191,11 +192,8 @@ public class MailRuPersonalLoaderFragment extends Fragment {
                     	// set no error, cuz we can reach it
                     	error=true;
                     	
-                    	//create calender to get today date
-                    	Calendar c = Calendar.getInstance(); 
-                    	
                         //load and retrieve data from horo.mail.ru
-                    	Document doc = Jsoup.connect("http://horo.mail.ru/numerology/calc/31/?v1="+String.valueOf(sPref.getInt("yearBorn", 1995))+"-"+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"-"+String.valueOf(sPref.getInt("dayBorn", 10))+"&v2="+String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH)+1)+"-"+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopeForLoadMailRu)[UNIVERSAL_ID]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	data = doc.getElementsByClass("article__text").first().html()+"<br />"+getResources().getString(R.string.copyright_horo_mail_ru);
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
                     		error=false;
@@ -240,16 +238,17 @@ public class MailRuPersonalLoaderFragment extends Fragment {
                     	textContent.startAnimation(flyUpAnimation);
                     	
                     	//set shareable content
-                    	actionProvider.setShareIntent(createShareIntent(
-                    			getResources().getStringArray(R.array.mail_ru_horoscopes)[3]
-                    			+" "+getResources().getString(R.string.share_personal_1)
-                    			+" "+getResources().getString(R.string.share_personal_2)
-                    			+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
-                    			+"\n\n"
-                    			+String.valueOf(textContent.getText())
-                    			+"\n\n"+getResources().getString(R.string.share_send_from)
-                    			+"\n"+getResources().getString(R.string.share_content_url)));
+                        actionProvider.setShareIntent(createShareIntent(
+                        		getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]
+                        		+" "+getResources().getString(R.string.share_personal_1)
+                        		+" "+getResources().getString(R.string.share_personal_2)
+                        		+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
+                        		+"\n\n"
+                        		+String.valueOf(textContent.getText())
+                        		+"\n\n"+getResources().getString(R.string.share_send_from)
+                        		+"\n"+getResources().getString(R.string.share_content_url)));
                     }
+                    
                     
                     // Notify PullToRefreshLayout that the refresh has finished
                     mPullToRefreshLayout.setRefreshComplete();

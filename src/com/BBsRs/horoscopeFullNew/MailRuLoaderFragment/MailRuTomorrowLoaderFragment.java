@@ -38,6 +38,8 @@ import com.BBsRs.horoscopeFullNew.R;
 
 public class MailRuTomorrowLoaderFragment extends Fragment {
 	
+	int UNIVERSAL_ID = 2;
+	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
     TextView textContent;
@@ -53,7 +55,7 @@ public class MailRuTomorrowLoaderFragment extends Fragment {
     String data = "";
     
     //LOG_TAG for log
-    String LOG_TAG = "Mail.ru TOMORROW";
+    String LOG_TAG = "Mail.ru"+UNIVERSAL_ID;
     
     //flag for error
     boolean error=false;
@@ -96,7 +98,7 @@ public class MailRuTomorrowLoaderFragment extends Fragment {
         customOnRefreshListener.onRefreshStarted(null);
         //we already load data, put false to checker
         Editor ed = sPref.edit();   
-		ed.putBoolean("changed_2", false);	
+		ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 		ed.commit();
         } else {
         	if (savedInstanceState.getBoolean("error")){
@@ -129,14 +131,14 @@ public class MailRuTomorrowLoaderFragment extends Fragment {
         //set titile for action bar
         getSupportActionBar().setTitle(sPref.getString("preference_name", getResources().getString(R.string.default_name)));
         //set subtitle for a current fragment
-        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+" - "+getResources().getStringArray(R.array.mail_ru_horoscopes)[2]);
+        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+" - "+getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]);
         
         //check if settings changed
-        if (sPref.getBoolean("changed_2", false)){
+        if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
         	mPullToRefreshLayout.setRefreshing(true);
         	customOnRefreshListener.onRefreshStarted(null);
         	Editor ed = sPref.edit();   
-			ed.putBoolean("changed_2", false);	
+			ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 			ed.commit();
         }
     }
@@ -160,7 +162,7 @@ public class MailRuTomorrowLoaderFragment extends Fragment {
         	//set shareable content
         	actionProvider.setShareIntent(createShareIntent(
         			getResources().getString(R.string.share_content_horo_for)
-        			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[2].toLowerCase()
+        			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID].toLowerCase()
         			+", "+getResources().getString(R.string.share_content_horo_for_2)
         			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
         			+"\n\n"
@@ -191,7 +193,7 @@ public class MailRuTomorrowLoaderFragment extends Fragment {
                     	error=true;
                     	
                         //load and retrieve data from horo.mail.ru
-                    	Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopeForLoadMailRu)[2]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopeForLoadMailRu)[UNIVERSAL_ID]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	data = doc.getElementsByClass("article__text").first().html()+"<br />"+getResources().getString(R.string.copyright_horo_mail_ru);
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
                     		error=false;
@@ -238,7 +240,7 @@ public class MailRuTomorrowLoaderFragment extends Fragment {
                     	//set shareable content
                     	actionProvider.setShareIntent(createShareIntent(
                     			getResources().getString(R.string.share_content_horo_for)
-                    			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[2].toLowerCase()
+                    			+" "+getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID].toLowerCase()
                     			+", "+getResources().getString(R.string.share_content_horo_for_2)
                     			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
                     			+"\n\n"
