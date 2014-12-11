@@ -34,11 +34,13 @@
         <item>RUS - \@mail.ru</item>
         <item>RUS - goroskop.ru</item>
         <item>ENG - horoscope.com</item>
+        <item>ENG - celebrity.yahoo.com</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
     <string name="application_title">Приложение</string>

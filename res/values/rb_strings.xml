@@ -124,8 +124,42 @@
 
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
+    
+        <!-- This data below closed to translate ! Using only for download celebrity.yahoo.com horoscope -->
+    <string name="celebrity_yahoo_com_title">celebrity.yahoo.com</string>
 
+    <string-array name="celebrity_yahoo_com_horoscopes">
+        <item>Yesterday</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadCelebrityYahooCom">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadCelebrityYahooCom">
+        <item>overview-daily-</item>
+        <item>overview-daily-</item>
+        <item>overview-daily-</item>
+        <item>overview-weekly-</item>
+        <item>overview-monthly-</item>
+    </string-array>
 
+    <string name="copyright_celebrity_yahoo_com">© Provided by TarotCom - Maria DeSimone</string>
+    <!-- end of data only for download celebrity.yahoo.com horoscope -->
+    
     <!-- Data below need to be translate text UI -->
     <string-array name="zodiac_signs">
         <item>Ram</item>
@@ -159,11 +193,13 @@
         <item>RUS - \@mail.ru</item>
         <item>RUS - goroskop.ru</item>
         <item>ENG - horoscope.com</item>
+        <item>ENG - celebrity.yahoo.com</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
     <string name="application_title">Application</string>
