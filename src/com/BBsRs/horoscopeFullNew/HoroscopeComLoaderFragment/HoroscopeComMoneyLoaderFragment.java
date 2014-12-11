@@ -160,15 +160,15 @@ public class HoroscopeComMoneyLoaderFragment extends Fragment {
         //fix share action
         if (!error && data.length()>10)
         	//set shareable content
-        	actionProvider.setShareIntent(createShareIntent(
-        			getResources().getString(R.string.share_content_horo_for)
-        			+" "+getResources().getStringArray(R.array.horoscope_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
-        			+", "+getResources().getString(R.string.share_content_horo_for_2)
-        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
-        			+"\n\n"
-        			+String.valueOf(textContent.getText())
-        			+"\n\n"+getResources().getString(R.string.share_send_from)
-        			+"\n"+getResources().getString(R.string.share_content_url)));
+            actionProvider.setShareIntent(createShareIntent(
+            		getResources().getString(R.string.share_money_1)
+            		+" "+getResources().getString(R.string.share_personal_1)
+            		+" "+getResources().getString(R.string.share_content_horo_for_2)
+            		+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+            		+"\n\n"
+            		+String.valueOf(textContent.getText())
+            		+"\n\n"+getResources().getString(R.string.share_send_from)
+            		+"\n"+getResources().getString(R.string.share_content_url)));
         return;
     }
     
@@ -238,15 +238,15 @@ public class HoroscopeComMoneyLoaderFragment extends Fragment {
                     	textContent.startAnimation(flyUpAnimation);
                     	
                     	//set shareable content
-                    	actionProvider.setShareIntent(createShareIntent(
-                    			getResources().getString(R.string.share_content_horo_for)
-                    			+" "+getResources().getStringArray(R.array.horoscope_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
-                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
-                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
-                    			+"\n\n"
-                    			+String.valueOf(textContent.getText())
-                    			+"\n\n"+getResources().getString(R.string.share_send_from)
-                    			+"\n"+getResources().getString(R.string.share_content_url)));
+                        actionProvider.setShareIntent(createShareIntent(
+                        		getResources().getString(R.string.share_money_1)
+                        		+" "+getResources().getString(R.string.share_personal_1)
+                        		+" "+getResources().getString(R.string.share_content_horo_for_2)
+                        		+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+                        		+"\n\n"
+                        		+String.valueOf(textContent.getText())
+                        		+"\n\n"+getResources().getString(R.string.share_send_from)
+                        		+"\n"+getResources().getString(R.string.share_content_url)));
                     }
                     
                     

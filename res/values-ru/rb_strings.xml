@@ -104,6 +104,7 @@
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
     <string name="share_personal_1">гороскоп</string>
     <string name="share_personal_2">для пользователя</string>
+    <string name="share_money_1">Денежный</string>
     <string name="share_send_from">Отправлено из приложения Гороскоп 24/7</string>
     <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
     <string name="automatic_determined_sign">Автоматически определенный знак зодиака</string>
