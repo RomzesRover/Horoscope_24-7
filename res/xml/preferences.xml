@@ -49,6 +49,17 @@
             android:key="preference_provider"
             android:summary="@string/preference_provider_2"
             android:title="@string/preference_provider_1" />
+        <ListPreference
+            android:id="@+id/preference_locale"
+            android:defaultValue="@string/default_locale"
+            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogTitle="@string/preference_locale_1"
+            android:entries="@array/locales"
+            android:entryValues="@array/locales_entryValues"
+            android:icon="@drawable/logo_locales"
+            android:key="preference_locales"
+            android:summary="@string/preference_locale_2"
+            android:title="@string/preference_locale_1" />
     </PreferenceCategory>
 
 </PreferenceScreen>

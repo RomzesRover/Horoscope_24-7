@@ -124,8 +124,9 @@
 
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
-    
-        <!-- This data below closed to translate ! Using only for download celebrity.yahoo.com horoscope -->
+
+
+    <!-- This data below closed to translate ! Using only for download celebrity.yahoo.com horoscope -->
     <string name="celebrity_yahoo_com_title">celebrity.yahoo.com</string>
 
     <string-array name="celebrity_yahoo_com_horoscopes">
@@ -150,16 +151,31 @@
         <item>pisces</item>
     </string-array>
     <string-array name="nameOfHoroscopecForLoadCelebrityYahooCom">
-        <item>overview-daily-</item>
-        <item>overview-daily-</item>
-        <item>overview-daily-</item>
-        <item>overview-weekly-</item>
-        <item>overview-monthly-</item>
+        <item>/overview-daily-</item>
+        <item>/overview-daily-</item>
+        <item>/overview-daily-</item>
+        <item>/overview-weekly-</item>
+        <item>/overview-monthly-</item>
+    </string-array>
+    <string-array name="nameOfmonthsForLoadCelebrityYahooCom">
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
     </string-array>
 
     <string name="copyright_celebrity_yahoo_com">© Provided by TarotCom - Maria DeSimone</string>
     <!-- end of data only for download celebrity.yahoo.com horoscope -->
-    
+
+
     <!-- Data below need to be translate text UI -->
     <string-array name="zodiac_signs">
         <item>Ram</item>
@@ -200,6 +216,14 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
+    <string-array name="locales">
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="locales_entryValues">
+        <item>ru</item>
+        <item>en</item>
     </string-array>
 
     <string name="application_title">Application</string>
@@ -256,8 +280,11 @@
     <string name="preference_provider_2">Select a horoscope provider</string>
     <string name="preference_name_1">Your name</string>
     <string name="preference_name_2">What is your name</string>
+    <string name="preference_locale_1">Language</string>
+    <string name="preference_locale_2">English</string>
     <string name="default_sign">0</string>
     <string name="default_provider">0</string>
+    <string name="default_locale">en</string>
     <string name="default_name">Horoscopes lover</string>
     <string name="share">Share</string>
     <string name="share_content_horo_for">Horoscope for</string>

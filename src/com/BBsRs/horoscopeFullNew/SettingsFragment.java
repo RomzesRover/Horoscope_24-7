@@ -2,10 +2,13 @@
 package com.BBsRs.horoscopeFullNew;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.ListPreference;
+import org.holoeverywhere.preference.Preference;
+import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
 import org.holoeverywhere.preference.PreferenceFragment;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
@@ -14,12 +17,19 @@ import org.holoeverywhere.preference.TimePreference;
 import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
 import org.holoeverywhere.widget.Toast;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 public class SettingsFragment extends PreferenceFragment {
 	
 	//preferences 
     SharedPreferences sPref;
+    
+    //lacale
+    Locale myLocale;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +96,24 @@ public class SettingsFragment extends PreferenceFragment {
 				return false;
 			}
         });
+        
+        //setting up locale change preference, cuz we need change locale.
+        ListPreference myLocaleListPref = (ListPreference) findPreference("preference_locales");
+        
+        myLocaleListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				Editor ed = sPref.edit();   
+				ed.putString("preference_locales", (String) newValue); 	
+				ed.commit();
+				setLocale((String) newValue);
+				return false;
+			}
+        	
+        });
+        
     }
 
     @Override
@@ -122,5 +150,16 @@ public class SettingsFragment extends PreferenceFragment {
 			 return "8";
 		 }
 		 return "0";
+	}
+	
+	private void setLocale(String lang) {
+	     myLocale = new Locale(lang);
+	     Resources res = getResources();
+	     DisplayMetrics dm = res.getDisplayMetrics();
+	     Configuration conf = res.getConfiguration();
+	     conf.locale = myLocale;
+	     res.updateConfiguration(conf, dm);
+	     Intent refresh = new Intent(getActivity(), ContentShowActivity.class);
+	     startActivity(refresh);            
 	}
 }

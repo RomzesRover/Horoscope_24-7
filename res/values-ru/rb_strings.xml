@@ -42,6 +42,14 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+        <string-array name="locales">
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="locales_entryValues">
+        <item>ru</item>
+        <item>en</item>
+    </string-array>
 
     <string name="application_title">Приложение</string>
 
@@ -97,8 +105,11 @@
     <string name="preference_provider_2">Выберете Поставщика гороскопа</string>
     <string name="preference_name_1">Ваше имя</string>
     <string name="preference_name_2">Введите как вас зовут</string>
+    <string name="preference_locale_1">Язык</string>
+    <string name="preference_locale_2">Русский</string>
     <string name="default_sign">0</string>
     <string name="default_provider">0</string>
+    <string name="default_locale">ru</string>
     <string name="default_name">Любитель гороскопов</string>
     <string name="share">Поделиться</string>
     <string name="share_content_horo_for">Гороскоп на</string>
