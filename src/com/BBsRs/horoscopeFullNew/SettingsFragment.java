@@ -189,8 +189,10 @@ public class SettingsFragment extends PreferenceFragment {
 		ed.commit();
 		Intent refresh = new Intent(getActivity(), ContentShowActivity.class);
 		//restart activity
-	    startActivity(refresh);    
-	    //
+	    startActivity(refresh);   
+	    //set no animation
+	    getActivity().overridePendingTransition(0, 0);
+	    // stop curr activity
 	    getActivity().finish();
 	}
 }
