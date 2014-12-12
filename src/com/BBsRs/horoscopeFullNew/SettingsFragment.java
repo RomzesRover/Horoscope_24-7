@@ -2,14 +2,12 @@
 package com.BBsRs.horoscopeFullNew;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.ListPreference;
 import org.holoeverywhere.preference.Preference;
 import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
-import org.holoeverywhere.preference.PreferenceFragment;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
@@ -18,26 +16,24 @@ import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
 import org.holoeverywhere.widget.Toast;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 
-public class SettingsFragment extends PreferenceFragment {
+import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
+
+public class SettingsFragment extends BasePreferenceFragment {
 	
 	//preferences 
     SharedPreferences sPref;
     
-    //lacale
-    Locale myLocale;
-    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
-        
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //set app lang
+        setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
+        
+        addPreferencesFromResource(R.xml.preferences);
         
         //setting up list zodiac change listener preference, cuz we need update horo if zodiac was changed.
 		Editor ed = sPref.edit(); 
@@ -109,6 +105,7 @@ public class SettingsFragment extends PreferenceFragment {
 				ed.putString("preference_locales", (String) newValue); 	
 				ed.commit();
 				setLocale((String) newValue);
+				updateProviderToLang();
 				activityRefresh();
 				return false;
 			}
@@ -170,16 +167,10 @@ public class SettingsFragment extends PreferenceFragment {
 		 return "0";
 	}
 	
-	private void setLocale(String lang) {
-	     myLocale = new Locale(lang);
-	     Resources res = getResources();
-	     DisplayMetrics dm = res.getDisplayMetrics();
-	     Configuration conf = res.getConfiguration();
-	     conf.locale = myLocale;
-	     res.updateConfiguration(conf, dm);
-	     //change provider to curr lang
+	private void updateProviderToLang(){
+		 //change provider to curr lang
 	     Editor ed = sPref.edit();  
-	     ed.putString("preference_provider", res.getString(R.string.default_provider)); 	
+	     ed.putString("preference_provider", getResources().getString(R.string.default_provider)); 	
 	     ed.commit();
 	}
 	

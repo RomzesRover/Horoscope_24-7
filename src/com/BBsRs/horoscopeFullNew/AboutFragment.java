@@ -1,12 +1,14 @@
 
 package com.BBsRs.horoscopeFullNew;
 
-import org.holoeverywhere.preference.PreferenceFragment;
+import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 
 import android.os.Bundle;
 
-public class AboutFragment extends PreferenceFragment {
+import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
+
+public class AboutFragment extends BasePreferenceFragment {
 	
 	//preferences 
     SharedPreferences sPref;
@@ -14,6 +16,11 @@ public class AboutFragment extends PreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set up preferences
+        sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //set app lang
+        setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
+        
         addPreferencesFromResource(R.xml.about);
     }
 

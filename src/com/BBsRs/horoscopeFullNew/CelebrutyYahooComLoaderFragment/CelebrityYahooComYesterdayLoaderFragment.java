@@ -70,14 +70,14 @@ public class CelebrityYahooComYesterdayLoaderFragment extends Fragment {
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-    	View contentView = inflater.inflate(R.layout.fragment_content_show);
-    	
+		View contentView = inflater.inflate(R.layout.fragment_content_show);
+		
     	//enable menu
     	setHasOptionsMenu(true);
     	
     	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-    	
+        
     	//retrieving views from layout
     	textContent=(TextView)contentView.findViewById(R.id.textContent);
     	mPullToRefreshLayout = (PullToRefreshLayout) contentView.findViewById(R.id.ptr_layout);
