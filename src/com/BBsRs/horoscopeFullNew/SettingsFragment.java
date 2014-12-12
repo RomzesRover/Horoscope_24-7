@@ -109,6 +109,24 @@ public class SettingsFragment extends PreferenceFragment {
 				ed.putString("preference_locales", (String) newValue); 	
 				ed.commit();
 				setLocale((String) newValue);
+				activityRefresh();
+				return false;
+			}
+        	
+        });
+        
+        //setting up provider change preference, cuz we need change provider.
+        ListPreference myProviderListPref = (ListPreference) findPreference("preference_provider");
+        
+        myProviderListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				Editor ed = sPref.edit();   
+				ed.putString("preference_provider", (String) newValue);
+				ed.commit();
+				activityRefresh();
 				return false;
 			}
         	
@@ -159,7 +177,19 @@ public class SettingsFragment extends PreferenceFragment {
 	     Configuration conf = res.getConfiguration();
 	     conf.locale = myLocale;
 	     res.updateConfiguration(conf, dm);
-	     Intent refresh = new Intent(getActivity(), ContentShowActivity.class);
-	     startActivity(refresh);            
+	     //change provider to curr lang
+	     Editor ed = sPref.edit();  
+	     ed.putString("preference_provider", res.getString(R.string.default_provider)); 	
+	     ed.commit();
+	             
+	}
+	
+	private void activityRefresh(){
+		Editor ed = sPref.edit();  
+		ed.putBoolean("preference_start", true); 	
+		ed.commit();
+		Intent refresh = new Intent(getActivity(), ContentShowActivity.class);
+		//restart activity
+	    startActivity(refresh);    
 	}
 }
