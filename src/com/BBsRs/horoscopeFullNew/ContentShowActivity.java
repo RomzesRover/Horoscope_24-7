@@ -1,5 +1,7 @@
 package com.BBsRs.horoscopeFullNew;
 
+import java.util.Locale;
+
 import org.holoeverywhere.addon.AddonSlider;
 import org.holoeverywhere.addon.Addons;
 import org.holoeverywhere.app.Activity;
@@ -9,7 +11,10 @@ import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
 import org.holoeverywhere.widget.Toast;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 import com.BBsRs.horoscopeFullNew.CelebrutyYahooComLoaderFragment.CelebrityYahooComMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNew.CelebrutyYahooComLoaderFragment.CelebrityYahooComTodayLoaderFragment;
@@ -49,6 +54,9 @@ public class ContentShowActivity extends Activity {
 	
 	//preferences 
     SharedPreferences sPref;
+    
+    //lacale
+    Locale myLocale;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,9 @@ public class ContentShowActivity extends Activity {
         
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        
+        //set app lang
+        setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
 
         //init slider menu
         sliderMenu = addonSlider().obtainDefaultSliderMenu(R.layout.menu);
@@ -133,5 +144,14 @@ public class ContentShowActivity extends Activity {
     		ed.commit();
         }
     }
+    
+	private void setLocale(String lang) {
+	     myLocale = new Locale(lang);
+	     Resources res = getResources();
+	     DisplayMetrics dm = res.getDisplayMetrics();
+	     Configuration conf = res.getConfiguration();
+	     conf.locale = myLocale;
+	     res.updateConfiguration(conf, dm);
+	}
       
 }

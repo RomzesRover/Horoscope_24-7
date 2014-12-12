@@ -181,7 +181,6 @@ public class SettingsFragment extends PreferenceFragment {
 	     Editor ed = sPref.edit();  
 	     ed.putString("preference_provider", res.getString(R.string.default_provider)); 	
 	     ed.commit();
-	             
 	}
 	
 	private void activityRefresh(){
@@ -191,5 +190,7 @@ public class SettingsFragment extends PreferenceFragment {
 		Intent refresh = new Intent(getActivity(), ContentShowActivity.class);
 		//restart activity
 	    startActivity(refresh);    
+	    //
+	    getActivity().finish();
 	}
 }
