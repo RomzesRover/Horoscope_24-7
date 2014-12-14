@@ -1,9 +1,15 @@
 
 package com.BBsRs.horoscopeFullNew;
 
+import org.holoeverywhere.preference.Preference;
+import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.widget.Toast;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
@@ -22,6 +28,90 @@ public class AboutFragment extends BasePreferenceFragment {
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         
         addPreferencesFromResource(R.xml.about);
+        
+        Preference myPref = (Preference) findPreference("open_vk");
+		myPref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.contacts_vk_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref2 = (Preference) findPreference("open_gmail");
+		myPref2.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.contacts_gmail_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref3 = (Preference) findPreference("open_jsoup");
+		myPref3.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.libraries_jsoup_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref4 = (Preference) findPreference("open_holoeverywhere");
+		myPref4.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.libraries_holoeverywhere_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref5 = (Preference) findPreference("open_smoothprogressbar");
+		myPref5.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.libraries_smoothprogressbar_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref6 = (Preference) findPreference("open_pulltorefresh");
+		myPref6.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.libraries_pulltorefresh_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref7 = (Preference) findPreference("open_github");
+		myPref7.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.open_source_base_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
     }
 
     @Override
