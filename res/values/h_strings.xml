@@ -227,6 +227,7 @@
     <string-array name="application_titles">
         <item>Settings</item>
         <item>About</item>
+        <item>Notice</item>
     </string-array>
 
     <string name="app_name">Horoscope 24/7</string>
@@ -303,5 +304,6 @@
     <string name="introduce_date_check">Check your data is correct</string>
     <string name="introduce_time">SET BIRTH TIME</string>
     <string name="introduce_time_1">*this value used only goroskop.ru</string>
+    <string name="notice_url">http://brothers-rovers.3dn.ru/help6.0.eng.html</string>
 
 </resources>

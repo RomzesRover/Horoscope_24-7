@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Data below need to be translate text UI -->
+    <string-array name="zodiac_signs">
+        <item>Овен</item>
+        <item>Телец</item>
+        <item>Близнецы</item>
+        <item>Рак</item>
+        <item>Лев</item>
+        <item>Дева</item>
+        <item>Весы</item>
+        <item>Скорпион</item>
+        <item>Стрелец</item>
+        <item>Козерог</item>
+        <item>Водолей</item>
+        <item>Рыбы</item>
+    </string-array>
+    <string-array name="zodiac_signs_entryValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+    <string-array name="providers">
+        <item>\@mail.ru</item>
+        <item>goroskop.ru</item>
+    </string-array>
+    <string-array name="providers_entryValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="locales">
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="locales_entryValues">
+        <item>ru</item>
+        <item>en</item>
+    </string-array>
+
+    <string name="application_title">Приложение</string>
+
+    <string-array name="application_titles">
+        <item>Настройки</item>
+        <item>О Приложении</item>
+        <item>Уведомление</item>
+    </string-array>
+
+    <string name="app_name">Гороскоп 24/7</string>
+    <string name="error_message">Проверьте ваше подключение к сети, и попробуйте снова.</string>
+    <string name="error_retry">Попробовать снова</string>
+    <string name="about">О Приложении</string>
+    <string name="about_base">Основные</string>
+    <string name="about_base_version_2">Версия 6.0 beta</string>
+    <string name="about_base_creator_2">Роман Гаитбаев</string>
+    <string name="about_base_publisher_2">play.google.com</string>
+    <string name="about_base_version_1">Версия</string>
+    <string name="about_base_creator_1">Разработчик</string>
+    <string name="about_base_publisher_1">Издатель</string>
+    <string name="contacts_base">Контакты</string>
+    <string name="contacts_vk_1">Vk.com</string>
+    <string name="contacts_vk_2">vk.com/romzesrover</string>
+    <string name="contacts_vk_url">http://vk.com/romzesrover</string>
+    <string name="contacts_gmail_1">Gmail</string>
+    <string name="contacts_gmail_2">romzesrover@gmail.com</string>
+    <string name="contacts_gmail_url">mailto:romzesrover@gmail.com</string>
+    <string name="open_source_base">Проект с открытым исходным кодом!</string>
+    <string name="open_source_base_1">GitHub</string>
+    <string name="open_source_base_2">github.com/RomzesRover/Horoscope_24-7</string>
+    <string name="open_source_base_url">https://github.com/RomzesRover/Horoscope_24-7</string>
+    <string name="libraries_base">Библиотеки</string>
+    <string name="libraries_jsoup_1">Jsoup</string>
+    <string name="libraries_jsoup_2">jsoup.org</string>
+    <string name="libraries_jsoup_url">http://jsoup.org/</string>
+    <string name="libraries_holoeverywhere_1">HoloEverywhere</string>
+    <string name="libraries_holoeverywhere_2">github.com/Prototik/HoloEverywhere</string>
+    <string name="libraries_holoeverywhere_url">https://github.com/Prototik/HoloEverywhere</string>
+    <string name="libraries_smoothprogressbar_1">SmoothProgressBar</string>
+    <string name="libraries_smoothprogressbar_2">github.com/castorflex/SmoothProgressBar</string>
+    <string name="libraries_smoothprogressbar_url">https://github.com/castorflex/SmoothProgressBar</string>
+    <string name="libraries_pulltorefresh_1">PullToRefresh</string>
+    <string name="libraries_pulltorefresh_2">github.com/chrisbanes/ActionBar-PullToRefresh</string>
+    <string name="libraries_pulltorefresh_url">https://github.com/chrisbanes/ActionBar-PullToRefresh</string>
+    <string name="preference">Настройки</string>
+    <string name="preference_base">Основные</string>
+    <string name="preference_date_1">Дата вашего рождения</string>
+    <string name="preference_date_2">Введите когда вы родились</string>
+    <string name="preference_time_1">Время вашего рождения</string>
+    <string name="preference_time_2">Введите когда вы родились</string>
+    <string name="preference_zodiac_signs_2">Выберета ваш знак зодиака</string>
+    <string name="preference_zodiac_signs_1">Знак зодиака</string>
+    <string name="preference_provider_1">Поставщик гороскопа</string>
+    <string name="preference_provider_2">Выберете Поставщика гороскопа</string>
+    <string name="preference_name_1">Ваше имя</string>
+    <string name="preference_name_2">Введите как вас зовут</string>
+    <string name="preference_locale_1">Язык</string>
+    <string name="preference_locale_2">Русский</string>
+    <string name="default_sign">0</string>
+    <string name="default_provider">0</string>
+    <string name="default_locale">ru</string>
+    <string name="default_name">Любитель гороскопов</string>
+    <string name="share">Поделиться</string>
+    <string name="share_content_horo_for">Гороскоп на</string>
+    <string name="share_content_horo_for_2">для знака зодиака:</string>
+    <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
+    <string name="share_personal_1">гороскоп</string>
+    <string name="share_personal_2">для пользователя</string>
+    <string name="share_money_1">Денежный</string>
+    <string name="share_send_from">Отправлено из приложения Гороскоп 24/7</string>
+    <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
+    <string name="automatic_determined_sign">Автоматически определенный знак зодиака</string>
+    <string name="introduce_one">Онлайн гороскоп</string>
+    <string name="introduce_two">Добро пожаловать!</string>
+    <string name="introduce_two_1">Выберете ваш язык</string>
+    <string name="introduce_next">ДАЛЕЕ</string>
+    <string name="introduce_back">НАЗАД</string>
+    <string name="introduce_exit">ВЫХОД</string>
+    <string name="introduce_start">СТАРТ!</string>
+    <string name="introduce_date">УСТАНОВИТЬ ДАТУ РОЖДЕНИЯ</string>
+    <string name="introduce_date_check">Проверьте правильность введенных данных</string>
+    <string name="introduce_time">УСТАНОВИТЬ ВРЕМЯ РОЖДЕНИЯ</string>
+    <string name="introduce_time_1">*эти данные использует только goroskop.ru</string>
+    <string name="notice_url">http://brothers-rovers.3dn.ru/help6.0.ru.html</string>
+
+</resources>
