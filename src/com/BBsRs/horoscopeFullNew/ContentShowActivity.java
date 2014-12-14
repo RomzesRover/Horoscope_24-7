@@ -50,6 +50,8 @@ public class ContentShowActivity extends BaseActivity {
 	//preferences 
     SharedPreferences sPref;
     
+    boolean check = false;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,14 +126,17 @@ public class ContentShowActivity extends BaseActivity {
         if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13 || sPref.getBoolean("preference_start", false)){
         	//then show settings page
         	sliderMenu.setCurrentPage(pref_id+2);
+            if (!sPref.getBoolean("preference_start", false))
         	Toast.makeText(getApplicationContext(), getResources().getString(R.string.pre_use), Toast.LENGTH_LONG).show();
         	Editor ed = sPref.edit();  
     		ed.putBoolean("preference_start", false); 	
     		ed.commit();
+    		check=true;
         }
         
-        if (sPref.getInt("banner", 0)==1){
+        if (sPref.getInt("banner", 0)==1 ){
         	sliderMenu.add(getResources().getStringArray(R.array.application_titles)[2], BannerFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+        	if (!check)
         	sliderMenu.setCurrentPage(pref_id+4);
         }
     }
