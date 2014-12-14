@@ -122,5 +122,11 @@
     <string name="introduce_two_1">Выберете ваш язык</string>
     <string name="introduce_next">ДАЛЕЕ</string>
     <string name="introduce_back">НАЗАД</string>
+    <string name="introduce_exit">ВЫХОД</string>
+    <string name="introduce_start">СТАРТ!</string>
+    <string name="introduce_date">УСТАНОВИТЬ ДАТУ РОЖДЕНИЯ</string>
+    <string name="introduce_date_check">Проверьте правильность введенных данных</string>
+    <string name="introduce_time">УСТАНОВИТЬ ВРЕМЯ РОЖДЕНИЯ</string>
+    <string name="introduce_time_1">*эти данные использует только goroskop.ru</string>
 
 </resources>

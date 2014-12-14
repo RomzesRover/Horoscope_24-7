@@ -57,14 +57,16 @@
 
             <Button
                 android:id="@+id/buttonBack"
+                android:textStyle="italic" 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/fragment_standart_padding"
                 android:background="@drawable/list_selector_holo_dark"
-                android:text="@string/introduce_back" />
+                android:text="@string/introduce_exit" />
 
             <Button
                 android:id="@+id/buttonNext"
+                android:textStyle="italic" 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_selector_holo_dark"

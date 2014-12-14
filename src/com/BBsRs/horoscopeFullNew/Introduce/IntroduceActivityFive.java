@@ -3,46 +3,54 @@ package com.BBsRs.horoscopeFullNew.Introduce;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
+import org.holoeverywhere.widget.AdapterView;
+import org.holoeverywhere.widget.AdapterView.OnItemSelectedListener;
 import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.TextView;
+import org.holoeverywhere.widget.Spinner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
+import com.BBsRs.horoscopeFullNew.ContentShowActivity;
 import com.BBsRs.horoscopeFullNew.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 
-public class IntroduceActivityTwo extends BaseActivity {
+public class IntroduceActivityFive extends BaseActivity {
 	
 	//preferences 
     SharedPreferences sPref;
-
+    
+    int check=0;
+    
+    //
+    int k=0;
+    
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-
-	    //set up preferences
+	    
+        //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 	    
 	    //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         
-        this.setContentView(R.layout.activity_inroduce_two);
+        if (!sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("ru"))
+        	k=2;
+        
+	    this.setContentView(R.layout.activity_inroduce_five);
 	    
 	    //init butts
 	    Button back = (Button)this.findViewById(R.id.buttonBack);
-	    final Button next = (Button)this.findViewById(R.id.buttonNext);
+	    Button next = (Button)this.findViewById(R.id.buttonNext);
 	    
 	    //on butts 
 	    next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent refresh = new Intent(getApplicationContext(), IntroduceActivityThree.class);
+				Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
 				//restart activity
 			    startActivity(refresh);   
 			    //set  animation
@@ -57,7 +65,7 @@ public class IntroduceActivityTwo extends BaseActivity {
 	    back .setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent refresh = new Intent(getApplicationContext(), IntroduceActivityOne.class);
+				Intent refresh = new Intent(getApplicationContext(), IntroduceActivityFour.class);
 				//restart activity
 			    startActivity(refresh);   
 			    //set  animation
@@ -67,37 +75,23 @@ public class IntroduceActivityTwo extends BaseActivity {
 			}
 		});
 	    
-	    //dis next bttn
-	    next.setEnabled(false);
+	    final Spinner provider = (Spinner)findViewById(R.id.spinnerProvider);
+	    provider.setSelection(Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))-k);
 	    
-	    //init edit text name
-	    final TextView textMask = (TextView)this.findViewById(R.id.textMask);
-	    final EditText editTextName = (EditText)this.findViewById(R.id.editTextName);
-
-	    //on ed text
-	    editTextName.addTextChangedListener(new TextWatcher() {
-	    	   public void afterTextChanged(Editable s) {
-	    		   if (s.length()<=0){
-	    			   textMask.setVisibility(View.VISIBLE);
-		    		   next.setEnabled(false);
-	    		   } else {
-	    			   next.setEnabled(true);
-	    		   }
-	    	   }
-	    	   public void beforeTextChanged(CharSequence s, int start, 
-	    	     int count, int after) {
-	    	   }
-	    	   public void onTextChanged(CharSequence s, int start, 
-	    	     int before, int count) {
-	    		   Editor ed = sPref.edit();   
-	    		   ed.putString("preference_name", String.valueOf(s)); 	
-	    		   ed.commit();
-	    		   textMask.setVisibility(View.GONE);
-	    	   }
-	    	  });
+	    provider.setOnItemSelectedListener(new OnItemSelectedListener(){    
+	    	@Override
+	    	public void onItemSelected(AdapterView adapter, View v, int i, long lng) {
+	    		check++;
+	    		if(check>1){
+	    		Editor ed = sPref.edit();   
+	    		ed.putString("preference_provider", getResources().getStringArray(R.array.providers_entryValues)[i+k]); 	
+	    		ed.commit();
+	    		}
+	    	} 
+	    	@Override     
+	    	public void onNothingSelected(AdapterView<?> parentView) {}
+	    }); 
 	    
-	    //set curr name
-	    editTextName.setText(sPref.getString("preference_name", ""));
 	}
 
 }

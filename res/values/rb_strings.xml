@@ -297,5 +297,11 @@
     <string name="introduce_two_1">choose your language</string>
     <string name="introduce_next">NEXT</string>
     <string name="introduce_back">BACK</string>
+    <string name="introduce_exit">EXIT</string>
+    <string name="introduce_start">START!</string>
+    <string name="introduce_date">SET BIRTH DATE</string>
+    <string name="introduce_date_check">Check your data is correct</string>
+    <string name="introduce_time">SET BIRTH TIME</string>
+    <string name="introduce_time_1">*this value used only goroskop.ru</string>
 
 </resources>

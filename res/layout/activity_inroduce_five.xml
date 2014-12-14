@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/hexography_green" />
+        android:src="@drawable/hexography_fiol" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -21,10 +21,20 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="@string/preference_name_2"
+            android:text="@string/preference_provider_2"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/not_simple_white_color" />
 
+        <Spinner
+            android:id="@+id/spinnerProvider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/fragment_standart_padding"
+            android:entries="@array/providers"
+            android:entryValues="@array/providers_entryValues"
+            android:textColor="@color/not_simple_white_color" />
 
         <TextView
             android:id="@+id/textView1"
@@ -32,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:text="@string/preference_name_1"
+            android:text="@string/preference_provider_1"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/simple_white_color"
             android:textStyle="bold|italic" />
@@ -47,12 +57,12 @@
 
             <Button
                 android:id="@+id/buttonBack"
-                android:textStyle="italic" 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/fragment_standart_padding"
                 android:background="@drawable/list_selector_holo_dark"
-                android:text="@string/introduce_back" />
+                android:padding="@dimen/fragment_standart_padding"
+                android:text="@string/introduce_back"
+                android:textStyle="italic" />
 
             <Button
                 android:id="@+id/buttonNext"
@@ -61,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_selector_holo_dark"
                 android:padding="@dimen/fragment_standart_padding"
-                android:text="@string/introduce_next" />
+                android:text="@string/introduce_start" />
 
         </LinearLayout>
 
@@ -72,31 +82,6 @@
             android:layout_above="@+id/linearLayout1"
             android:layout_marginBottom="3dp"
             android:src="@color/slider_menu_custom_text_color" />
-
-        <TextView
-            android:id="@+id/textMask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/editTextName"
-            android:layout_alignLeft="@+id/editTextName"
-            android:layout_alignRight="@+id/editTextName"
-            android:layout_alignTop="@+id/editTextName"
-            android:background="@drawable/edit_text_holo_light"
-            android:gravity="center_vertical"
-            android:text="@string/default_name"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-        
-               <EditText
-                   android:id="@+id/editTextName"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_below="@+id/textView2"
-                   android:layout_centerHorizontal="true"
-                   android:ems="10"
-                   android:inputType="textCapSentences"
-                   android:textColor="@color/simple_white_color" >
-
-        </EditText>
 
     </RelativeLayout>
 

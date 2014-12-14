@@ -3,4 +3,5 @@
     <issue id="DefaultLocale" severity="ignore">
         <ignore path="src/com/BBsRs/horoscopeFullNew/ContentShowActivity.java" />
     </issue>
+    <issue id="SimpleDateFormat" severity="ignore" />
 </lint>

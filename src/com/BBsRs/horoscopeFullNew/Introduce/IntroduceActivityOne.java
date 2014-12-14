@@ -60,7 +60,6 @@ public class IntroduceActivityOne extends BaseActivity {
 			public void onClick(View v) {
 			    // stop curr activity
 			    finish();
-
 			}
 		});
 	    
@@ -78,6 +77,8 @@ public class IntroduceActivityOne extends BaseActivity {
 	    		Editor ed = sPref.edit();   
 	    		ed.putString("preference_locales", getResources().getStringArray(R.array.locales_entryValues)[i]); 	
 	    		ed.commit();
+	    		setLocale(getResources().getStringArray(R.array.locales_entryValues)[i]);
+	    		updateProviderToLang();
 	    		activityRefresh();}
 	    	} 
 	    	@Override     
@@ -95,6 +96,13 @@ public class IntroduceActivityOne extends BaseActivity {
 	    overridePendingTransition(0, 0);
 	    // stop curr activity
 	    finish();
+	}
+	
+	private void updateProviderToLang(){
+		 //change provider to curr lang
+	     Editor ed = sPref.edit();  
+	     ed.putString("preference_provider", getResources().getString(R.string.default_provider)); 	
+	     ed.commit();
 	}
 
 }
