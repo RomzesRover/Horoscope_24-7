@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <color name="not_simple_white_color">#ddd</color>
+    <color name="simple_white_color">#fff</color>
 	<color name="slider_menu_custom_text_color">#999</color>
 	<color name="slider_menu_custom_color_pink">#f44</color>
 	<color name="slider_menu_custom_color_black">#000</color>

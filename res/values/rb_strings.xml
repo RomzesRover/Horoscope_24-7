@@ -292,5 +292,10 @@
     <string name="share_money_1">Money</string>
     <string name="pre_use">First if all produce infrormation about yourself :)</string>
     <string name="automatic_determined_sign">Automatic determination of the sign is</string>
+    <string name="introduce_one">Online horoscope</string>
+    <string name="introduce_two">Welcome!</string>
+    <string name="introduce_two_1">choose your language</string>
+    <string name="introduce_next">NEXT</string>
+    <string name="introduce_back">BACK</string>
 
 </resources>

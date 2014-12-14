@@ -38,7 +38,7 @@
         <item>0</item>
         <item>1</item>
     </string-array>
-        <string-array name="locales">
+    <string-array name="locales">
         <item>Русский</item>
         <item>English</item>
     </string-array>
@@ -117,5 +117,10 @@
     <string name="share_send_from">Отправлено из приложения Гороскоп 24/7</string>
     <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
     <string name="automatic_determined_sign">Автоматически определенный знак зодиака</string>
+    <string name="introduce_one">Онлайн гороскоп</string>
+    <string name="introduce_two">Добро пожаловать!</string>
+    <string name="introduce_two_1">Выберете ваш язык</string>
+    <string name="introduce_next">ДАЛЕЕ</string>
+    <string name="introduce_back">НАЗАД</string>
 
 </resources>
