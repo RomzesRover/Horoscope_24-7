@@ -156,7 +156,6 @@ public class HoroscopeComTodayLoaderFragment extends Fragment {
         
         MenuItem actionItem = menu.findItem(R.id.menu_share);
         actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
-        
         //fix share action
         if (!error && data.length()>10)
         	//set shareable content
