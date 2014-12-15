@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BBsRs.horoscopeFullNew.ContentShowActivity;
+import com.BBsRs.horoscopeFullNew.ActivityLoader;
 import com.BBsRs.horoscopeFullNew.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 
@@ -50,7 +50,7 @@ public class IntroduceActivityFive extends BaseActivity {
 	    next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
+				Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
 				//restart activity
 			    startActivity(refresh);   
 			    //set  animation
