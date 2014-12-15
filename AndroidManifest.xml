@@ -17,7 +17,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/HoloPinkLightDarkActionBar" >
+        android:theme="@style/Holo.Theme.Light.DarkActionBar" >
         <activity
             android:name=".ContentShowActivity"
             android:configChanges="locale"
@@ -27,7 +27,7 @@
             android:name="com.BBsRs.horoscopeFullNew.ActivityLoader"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/HoloPinkDarkActionBarNoActionBar" >
+            android:theme="@style/Holo.Theme.Light.DarkActionBar.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,31 +38,31 @@
             android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/HoloPinkDarkActionBarFullScreenNoActionBar" >
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityTwo"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/HoloPinkDarkActionBarFullScreenNoActionBar" >
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityThree"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/HoloPinkDarkActionBarFullScreenNoActionBar" >
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityFour"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/HoloPinkDarkActionBarFullScreenNoActionBar" >
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityFive"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/HoloPinkDarkActionBarFullScreenNoActionBar" >
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
     </application>
 
