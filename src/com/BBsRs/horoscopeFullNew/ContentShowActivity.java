@@ -67,7 +67,7 @@ public class ContentShowActivity extends BaseActivity {
         addonSlider().setOverlayActionBar(false);
         
         //adding tabs as prooved provider
-        switch (Integer.parseInt(sPref.getString("preference_provider", "0"))){
+        switch (Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))){
         case 0:
         	sliderMenu.add(getResources().getString(R.string.mail_ru_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[0], MailRuYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
