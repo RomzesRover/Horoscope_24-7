@@ -16,7 +16,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -108,7 +107,7 @@ public class ActivityLoader extends BaseActivity {
         //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         
-        this.setContentView(R.layout.activity_loader);
+        setContentView(R.layout.activity_loader);
         
         //init error stuff
     	relativeErrorLayout = (RelativeLayout)this.findViewById(R.id.errorLayout);
