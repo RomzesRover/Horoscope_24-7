@@ -123,7 +123,7 @@ public class ContentShowActivity extends BaseActivity {
         sliderMenu.add(getResources().getStringArray(R.array.application_titles)[1], AboutFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
         
         //check if user still not set up data
-        if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13 || sPref.getBoolean("preference_start", false)){
+        if ((savedInstanceState == null) && (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13 || sPref.getBoolean("preference_start", false))){
         	//then show settings page
         	sliderMenu.setCurrentPage(pref_id+2);
             if (!sPref.getBoolean("preference_start", false))
@@ -136,7 +136,7 @@ public class ContentShowActivity extends BaseActivity {
         
         if (sPref.getInt("banner", 0)==1 ){
         	sliderMenu.add(getResources().getStringArray(R.array.application_titles)[2], BannerFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-        	if (!check)
+        	if (!check && (savedInstanceState == null))
         	sliderMenu.setCurrentPage(pref_id+4);
         }
     }
