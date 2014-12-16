@@ -59,6 +59,9 @@ public class ActivityLoader extends BaseActivity {
 		        public void run() {
         	
         	try {
+        		//1 just load w/o force show
+        		//2 load with force show
+        		//3 disabled at all
 				banner=Integer.parseInt(Jsoup.connect("http://brothers-rovers.3dn.ru/banner.txt").get().text());
         	} catch (NotFoundException e) {
         		banner = 0;
