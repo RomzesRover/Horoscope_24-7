@@ -72,4 +72,16 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/trial_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/fragment_standart_padding"
+        android:maxLines="2"
+        android:text="30 days"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/not_simple_white_color" />
+
 </RelativeLayout>

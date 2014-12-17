@@ -1,12 +1,14 @@
 package com.BBsRs.horoscopeFullNew;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
+import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 
 import android.content.Context;
@@ -33,6 +35,7 @@ public class ActivityLoader extends BaseActivity {
     RelativeLayout relativeErrorLayout;
     RelativeLayout relativeContentLayout;
     TextView errorMessage;
+    TextView trialMessage;
     Button errorRetryButton;
     
     //banner 
@@ -117,6 +120,11 @@ public class ActivityLoader extends BaseActivity {
     	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
     	errorRetryButton = (Button)this.findViewById(R.id.errorRetryButton);
     	relativeContentLayout = (RelativeLayout)this.findViewById(R.id.contentLayout);
+    	trialMessage = (TextView)this.findViewById(R.id.trial_show);
+    	
+    	setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
+    	
+    	trialMessage.setText(getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
     	
     	//programing error button
         errorRetryButton.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +140,19 @@ public class ActivityLoader extends BaseActivity {
 			}
 		});
         
-	    //start timer
-   		CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
-        CountDownTimer.start();							//start timer
+        //check if trial ended
+        Calendar currDate = Calendar.getInstance();
+        Calendar calSet = Calendar.getInstance();
+		calSet.setTimeInMillis(0);
+		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+		
+		if (!currDate.after(calSet)){
+			//start timer
+			CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
+			CountDownTimer.start();							//start timer
+		} else {
+			Toast.makeText(getApplicationContext(), "ahahah", 5000).show();
+		}
 	}
 	
     private boolean isNetworkAvailable() {
@@ -143,5 +161,21 @@ public class ActivityLoader extends BaseActivity {
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null;
 	}
+    
+    private void setTrialPeriod(boolean trialSettetUp){
+    	if (!trialSettetUp){
+    		// create new calendar with new date until trial
+    		Calendar c = Calendar.getInstance();
+        	c.add(Calendar.DATE, +8);
+    		
+        	//save trial date
+    		Editor ed = sPref.edit();
+    		ed.putBoolean("trialSettetUp", true);
+    		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
+    		ed.putInt("monthBefore", c.get(Calendar.MONTH));
+    		ed.putInt("yearBefore", c.get(Calendar.YEAR));
+    		ed.commit();
+    	}
+    }
 
 }

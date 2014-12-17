@@ -305,5 +305,22 @@
     <string name="introduce_time">SET BIRTH TIME</string>
     <string name="introduce_time_1">*this value used only goroskop.ru</string>
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.0.eng.html</string>
+    <string name="trial_until">Trial until</string>
+    <string name="trial_buyed">Infinite time to use</string>
+
+    <string-array name="moths_of_year">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
 </resources>
