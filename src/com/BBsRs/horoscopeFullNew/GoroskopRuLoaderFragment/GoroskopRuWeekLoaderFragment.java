@@ -98,7 +98,7 @@ public class GoroskopRuWeekLoaderFragment extends Fragment {
         customOnRefreshListener.onRefreshStarted(null);
         //we already load data, put false to checker
         Editor ed = sPref.edit();   
-		ed.putBoolean("changed_1", false);	
+		ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 		ed.commit();
         } else {
         	if (savedInstanceState.getBoolean("error")){

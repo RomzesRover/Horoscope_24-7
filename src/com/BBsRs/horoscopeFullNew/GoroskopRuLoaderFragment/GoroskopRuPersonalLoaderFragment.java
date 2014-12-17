@@ -98,7 +98,7 @@ public class GoroskopRuPersonalLoaderFragment extends Fragment {
         customOnRefreshListener.onRefreshStarted(null);
         //we already load data, put false to checker
         Editor ed = sPref.edit();   
-		ed.putBoolean("changed_1", false);	
+		ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 		ed.commit();
         } else {
         	if (savedInstanceState.getBoolean("error")){
@@ -187,9 +187,9 @@ public class GoroskopRuPersonalLoaderFragment extends Fragment {
                 @Override
                 protected Void doInBackground(Void... params) {
                     try {
+                    	
                     	// set no error, cuz we can reach it
                     	error=true;
-                    	
                         //load and retrieve data from Goroskop.ru
                     	Document doc = Jsoup.connect("http://www.goroskop.ru/publish/open_class/170/?year="+String.valueOf(sPref.getInt("yearBorn", 1995))+"&month="+String.valueOf(sPref.getInt("monthBorn",4)+1)+"&day="+String.valueOf(sPref.getInt("dayBorn", 10))+"&hour="+String.valueOf(sPref.getInt("hourBorn", 22))+"&minutes="+String.valueOf(sPref.getInt("minuteBorn",10))).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	data = doc.getElementById("gContent").child(6).html()+"<br /><br />"+getResources().getString(R.string.copyright_goroskop_ru);
