@@ -10,6 +10,7 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
+import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 
 import android.content.Context;
@@ -25,6 +26,8 @@ import android.widget.Button;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne;
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class ActivityLoader extends BaseActivity {
 	
@@ -45,6 +48,16 @@ public class ActivityLoader extends BaseActivity {
     
     //alert for trial
 	AlertDialog alert = null;	
+	
+    /*--------------------INIT IN APP BILLING-------------------------*/
+    //inAppBillingData
+    // PRODUCT & SUBSCRIPTION IDS
+    private static final String PRODUCT_ID_HIGH = "android.test.purchased";
+    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOFrLACxS5TNJChRpgGoD3z315y5vm/SDts6uEKIJSXoSB0Q0hWpi7ejYj+5f6WWARqdREhjoKQTe5W2MJV1f6GcY0o+UJR0Ros2dziJm14ffL59wV0W+A/7SCDzu/6u2GDkt6h+5XnDSssT1wbTK+Jfewr0hqQYFrNOtyFhSp52ToZxk9jWLv6OuGgkelfRiKFlqP1LWRK6Wc4nb5yi4iUDV0ZhBGxNQHRt992v6rAMMY+luk8vn/UlXvXEnzvM4NKwsNjXUUQ/rHluhDDf/2HqsdIJy8YPugQmZ4Z/Jaf5nD/Fq3B/c8NaEahJZW218WeuL68/+hQyRMozUfEBYQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+    
+	private BillingProcessor bp;
+	private boolean readyToPurchase = false;
+	/*--------------------INIT IN APP BILLING-------------------------*/
 	
 	public class timer extends CountDownTimer{
 	public timer(long millisInFuture, long countDownInterval) {
@@ -120,6 +133,34 @@ public class ActivityLoader extends BaseActivity {
         
         setContentView(R.layout.activity_loader);
         
+        /*--------------------INIT IN APP BILLING-------------------------*/
+        bp = new BillingProcessor(this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(String productId, TransactionDetails details) {
+            	Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
+    			//restart activity
+    		    startActivity(refresh);   
+    		    //set  animation
+    		    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+    		    // stop curr activity
+    		    finish();
+            }
+            @Override
+            public void onBillingError(int errorCode, Throwable error) {
+            	startMainTask();
+            }
+            @Override
+            public void onBillingInitialized() {
+                readyToPurchase = true;
+                trialMessage.setText(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
+                startMainTask();
+            }
+            @Override
+            public void onPurchaseHistoryRestored() {
+            }
+        });
+        /*--------------------INIT IN APP BILLING-------------------------*/
+        
         //init error stuff
     	relativeErrorLayout = (RelativeLayout)this.findViewById(R.id.errorLayout);
     	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
@@ -129,7 +170,6 @@ public class ActivityLoader extends BaseActivity {
     	
     	setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
     	
-    	trialMessage.setText(getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
     	
     	//programing error button
         errorRetryButton.setOnClickListener(new View.OnClickListener() {
@@ -144,14 +184,16 @@ public class ActivityLoader extends BaseActivity {
 			    finish();
 			}
 		});
-        
-        //check if trial ended
+	}
+	
+	public void startMainTask(){
+		//check if trial ended
         Calendar currDate = Calendar.getInstance();
         Calendar calSet = Calendar.getInstance();
 		calSet.setTimeInMillis(0);
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
 		
-		if (!currDate.after(calSet)){
+		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH)){
 			//start timer
 			CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
 			CountDownTimer.start();							//start timer
@@ -194,6 +236,19 @@ public class ActivityLoader extends BaseActivity {
 				}
 			});
     		
+    		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
+    		paidRtHigh.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (!readyToPurchase) {
+			            Toast.makeText(getApplicationContext(), "Billing not initialized.", Toast.LENGTH_LONG).show();
+			            return;
+			        } else{
+			        	bp.purchase(PRODUCT_ID_HIGH);
+			        }
+				}
+			});
+    		
     		
     		build.setView(content);
     		
@@ -202,6 +257,19 @@ public class ActivityLoader extends BaseActivity {
     		alert.show();
 		}
 	}
+	
+	@Override
+    public void onDestroy() {
+        if (bp != null)
+            bp.release();
+        super.onDestroy();
+    }
+	
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data))
+            super.onActivityResult(requestCode, resultCode, data);
+    }
 	
     private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 

@@ -109,7 +109,7 @@
     </RelativeLayout>
     
     <RelativeLayout
-        android:id="@+id/paidRtLow"
+        android:id="@+id/paidRt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -159,7 +159,7 @@
     </RelativeLayout>
     
     <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+        android:id="@+id/paidRtHigh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"

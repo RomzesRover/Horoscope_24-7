@@ -61,14 +61,17 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text="@string/error_message"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/simple_white_color" />
 
             <Button
                 android:id="@+id/errorRetryButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/error_retry" />
+                android:text="@string/error_retry"
+                android:textColor="@color/simple_white_color" />
+
         </LinearLayout>
     </RelativeLayout>
 
