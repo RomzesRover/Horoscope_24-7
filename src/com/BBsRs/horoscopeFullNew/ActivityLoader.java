@@ -3,6 +3,8 @@ package com.BBsRs.horoscopeFullNew;
 import java.io.IOException;
 import java.util.Calendar;
 
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
@@ -12,12 +14,15 @@ import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -40,6 +45,9 @@ public class ActivityLoader extends BaseActivity {
     
     //banner 
     int banner = 0;
+    
+    //alert for trial
+	AlertDialog alert = null;	
 	
 	public class timer extends CountDownTimer{
 	public timer(long millisInFuture, long countDownInterval) {
@@ -151,7 +159,50 @@ public class ActivityLoader extends BaseActivity {
 			CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
 			CountDownTimer.start();							//start timer
 		} else {
-			Toast.makeText(getApplicationContext(), "ahahah", 5000).show();
+			//end of trial try to buy it
+ 			final Context context = ActivityLoader.this; 								// create context
+ 			AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		build.setTitle(getResources().getString(R.string.trial_title)); 			// set title
+
+    		LayoutInflater inflater = (LayoutInflater)context.getSystemService
+    			      (Context.LAYOUT_INFLATER_SERVICE);
+    		
+    		View content = inflater.inflate(R.layout.dialog_content, null);
+    		
+    		RelativeLayout freeShare = (RelativeLayout)content.findViewById(R.id.freeShare);
+    		freeShare.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					addDaysToTrial(16);
+					Intent shareIntent = new Intent(Intent.ACTION_SEND);
+					shareIntent.setType("text/plain");
+					shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.trial_get_share_intent)+"\n"+getResources().getString(R.string.share_content_url));
+					activityRefresh();
+					startActivity(shareIntent);
+					finish();
+				}
+			});
+    		
+    		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
+    		freeRt.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					addDaysToTrial(31);
+					 // show intent market
+					Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
+	    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+	    			activityRefresh();
+	    			startActivity(marketIntent);
+	    			finish();
+				}
+			});
+    		
+    		
+    		build.setView(content);
+    		
+    		alert = build.create();															// show dialog
+    		alert.setCanceledOnTouchOutside(false);
+    		alert.show();
 		}
 	}
 	
@@ -164,18 +215,32 @@ public class ActivityLoader extends BaseActivity {
     
     private void setTrialPeriod(boolean trialSettetUp){
     	if (!trialSettetUp){
-    		// create new calendar with new date until trial
-    		Calendar c = Calendar.getInstance();
-        	c.add(Calendar.DATE, +8);
-    		
-        	//save trial date
-    		Editor ed = sPref.edit();
-    		ed.putBoolean("trialSettetUp", true);
-    		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
-    		ed.putInt("monthBefore", c.get(Calendar.MONTH));
-    		ed.putInt("yearBefore", c.get(Calendar.YEAR));
-    		ed.commit();
+    		addDaysToTrial(8);
     	}
     }
+    
+    private void addDaysToTrial(int days){
+    	Calendar c = Calendar.getInstance();
+    	c.add(Calendar.DATE, +days);
+    	//save trial date
+		Editor ed = sPref.edit();
+		ed.putBoolean("trialSettetUp", true);
+		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
+		ed.putInt("monthBefore", c.get(Calendar.MONTH));
+		ed.putInt("yearBefore", c.get(Calendar.YEAR));
+		ed.commit();
+    }
+    
+	private void activityRefresh(){
+		Intent refresh;
+		if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13)
+        	refresh = new Intent(getApplicationContext(), IntroduceActivityOne.class);
+        else 
+        	refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
+		//restart activity
+	    startActivity(refresh);   
+	    //set no animation
+	    overridePendingTransition(0, 0);
+	}
 
 }

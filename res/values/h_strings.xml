@@ -307,6 +307,18 @@
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.0.eng.html</string>
     <string name="trial_until">Trial until</string>
     <string name="trial_buyed">Infinite time to use</string>
+    <string name="trial_title">Your trial period has ended for this application</string>
+    <string name="trial_byu_google">Buy this app</string>
+    <string name="trial_byu_google_desc_high">You\'ll get infinite time to use</string>
+    <string name="trial_get_thr">Rate this app</string>
+    <string name="trial_get_thr_desc">You\'ll get 30 days to use</string>
+    <string name="trial_get_share">Share this app</string>
+    <string name="trial_get_share_desc">You\'ll get 15 days to use</string>
+    <string name="trial_byu_google_desc">You\'ll get 182 days to use</string>
+    <string name="trial_price_paid">$0.99</string>
+    <string name="trial_price_paid_high">$2.99</string>
+    <string name="trial_price_free">FREE</string>
+    <string name="trial_get_share_intent">I recommend!</string>
 
     <string-array name="moths_of_year">
         <item>January</item>

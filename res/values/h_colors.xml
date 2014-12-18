@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+
     <color name="not_simple_white_color">#ddd</color>
     <color name="simple_white_color">#fff</color>
-	<color name="slider_menu_custom_text_color">#999</color>
-	<color name="slider_menu_custom_color_pink">#f44</color>
-	<color name="slider_menu_custom_color_black">#000</color>
+    <color name="slider_menu_custom_text_color">#999</color>
+    <color name="slider_menu_custom_color_pink">#f44</color>
+    <color name="slider_menu_custom_color_black">#000</color>
+    <color name="green_soft">#bcffb0</color>
+    <color name="red_soft">#ffb0b0</color>
+    <color name="green">#0f0</color>
+    <color name="green_hard">#690</color>
+    <color name="red">#f00</color>
+    <color name="gray_soft_soft">#ddd</color>
+
 </resources>
