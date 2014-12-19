@@ -130,6 +130,7 @@
     <string name="introduce_time">УСТАНОВИТЬ ВРЕМЯ РОЖДЕНИЯ</string>
     <string name="introduce_time_1">*эти данные использует только goroskop.ru</string>
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.0.ru.html</string>
+    <string name="trial_period">Пробный период</string>
     <string name="trial_until">Пробный до</string>
     <string name="trial_buyed">Неогранниченное время на пользавание приложением</string>
     <string name="trial_title">Ваш пробный период для этого приложения закончился </string>

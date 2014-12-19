@@ -204,7 +204,8 @@ public class ActivityLoader extends BaseActivity {
  			final Context context = ActivityLoader.this; 								// create context
  			AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
     		build.setTitle(getResources().getString(R.string.trial_title)); 			// set title
-
+    		build.setIcon(R.drawable.logo_trial);
+    		
     		LayoutInflater inflater = (LayoutInflater)context.getSystemService
     			      (Context.LAYOUT_INFLATER_SERVICE);
     		
