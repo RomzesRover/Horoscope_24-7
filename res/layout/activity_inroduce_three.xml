@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/hexography_orange" />
+        android:src="@drawable/hexography_blue" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
