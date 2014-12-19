@@ -6,7 +6,7 @@
         <EditTextPreference
             android:id="@+id/preference_name"
             android:defaultValue="@string/default_name"
-            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogIcon="@drawable/logo_human"
             android:dialogTitle="@string/preference_name_2"
             android:icon="@drawable/logo_human"
             android:key="preference_name"
@@ -30,7 +30,7 @@
         <ListPreference
             android:id="@+id/preference_zodiac_sign"
             android:defaultValue="@string/default_sign"
-            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogIcon="@drawable/logo_zodiac_signs"
             android:dialogTitle="@string/preference_zodiac_signs_2"
             android:entries="@array/zodiac_signs"
             android:entryValues="@array/zodiac_signs_entryValues"
@@ -41,7 +41,7 @@
         <ListPreference
             android:id="@+id/preference_provider"
             android:defaultValue="@string/default_provider"
-            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogIcon="@drawable/logo_providers"
             android:dialogTitle="@string/preference_provider_2"
             android:entries="@array/providers"
             android:entryValues="@array/providers_entryValues"
@@ -52,7 +52,7 @@
         <ListPreference
             android:id="@+id/preference_locale"
             android:defaultValue="@string/default_locale"
-            android:dialogIcon="@drawable/ic_launcher"
+            android:dialogIcon="@drawable/logo_locales"
             android:dialogTitle="@string/preference_locale_1"
             android:entries="@array/locales"
             android:entryValues="@array/locales_entryValues"
