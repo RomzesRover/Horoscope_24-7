@@ -334,6 +334,9 @@
     <string name="trial_price_paid_high">$2.99</string>
     <string name="trial_price_free">FREE</string>
     <string name="trial_get_share_intent">I recommend!</string>
+    <string name="clickable_string">by clicking next, you are agree with our [user agreement]</string>
+    <string name="agreement_top">Agreement:</string>
+    <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will share content from this app often than 1 time per week\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
 
     <string-array name="moths_of_year">
         <item>January</item>

@@ -83,7 +83,6 @@
         android:layout_alignParentLeft="true"
         android:layout_margin="@dimen/fragment_standart_padding"
         android:maxLines="2"
-        android:text="30 days"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/not_simple_white_color" />
 

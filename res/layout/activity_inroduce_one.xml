@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/hexography_blue" />
+        android:src="@drawable/hexography_green" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -82,6 +82,18 @@
             android:layout_above="@+id/linearLayout1"
             android:layout_marginBottom="3dp"
             android:src="@color/slider_menu_custom_text_color" />
+
+        <TextView
+            android:id="@+id/textAgreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView1"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/fragment_standart_padding"
+            android:text="@string/clickable_string"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/simple_white_color"
+            android:textStyle="italic" />
 
     </RelativeLayout>
 
