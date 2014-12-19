@@ -149,7 +149,10 @@ public class ActivityLoader extends BaseActivity {
             }
             @Override
             public void onBillingError(int errorCode, Throwable error) {
-            	startMainTask();
+            	relativeContentLayout.setVisibility(View.GONE);
+            	relativeErrorLayout.setVisibility(View.VISIBLE);
+            	errorMessage.setVisibility(View.VISIBLE);
+            	errorRetryButton.setVisibility(View.VISIBLE);
             }
             @Override
             public void onBillingInitialized() {
