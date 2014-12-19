@@ -3,28 +3,55 @@ package com.BBsRs.horoscopeFullNew;
 
 import java.util.Calendar;
 
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.ListPreference;
 import org.holoeverywhere.preference.Preference;
 import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
+import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.preference.TimePreference;
 import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
+import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.Toast;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class SettingsFragment extends BasePreferenceFragment {
 	
 	//preferences 
     SharedPreferences sPref;
     
+    Preference myTrialPref;
+    DatePreference myDatePref;
+    TimePreference myTimePref;
+    ListPreference myLocaleListPref;
+    ListPreference myProviderListPref;
+    
+    /*--------------------INIT IN APP BILLING-------------------------*/
+    //inAppBillingData
+    // PRODUCT & SUBSCRIPTION IDS
+    private static final String PRODUCT_ID_HIGH = "horoscope_full";
+    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOFrLACxS5TNJChRpgGoD3z315y5vm/SDts6uEKIJSXoSB0Q0hWpi7ejYj+5f6WWARqdREhjoKQTe5W2MJV1f6GcY0o+UJR0Ros2dziJm14ffL59wV0W+A/7SCDzu/6u2GDkt6h+5XnDSssT1wbTK+Jfewr0hqQYFrNOtyFhSp52ToZxk9jWLv6OuGgkelfRiKFlqP1LWRK6Wc4nb5yi4iUDV0ZhBGxNQHRt992v6rAMMY+luk8vn/UlXvXEnzvM4NKwsNjXUUQ/rHluhDDf/2HqsdIJy8YPugQmZ4Z/Jaf5nD/Fq3B/c8NaEahJZW218WeuL68/+hQyRMozUfEBYQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+    
+	private BillingProcessor bp;
+	private boolean readyToPurchase = false;
+	/*--------------------INIT IN APP BILLING-------------------------*/
+	
+	AlertDialog alert = null;	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +74,46 @@ public class SettingsFragment extends BasePreferenceFragment {
 		ed.putBoolean("changed_7", true);	
 		ed.putBoolean("changed_8", true);	
 		ed.commit();
+		
+		/*--------------------INIT IN APP BILLING-------------------------*/
+        bp = new BillingProcessor(getActivity(), LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(String productId, TransactionDetails details) {
+            	activityRefresh();
+            }
+            @Override
+            public void onBillingError(int errorCode, Throwable error) {
+            	startMainTask();
+            }
+            @Override
+            public void onBillingInitialized() {
+                readyToPurchase = true;
+                startMainTask();
+            }
+            @Override
+            public void onPurchaseHistoryRestored() {
+            }
+        });
+        /*--------------------INIT IN APP BILLING-------------------------*/
+		
+        
+    }
+    
+    public void startMainTask(){
+		//trial preferences
+		myTrialPref = (Preference) findPreference("preference_trial");
+		myTrialPref.setSummary(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
+		
+		myTrialPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				showDialog();
+				return false;
+			}
+		});
         
         //setting up date change preference, cuz we need save date.
-        DatePreference myDatePref = (DatePreference) findPreference("preference_date_born");
-        final ListPreference myListPref = (ListPreference) findPreference("preference_zodiac_sign");
+        myDatePref = (DatePreference) findPreference("preference_date_born");
         
         Calendar cal=Calendar.getInstance();
         myDatePref.setDay(sPref.getInt("dayBorn", cal.get(Calendar.DAY_OF_MONTH)));
@@ -84,7 +147,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         });
         
         //setting up date change preference, cuz we need save time.
-        TimePreference myTimePref = (TimePreference) findPreference("preference_time_born");
+        myTimePref = (TimePreference) findPreference("preference_time_born");
         
         myTimePref.setHour(sPref.getInt("hourBorn", cal.get(Calendar.HOUR_OF_DAY)));
         myTimePref.setMinute(sPref.getInt("minuteBorn", cal.get(Calendar.MINUTE)));
@@ -103,7 +166,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         });
         
         //setting up locale change preference, cuz we need change locale.
-        ListPreference myLocaleListPref = (ListPreference) findPreference("preference_locales");
+        myLocaleListPref = (ListPreference) findPreference("preference_locales");
         
         myLocaleListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
 
@@ -122,7 +185,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         });
         
         //setting up provider change preference, cuz we need change provider.
-        ListPreference myProviderListPref = (ListPreference) findPreference("preference_provider");
+        myProviderListPref = (ListPreference) findPreference("preference_provider");
         
         myProviderListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
 
@@ -137,7 +200,19 @@ public class SettingsFragment extends BasePreferenceFragment {
 			}
         	
         });
-        
+    }
+    
+	@Override
+    public void onDestroy() {
+        if (bp != null)
+            bp.release();
+        super.onDestroy();
+    }
+	
+    @Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data))
+            super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -195,4 +270,83 @@ public class SettingsFragment extends BasePreferenceFragment {
 	    // stop curr activity
 	    getActivity().finish();
 	}
+	
+	private void showDialog(){
+		final Context context = getActivity(); 								// create context
+			AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		build.setTitle(getResources().getString(R.string.trial_period)); 			// set title
+		build.setIcon(R.drawable.logo_trial);
+		
+		if (!bp.isPurchased(PRODUCT_ID_HIGH)){
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService
+			      (Context.LAYOUT_INFLATER_SERVICE);
+		
+		View content = inflater.inflate(R.layout.dialog_content, null);
+		
+		RelativeLayout freeShare = (RelativeLayout)content.findViewById(R.id.freeShare);
+		freeShare.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addDaysToTrial(8);
+				Intent shareIntent = new Intent(Intent.ACTION_SEND);
+				shareIntent.setType("text/plain");
+				shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.trial_get_share_intent)+"\n"+getResources().getString(R.string.share_content_url));
+				activityRefresh();
+				startActivity(shareIntent);
+				getActivity().finish();
+			}
+		});
+		
+		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
+		if (!sPref.getBoolean("canAdd16Day", true))
+			freeRt.setVisibility(View.GONE);
+		freeRt.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sPref.edit().putBoolean("canAdd16Day", false).commit();
+				addDaysToTrial(16);
+				 // show intent market
+				Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
+    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+    			activityRefresh();
+    			startActivity(marketIntent);
+    			getActivity().finish();
+			}
+		});
+		
+		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
+		if (bp.isPurchased(PRODUCT_ID_HIGH))
+			paidRtHigh.setVisibility(View.GONE);
+		paidRtHigh.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!readyToPurchase) {
+		            Toast.makeText(getActivity(), "Billing not initialized.", Toast.LENGTH_LONG).show();
+		            return;
+		        } else{
+		        	bp.purchase(PRODUCT_ID_HIGH);
+		        }
+			}
+		});
+		
+		build.setView(content);
+		} else {
+			build.setMessage(getActivity().getResources().getString(R.string.trial_buyed));
+		}
+		
+		alert = build.create();															// show dialog
+		alert.show();
+	}
+	
+    private void addDaysToTrial(int days){
+    	Calendar c = Calendar.getInstance();
+    	c.add(Calendar.DATE, +days);
+    	//save trial date
+		Editor ed = sPref.edit();
+		ed.putBoolean("trialSettetUp", true);
+		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
+		ed.putInt("monthBefore", c.get(Calendar.MONTH));
+		ed.putInt("yearBefore", c.get(Calendar.YEAR));
+		ed.commit();
+    }
 }

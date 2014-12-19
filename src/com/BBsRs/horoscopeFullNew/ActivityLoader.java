@@ -135,6 +135,27 @@ public class ActivityLoader extends BaseActivity {
         
         setContentView(R.layout.activity_loader);
         
+        //init error stuff
+    	relativeErrorLayout = (RelativeLayout)this.findViewById(R.id.errorLayout);
+    	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
+    	errorRetryButton = (Button)this.findViewById(R.id.errorRetryButton);
+    	relativeContentLayout = (RelativeLayout)this.findViewById(R.id.contentLayout);
+    	trialMessage = (TextView)this.findViewById(R.id.trial_show);
+    	
+    	//programing error button
+        errorRetryButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
+				//restart activity
+			    startActivity(refresh);   
+			    //set  animation
+			    overridePendingTransition(0, 0);
+			    // stop curr activity
+			    finish();
+			}
+		});
+        
         /*--------------------INIT IN APP BILLING-------------------------*/
         bp = new BillingProcessor(this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
             @Override
@@ -166,26 +187,6 @@ public class ActivityLoader extends BaseActivity {
             }
         });
         /*--------------------INIT IN APP BILLING-------------------------*/
-        //init error stuff
-    	relativeErrorLayout = (RelativeLayout)this.findViewById(R.id.errorLayout);
-    	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
-    	errorRetryButton = (Button)this.findViewById(R.id.errorRetryButton);
-    	relativeContentLayout = (RelativeLayout)this.findViewById(R.id.contentLayout);
-    	trialMessage = (TextView)this.findViewById(R.id.trial_show);
-    	
-    	//programing error button
-        errorRetryButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
-				//restart activity
-			    startActivity(refresh);   
-			    //set  animation
-			    overridePendingTransition(0, 0);
-			    // stop curr activity
-			    finish();
-			}
-		});
 	}
 	
 	public void startMainTask(){
