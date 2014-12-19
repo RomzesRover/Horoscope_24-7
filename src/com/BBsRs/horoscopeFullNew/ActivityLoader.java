@@ -52,7 +52,7 @@ public class ActivityLoader extends BaseActivity {
     /*--------------------INIT IN APP BILLING-------------------------*/
     //inAppBillingData
     // PRODUCT & SUBSCRIPTION IDS
-    private static final String PRODUCT_ID_HIGH = "android.test.purchased";
+    private static final String PRODUCT_ID_HIGH = "horoscope_full";
     private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOFrLACxS5TNJChRpgGoD3z315y5vm/SDts6uEKIJSXoSB0Q0hWpi7ejYj+5f6WWARqdREhjoKQTe5W2MJV1f6GcY0o+UJR0Ros2dziJm14ffL59wV0W+A/7SCDzu/6u2GDkt6h+5XnDSssT1wbTK+Jfewr0hqQYFrNOtyFhSp52ToZxk9jWLv6OuGgkelfRiKFlqP1LWRK6Wc4nb5yi4iUDV0ZhBGxNQHRt992v6rAMMY+luk8vn/UlXvXEnzvM4NKwsNjXUUQ/rHluhDDf/2HqsdIJy8YPugQmZ4Z/Jaf5nD/Fq3B/c8NaEahJZW218WeuL68/+hQyRMozUfEBYQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
     
 	private BillingProcessor bp;
@@ -104,6 +104,8 @@ public class ActivityLoader extends BaseActivity {
         	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
 			//restart activity
 		    startActivity(refresh);   
+		    //set  animation
+		    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 		    // stop curr activity
 		    finish();
 		        }
@@ -152,6 +154,7 @@ public class ActivityLoader extends BaseActivity {
             @Override
             public void onBillingInitialized() {
                 readyToPurchase = true;
+                setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
                 trialMessage.setText(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
                 startMainTask();
             }
@@ -160,16 +163,12 @@ public class ActivityLoader extends BaseActivity {
             }
         });
         /*--------------------INIT IN APP BILLING-------------------------*/
-        
         //init error stuff
     	relativeErrorLayout = (RelativeLayout)this.findViewById(R.id.errorLayout);
     	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
     	errorRetryButton = (Button)this.findViewById(R.id.errorRetryButton);
     	relativeContentLayout = (RelativeLayout)this.findViewById(R.id.contentLayout);
     	trialMessage = (TextView)this.findViewById(R.id.trial_show);
-    	
-    	setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
-    	
     	
     	//programing error button
         errorRetryButton.setOnClickListener(new View.OnClickListener() {
@@ -212,7 +211,7 @@ public class ActivityLoader extends BaseActivity {
     		freeShare.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					addDaysToTrial(16);
+					addDaysToTrial(8);
 					Intent shareIntent = new Intent(Intent.ACTION_SEND);
 					shareIntent.setType("text/plain");
 					shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.trial_get_share_intent)+"\n"+getResources().getString(R.string.share_content_url));
@@ -223,10 +222,13 @@ public class ActivityLoader extends BaseActivity {
 			});
     		
     		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
+    		if (!sPref.getBoolean("canAdd16Day", true))
+    			freeRt.setVisibility(View.GONE);
     		freeRt.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					addDaysToTrial(31);
+					sPref.edit().putBoolean("canAdd16Day", false).commit();
+					addDaysToTrial(16);
 					 // show intent market
 					Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
 	    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -237,6 +239,8 @@ public class ActivityLoader extends BaseActivity {
 			});
     		
     		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
+    		if (bp.isPurchased(PRODUCT_ID_HIGH))
+    			paidRtHigh.setVisibility(View.GONE);
     		paidRtHigh.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -248,7 +252,6 @@ public class ActivityLoader extends BaseActivity {
 			        }
 				}
 			});
-    		
     		
     		build.setView(content);
     		
@@ -279,9 +282,9 @@ public class ActivityLoader extends BaseActivity {
 	}
     
     private void setTrialPeriod(boolean trialSettetUp){
-    	if (!trialSettetUp){
-    		addDaysToTrial(8);
-    	}
+    		if (!trialSettetUp){
+        		addDaysToTrial(8);
+        	}
     }
     
     private void addDaysToTrial(int days){
@@ -304,8 +307,8 @@ public class ActivityLoader extends BaseActivity {
         	refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
 		//restart activity
 	    startActivity(refresh);   
-	    //set no animation
-	    overridePendingTransition(0, 0);
+	    //set  animation
+	    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 	}
 
 }
