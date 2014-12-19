@@ -340,7 +340,17 @@ public class SettingsFragment extends BasePreferenceFragment {
 	
     private void addDaysToTrial(int days){
     	Calendar c = Calendar.getInstance();
+    	Calendar currDate = Calendar.getInstance();
+        Calendar calSet = Calendar.getInstance();
+		calSet.setTimeInMillis(0);
+		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+    	if (calSet.after(currDate))
+    		c = calSet;
+    	else 
+    		c = currDate;
+    	
     	c.add(Calendar.DATE, +days);
+    	
     	//save trial date
 		Editor ed = sPref.edit();
 		ed.putBoolean("trialSettetUp", true);
