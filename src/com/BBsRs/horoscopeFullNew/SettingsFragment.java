@@ -343,6 +343,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     	Calendar currDate = Calendar.getInstance();
         Calendar calSet = Calendar.getInstance();
 		calSet.setTimeInMillis(0);
+		
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
     	if (calSet.after(currDate))
     		c = calSet;
@@ -357,6 +358,11 @@ public class SettingsFragment extends BasePreferenceFragment {
 		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
 		ed.putInt("monthBefore", c.get(Calendar.MONTH));
 		ed.putInt("yearBefore", c.get(Calendar.YEAR));
+		
+		ed.putInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH));
+		ed.putInt("monthShare", currDate.get(Calendar.MONTH));
+		ed.putInt("yearShare", currDate.get(Calendar.YEAR));
+		
 		ed.commit();
     }
 }
