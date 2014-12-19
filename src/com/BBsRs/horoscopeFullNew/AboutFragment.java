@@ -110,6 +110,18 @@ public class AboutFragment extends BasePreferenceFragment {
 				return false;
 			}
 		});
+		
+        Preference myPref8 = (Preference) findPreference("open_billing");
+		myPref8.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.libraries_billing_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
     }
 
     @Override

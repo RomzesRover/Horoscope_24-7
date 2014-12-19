@@ -90,6 +90,9 @@
     <string name="libraries_pulltorefresh_1">PullToRefresh</string>
     <string name="libraries_pulltorefresh_2">github.com/chrisbanes/ActionBar-PullToRefresh</string>
     <string name="libraries_pulltorefresh_url">https://github.com/chrisbanes/ActionBar-PullToRefresh</string>
+    <string name="libraries_billing_1">Android In-App Billing v3</string>
+    <string name="libraries_billing_2">github.com/anjlab/android-inapp-billing-v3</string>
+    <string name="libraries_billing_url">https://github.com/anjlab/android-inapp-billing-v3</string>
     <string name="preference">Настройки</string>
     <string name="preference_base">Основные</string>
     <string name="preference_date_1">Дата вашего рождения</string>

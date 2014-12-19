@@ -62,6 +62,11 @@
             android:summary="@string/libraries_smoothprogressbar_2"
             android:key="open_smoothprogressbar"
             android:title="@string/libraries_smoothprogressbar_1" />
+        <Preference
+            android:icon="@drawable/logo_billing"
+            android:summary="@string/libraries_billing_2"
+            android:key="open_billing"
+            android:title="@string/libraries_billing_1" />
     </PreferenceCategory>
 
 </PreferenceScreen>
