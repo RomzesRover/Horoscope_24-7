@@ -267,13 +267,21 @@ public class GoroskopRuMoneyLoaderFragment extends Fragment {
          
     }
     
-    private void addDaysToTrial(int days){
+	private void addDaysToTrial(int days){
     	Calendar c = Calendar.getInstance();
     	Calendar currDate = Calendar.getInstance();
         Calendar calSet = Calendar.getInstance();
+        Calendar dateShare = Calendar.getInstance();
+        
+        dateShare.setTimeInMillis(0);
 		calSet.setTimeInMillis(0);
 		
+		dateShare.set(sPref.getInt("yearShare", currDate.get(Calendar.YEAR)+1), sPref.getInt("monthShare", currDate.get(Calendar.MONTH)), sPref.getInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+		
+		if ((dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH))){
+			Log.i("LOG_TAG", "we can't add more days per one day");
+		} else {
     	if (calSet.after(currDate))
     		c = calSet;
     	else 
@@ -293,6 +301,7 @@ public class GoroskopRuMoneyLoaderFragment extends Fragment {
 		ed.putInt("yearShare", currDate.get(Calendar.YEAR));
 		
 		ed.commit();
+		}
     }
 }
 

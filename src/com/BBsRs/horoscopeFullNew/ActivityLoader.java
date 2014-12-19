@@ -213,6 +213,12 @@ public class ActivityLoader extends BaseActivity {
     		View content = inflater.inflate(R.layout.dialog_content, null);
     		
     		RelativeLayout freeShare = (RelativeLayout)content.findViewById(R.id.freeShare);
+    		Calendar dateShare = Calendar.getInstance();
+    		dateShare.setTimeInMillis(0);
+    		dateShare.set(sPref.getInt("yearShare", currDate.get(Calendar.YEAR)+1), sPref.getInt("monthShare", currDate.get(Calendar.MONTH)), sPref.getInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+    		
+    		if ((dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH)))
+    			freeShare.setVisibility(View.GONE);
     		freeShare.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -227,7 +233,7 @@ public class ActivityLoader extends BaseActivity {
 			});
     		
     		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
-    		if (!sPref.getBoolean("canAdd16Day", true))
+    		if (!sPref.getBoolean("canAdd16Day", true) || (dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH)))
     			freeRt.setVisibility(View.GONE);
     		freeRt.setOnClickListener(new View.OnClickListener() {
 				@Override
