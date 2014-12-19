@@ -122,6 +122,54 @@ public class AboutFragment extends BasePreferenceFragment {
 				return false;
 			}
 		});
+		
+        Preference myPref9 = (Preference) findPreference("open_mail");
+		myPref9.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.providers_mail_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref10 = (Preference) findPreference("open_goroskop");
+		myPref10.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.providers_goroskop_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref11 = (Preference) findPreference("open_horoscope");
+		myPref11.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.providers_horoscope_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
+		
+        Preference myPref12 = (Preference) findPreference("open_celebrity");
+		myPref12.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.providers_celebrity_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
     }
 
     @Override

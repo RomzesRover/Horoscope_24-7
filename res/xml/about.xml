@@ -68,5 +68,28 @@
             android:key="open_billing"
             android:title="@string/libraries_billing_1" />
     </PreferenceCategory>
+    
+        <PreferenceCategory android:title="@string/providers_base" >
+        <Preference
+            android:icon="@drawable/logo_mail_ru"
+            android:summary="@string/providers_mail_2"
+            android:key="open_mail"
+            android:title="@string/providers_mail_1" />
+        <Preference
+            android:icon="@drawable/logo_goroskop_ru"
+            android:summary="@string/providers_goroskop_2"
+            android:key="open_goroskop"
+            android:title="@string/providers_goroskop_1" />
+        <Preference
+            android:icon="@drawable/logo_horoscope_com"
+            android:summary="@string/providers_horoscope_2"
+            android:key="open_horoscope"
+            android:title="@string/providers_horoscope_1" />
+        <Preference
+            android:icon="@drawable/logo_celebrity_com"
+            android:summary="@string/providers_celebrity_2"
+            android:key="open_celebrity"
+            android:title="@string/providers_celebrity_1" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
