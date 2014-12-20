@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BBsRs.horoscopeFullNew.ActivityLoader;
 import com.BBsRs.horoscopeFullNew.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 
@@ -37,8 +36,10 @@ public class IntroduceActivityFive extends BaseActivity {
 	    //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         
-        if (!sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("ru"))
-        	k=2;
+        if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en"))
+        	k=2; 
+        else 
+        	k=0;
         
 	    this.setContentView(R.layout.activity_inroduce_five);
 	    
@@ -84,7 +85,7 @@ public class IntroduceActivityFive extends BaseActivity {
 	    		check++;
 	    		if(check>1){
 	    		Editor ed = sPref.edit();   
-	    		ed.putString("preference_provider", getResources().getStringArray(R.array.providers_entryValues)[i+k]); 	
+	    		ed.putString("preference_provider", String.valueOf(i+k)); 	
 	    		ed.commit();
 	    		}
 	    	} 
