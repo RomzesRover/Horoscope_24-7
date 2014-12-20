@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/hexography_fiol" />
+        android:src="@drawable/hexography_green" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
@@ -14,38 +14,6 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/preference_provider_2"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/not_simple_white_color" />
-
-        <Spinner
-            android:id="@+id/spinnerProvider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/fragment_standart_padding"
-            android:entries="@array/providers"
-            android:entryValues="@array/providers_entryValues"
-            android:textColor="@color/not_simple_white_color" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textView2"
-            android:layout_centerHorizontal="true"
-            android:text="@string/preference_provider_1"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/simple_white_color"
-            android:textStyle="bold|italic" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -82,6 +50,27 @@
             android:layout_above="@+id/linearLayout1"
             android:layout_marginBottom="3dp"
             android:src="@color/slider_menu_custom_text_color" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/logo_show_devices" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView2"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/fragment_standart_padding"
+            android:gravity="center"
+            android:text="@string/introduce_show_devices"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/simple_white_color"
+            android:textStyle="bold|italic" />
 
     </RelativeLayout>
 

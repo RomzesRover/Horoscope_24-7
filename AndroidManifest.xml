@@ -65,6 +65,18 @@
             android:label="@string/app_name"
             android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
+        <activity
+            android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivitySix"
+            android:configChanges="locale"
+            android:label="@string/app_name"
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivitySeven"
+            android:configChanges="locale"
+            android:label="@string/app_name"
+            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
+        </activity>
     </application>
 
 </manifest>
