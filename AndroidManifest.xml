@@ -3,7 +3,7 @@
     package="com.BBsRs.horoscopeFullNew"
     android:installLocation="auto"
     android:versionCode="31"
-    android:versionName="6.0.2" >
+    android:versionName="6.0.3" >
 
     <uses-sdk
         android:minSdkVersion="9"
