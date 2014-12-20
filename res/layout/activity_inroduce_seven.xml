@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/imageView1"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/share" />
+            android:src="@drawable/share"/>
 
     </RelativeLayout>
 
