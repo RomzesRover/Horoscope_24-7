@@ -37,7 +37,7 @@ public class IntroduceActivityFive extends BaseActivity {
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         
         if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en"))
-        	k=2; 
+        	k=3; 
         else 
         	k=0;
         

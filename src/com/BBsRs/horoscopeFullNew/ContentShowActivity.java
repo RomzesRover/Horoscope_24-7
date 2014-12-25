@@ -36,6 +36,10 @@ import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuTomorrowLoaderFragm
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYesterdayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuTodayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuTomorrowLoaderFragment;
+import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuWeekLoaderFragment;
+import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuYearLoaderFragment;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity {
@@ -94,6 +98,16 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.setCurrentPage(1);
             break;
         case 2:
+        	sliderMenu.add(getResources().getString(R.string.oculus_ru_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
+            sliderMenu.add(getResources().getStringArray(R.array.oculus_ru_horoscopes)[0], OculusRuTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.oculus_ru_horoscopes)[1], OculusRuTomorrowLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.oculus_ru_horoscopes)[2], OculusRuWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.oculus_ru_horoscopes)[3], OculusRuYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            pref_id=4;
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            sliderMenu.setCurrentPage(1);
+        	break;
+        case 3:
         	sliderMenu.add(getResources().getString(R.string.horoscope_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[0], HoroscopeComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[1], HoroscopeComTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
@@ -106,7 +120,7 @@ public class ContentShowActivity extends BaseActivity {
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
             sliderMenu.setCurrentPage(2);
         	break;
-        case 3:
+        case 4:
         	sliderMenu.add(getResources().getString(R.string.celebrity_yahoo_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.celebrity_yahoo_com_horoscopes)[0], CelebrityYahooComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.celebrity_yahoo_com_horoscopes)[1], CelebrityYahooComTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);

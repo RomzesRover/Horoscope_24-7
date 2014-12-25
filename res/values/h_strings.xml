@@ -176,6 +176,54 @@
     <!-- end of data only for download celebrity.yahoo.com horoscope -->
 
 
+    <!-- This data below closed to translate ! Using only for download oculus.ru horoscope -->
+    <string name="oculus_ru_title">oculus.ru</string>
+
+    <string-array name="oculus_ru_horoscopes">
+        <item>Сегодня</item>
+        <item>Завтра</item>
+        <item>Неделя</item>
+        <item>Год</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadOculusRu">
+        <item>oven</item>
+        <item>telec</item>
+        <item>bliznecy</item>
+        <item>rak</item>
+        <item>lev</item>
+        <item>deva</item>
+        <item>vesy</item>
+        <item>skorpion</item>
+        <item>strelec</item>
+        <item>kozerog</item>
+        <item>vodolei</item>
+        <item>ryby</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadOculusRu">
+        <item>goroskop_na_segodnya</item>
+        <item>goroskop_na_zavtra</item>
+        <item>goroskop_na_nedelyu</item>
+        <item>goroskop_2015/goroskop_2015_</item>
+    </string-array>
+    <string-array name="oculus_ru_zodiac_signs_ru">
+        <item>Овен</item>
+        <item>Телец</item>
+        <item>Близнецы</item>
+        <item>Рак</item>
+        <item>Лев</item>
+        <item>Дева</item>
+        <item>Весы</item>
+        <item>Скорпион</item>
+        <item>Стрелец</item>
+        <item>Козерог</item>
+        <item>Водолей</item>
+        <item>Рыбы</item>
+    </string-array>
+
+    <string name="copyright_oculus_ru">Copyright © 2000 \- 2013 Oculus</string>
+    <!-- end of data only for download oculus.ru horoscope -->
+
+
     <!-- Data below need to be translate text UI -->
     <string-array name="zodiac_signs">
         <item>Ram</item>
@@ -210,8 +258,8 @@
         <item>celebrity.yahoo.com</item>
     </string-array>
     <string-array name="providers_entryValues">
-        <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>

@@ -33,10 +33,12 @@
     <string-array name="providers">
         <item>\@mail.ru</item>
         <item>goroskop.ru</item>
+        <item>oculus.ru</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>0</item>
         <item>1</item>
+        <item>2</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>
