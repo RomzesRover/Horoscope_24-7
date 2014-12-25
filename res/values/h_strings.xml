@@ -222,6 +222,61 @@
 
     <string name="copyright_oculus_ru">Copyright © 2000 \- 2013 Oculus</string>
     <!-- end of data only for download oculus.ru horoscope -->
+    
+        <!-- This data below closed to translate ! Using only for download tarot.com horoscope -->
+    <string name="tarot_com_title">tarot.com</string>
+
+    <string-array name="tarot_com_horoscopes">
+        <item>Yesterday</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>Today love</item>
+        <item>Month love</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadTarotCom">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadTarotCom">
+        <item>daily-horoscope</item>
+        <item>daily-horoscope</item>
+        <item>daily-horoscope</item>
+        <item>daily-love-horoscope</item>
+        <item>love</item>
+        <item></item>
+        <item>2015</item>
+    </string-array>
+    
+    <string-array name="nameOfmonthsForLoadTarotCom">
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
+    </string-array>
+    
+
+    <string name="copyright_tarot_com">© tarot com</string>
+    <!-- end of data only for download tarot.com horoscope -->
 
 
     <!-- Data below need to be translate text UI -->
@@ -256,10 +311,12 @@
     <string-array name="providers">
         <item>horoscope.com</item>
         <item>celebrity.yahoo.com</item>
+        <item>tarot.com</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>3</item>
         <item>4</item>
+        <item>5</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>

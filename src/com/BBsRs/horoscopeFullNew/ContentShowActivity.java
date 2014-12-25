@@ -40,6 +40,13 @@ import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuTodayLoaderFrag
 import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuTomorrowLoaderFragment;
 import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.OculusRuLoaderFragment.OculusRuYearLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComMonthLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComMonthLoveLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTodayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTodayLoveLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTomorrowLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComYearLoaderFragment;
+import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComYesterdayLoaderFragment;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity {
@@ -128,6 +135,19 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.celebrity_yahoo_com_horoscopes)[3], CelebrityYahooComWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.celebrity_yahoo_com_horoscopes)[4], CelebrityYahooComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=5;
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            sliderMenu.setCurrentPage(2);
+        	break;
+        case 5:
+        	sliderMenu.add(getResources().getString(R.string.tarot_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[0], TarotComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[1], TarotComTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[2], TarotComTomorrowLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[3], TarotComTodayLoveLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[4], TarotComMonthLoveLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[5], TarotComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[6], TarotComYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            pref_id=7;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
             sliderMenu.setCurrentPage(2);
         	break;
