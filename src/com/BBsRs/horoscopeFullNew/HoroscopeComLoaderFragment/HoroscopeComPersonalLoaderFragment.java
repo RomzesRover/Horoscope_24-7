@@ -159,16 +159,6 @@ public class HoroscopeComPersonalLoaderFragment extends Fragment {
         MenuItem actionItem = menu.findItem(R.id.menu_share);
         actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
         
-        //adding days to trial by using share func
-        actionProvider.setOnShareTargetSelectedListener(new OnShareTargetSelectedListener(){
-			@Override
-			public boolean onShareTargetSelected(ShareActionProvider source,
-					Intent intent) {
-				addDaysToTrial(8);
-				return false;
-			}
-        });
-        
         //fix share action
         if (!error && data.length()>10)
         	//set shareable content
@@ -268,43 +258,6 @@ public class HoroscopeComPersonalLoaderFragment extends Fragment {
             }.execute();
 		}
          
-    }
-    
-	private void addDaysToTrial(int days){
-    	Calendar c = Calendar.getInstance();
-    	Calendar currDate = Calendar.getInstance();
-        Calendar calSet = Calendar.getInstance();
-        Calendar dateShare = Calendar.getInstance();
-        
-        dateShare.setTimeInMillis(0);
-		calSet.setTimeInMillis(0);
-		
-		dateShare.set(sPref.getInt("yearShare", currDate.get(Calendar.YEAR)+1), sPref.getInt("monthShare", currDate.get(Calendar.MONTH)), sPref.getInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-		
-		if ((dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH))){
-			Log.i("LOG_TAG", "we can't add more days per one day");
-		} else {
-    	if (calSet.after(currDate))
-    		c = calSet;
-    	else 
-    		c = currDate;
-    	
-    	c.add(Calendar.DATE, +days);
-    	
-    	//save trial date
-		Editor ed = sPref.edit();
-		ed.putBoolean("trialSettetUp", true);
-		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
-		ed.putInt("monthBefore", c.get(Calendar.MONTH));
-		ed.putInt("yearBefore", c.get(Calendar.YEAR));
-		
-		ed.putInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH));
-		ed.putInt("monthShare", currDate.get(Calendar.MONTH));
-		ed.putInt("yearShare", currDate.get(Calendar.YEAR));
-		
-		ed.commit();
-		}
     }
 }
 
