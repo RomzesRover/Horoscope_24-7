@@ -340,7 +340,7 @@
     <string name="error_retry">Retry</string>
     <string name="about">About</string>
     <string name="about_base">Base</string>
-    <string name="about_base_version_2">version 6.0.4</string>
+    <string name="about_base_version_2">version 6.1</string>
     <string name="about_base_creator_2">Roman Gaitbaev</string>
     <string name="about_base_publisher_2">play.google.com</string>
     <string name="about_base_version_1">Version</string>
@@ -427,7 +427,7 @@
     <string name="introduce_time_1">*this value used only goroskop.ru</string>
     <string name="introduce_show_devices">Read differents horoscopes in one application, on different devices!</string>
     <string name="introduce_show_share">Share horoscopes with friend in social networks, and get 7 days to use the application for each Share!</string>
-    <string name="notice_url">http://brothers-rovers.3dn.ru/help6.0.eng.html</string>
+    <string name="notice_url">http://brothers-rovers.3dn.ru/help6.1.eng.html</string>
     <string name="trial_period">Trial period</string>
     <string name="trial_until">Trial until</string>
     <string name="trial_buyed">Infinite time to use</string>
