@@ -40,7 +40,6 @@ public class ActivityLoader extends BaseActivity {
     RelativeLayout relativeErrorLayout;
     RelativeLayout relativeContentLayout;
     TextView errorMessage;
-    TextView trialMessage;
     Button errorRetryButton;
     
     //banner 
@@ -140,7 +139,6 @@ public class ActivityLoader extends BaseActivity {
     	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
     	errorRetryButton = (Button)this.findViewById(R.id.errorRetryButton);
     	relativeContentLayout = (RelativeLayout)this.findViewById(R.id.contentLayout);
-    	trialMessage = (TextView)this.findViewById(R.id.trial_show);
     	
     	//programing error button
         errorRetryButton.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +177,6 @@ public class ActivityLoader extends BaseActivity {
             public void onBillingInitialized() {
                 readyToPurchase = true;
                 setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
-                trialMessage.setText(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
                 startMainTask();
             }
             @Override
@@ -196,7 +193,7 @@ public class ActivityLoader extends BaseActivity {
 		calSet.setTimeInMillis(0);
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
 		
-		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH)){
+		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH) || sPref.getBoolean("agreeWithAd", false)){
 			//start timer
 			CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
 			CountDownTimer.start();							//start timer
@@ -212,23 +209,19 @@ public class ActivityLoader extends BaseActivity {
     		
     		View content = inflater.inflate(R.layout.dialog_content, null);
     		
-    		RelativeLayout freeShare = (RelativeLayout)content.findViewById(R.id.freeShare);
-    		Calendar dateShare = Calendar.getInstance();
-    		dateShare.setTimeInMillis(0);
-    		dateShare.set(sPref.getInt("yearShare", currDate.get(Calendar.YEAR)+1), sPref.getInt("monthShare", currDate.get(Calendar.MONTH)), sPref.getInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-    		
-    		if ((dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH)))
-    			freeShare.setVisibility(View.GONE);
-    		freeShare.setOnClickListener(new View.OnClickListener() {
+    		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
+    		freeAd.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					addDaysToTrial(8);
-					Intent shareIntent = new Intent(Intent.ACTION_SEND);
-					shareIntent.setType("text/plain");
-					shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.trial_get_share_intent)+"\n"+getResources().getString(R.string.share_content_url));
-					activityRefresh();
-					startActivity(shareIntent);
-					finish();
+					sPref.edit().putBoolean("agreeWithAd", true).commit();
+					Intent refresh;
+			        refresh = new Intent(getApplicationContext(), ActivityLoader.class);
+					//restart activity
+				    startActivity(refresh);   
+				    //set  animation
+				    overridePendingTransition(0, 0);
+				    //stopping
+				    finish();
 				}
 			});
     		

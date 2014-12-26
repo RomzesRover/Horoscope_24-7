@@ -155,11 +155,11 @@
     <string name="trial_buyed">Неогранниченное время на пользавание приложением</string>
     <string name="trial_title">Ваш пробный период для этого приложения закончился </string>
     <string name="trial_byu_google">Купить приложение</string>
-    <string name="trial_byu_google_desc_high">Вы получите неогранниченное время на пользавание приложением</string>
+    <string name="trial_byu_google_desc_high">Вся реклама выключится</string>
     <string name="trial_get_thr">Оцени меня!</string>
-    <string name="trial_get_thr_desc">Вы получите 15 дней на пользование</string>
-    <string name="trial_get_share">Поделиться приложением</string>
-    <string name="trial_get_share_desc">Вы получите 7 дней на пользование</string>
+    <string name="trial_get_thr_desc">Вы получите 15 дней на пользование без рекламы</string>
+    <string name="trial_get_ad">Продолжить пользоваться приложением</string>
+    <string name="trial_get_ad_desc">Включится реклама</string>
     <string name="trial_price_paid_high">99руб.</string>
     <string name="trial_price_free">БЕСПЛ.</string>
     <string name="trial_get_share_intent">Рекомендую!</string>

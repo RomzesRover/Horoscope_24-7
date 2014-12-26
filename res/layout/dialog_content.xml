@@ -8,7 +8,7 @@
     
 
     <RelativeLayout
-        android:id="@+id/freeShare"
+        android:id="@+id/freeAd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -24,7 +24,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_horizontal_margin"
-            android:text="@string/trial_get_share"
+            android:text="@string/trial_get_ad"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:paddingBottom="@dimen/activity_horizontal_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:text="@string/trial_get_share_desc"
+            android:text="@string/trial_get_ad_desc"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/slider_menu_custom_text_color"
             android:textColorHint="@color/slider_menu_custom_text_color"
