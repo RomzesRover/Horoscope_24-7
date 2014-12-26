@@ -44,19 +44,19 @@ public class BaseFragment extends Fragment{
 		//!----------------------------------AD-----------------------------------------------------!
 	}
 	
-	@Override
-	  public void onPause() {
-		if (adView != null)
-	    adView.pause();
-	    super.onPause();
-	  }
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		if (adView != null)
-		adView.resume();
-	}     		
+//	@Override
+//	  public void onPause() {
+//		if (adView != null)
+//	    adView.pause();
+//	    super.onPause();
+//	  }
+//	
+//	@Override
+//	public void onResume() {
+//		super.onResume();
+//		if (adView != null)
+//		adView.resume();
+//	}     		
    		
  	@Override
  	public void onDestroy() {

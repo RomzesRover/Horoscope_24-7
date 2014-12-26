@@ -62,7 +62,7 @@
     <string name="error_retry">Попробовать снова</string>
     <string name="about">О Приложении</string>
     <string name="about_base">Основные</string>
-    <string name="about_base_version_2">Версия 6.1.1</string>
+    <string name="about_base_version_2">Версия 6.1.2</string>
     <string name="about_base_creator_2">Роман Гаитбаев</string>
     <string name="about_base_publisher_2">play.google.com</string>
     <string name="about_base_version_1">Версия</string>
@@ -154,7 +154,7 @@
     <string name="trial_buyed">Бесконечно, реклама отключена</string>
     <string name="trial_ad">Бесконечно, но реклама включена</string>
     <string name="trial_title">Пора сделать выбор </string>
-    <string name="trial_byu_google">Продолжить пользоваться и купить приложение</string>
+    <string name="trial_byu_google">Продолжить и купить приложение</string>
     <string name="trial_byu_google_desc_high">Вся реклама выключится</string>
     <string name="trial_get_thr">Оцени меня!</string>
     <string name="trial_get_thr_desc">Вы получите 7 дней на пользование без рекламы</string>
