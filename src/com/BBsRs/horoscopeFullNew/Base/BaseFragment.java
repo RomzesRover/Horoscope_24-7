@@ -44,12 +44,26 @@ public class BaseFragment extends Fragment{
 		//!----------------------------------AD-----------------------------------------------------!
 	}
 	
- 	@Override
- 	public void onDestroy() {
- 		super.onDestroy();
- 		if (adView != null)
-		adView.destroy();
- 	}
+	@Override
+	  public void onPause() {
+		if (adView != null)
+	    adView.pause();
+	    super.onPause();
+	  }
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (adView != null)
+		adView.resume();
+	}     		
+   		
+// 	@Override
+// 	public void onDestroy() {
+// 		super.onDestroy();
+// 		if (adView != null)
+//		adView.destroy();
+// 	}
 	
 	public Intent createShareIntent(String text) {
 	      Intent shareIntent = new Intent(Intent.ACTION_SEND);
