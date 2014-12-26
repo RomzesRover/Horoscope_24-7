@@ -428,7 +428,7 @@
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.1.eng.html</string>
     <string name="trial_period">Time until choose</string>
     <string name="trial_until">Time until</string>
-    <string name="trial_buyed">Infinite, advertisemen is disabled</string>
+    <string name="trial_buyed">Infinite, advertisement is disabled</string>
     <string name="trial_ad">Infinite, but ad is enabled</string>
     <string name="trial_title">Time to choose</string>
     <string name="trial_byu_google">Resume using and buy this app</string>
