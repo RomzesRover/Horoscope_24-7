@@ -79,6 +79,8 @@ public class SettingsFragment extends BasePreferenceFragment {
         bp = new BillingProcessor(getActivity(), LICENSE_KEY, new BillingProcessor.IBillingHandler() {
             @Override
             public void onProductPurchased(String productId, TransactionDetails details) {
+            	//disable ad
+            	if (bp.isPurchased(PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
             	activityRefresh();
             }
             @Override
@@ -298,7 +300,10 @@ public class SettingsFragment extends BasePreferenceFragment {
 		freeRt.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//disable this func
 				sPref.edit().putBoolean("canAdd16Day", false).commit();
+				//disable ad
+				sPref.edit().putBoolean("agreeWithAd", false).commit();
 				addDaysToTrial(16);
 				 // show intent market
 				Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));

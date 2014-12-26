@@ -175,6 +175,7 @@ public class ActivityLoader extends BaseActivity {
             }
             @Override
             public void onBillingInitialized() {
+            	bp.consumePurchase(PRODUCT_ID_HIGH);
                 readyToPurchase = true;
                 setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
                 startMainTask();
@@ -194,6 +195,8 @@ public class ActivityLoader extends BaseActivity {
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
 		
 		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH) || sPref.getBoolean("agreeWithAd", false)){
+			//disable ad
+			if (bp.isPurchased(PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
 			//start timer
 			CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
 			CountDownTimer.start();							//start timer
@@ -231,7 +234,10 @@ public class ActivityLoader extends BaseActivity {
     		freeRt.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
+					//disable this func
 					sPref.edit().putBoolean("canAdd16Day", false).commit();
+					//disable ad
+					sPref.edit().putBoolean("agreeWithAd", false).commit();
 					addDaysToTrial(16);
 					 // show intent market
 					Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));

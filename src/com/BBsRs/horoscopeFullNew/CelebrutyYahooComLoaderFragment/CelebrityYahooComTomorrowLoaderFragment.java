@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import org.holoeverywhere.LayoutInflater;
-import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
@@ -17,13 +16,11 @@ import org.jsoup.nodes.Document;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
-import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
-import android.support.v7.widget.ShareActionProvider.OnShareTargetSelectedListener;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -37,8 +34,9 @@ import android.widget.Button;
 import android.widget.ScrollView;
 
 import com.BBsRs.horoscopeFullNew.R;
+import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 
-public class CelebrityYahooComTomorrowLoaderFragment extends Fragment {
+public class CelebrityYahooComTomorrowLoaderFragment extends BaseFragment {
 	
 	int UNIVERSAL_ID = 2;
 	
@@ -78,6 +76,10 @@ public class CelebrityYahooComTomorrowLoaderFragment extends Fragment {
     	
     	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        
+      //!----------------------------------AD-----------------------------------------------------!
+    	showAd(contentView, sPref);
+    	//!----------------------------------AD-----------------------------------------------------!
         
     	//retrieving views from layout
     	textContent=(TextView)contentView.findViewById(R.id.textContent);
@@ -173,13 +175,6 @@ public class CelebrityYahooComTomorrowLoaderFragment extends Fragment {
         			+"\n"+getResources().getString(R.string.share_content_url)));
         return;
     }
-    
-	private Intent createShareIntent(String text) {
-	      Intent shareIntent = new Intent(Intent.ACTION_SEND);
-	      shareIntent.setType("text/plain");
-	      shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-	      return shareIntent;
-	}	
     
     public class  CustomOnRefreshListener implements OnRefreshListener{
 
