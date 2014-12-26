@@ -86,10 +86,10 @@
             android:key="open_horoscope"
             android:title="@string/providers_horoscope_1" />
         <Preference
-            android:icon="@drawable/logo_celebrity_com"
-            android:summary="@string/providers_celebrity_2"
-            android:key="open_celebrity"
-            android:title="@string/providers_celebrity_1" />
+            android:icon="@drawable/logo_tarot_com"
+            android:summary="@string/providers_tarot_2"
+            android:key="open_tarot"
+            android:title="@string/providers_tarot_1" />
     </PreferenceCategory>
 
 </PreferenceScreen>

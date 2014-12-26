@@ -125,57 +125,6 @@
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
 
-
-    <!-- This data below closed to translate ! Using only for download celebrity.yahoo.com horoscope -->
-    <string name="celebrity_yahoo_com_title">celebrity.yahoo.com</string>
-
-    <string-array name="celebrity_yahoo_com_horoscopes">
-        <item>Yesterday</item>
-        <item>Today</item>
-        <item>Tomorrow</item>
-        <item>Week</item>
-        <item>Month</item>
-    </string-array>
-    <string-array name="nameOfzodiacForLoadCelebrityYahooCom">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
-    </string-array>
-    <string-array name="nameOfHoroscopecForLoadCelebrityYahooCom">
-        <item>/overview-daily-</item>
-        <item>/overview-daily-</item>
-        <item>/overview-daily-</item>
-        <item>/overview-weekly-</item>
-        <item>/overview-monthly-</item>
-    </string-array>
-    <string-array name="nameOfmonthsForLoadCelebrityYahooCom">
-        <item>january</item>
-        <item>february</item>
-        <item>march</item>
-        <item>april</item>
-        <item>may</item>
-        <item>june</item>
-        <item>july</item>
-        <item>august</item>
-        <item>september</item>
-        <item>october</item>
-        <item>november</item>
-        <item>december</item>
-    </string-array>
-
-    <string name="copyright_celebrity_yahoo_com">© Provided by TarotCom - Maria DeSimone</string>
-    <!-- end of data only for download celebrity.yahoo.com horoscope -->
-
-
     <!-- This data below closed to translate ! Using only for download oculus.ru horoscope -->
     <string name="oculus_ru_title">oculus.ru</string>
 
@@ -309,13 +258,11 @@
     </string-array>
     <string-array name="providers">
         <item>horoscope.com</item>
-        <item>celebrity.yahoo.com</item>
         <item>tarot.com</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>3</item>
         <item>4</item>
-        <item>5</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>
@@ -382,9 +329,9 @@
     <string name="providers_horoscope_1">Horoscope*com</string>
     <string name="providers_horoscope_2">horoscope.com</string>
     <string name="providers_horoscope_url">http://www.horoscope.com/</string>
-    <string name="providers_celebrity_1">Yahoo Celebrity</string>
-    <string name="providers_celebrity_2">celebrity.yahoo.com</string>
-    <string name="providers_celebrity_url">https://celebrity.yahoo.com/horoscope/</string>
+    <string name="providers_tarot_1">Tarot.com </string>
+    <string name="providers_tarot_2">tarot.com</string>
+    <string name="providers_tarot_url">http://www.tarot.com/</string>
     <string name="preference">Settings</string>
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Your birth date</string>
@@ -424,7 +371,7 @@
     <string name="introduce_date_check">Check your data is correct</string>
     <string name="introduce_time">SET BIRTH TIME</string>
     <string name="introduce_time_1">*this value used only goroskop.ru</string>
-    <string name="introduce_show_devices">Read differents horoscopes by horoscope.com, yahoo.com and tarot.com in one application!</string>
+    <string name="introduce_show_devices">Read differents horoscopes by horoscope.com, tarot.com in one application!</string>
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.1.eng.html</string>
     <string name="trial_period">Time until choose</string>
     <string name="trial_until">Time until</string>

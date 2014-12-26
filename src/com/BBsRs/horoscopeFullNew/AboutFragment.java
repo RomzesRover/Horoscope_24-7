@@ -159,12 +159,12 @@ public class AboutFragment extends BasePreferenceFragment {
 			}
 		});
 		
-        Preference myPref12 = (Preference) findPreference("open_celebrity");
+        Preference myPref12 = (Preference) findPreference("open_tarot");
 		myPref12.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(Uri
-						.parse(getResources().getString(R.string.providers_celebrity_url)));
+						.parse(getResources().getString(R.string.providers_tarot_url)));
 				startActivity(intent);
 				// open browser or intent here
 				return false;

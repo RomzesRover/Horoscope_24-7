@@ -105,9 +105,9 @@
     <string name="providers_horoscope_1">Horoscope*com</string>
     <string name="providers_horoscope_2">horoscope.com</string>
     <string name="providers_horoscope_url">http://www.horoscope.com/</string>
-    <string name="providers_celebrity_1">Yahoo Celebrity</string>
-    <string name="providers_celebrity_2">celebrity.yahoo.com</string>
-    <string name="providers_celebrity_url">https://celebrity.yahoo.com/horoscope/</string>
+    <string name="providers_tarot_1">Tarot.com </string>
+    <string name="providers_tarot_2">tarot.com</string>
+    <string name="providers_tarot_url">http://www.tarot.com/</string>
     <string name="preference">Настройки</string>
     <string name="preference_base">Основные</string>
     <string name="preference_date_1">Дата вашего рождения</string>
