@@ -175,7 +175,6 @@ public class ActivityLoader extends BaseActivity {
             }
             @Override
             public void onBillingInitialized() {
-            	bp.consumePurchase(PRODUCT_ID_HIGH);
                 readyToPurchase = true;
                 setTrialPeriod(sPref.getBoolean("trialSettetUp", false));
                 startMainTask();
