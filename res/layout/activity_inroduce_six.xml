@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_selector_holo_dark"
                 android:padding="@dimen/fragment_standart_padding"
-                android:text="@string/introduce_next" />
+                android:text="@string/introduce_start" />
 
         </LinearLayout>
 
