@@ -108,6 +108,9 @@
     <string name="providers_tarot_1">Tarot.com </string>
     <string name="providers_tarot_2">tarot.com</string>
     <string name="providers_tarot_url">http://www.tarot.com/</string>
+    <string name="providers_oculus_1">Oculus.ru</string>
+    <string name="providers_oculus_2">oculus.ru</string>
+    <string name="providers_oculus_url">http://www.oculus.ru/</string>
     <string name="preference">Настройки</string>
     <string name="preference_base">Основные</string>
     <string name="preference_date_1">Дата вашего рождения</string>

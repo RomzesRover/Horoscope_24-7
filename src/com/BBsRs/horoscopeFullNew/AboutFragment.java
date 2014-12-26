@@ -170,6 +170,18 @@ public class AboutFragment extends BasePreferenceFragment {
 				return false;
 			}
 		});
+		
+        Preference myPref13 = (Preference) findPreference("open_oculus");
+		myPref13.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse(getResources().getString(R.string.providers_oculus_url)));
+				startActivity(intent);
+				// open browser or intent here
+				return false;
+			}
+		});
     }
 
     @Override

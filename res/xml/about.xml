@@ -90,6 +90,11 @@
             android:summary="@string/providers_tarot_2"
             android:key="open_tarot"
             android:title="@string/providers_tarot_1" />
+          <Preference
+            android:icon="@drawable/logo_oculus_ru"
+            android:summary="@string/providers_oculus_2"
+            android:key="open_oculus"
+            android:title="@string/providers_oculus_1" />
     </PreferenceCategory>
 
 </PreferenceScreen>

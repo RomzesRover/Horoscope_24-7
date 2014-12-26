@@ -125,6 +125,7 @@
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
 
+
     <!-- This data below closed to translate ! Using only for download oculus.ru horoscope -->
     <string name="oculus_ru_title">oculus.ru</string>
 
@@ -332,6 +333,9 @@
     <string name="providers_tarot_1">Tarot.com </string>
     <string name="providers_tarot_2">tarot.com</string>
     <string name="providers_tarot_url">http://www.tarot.com/</string>
+    <string name="providers_oculus_1">Oculus.ru</string>
+    <string name="providers_oculus_2">oculus.ru</string>
+    <string name="providers_oculus_url">http://www.oculus.ru/</string>
     <string name="preference">Settings</string>
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Your birth date</string>
