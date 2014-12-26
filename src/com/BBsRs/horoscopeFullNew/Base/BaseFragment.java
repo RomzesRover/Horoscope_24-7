@@ -5,7 +5,6 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.LinearLayout;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.R;
@@ -45,21 +44,6 @@ public class BaseFragment extends Fragment{
 		//!----------------------------------AD-----------------------------------------------------!
 	}
 	
- 	@Override
-	  public void onPause() {
- 		if (adView != null)
-	    adView.pause();
-	    super.onPause();
-	  }
-	
-	@Override
- 	public void onResume() {
- 		super.onResume();
- 		if (adView != null)
-		adView.resume();
- 		Log.i("rere", "dfdf");
-	}     		
-     		
  	@Override
  	public void onDestroy() {
  		super.onDestroy();
