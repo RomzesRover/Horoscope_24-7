@@ -230,16 +230,16 @@ public class ActivityLoader extends BaseActivity {
 			});
     		
     		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
-    		if (!sPref.getBoolean("canAdd16Day", true))
+    		if (!sPref.getBoolean("canAdd8Day", true))
     			freeRt.setVisibility(View.GONE);
     		freeRt.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					//disable this func
-					sPref.edit().putBoolean("canAdd16Day", false).commit();
+					sPref.edit().putBoolean("canAdd8Day", false).commit();
 					//disable ad
 					sPref.edit().putBoolean("agreeWithAd", false).commit();
-					addDaysToTrial(16);
+					addDaysToTrial(8);
 					 // show intent market
 					Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
 	    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -294,7 +294,7 @@ public class ActivityLoader extends BaseActivity {
     
     private void setTrialPeriod(boolean trialSettetUp){
     		if (!trialSettetUp){
-        		addDaysToTrial(8);
+        		addDaysToTrial(4);
         	}
     }
     

@@ -334,7 +334,7 @@
         <item>Notice</item>
     </string-array>
 
-    <string name="app_name">Horoscope 24/7</string>
+    <string name="app_name">Horoscope Browser</string>
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_retry">Retry</string>
     <string name="about">About</string>
@@ -407,7 +407,7 @@
     <string name="share_content_horo_for">Horoscope for</string>
     <string name="share_content_horo_for_2">for zodiac sign:</string>
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
-    <string name="share_send_from">Send from appllication Horoscope 24/7</string>
+    <string name="share_send_from">Send from appllication Horoscope browser</string>
     <string name="share_personal_1">horoscope</string>
     <string name="share_personal_2">for user</string>
     <string name="share_money_1">Money</string>
@@ -434,14 +434,14 @@
     <string name="trial_byu_google">Buy this app</string>
     <string name="trial_byu_google_desc_high">An advertisement will turn off</string>
     <string name="trial_get_thr">Rate this app</string>
-    <string name="trial_get_thr_desc">You\'ll get 15 days to use w/o ad</string>
+    <string name="trial_get_thr_desc">You\'ll get 7 days to use w/o ad</string>
     <string name="trial_get_ad">Resume using</string>
     <string name="trial_get_ad_desc">An advertisement will turn on</string>
     <string name="trial_price_paid_high">$2.99</string>
     <string name="trial_price_free">FREE</string>
     <string name="clickable_string">by clicking next, you are agree with our [user agreement]</string>
     <string name="agreement_top">Agreement:</string>
-    <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will share content from this app often than 1 time per week\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
+    <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will turn on advertisment\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
 
     <string-array name="moths_of_year">
         <item>January</item>
