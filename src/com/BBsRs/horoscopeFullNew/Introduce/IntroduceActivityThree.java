@@ -101,7 +101,7 @@ public class IntroduceActivityThree extends BaseActivity {
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(dayOfMonth, monthOfYear+1))], Toast.LENGTH_LONG).show();
 					ed.commit();
 					next.setEnabled(true);
-					textDateBorn.setText(dateFormat.format(calSet.getTime()));
+					textDateBorn.setText(dateFormat.format(calSet.getTime())+" - "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(dayOfMonth, monthOfYear+1))]);
 				} else {
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
 					next.setEnabled(false);
