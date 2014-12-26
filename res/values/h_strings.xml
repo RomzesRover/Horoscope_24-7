@@ -222,8 +222,9 @@
 
     <string name="copyright_oculus_ru">Copyright © 2000 \- 2013 Oculus</string>
     <!-- end of data only for download oculus.ru horoscope -->
-    
-        <!-- This data below closed to translate ! Using only for download tarot.com horoscope -->
+
+
+    <!-- This data below closed to translate ! Using only for download tarot.com horoscope -->
     <string name="tarot_com_title">tarot.com</string>
 
     <string-array name="tarot_com_horoscopes">
@@ -258,7 +259,6 @@
         <item></item>
         <item>2015</item>
     </string-array>
-    
     <string-array name="nameOfmonthsForLoadTarotCom">
         <item>january</item>
         <item>february</item>
@@ -273,7 +273,6 @@
         <item>november</item>
         <item>december</item>
     </string-array>
-    
 
     <string name="copyright_tarot_com">© tarot com</string>
     <!-- end of data only for download tarot.com horoscope -->
@@ -430,6 +429,7 @@
     <string name="trial_period">Time until choose</string>
     <string name="trial_until">Time until</string>
     <string name="trial_buyed">Ad is disabled</string>
+    <string name="trial_ad">Infinite, but ad is enabled</string>
     <string name="trial_title">Time to choose</string>
     <string name="trial_byu_google">Buy this app</string>
     <string name="trial_byu_google_desc_high">An advertisement will turn off</string>

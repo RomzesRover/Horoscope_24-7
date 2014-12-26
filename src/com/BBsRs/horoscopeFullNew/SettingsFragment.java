@@ -104,7 +104,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     public void startMainTask(){
 		//trial preferences
 		myTrialPref = (Preference) findPreference("preference_trial");
-		myTrialPref.setSummary(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
+		myTrialPref.setSummary(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : (!sPref.getBoolean("agreeWithAd", false) ? getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)) : getResources().getString(R.string.trial_ad)));
 		
 		myTrialPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
@@ -286,6 +286,8 @@ public class SettingsFragment extends BasePreferenceFragment {
 		View content = inflater.inflate(R.layout.dialog_content, null);
 		
 		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
+		if (sPref.getBoolean("agreeWithAd", false))
+			freeAd.setVisibility(View.GONE);
 		freeAd.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

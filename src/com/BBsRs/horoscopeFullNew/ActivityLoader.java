@@ -212,6 +212,8 @@ public class ActivityLoader extends BaseActivity {
     		View content = inflater.inflate(R.layout.dialog_content, null);
     		
     		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
+    		if (sPref.getBoolean("agreeWithAd", false))
+    			freeAd.setVisibility(View.GONE);
     		freeAd.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
