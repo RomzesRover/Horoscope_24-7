@@ -73,7 +73,7 @@ public class ContentShowActivity extends BaseActivity {
         addonSlider().setOverlayActionBar(false);
         
         //fix for providers
-        if ((sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en")) && ((Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))>5) || (Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))<3)))
+        if ((sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en")) && ((Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))>4) || (Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))<3)))
         	sPref.edit().putString("preference_provider", getResources().getString(R.string.default_provider)).commit();
         
         if ((sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("ru")) && ((Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))>2) || (Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))<0)))
