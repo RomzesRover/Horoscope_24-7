@@ -72,11 +72,10 @@ public class ContentShowActivity extends BaseActivity {
         
         //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
-        
+
         //init slider menu
         sliderMenu = addonSlider().obtainDefaultSliderMenu(R.layout.menu);
         addonSlider().setOverlayActionBar(false);
-//        addonSlider().setDrawerLayout(R.layout.slider_custom_layout);
         
         //adding tabs as prooved provider
         switch (Integer.parseInt(sPref.getString("preference_provider", getResources().getString(R.string.default_provider)))){
@@ -178,7 +177,6 @@ public class ContentShowActivity extends BaseActivity {
         	if (!check && (savedInstanceState == null) && sPref.getInt("banner", 0)==2)
         	sliderMenu.setCurrentPage(pref_id+4);
         }
-        
     }
     
     @Override
