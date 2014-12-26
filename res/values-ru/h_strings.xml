@@ -151,10 +151,10 @@
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.1.ru.html</string>
     <string name="trial_period">Время до выбора</string>
     <string name="trial_until">Время до</string>
-    <string name="trial_buyed">Реклама отключена</string>
+    <string name="trial_buyed">Бесконечно, реклама отключена</string>
     <string name="trial_ad">Бесконечно, но реклама включена</string>
     <string name="trial_title">Пора сделать выбор </string>
-    <string name="trial_byu_google">Купить приложение</string>
+    <string name="trial_byu_google">Продолжить пользоваться и купить приложение</string>
     <string name="trial_byu_google_desc_high">Вся реклама выключится</string>
     <string name="trial_get_thr">Оцени меня!</string>
     <string name="trial_get_thr_desc">Вы получите 7 дней на пользование без рекламы</string>
