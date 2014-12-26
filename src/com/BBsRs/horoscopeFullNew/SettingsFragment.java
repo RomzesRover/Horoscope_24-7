@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
@@ -284,29 +283,17 @@ public class SettingsFragment extends BasePreferenceFragment {
 		
 		View content = inflater.inflate(R.layout.dialog_content, null);
 		
-		RelativeLayout freeShare = (RelativeLayout)content.findViewById(R.id.freeShare);
-		Calendar currDate = Calendar.getInstance();
-		Calendar dateShare = Calendar.getInstance();
-		dateShare.setTimeInMillis(0);
-		dateShare.set(sPref.getInt("yearShare", currDate.get(Calendar.YEAR)+1), sPref.getInt("monthShare", currDate.get(Calendar.MONTH)), sPref.getInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-		
-		if ((dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH)))
-			freeShare.setVisibility(View.GONE);
-		freeShare.setOnClickListener(new View.OnClickListener() {
+		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
+		freeAd.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				addDaysToTrial(8);
-				Intent shareIntent = new Intent(Intent.ACTION_SEND);
-				shareIntent.setType("text/plain");
-				shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.trial_get_share_intent)+"\n"+getResources().getString(R.string.share_content_url));
+				sPref.edit().putBoolean("agreeWithAd", true).commit();
 				activityRefresh();
-				startActivity(shareIntent);
-				getActivity().finish();
 			}
 		});
 		
 		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
-		if (!sPref.getBoolean("canAdd16Day", true) || (dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH)))
+		if (!sPref.getBoolean("canAdd16Day", true))
 			freeRt.setVisibility(View.GONE);
 		freeRt.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -347,39 +334,14 @@ public class SettingsFragment extends BasePreferenceFragment {
 	}
 	
 	private void addDaysToTrial(int days){
-    	Calendar c = Calendar.getInstance();
-    	Calendar currDate = Calendar.getInstance();
-        Calendar calSet = Calendar.getInstance();
-        Calendar dateShare = Calendar.getInstance();
-        
-        dateShare.setTimeInMillis(0);
-		calSet.setTimeInMillis(0);
-		
-		dateShare.set(sPref.getInt("yearShare", currDate.get(Calendar.YEAR)+1), sPref.getInt("monthShare", currDate.get(Calendar.MONTH)), sPref.getInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-		
-		if ((dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH))){
-			Log.i("LOG_TAG", "we can't add more days per one day");
-		} else {
-    	if (calSet.after(currDate))
-    		c = calSet;
-    	else 
-    		c = currDate;
-    	
+		Calendar c = Calendar.getInstance();
     	c.add(Calendar.DATE, +days);
-    	
     	//save trial date
 		Editor ed = sPref.edit();
 		ed.putBoolean("trialSettetUp", true);
 		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
 		ed.putInt("monthBefore", c.get(Calendar.MONTH));
 		ed.putInt("yearBefore", c.get(Calendar.YEAR));
-		
-		ed.putInt("dayShare", currDate.get(Calendar.DAY_OF_MONTH));
-		ed.putInt("monthShare", currDate.get(Calendar.MONTH));
-		ed.putInt("yearShare", currDate.get(Calendar.YEAR));
-		
 		ed.commit();
-		}
-    }
+	}
 }

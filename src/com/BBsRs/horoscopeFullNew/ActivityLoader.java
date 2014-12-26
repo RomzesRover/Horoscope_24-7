@@ -226,7 +226,7 @@ public class ActivityLoader extends BaseActivity {
 			});
     		
     		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
-    		if (!sPref.getBoolean("canAdd16Day", true) || (dateShare.get(Calendar.YEAR) == currDate.get(Calendar.YEAR))&&(dateShare.get(Calendar.DAY_OF_MONTH) == currDate.get(Calendar.DAY_OF_MONTH))&&(dateShare.get(Calendar.MONTH) == currDate.get(Calendar.MONTH)))
+    		if (!sPref.getBoolean("canAdd16Day", true))
     			freeRt.setVisibility(View.GONE);
     		freeRt.setOnClickListener(new View.OnClickListener() {
 				@Override
