@@ -299,7 +299,7 @@
     <string name="preference_locale_1">Language</string>
     <string name="preference_locale_2">English</string>
     <string name="default_sign">0</string>
-    <string name="default_provider">3</string>
+    <string name="default_provider">2</string>
     <string name="default_locale">en</string>
     <string name="default_name">Horoscopes lover</string>
     <string name="share">Share</string>

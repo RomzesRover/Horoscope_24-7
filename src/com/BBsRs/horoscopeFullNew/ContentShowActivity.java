@@ -115,7 +115,7 @@ public class ContentShowActivity extends BaseActivity {
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
             sliderMenu.setCurrentPage(2);
         	break;
-        case 4:
+        case 3:
         	sliderMenu.add(getResources().getString(R.string.tarot_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[0], TarotComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[1], TarotComTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
