@@ -11,5 +11,6 @@ Used Libraries: (you can find projects for eclipse in librarires.zip)
 * HoloEverywhere
 * PullToRefresh
 * SmoothProgressBar
+* Google play services
 
 thx for all lib makers

@@ -125,55 +125,6 @@
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
 
-
-    <!-- This data below closed to translate ! Using only for download oculus.ru horoscope -->
-    <string name="oculus_ru_title">oculus.ru</string>
-
-    <string-array name="oculus_ru_horoscopes">
-        <item>Сегодня</item>
-        <item>Завтра</item>
-        <item>Неделя</item>
-        <item>Год</item>
-    </string-array>
-    <string-array name="nameOfzodiacForLoadOculusRu">
-        <item>oven</item>
-        <item>telec</item>
-        <item>bliznecy</item>
-        <item>rak</item>
-        <item>lev</item>
-        <item>deva</item>
-        <item>vesy</item>
-        <item>skorpion</item>
-        <item>strelec</item>
-        <item>kozerog</item>
-        <item>vodolei</item>
-        <item>ryby</item>
-    </string-array>
-    <string-array name="nameOfHoroscopecForLoadOculusRu">
-        <item>goroskop_na_segodnya</item>
-        <item>goroskop_na_zavtra</item>
-        <item>goroskop_na_nedelyu</item>
-        <item>goroskop_2015/goroskop_2015_</item>
-    </string-array>
-    <string-array name="oculus_ru_zodiac_signs_ru">
-        <item>Овен</item>
-        <item>Телец</item>
-        <item>Близнецы</item>
-        <item>Рак</item>
-        <item>Лев</item>
-        <item>Дева</item>
-        <item>Весы</item>
-        <item>Скорпион</item>
-        <item>Стрелец</item>
-        <item>Козерог</item>
-        <item>Водолей</item>
-        <item>Рыбы</item>
-    </string-array>
-
-    <string name="copyright_oculus_ru">Copyright © 2000 \- 2013 Oculus</string>
-    <!-- end of data only for download oculus.ru horoscope -->
-
-
     <!-- This data below closed to translate ! Using only for download tarot.com horoscope -->
     <string name="tarot_com_title">tarot.com</string>
 
@@ -262,8 +213,8 @@
         <item>tarot.com</item>
     </string-array>
     <string-array name="providers_entryValues">
+        <item>2</item>
         <item>3</item>
-        <item>4</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>
@@ -333,9 +284,6 @@
     <string name="providers_tarot_1">Tarot.com </string>
     <string name="providers_tarot_2">tarot.com</string>
     <string name="providers_tarot_url">http://www.tarot.com/</string>
-    <string name="providers_oculus_1">Oculus.ru</string>
-    <string name="providers_oculus_2">oculus.ru</string>
-    <string name="providers_oculus_url">http://www.oculus.ru/</string>
     <string name="preference">Settings</string>
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Your birth date</string>

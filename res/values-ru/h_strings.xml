@@ -33,12 +33,10 @@
     <string-array name="providers">
         <item>\@mail.ru</item>
         <item>goroskop.ru</item>
-        <item>oculus.ru</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>0</item>
         <item>1</item>
-        <item>2</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>
@@ -108,9 +106,6 @@
     <string name="providers_tarot_1">Tarot.com </string>
     <string name="providers_tarot_2">tarot.com</string>
     <string name="providers_tarot_url">http://www.tarot.com/</string>
-    <string name="providers_oculus_1">Oculus.ru</string>
-    <string name="providers_oculus_2">oculus.ru</string>
-    <string name="providers_oculus_url">http://www.oculus.ru/</string>
     <string name="preference">Настройки</string>
     <string name="preference_base">Основные</string>
     <string name="preference_date_1">Дата вашего рождения</string>
@@ -150,7 +145,7 @@
     <string name="introduce_date_check">Проверьте правильность введенных данных</string>
     <string name="introduce_time">УСТАНОВИТЬ ВРЕМЯ РОЖДЕНИЯ</string>
     <string name="introduce_time_1">*эти данные использует только goroskop.ru</string>
-    <string name="introduce_show_devices">Читайте разные гороскопы от mail.ru, goroskop.ru oculus.ru в одном приложении!</string>
+    <string name="introduce_show_devices">Читайте разные гороскопы от mail.ru, goroskop.ru в одном приложении!</string>
     <string name="notice_url">http://brothers-rovers.3dn.ru/help6.1.ru.html</string>
     <string name="trial_period">Время до выбора</string>
     <string name="trial_until">Время до</string>
