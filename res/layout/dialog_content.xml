@@ -57,56 +57,6 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/green_hard" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/freeRt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/list_selector_holo_light" >
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/textView6"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:text="@string/trial_get_thr"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignRight="@+id/textView4"
-            android:layout_below="@+id/textView4"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:text="@string/trial_get_thr_desc"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/slider_menu_custom_text_color"
-            android:textColorHint="@color/slider_menu_custom_text_color"
-            android:textColorLink="@color/slider_menu_custom_text_color"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_alignBottom="@+id/textView5"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/gray_soft_soft"
-            android:gravity="center"
-            android:text="@string/trial_price_free"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/green_hard" />
-    </RelativeLayout>
     
     <RelativeLayout
         android:id="@+id/paidRtHigh"

@@ -296,26 +296,6 @@ public class SettingsFragment extends BasePreferenceFragment {
 			}
 		});
 		
-		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
-		if (!sPref.getBoolean("canAdd8Day", true))
-			freeRt.setVisibility(View.GONE);
-		freeRt.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//disable this func
-				sPref.edit().putBoolean("canAdd8Day", false).commit();
-				//disable ad
-				sPref.edit().putBoolean("agreeWithAd", false).commit();
-				addDaysToTrial(8);
-				 // show intent market
-				Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
-    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-    			activityRefresh();
-    			startActivity(marketIntent);
-    			getActivity().finish();
-			}
-		});
-		
 		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
 		if (bp.isPurchased(PRODUCT_ID_HIGH))
 			paidRtHigh.setVisibility(View.GONE);
@@ -338,17 +318,5 @@ public class SettingsFragment extends BasePreferenceFragment {
 		
 		alert = build.create();															// show dialog
 		alert.show();
-	}
-	
-	private void addDaysToTrial(int days){
-		Calendar c = Calendar.getInstance();
-    	c.add(Calendar.DATE, +days);
-    	//save trial date
-		Editor ed = sPref.edit();
-		ed.putBoolean("trialSettetUp", true);
-		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
-		ed.putInt("monthBefore", c.get(Calendar.MONTH));
-		ed.putInt("yearBefore", c.get(Calendar.YEAR));
-		ed.commit();
 	}
 }

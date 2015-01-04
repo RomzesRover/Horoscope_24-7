@@ -229,26 +229,6 @@ public class ActivityLoader extends BaseActivity {
 				}
 			});
     		
-    		RelativeLayout freeRt = (RelativeLayout)content.findViewById(R.id.freeRt);
-    		if (!sPref.getBoolean("canAdd8Day", true))
-    			freeRt.setVisibility(View.GONE);
-    		freeRt.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					//disable this func
-					sPref.edit().putBoolean("canAdd8Day", false).commit();
-					//disable ad
-					sPref.edit().putBoolean("agreeWithAd", false).commit();
-					addDaysToTrial(8);
-					 // show intent market
-					Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.BBsRs.horoscopeFullNew"));
-	    			marketIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-	    			activityRefresh();
-	    			startActivity(marketIntent);
-	    			finish();
-				}
-			});
-    		
     		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
     		if (bp.isPurchased(PRODUCT_ID_HIGH))
     			paidRtHigh.setVisibility(View.GONE);
@@ -294,7 +274,7 @@ public class ActivityLoader extends BaseActivity {
     
     private void setTrialPeriod(boolean trialSettetUp){
     		if (!trialSettetUp){
-        		addDaysToTrial(4);
+        		addDaysToTrial(3);
         	}
     }
     
@@ -309,17 +289,5 @@ public class ActivityLoader extends BaseActivity {
 		ed.putInt("yearBefore", c.get(Calendar.YEAR));
 		ed.commit();
     }
-    
-	private void activityRefresh(){
-		Intent refresh;
-		if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13)
-        	refresh = new Intent(getApplicationContext(), IntroduceActivityOne.class);
-        else 
-        	refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
-		//restart activity
-	    startActivity(refresh);   
-	    //set  animation
-	    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-	}
 
 }
