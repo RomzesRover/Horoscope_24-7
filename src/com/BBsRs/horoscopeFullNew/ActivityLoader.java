@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -193,7 +192,7 @@ public class ActivityLoader extends BaseActivity {
 		calSet.setTimeInMillis(0);
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
 		
-		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH) || sPref.getBoolean("agreeWithAd", false)){
+		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH)){
 			//disable ad
 			if (bp.isPurchased(PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
 			//start timer
@@ -212,12 +211,12 @@ public class ActivityLoader extends BaseActivity {
     		View content = inflater.inflate(R.layout.dialog_content, null);
     		
     		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
-    		if (sPref.getBoolean("agreeWithAd", false))
-    			freeAd.setVisibility(View.GONE);
     		freeAd.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					sPref.edit().putBoolean("agreeWithAd", true).commit();
+					//adding days to use
+					addDaysToTrial(8);
 					Intent refresh;
 			        refresh = new Intent(getApplicationContext(), ActivityLoader.class);
 					//restart activity
@@ -274,7 +273,7 @@ public class ActivityLoader extends BaseActivity {
     
     private void setTrialPeriod(boolean trialSettetUp){
     		if (!trialSettetUp){
-        		addDaysToTrial(3);
+        		addDaysToTrial(4);
         	}
     }
     

@@ -21,7 +21,6 @@ import org.holoeverywhere.widget.Toast;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -104,7 +103,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     public void startMainTask(){
 		//trial preferences
 		myTrialPref = (Preference) findPreference("preference_trial");
-		myTrialPref.setSummary(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : (!sPref.getBoolean("agreeWithAd", false) ? getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)) : getResources().getString(R.string.trial_ad)));
+		myTrialPref.setSummary(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
 		
 		myTrialPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
@@ -286,12 +285,12 @@ public class SettingsFragment extends BasePreferenceFragment {
 		View content = inflater.inflate(R.layout.dialog_content, null);
 		
 		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
-		if (sPref.getBoolean("agreeWithAd", false))
-			freeAd.setVisibility(View.GONE);
 		freeAd.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				sPref.edit().putBoolean("agreeWithAd", true).commit();
+				//adding days to use
+				addDaysToTrial(8);
 				activityRefresh();
 			}
 		});
@@ -319,4 +318,16 @@ public class SettingsFragment extends BasePreferenceFragment {
 		alert = build.create();															// show dialog
 		alert.show();
 	}
+	
+    private void addDaysToTrial(int days){
+    	Calendar c = Calendar.getInstance();
+    	c.add(Calendar.DATE, +days);
+    	//save trial date
+		Editor ed = sPref.edit();
+		ed.putBoolean("trialSettetUp", true);
+		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
+		ed.putInt("monthBefore", c.get(Calendar.MONTH));
+		ed.putInt("yearBefore", c.get(Calendar.YEAR));
+		ed.commit();
+    }
 }
