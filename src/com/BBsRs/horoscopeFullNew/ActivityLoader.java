@@ -50,9 +50,6 @@ public class ActivityLoader extends BaseActivity {
     /*--------------------INIT IN APP BILLING-------------------------*/
     //inAppBillingData
     // PRODUCT & SUBSCRIPTION IDS
-    private static final String PRODUCT_ID_HIGH = "horoscope_full";
-    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOFrLACxS5TNJChRpgGoD3z315y5vm/SDts6uEKIJSXoSB0Q0hWpi7ejYj+5f6WWARqdREhjoKQTe5W2MJV1f6GcY0o+UJR0Ros2dziJm14ffL59wV0W+A/7SCDzu/6u2GDkt6h+5XnDSssT1wbTK+Jfewr0hqQYFrNOtyFhSp52ToZxk9jWLv6OuGgkelfRiKFlqP1LWRK6Wc4nb5yi4iUDV0ZhBGxNQHRt992v6rAMMY+luk8vn/UlXvXEnzvM4NKwsNjXUUQ/rHluhDDf/2HqsdIJy8YPugQmZ4Z/Jaf5nD/Fq3B/c8NaEahJZW218WeuL68/+hQyRMozUfEBYQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
-    
 	private BillingProcessor bp;
 	private boolean readyToPurchase = false;
 	/*--------------------INIT IN APP BILLING-------------------------*/
@@ -154,7 +151,7 @@ public class ActivityLoader extends BaseActivity {
 		});
         
         /*--------------------INIT IN APP BILLING-------------------------*/
-        bp = new BillingProcessor(this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+        bp = new BillingProcessor(this, Constants.LICENSE_KEY, new BillingProcessor.IBillingHandler() {
             @Override
             public void onProductPurchased(String productId, TransactionDetails details) {
             	Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
@@ -192,9 +189,9 @@ public class ActivityLoader extends BaseActivity {
 		calSet.setTimeInMillis(0);
 		calSet.set(sPref.getInt("yearBefore", currDate.get(Calendar.YEAR)), sPref.getInt("monthBefore", currDate.get(Calendar.MONTH)), sPref.getInt("dayBefore", currDate.get(Calendar.DAY_OF_MONTH)), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
 		
-		if (!currDate.after(calSet) || bp.isPurchased(PRODUCT_ID_HIGH)){
+		if (!currDate.after(calSet) || bp.isPurchased(Constants.PRODUCT_ID_HIGH)){
 			//disable ad
-			if (bp.isPurchased(PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
+			if (bp.isPurchased(Constants.PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
 			//start timer
 			CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
 			CountDownTimer.start();							//start timer
@@ -229,7 +226,7 @@ public class ActivityLoader extends BaseActivity {
 			});
     		
     		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
-    		if (bp.isPurchased(PRODUCT_ID_HIGH))
+    		if (bp.isPurchased(Constants.PRODUCT_ID_HIGH))
     			paidRtHigh.setVisibility(View.GONE);
     		paidRtHigh.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -238,7 +235,7 @@ public class ActivityLoader extends BaseActivity {
 			            Toast.makeText(getApplicationContext(), "Billing not initialized.", Toast.LENGTH_LONG).show();
 			            return;
 			        } else{
-			        	bp.purchase(PRODUCT_ID_HIGH);
+			        	bp.purchase(Constants.PRODUCT_ID_HIGH);
 			        }
 				}
 			});

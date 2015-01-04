@@ -42,9 +42,6 @@ public class SettingsFragment extends BasePreferenceFragment {
     /*--------------------INIT IN APP BILLING-------------------------*/
     //inAppBillingData
     // PRODUCT & SUBSCRIPTION IDS
-    private static final String PRODUCT_ID_HIGH = "horoscope_full";
-    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoOFrLACxS5TNJChRpgGoD3z315y5vm/SDts6uEKIJSXoSB0Q0hWpi7ejYj+5f6WWARqdREhjoKQTe5W2MJV1f6GcY0o+UJR0Ros2dziJm14ffL59wV0W+A/7SCDzu/6u2GDkt6h+5XnDSssT1wbTK+Jfewr0hqQYFrNOtyFhSp52ToZxk9jWLv6OuGgkelfRiKFlqP1LWRK6Wc4nb5yi4iUDV0ZhBGxNQHRt992v6rAMMY+luk8vn/UlXvXEnzvM4NKwsNjXUUQ/rHluhDDf/2HqsdIJy8YPugQmZ4Z/Jaf5nD/Fq3B/c8NaEahJZW218WeuL68/+hQyRMozUfEBYQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
-    
 	private BillingProcessor bp;
 	private boolean readyToPurchase = false;
 	/*--------------------INIT IN APP BILLING-------------------------*/
@@ -75,11 +72,11 @@ public class SettingsFragment extends BasePreferenceFragment {
 		ed.commit();
 		
 		/*--------------------INIT IN APP BILLING-------------------------*/
-        bp = new BillingProcessor(getActivity(), LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+        bp = new BillingProcessor(getActivity(), Constants.LICENSE_KEY, new BillingProcessor.IBillingHandler() {
             @Override
             public void onProductPurchased(String productId, TransactionDetails details) {
             	//disable ad
-            	if (bp.isPurchased(PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
+            	if (bp.isPurchased(Constants.PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
             	activityRefresh();
             }
             @Override
@@ -103,7 +100,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     public void startMainTask(){
 		//trial preferences
 		myTrialPref = (Preference) findPreference("preference_trial");
-		myTrialPref.setSummary(bp.isPurchased(PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
+		myTrialPref.setSummary(bp.isPurchased(Constants.PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
 		
 		myTrialPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
@@ -278,7 +275,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 		build.setTitle(getResources().getString(R.string.trial_period)); 			// set title
 		build.setIcon(R.drawable.logo_trial);
 		
-		if (!bp.isPurchased(PRODUCT_ID_HIGH)){
+		if (!bp.isPurchased(Constants.PRODUCT_ID_HIGH)){
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService
 			      (Context.LAYOUT_INFLATER_SERVICE);
 		
@@ -296,7 +293,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 		});
 		
 		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
-		if (bp.isPurchased(PRODUCT_ID_HIGH))
+		if (bp.isPurchased(Constants.PRODUCT_ID_HIGH))
 			paidRtHigh.setVisibility(View.GONE);
 		paidRtHigh.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -305,7 +302,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 		            Toast.makeText(getActivity(), "Billing not initialized.", Toast.LENGTH_LONG).show();
 		            return;
 		        } else{
-		        	bp.purchase(PRODUCT_ID_HIGH);
+		        	bp.purchase(Constants.PRODUCT_ID_HIGH);
 		        }
 			}
 		});
