@@ -298,12 +298,11 @@ public class SettingsFragment extends BasePreferenceFragment {
 		paidRtHigh.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (!readyToPurchase) {
-		            Toast.makeText(getActivity(), "Billing not initialized.", Toast.LENGTH_LONG).show();
-		            return;
-		        } else{
-		        	bp.purchase(Constants.PRODUCT_ID_HIGH);
-		        }
+				Intent refresh = new Intent(getActivity(), PurchaseDialogActivity.class);
+				//restart activity
+			    startActivity(refresh);   
+			    //set no animation
+			    getActivity().overridePendingTransition(0, 0);
 			}
 		});
 		
