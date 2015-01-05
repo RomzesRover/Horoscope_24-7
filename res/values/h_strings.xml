@@ -244,7 +244,7 @@
     <string name="about_base_creator_2">Roman Gaitbaev</string>
     <string name="about_base_publisher_2">play.google.com</string>
     <string name="about_base_version_1">Version</string>
-    <string name="about_base_creator_1">Devoloper</string>
+    <string name="about_base_creator_1">Developer</string>
     <string name="about_base_publisher_1">Publisher</string>
     <string name="contacts_base">Contacts</string>
     <string name="contacts_vk_1">Vk.com</string>
@@ -309,11 +309,11 @@
     <string name="share_content_horo_for">Horoscope for</string>
     <string name="share_content_horo_for_2">for zodiac sign:</string>
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
-    <string name="share_send_from">Send from appllication Horoscope 24/7</string>
+    <string name="share_send_from">Send from application Horoscope 24/7</string>
     <string name="share_personal_1">horoscope</string>
     <string name="share_personal_2">for user</string>
     <string name="share_money_1">Money</string>
-    <string name="pre_use">First if all produce infrormation about yourself :)</string>
+    <string name="pre_use">First of all produce information about yourself :)</string>
     <string name="automatic_determined_sign">Automatic determination of the sign is</string>
     <string name="introduce_one">Online horoscope</string>
     <string name="introduce_two">Welcome!</string>
@@ -331,7 +331,6 @@
     <string name="trial_period">Time until choose</string>
     <string name="trial_until">Time until</string>
     <string name="trial_buyed">Infinite, advertisement is disabled</string>
-    <string name="trial_ad">Infinite, but ad is enabled</string>
     <string name="trial_title">Time to choose</string>
     <string name="trial_byu_google">Resume using and buy this app</string>
     <string name="trial_byu_google_desc_high">An advertisement will turn off</string>

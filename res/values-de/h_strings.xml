@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Data below need to be translate text UI -->
+    <string-array name="zodiac_signs">
+        <item>Widder</item>
+        <item>Stier</item>
+        <item>Zwilling</item>
+        <item>Krebs</item>
+        <item>Löwe</item>
+        <item>Jungfrau</item>
+        <item>Waage</item>
+        <item>Skorpion</item>
+        <item>Schütze</item>
+        <item>Steinbock</item>
+        <item>Wassermann</item>
+        <item>Fische</item>
+    </string-array>
+    <string-array name="zodiac_signs_entryValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+    <string-array name="providers">
+        <item>de.horoskop.yahoo.com</item>
+    </string-array>
+    <string-array name="providers_entryValues">
+        <item>4</item>
+    </string-array>
+
+    <string name="application_title">Anwendung</string>
+
+    <string-array name="application_titles">
+        <item>Einstellungen</item>
+        <item>Über App</item>
+        <item>Ankündigung</item>
+    </string-array>
+
+    <string name="app_name">Horoskop 24/7</string>
+    <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
+    <string name="error_retry">wiederholen</string>
+    <string name="about">Über App</string>
+    <string name="about_base">Basis</string>
+    <string name="about_base_version_2">version 6.1.3</string>
+    <string name="about_base_creator_2">Roman Gaitbaev</string>
+    <string name="about_base_publisher_2">play.google.com</string>
+    <string name="about_base_version_1">Version</string>
+    <string name="about_base_creator_1">Devoloper</string>
+    <string name="about_base_publisher_1">Publisher</string>
+    <string name="contacts_base">Kontakte</string>
+    <string name="contacts_vk_1">Vk.com</string>
+    <string name="contacts_vk_2">vk.com/romzesrover</string>
+    <string name="contacts_vk_url">http://vk.com/romzesrover</string>
+    <string name="contacts_gmail_1">Gmail</string>
+    <string name="contacts_gmail_2">romzesrover@gmail.com</string>
+    <string name="contacts_gmail_url">mailto:romzesrover@gmail.com</string>
+    <string name="open_source_base">Open-Source-Projekt!</string>
+    <string name="open_source_base_1">GitHub</string>
+    <string name="open_source_base_2">github.com/RomzesRover/Horoscope_24-7</string>
+    <string name="open_source_base_url">https://github.com/RomzesRover/Horoscope_24-7</string>
+    <string name="libraries_base">Used Libraries</string>
+    <string name="libraries_jsoup_1">Jsoup</string>
+    <string name="libraries_jsoup_2">jsoup.org</string>
+    <string name="libraries_jsoup_url">http://jsoup.org/</string>
+    <string name="libraries_holoeverywhere_1">HoloEverywhere</string>
+    <string name="libraries_holoeverywhere_2">github.com/Prototik/HoloEverywhere</string>
+    <string name="libraries_holoeverywhere_url">https://github.com/Prototik/HoloEverywhere</string>
+    <string name="libraries_smoothprogressbar_1">SmoothProgressBar</string>
+    <string name="libraries_smoothprogressbar_2">github.com/castorflex/SmoothProgressBar</string>
+    <string name="libraries_smoothprogressbar_url">https://github.com/castorflex/SmoothProgressBar</string>
+    <string name="libraries_pulltorefresh_1">PullToRefresh</string>
+    <string name="libraries_pulltorefresh_2">github.com/chrisbanes/ActionBar-PullToRefresh</string>
+    <string name="libraries_pulltorefresh_url">https://github.com/chrisbanes/ActionBar-PullToRefresh</string>
+    <string name="libraries_billing_1">Android In-App Billing v3</string>
+    <string name="libraries_billing_2">github.com/anjlab/android-inapp-billing-v3</string>
+    <string name="libraries_billing_url">https://github.com/anjlab/android-inapp-billing-v3</string>
+    <string name="providers_base">Anbieter</string>
+    <string name="providers_mail_1">\@Mail Ru</string>
+    <string name="providers_mail_2">horo.mail.ru</string>
+    <string name="providers_mail_url">http://horo.mail.ru/</string>
+    <string name="providers_goroskop_1">Гороскоп\@RU</string>
+    <string name="providers_goroskop_2">goroskop.ru</string>
+    <string name="providers_goroskop_url">http://www.goroskop.ru/</string>
+    <string name="providers_horoscope_1">Horoscope*com</string>
+    <string name="providers_horoscope_2">horoscope.com</string>
+    <string name="providers_horoscope_url">http://www.horoscope.com/</string>
+    <string name="providers_tarot_1">Tarot.com </string>
+    <string name="providers_tarot_2">tarot.com</string>
+    <string name="providers_tarot_url">http://www.tarot.com/</string>
+    <string name="preference">Einstellungen</string>
+    <string name="preference_base">Basis</string>
+    <string name="preference_ad">Anzeige</string>
+    <string name="preference_date_1">Ihr Geburtsdatum</string>
+    <string name="preference_date_2">Geben Sie, wenn Sie geboren</string>
+    <string name="preference_time_1">Ihre Geburtszeit</string>
+    <string name="preference_time_2">Geben Sie, wenn Sie geboren</string>
+    <string name="preference_zodiac_signs_2">Wählen Sie Ihr Sternzeichen</string>
+    <string name="preference_zodiac_signs_1">Sternzeichen</string>
+    <string name="preference_provider_1">Horoskop Anbieter</string>
+    <string name="preference_provider_2">Wählen Sie ein Horoskop-Anbieter</string>
+    <string name="preference_name_1">Ihren Namen</string>
+    <string name="preference_name_2">Wie ist dein Name</string>
+    <string name="preference_locale_1">Sprache</string>
+    <string name="preference_locale_2">Deutsch</string>
+    <string name="default_sign">0</string>
+    <string name="default_provider">4</string>
+    <string name="default_locale">de</string>
+    <string name="default_name">Horoskope Liebhaber</string>
+    <string name="share">Aktie</string>
+    <string name="share_content_horo_for">Horoskop für</string>
+    <string name="share_content_horo_for_2">Für Sternzeichen:</string>
+    <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
+    <string name="share_send_from">Nachricht aus der Anwendung Horoskop 24/7</string>
+    <string name="share_personal_1">Horoskop</string>
+    <string name="share_personal_2">für Anwender</string>
+    <string name="share_money_1">Geld</string>
+    <string name="pre_use">Zunächst erzeugen Informationen über sich selbst:)</string>
+    <string name="automatic_determined_sign">Automatische Ermittlung der Vorzeichen</string>
+    <string name="introduce_one">Online-Horoskop</string>
+    <string name="introduce_two">willkommen!</string>
+    <string name="introduce_two_1">wählen Sie Ihre Sprache</string>
+    <string name="introduce_next">NÄCHSTER</string>
+    <string name="introduce_back">ZURÜCK</string>
+    <string name="introduce_exit">AUSGANG</string>
+    <string name="introduce_start">START!</string>
+    <string name="introduce_date">SET GEBURTSDATUM</string>
+    <string name="introduce_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
+    <string name="introduce_time">SET GEBURTSZEIT</string>
+    <string name="introduce_time_1">*dieser Wert nur verwendet werden, goroskop.ru</string>
+    <string name="introduce_show_devices">Lesen Sie differents Horoskope von de.horoskop.yahoo.com in einer Anwendung!</string>
+    <string name="notice_url">http://brothers-rovers.3dn.ru/help6.1.eng.html</string>
+    <string name="trial_period">Zeit bis wählen</string>
+    <string name="trial_until">Zeit bis zum</string>
+    <string name="trial_buyed">Unendliche, Anzeige deaktiviert</string>
+    <string name="trial_title">Time to choose</string>
+    <string name="trial_byu_google">Lebenslauf mit und kaufen Sie diese App</string>
+    <string name="trial_byu_google_desc_high">Eine Anzeige erlischt</string>
+    <string name="trial_get_ad">Fortsetzen mit</string>
+    <string name="trial_get_ad_desc">Eine Anzeige wird eingeschaltet</string>
+    <string name="trial_price_paid_high">$2.99</string>
+    <string name="trial_price_free">KOSTENLOS</string>
+    <string name="clickable_string">indem Sie neben erklären Sie sich mit unseren [Anwenderabkommen]</string>
+    <string name="agreement_top">Vereinbarung:</string>
+    <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will turn on advertisment\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
+
+    <string-array name="moths_of_year">
+        <item>Januar</item>
+        <item>Februar</item>
+        <item>Marz</item>
+        <item>April</item>
+        <item>Mai</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>August</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Dezember</item>
+    </string-array>
+
+</resources>
