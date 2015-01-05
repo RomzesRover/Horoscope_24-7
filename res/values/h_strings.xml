@@ -125,6 +125,7 @@
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
 
+
     <!-- This data below closed to translate ! Using only for download tarot.com horoscope -->
     <string name="tarot_com_title">tarot.com</string>
 
@@ -179,6 +180,56 @@
 
     <string name="copyright_tarot_com">© tarot com</string>
     <!-- end of data only for download tarot.com horoscope -->
+
+
+    <!-- This data below closed to translate ! Using only for download de.horoscope.yahoo. horoscope -->
+    <string name="de_horoskop_yahoo_com_title">de.horoskop.yahoo.com</string>
+
+    <string-array name="de_horoskop_yahoo_com_horoscopes">
+        <item>Gestern</item>
+        <item>Heute</item>
+        <item>Woche</item>
+        <item>Monat</item>
+        <item>Jahr</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadDeYahooCom">
+        <item>widder</item>
+        <item>stier</item>
+        <item>zwillinge</item>
+        <item>krebs</item>
+        <item>l*we</item>
+        <item>jungfrau</item>
+        <item>waage</item>
+        <item>skorpion</item>
+        <item>sch+tze</item>
+        <item>steinbock</item>
+        <item>wassermann</item>
+        <item>fische</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadDeYahooCom">
+        <item>-tag-</item>
+        <item>-tag-</item>
+        <item>-woche-</item>
+        <item>-monat-</item>
+        <item>-jahr-</item>
+    </string-array>
+    <string-array name="nameOfmonthsForLoadDeYahooCom">
+        <item>januar</item>
+        <item>februar</item>
+        <item>m*rz</item>
+        <item>april</item>
+        <item>mai</item>
+        <item>juni</item>
+        <item>juli</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>dezember<item></item></item>
+    </string-array>
+
+    <string name="copyright_de_horoskop_yahoo_com">© Bereitgestellt von Viversum</string>
+    <!-- end of data only for download de.horoscope.yahoo.com horoscope -->
 
 
     <!-- Data below need to be translate text UI -->
@@ -242,7 +293,7 @@
     <string name="error_retry">Retry</string>
     <string name="about">About</string>
     <string name="about_base">Base</string>
-    <string name="about_base_version_2">version 6.1.3</string>
+    <string name="about_base_version_2">version 6.1.4</string>
     <string name="about_base_creator_2">Roman Gaitbaev</string>
     <string name="about_base_publisher_2">play.google.com</string>
     <string name="about_base_version_1">Version</string>

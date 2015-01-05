@@ -11,6 +11,11 @@ import org.holoeverywhere.widget.Toast;
 import android.os.Bundle;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
+import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComMonthLoaderFragment;
+import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComTodayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComWeekLoaderFragment;
+import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYearLoaderFragment;
+import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYesterdayLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuLoveLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuMoneyLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuPersonalLoaderFragment;
@@ -127,6 +132,17 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[6], TarotComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[7], TarotComYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=8;
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            sliderMenu.setCurrentPage(2);
+        	break;
+        case 4:
+        	sliderMenu.add(getResources().getString(R.string.de_horoskop_yahoo_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
+            sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[0], DeHoroscopeYahooComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[1], DeHoroscopeYahooComTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[2], DeHoroscopeYahooComWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[3], DeHoroscopeYahooComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[4], DeHoroscopeYahooComYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
+            pref_id=5;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
             sliderMenu.setCurrentPage(2);
         	break;
