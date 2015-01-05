@@ -75,8 +75,10 @@ public class IntroduceActivityOne extends BaseActivity {
 	    final Spinner locale = (Spinner)findViewById(R.id.spinnerLocale);
 	    if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("ru"))
 	    locale.setSelection(0);
-	    else
+	    if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en"))
 	    locale.setSelection(1);
+	    if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("de"))
+		locale.setSelection(2);
 	    
 	    locale.setOnItemSelectedListener(new OnItemSelectedListener(){    
 	    	@Override
