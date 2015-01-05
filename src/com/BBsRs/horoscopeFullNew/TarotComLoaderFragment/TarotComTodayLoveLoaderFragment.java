@@ -38,7 +38,7 @@ import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 
 public class TarotComTodayLoveLoaderFragment extends BaseFragment {
 	
-	int UNIVERSAL_ID = 3;
+	int UNIVERSAL_ID = 4;
 	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;

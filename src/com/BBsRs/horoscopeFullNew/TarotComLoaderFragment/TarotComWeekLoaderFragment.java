@@ -36,9 +36,9 @@ import android.widget.ScrollView;
 import com.BBsRs.horoscopeFullNew.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 
-public class TarotComMonthLoveLoaderFragment extends BaseFragment {
+public class TarotComWeekLoaderFragment extends BaseFragment {
 	
-	int UNIVERSAL_ID = 5;
+	int UNIVERSAL_ID = 3;
 	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
@@ -189,11 +189,11 @@ public class TarotComMonthLoveLoaderFragment extends BaseFragment {
                     	// set no error, cuz we can reach it
                     	error=true;
                     	
+                    	//load and retrieve data from celebrity.yahoo.com taurus/overview-weekly-50.html
                     	Calendar c = Calendar.getInstance();
-                        //load and retrieve data from tarot.com http://www.tarot.com/horoscopes/december-2014/cancer-love
-                    	Document doc = Jsoup.connect("http://www.tarot.com/horoscopes/"+getResources().getStringArray(R.array.nameOfmonthsForLoadTarotCom)[c.get(Calendar.MONTH)]+"-"+String.valueOf(c.get(Calendar.YEAR))+"/"+getResources().getStringArray(R.array.nameOfzodiacForLoadTarotCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"-"+getActivity().getResources().getStringArray(R.array.nameOfHoroscopecForLoadTarotCom)[UNIVERSAL_ID]).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("heading-2").first().text()+"<br /><br />"+doc.getElementsByClass("forecast-body").first().html()+"<br /><br />"+getResources().getString(R.string.copyright_tarot_com);
-                    	if (!(doc.getElementsByClass("forecast-body").first().html().length()<10))
+                    	Document doc = Jsoup.connect("https://celebrity.yahoo.com/horoscope/"+getResources().getStringArray(R.array.nameOfzodiacForLoadTarotCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+getResources().getStringArray(R.array.nameOfHoroscopecForLoadTarotCom)[UNIVERSAL_ID]+monthPlusZero(String.valueOf(c.get(Calendar.WEEK_OF_YEAR)))+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	data = doc.getElementsByClass("date").first().text()+"<br /><br />"+doc.getElementsByClass("desc").first().html()+"<br /><br />"+getResources().getString(R.string.copyright_tarot_com);
+                    	if (!(doc.getElementsByClass("desc").first().html().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
                     	error=true;

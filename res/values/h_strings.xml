@@ -132,6 +132,7 @@
         <item>Yesterday</item>
         <item>Today</item>
         <item>Tomorrow</item>
+        <item>Week</item>
         <item>Today love</item>
         <item>Month love</item>
         <item>Month</item>
@@ -155,6 +156,7 @@
         <item>daily-horoscope</item>
         <item>daily-horoscope</item>
         <item>daily-horoscope</item>
+        <item>/overview-weekly-</item>
         <item>daily-love-horoscope</item>
         <item>love</item>
         <item></item>

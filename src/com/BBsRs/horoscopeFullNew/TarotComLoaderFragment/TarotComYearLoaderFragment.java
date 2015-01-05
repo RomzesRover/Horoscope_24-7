@@ -37,7 +37,7 @@ import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 
 public class TarotComYearLoaderFragment extends BaseFragment {
 	
-	int UNIVERSAL_ID = 6;
+	int UNIVERSAL_ID = 7;
 	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
