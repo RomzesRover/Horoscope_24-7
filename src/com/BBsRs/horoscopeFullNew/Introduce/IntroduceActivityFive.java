@@ -36,10 +36,14 @@ public class IntroduceActivityFive extends BaseActivity {
 	    //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         
+        if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("ru"))
+        	k=0; 
+
         if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en"))
         	k=2; 
-        else 
-        	k=0;
+        
+        if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("de"))
+        	k=4; 
         
 	    this.setContentView(R.layout.activity_inroduce_five);
 	    

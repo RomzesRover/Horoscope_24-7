@@ -221,10 +221,12 @@
     <string-array name="locales">
         <item>Русский</item>
         <item>English</item>
+        <item>Deutsch</item>
     </string-array>
     <string-array name="locales_entryValues">
         <item>ru</item>
         <item>en</item>
+        <item>de</item>
     </string-array>
 
     <string name="application_title">Application</string>
