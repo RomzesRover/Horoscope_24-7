@@ -24,7 +24,7 @@ public class BaseFragment extends Fragment{
 		if (sPref.getBoolean("agreeWithAd", false)){
 		// INIT adView.
 	    adView = new AdView(getActivity());
-	    adView.setAdUnitId("ca-app-pub-0799144907631986/7771742972");
+	    adView.setAdUnitId("ca-app-pub-6690318766939525/6143267693");
 	    adView.setAdSize(AdSize.BANNER);
 
 	    LinearLayout layout = (LinearLayout) v.findViewById(R.id.mainRtLt);
