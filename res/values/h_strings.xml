@@ -284,8 +284,6 @@
 
     <string-array name="application_titles">
         <item>Settings</item>
-        <item>About</item>
-        <item>Notice</item>
     </string-array>
 
     <string name="app_name">Horoscope 24/7</string>

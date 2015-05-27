@@ -41,8 +41,6 @@
 
     <string-array name="application_titles">
         <item>Einstellungen</item>
-        <item>Über App</item>
-        <item>Ankündigung</item>
     </string-array>
 
     <string name="app_name">Horoskop 24/7</string>
