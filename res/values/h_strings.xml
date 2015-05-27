@@ -190,7 +190,7 @@
         <item>Settings</item>
     </string-array>
 
-    <string name="app_name">Horoscope 24/7</string>
+    <string name="app_name">Horoscope</string>
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_retry">Retry</string>
     <string name="preference">Settings</string>
@@ -214,7 +214,7 @@
     <string name="share_content_horo_for">Horoscope for</string>
     <string name="share_content_horo_for_2">for zodiac sign:</string>
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
-    <string name="share_send_from">Send from application Horoscope 24/7</string>
+    <string name="share_send_from">Send from application Horoscope</string>
     <string name="share_personal_1">horoscope</string>
     <string name="share_personal_2">for user</string>
     <string name="share_money_1">Money</string>

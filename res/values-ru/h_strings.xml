@@ -43,7 +43,7 @@
         <item>Настройки</item>
     </string-array>
 
-    <string name="app_name">Гороскоп 24/7</string>
+    <string name="app_name">Гороскоп</string>
     <string name="error_message">Проверьте ваше подключение к сети, и попробуйте снова.</string>
     <string name="error_retry">Попробовать снова</string>
     <string name="preference">Настройки</string>
@@ -70,7 +70,7 @@
     <string name="share_personal_1">гороскоп</string>
     <string name="share_personal_2">для пользователя</string>
     <string name="share_money_1">Денежный</string>
-    <string name="share_send_from">Отправлено из приложения Гороскоп 24/7</string>
+    <string name="share_send_from">Отправлено из приложения Гороскоп</string>
     <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>
     <string name="automatic_determined_sign">Автоматически определенный знак зодиака</string>
     <string name="introduce_one">Онлайн гороскоп</string>
