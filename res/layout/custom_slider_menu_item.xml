@@ -21,7 +21,6 @@
         android:layout_gravity="center_vertical"
         android:maxHeight="52dp"
         android:maxWidth="52dp"
-        android:src="@drawable/logo_holoeverywhere"
         android:visibility="gone" />
 
     <LinearLayout
