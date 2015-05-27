@@ -16,12 +16,6 @@ import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscop
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYesterdayLoaderFragment;
-import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuLoveLoaderFragment;
-import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuMoneyLoaderFragment;
-import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuPersonalLoaderFragment;
-import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuTodayLoaderFragment;
-import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuTomorrowLoaderFragment;
-import com.BBsRs.horoscopeFullNew.GoroskopRuLoaderFragment.GoroskopRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComMoneyLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComPersonalLoaderFragment;
@@ -36,14 +30,6 @@ import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuTomorrowLoaderFragm
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYesterdayLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComMonthLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComMonthLoveLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTodayLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTodayLoveLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTomorrowLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComWeekLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComYearLoaderFragment;
-import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComYesterdayLoaderFragment;
 import com.BBsRs.horoscopeNewEdition.R;
 
 @Addons(AddonSlider.class)
@@ -97,18 +83,6 @@ public class ContentShowActivity extends BaseActivity {
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;
-        case 1:
-        	sliderMenu.add(getResources().getString(R.string.goroskop_ru_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[0], GoroskopRuTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[1], GoroskopRuTomorrowLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[2], GoroskopRuPersonalLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[3], GoroskopRuLoveLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[4], GoroskopRuWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[5], GoroskopRuMoneyLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            pref_id=6;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
-            sliderMenu.setCurrentPage(1);
-            break;
         case 2:
         	sliderMenu.add(getResources().getString(R.string.horoscope_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[0], HoroscopeComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
@@ -119,20 +93,6 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[5], HoroscopeComMoneyLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[6], HoroscopeComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=7;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
-            sliderMenu.setCurrentPage(2);
-        	break;
-        case 3:
-        	sliderMenu.add(getResources().getString(R.string.tarot_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[0], TarotComYesterdayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[1], TarotComTodayLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[2], TarotComTomorrowLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[3], TarotComWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[4], TarotComTodayLoveLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[5], TarotComMonthLoveLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[6], TarotComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[7], TarotComYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-            pref_id=8;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;

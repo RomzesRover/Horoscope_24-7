@@ -20,13 +20,6 @@
             android:summary="@string/preference_date_2"
             android:title="@string/preference_date_1" />
 
-        <TimePreference
-            android:id="@+id/preference_time_born"
-            android:icon="@drawable/logo_time"
-            android:key="preference_time_born"
-            android:summary="@string/preference_time_2"
-            android:title="@string/preference_time_1" />
-
         <ListPreference
             android:id="@+id/preference_zodiac_sign"
             android:defaultValue="@string/default_sign"

@@ -48,44 +48,6 @@
     <!-- end of data only for download mail.ru horoscope -->
 
 
-    <!-- This data below closed to translate ! Using only for download goroskop.ru horoscope -->
-    <string name="goroskop_ru_title">goroskop.ru</string>
-
-    <string-array name="goroskop_ru_horoscopes">
-        <item>Сегодня</item>
-        <item>Завтра</item>
-        <item>Персональный</item>
-        <item>Любовный</item>
-        <item>Неделя</item>
-        <item>Денежный</item>
-    </string-array>
-    <string-array name="nameOfzodiacForLoadGoroskopRu">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
-    </string-array>
-    <string-array name="nameOfHoroscopecForLoadGoroskopRu">
-        <item></item>
-        <item>tomorrow</item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-    </string-array>
-
-    <string name="copyright_goroskop_ru">© «ГОРОСКОП.РУ»</string>
-    <!-- end of data only for download goroskop.ru horoscope -->
-
-
     <!-- This data below closed to translate ! Using only for download horoscope.com horoscope -->
     <string name="horoscope_com_title">horoscope.com</string>
 
@@ -124,62 +86,6 @@
 
     <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
-
-
-    <!-- This data below closed to translate ! Using only for download tarot.com horoscope -->
-    <string name="tarot_com_title">tarot.com</string>
-
-    <string-array name="tarot_com_horoscopes">
-        <item>Yesterday</item>
-        <item>Today</item>
-        <item>Tomorrow</item>
-        <item>Week</item>
-        <item>Today love</item>
-        <item>Month love</item>
-        <item>Month</item>
-        <item>Year</item>
-    </string-array>
-    <string-array name="nameOfzodiacForLoadTarotCom">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
-    </string-array>
-    <string-array name="nameOfHoroscopecForLoadTarotCom">
-        <item>daily-horoscope</item>
-        <item>daily-horoscope</item>
-        <item>daily-horoscope</item>
-        <item>/overview-weekly-</item>
-        <item>daily-love-horoscope</item>
-        <item>love</item>
-        <item></item>
-        <item>2015</item>
-    </string-array>
-    <string-array name="nameOfmonthsForLoadTarotCom">
-        <item>january</item>
-        <item>february</item>
-        <item>march</item>
-        <item>april</item>
-        <item>may</item>
-        <item>june</item>
-        <item>july</item>
-        <item>august</item>
-        <item>september</item>
-        <item>october</item>
-        <item>november</item>
-        <item>december</item>
-    </string-array>
-
-    <string name="copyright_tarot_com">© tarot com</string>
-    <!-- end of data only for download tarot.com horoscope -->
 
 
     <!-- This data below closed to translate ! Using only for download de.horoscope.yahoo. horoscope -->
@@ -263,11 +169,9 @@
     </string-array>
     <string-array name="providers">
         <item>horoscope.com</item>
-        <item>tarot.com</item>
     </string-array>
     <string-array name="providers_entryValues">
         <item>2</item>
-        <item>3</item>
     </string-array>
     <string-array name="locales">
         <item>Русский</item>
@@ -294,8 +198,6 @@
     <string name="preference_ad">Advertisement</string>
     <string name="preference_date_1">Your birth date</string>
     <string name="preference_date_2">Enter when you born</string>
-    <string name="preference_time_1">Your birth time</string>
-    <string name="preference_time_2">Enter when you born</string>
     <string name="preference_zodiac_signs_2">Select your zodiac sign</string>
     <string name="preference_zodiac_signs_1">Zodiac sign</string>
     <string name="preference_provider_1">Horoscope provider</string>
@@ -327,18 +229,6 @@
     <string name="introduce_start">START!</string>
     <string name="introduce_date">SET BIRTH DATE</string>
     <string name="introduce_date_check">Check your data is correct</string>
-    <string name="introduce_time">SET BIRTH TIME</string>
-    <string name="introduce_time_1">*this value used only goroskop.ru</string>
-    <string name="trial_period">Time until choose</string>
-    <string name="trial_until">Time until</string>
-    <string name="trial_buyed">Infinite, advertisement is disabled</string>
-    <string name="trial_title">Time to choose</string>
-    <string name="trial_byu_google">Resume using and buy this app</string>
-    <string name="trial_byu_google_desc_high">An advertisement will turn off</string>
-    <string name="trial_get_ad">Resume using</string>
-    <string name="trial_get_ad_desc">An advertisement will turn on</string>
-    <string name="trial_price_paid_high">$1.49</string>
-    <string name="trial_price_free">FREE</string>
     <string name="clickable_string">by clicking next, you agree with our [user agreement]</string>
     <string name="agreement_top">Agreement:</string>
     <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will turn on advertisment\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>

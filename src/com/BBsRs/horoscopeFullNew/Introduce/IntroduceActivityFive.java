@@ -71,7 +71,7 @@ public class IntroduceActivityFive extends BaseActivity {
 	    back .setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent refresh = new Intent(getApplicationContext(), IntroduceActivityFour.class);
+				Intent refresh = new Intent(getApplicationContext(), IntroduceActivityThree.class);
 				//restart activity
 			    startActivity(refresh);   
 			    //set  animation

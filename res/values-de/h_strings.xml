@@ -51,8 +51,6 @@
     <string name="preference_ad">Anzeige</string>
     <string name="preference_date_1">Ihr Geburtsdatum</string>
     <string name="preference_date_2">Geben Sie, wenn Sie geboren</string>
-    <string name="preference_time_1">Ihre Geburtszeit</string>
-    <string name="preference_time_2">Geben Sie, wenn Sie geboren</string>
     <string name="preference_zodiac_signs_2">Wählen Sie Ihr Sternzeichen</string>
     <string name="preference_zodiac_signs_1">Sternzeichen</string>
     <string name="preference_provider_1">Horoskop Anbieter</string>
@@ -84,18 +82,6 @@
     <string name="introduce_start">START!</string>
     <string name="introduce_date">SET GEBURTSDATUM</string>
     <string name="introduce_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
-    <string name="introduce_time">SET GEBURTSZEIT</string>
-    <string name="introduce_time_1">*dieser Wert nur verwendet werden, goroskop.ru</string>
-    <string name="trial_period">Zeit bis wählen</string>
-    <string name="trial_until">Zeit bis zum</string>
-    <string name="trial_buyed">Unendliche, Anzeige deaktiviert</string>
-    <string name="trial_title">Time to choose</string>
-    <string name="trial_byu_google">Lebenslauf mit und kaufen Sie diese App</string>
-    <string name="trial_byu_google_desc_high">Eine Anzeige erlischt</string>
-    <string name="trial_get_ad">Fortsetzen mit</string>
-    <string name="trial_get_ad_desc">Eine Anzeige wird eingeschaltet</string>
-    <string name="trial_price_paid_high">$1.49</string>
-    <string name="trial_price_free">KOSTENLOS</string>
     <string name="clickable_string">indem Sie neben erklären Sie sich mit unseren [Anwenderabkommen]</string>
     <string name="agreement_top">Vereinbarung:</string>
     <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will turn on advertisment\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
