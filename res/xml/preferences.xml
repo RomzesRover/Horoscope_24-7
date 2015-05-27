@@ -61,14 +61,4 @@
             android:summary="@string/preference_locale_2"
             android:title="@string/preference_locale_1" />
     </PreferenceCategory>
-    
-        <PreferenceCategory android:title="@string/preference_ad" >
-        <Preference
-            android:id="@+id/preference_trial"
-            android:icon="@drawable/logo_trial"
-            android:key="preference_trial"
-            android:summary="@string/trial_until"
-            android:title="@string/trial_period" />
-    </PreferenceCategory>
-
 </PreferenceScreen>

@@ -3,50 +3,35 @@ package com.BBsRs.horoscopeFullNew;
 
 import java.util.Calendar;
 
-import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.ListPreference;
 import org.holoeverywhere.preference.Preference;
 import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
-import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.preference.TimePreference;
 import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
-import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.Toast;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
 import com.BBsRs.horoscopeNewEdition.R;
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
 
 public class SettingsFragment extends BasePreferenceFragment {
 	
 	//preferences 
     SharedPreferences sPref;
     
-    Preference myTrialPref;
     DatePreference myDatePref;
     TimePreference myTimePref;
     ListPreference myLocaleListPref;
     ListPreference myProviderListPref;
     
-    /*--------------------INIT IN APP BILLING-------------------------*/
-    //inAppBillingData
-    // PRODUCT & SUBSCRIPTION IDS
-	private BillingProcessor bp;
-	private boolean readyToPurchase = false;
-	/*--------------------INIT IN APP BILLING-------------------------*/
-	
 	AlertDialog alert = null;	
 	
     @Override
@@ -72,45 +57,11 @@ public class SettingsFragment extends BasePreferenceFragment {
 		ed.putBoolean("changed_8", true);	
 		ed.commit();
 		
-		/*--------------------INIT IN APP BILLING-------------------------*/
-        bp = new BillingProcessor(getActivity(), Constants.LICENSE_KEY, new BillingProcessor.IBillingHandler() {
-            @Override
-            public void onProductPurchased(String productId, TransactionDetails details) {
-            	//disable ad
-            	if (bp.isPurchased(Constants.PRODUCT_ID_HIGH)) sPref.edit().putBoolean("agreeWithAd", false).commit();
-            	activityRefresh();
-            }
-            @Override
-            public void onBillingError(int errorCode, Throwable error) {
-            	startMainTask();
-            }
-            @Override
-            public void onBillingInitialized() {
-                readyToPurchase = true;
-                startMainTask();
-            }
-            @Override
-            public void onPurchaseHistoryRestored() {
-            }
-        });
-        /*--------------------INIT IN APP BILLING-------------------------*/
-		
+		startMainTask();
         
     }
     
     public void startMainTask(){
-		//trial preferences
-		myTrialPref = (Preference) findPreference("preference_trial");
-		myTrialPref.setSummary(bp.isPurchased(Constants.PRODUCT_ID_HIGH) ? getResources().getString(R.string.trial_buyed) : getResources().getString(R.string.trial_until)+" "+String.valueOf(sPref.getInt("dayBefore", 0))+" "+getResources().getStringArray(R.array.moths_of_year)[sPref.getInt("monthBefore", 0)]+" "+String.valueOf(sPref.getInt("yearBefore", 0)));
-		
-		myTrialPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				showDialog();
-				return false;
-			}
-		});
-        
         //setting up date change preference, cuz we need save date.
         myDatePref = (DatePreference) findPreference("preference_date_born");
         
@@ -200,19 +151,6 @@ public class SettingsFragment extends BasePreferenceFragment {
         	
         });
     }
-    
-	@Override
-    public void onDestroy() {
-        if (bp != null)
-            bp.release();
-        super.onDestroy();
-    }
-	
-    @Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data))
-            super.onActivityResult(requestCode, resultCode, data);
-    }
 
     @Override
     public void onResume() {
@@ -269,62 +207,4 @@ public class SettingsFragment extends BasePreferenceFragment {
 	    // stop curr activity
 	    getActivity().finish();
 	}
-	
-	private void showDialog(){
-		final Context context = getActivity(); 								// create context
-			AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
-		build.setTitle(getResources().getString(R.string.trial_period)); 			// set title
-		build.setIcon(R.drawable.logo_trial);
-		
-		if (!bp.isPurchased(Constants.PRODUCT_ID_HIGH)){
-		LayoutInflater inflater = (LayoutInflater)context.getSystemService
-			      (Context.LAYOUT_INFLATER_SERVICE);
-		
-		View content = inflater.inflate(R.layout.dialog_content, null);
-		
-		RelativeLayout freeAd = (RelativeLayout)content.findViewById(R.id.freeAd);
-		freeAd.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				sPref.edit().putBoolean("agreeWithAd", true).commit();
-				//adding days to use
-				addDaysToTrial(8);
-				activityRefresh();
-			}
-		});
-		
-		RelativeLayout paidRtHigh = (RelativeLayout)content.findViewById(R.id.paidRtHigh);
-		if (bp.isPurchased(Constants.PRODUCT_ID_HIGH))
-			paidRtHigh.setVisibility(View.GONE);
-		paidRtHigh.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent refresh = new Intent(getActivity(), PurchaseDialogActivity.class);
-				//restart activity
-			    startActivity(refresh);   
-			    //set no animation
-			    getActivity().overridePendingTransition(0, 0);
-			}
-		});
-		
-		build.setView(content);
-		} else {
-			build.setMessage(getActivity().getResources().getString(R.string.trial_buyed));
-		}
-		
-		alert = build.create();															// show dialog
-		alert.show();
-	}
-	
-    private void addDaysToTrial(int days){
-    	Calendar c = Calendar.getInstance();
-    	c.add(Calendar.DATE, +days);
-    	//save trial date
-		Editor ed = sPref.edit();
-		ed.putBoolean("trialSettetUp", true);
-		ed.putInt("dayBefore", c.get(Calendar.DAY_OF_MONTH));
-		ed.putInt("monthBefore", c.get(Calendar.MONTH));
-		ed.putInt("yearBefore", c.get(Calendar.YEAR));
-		ed.commit();
-    }
 }
