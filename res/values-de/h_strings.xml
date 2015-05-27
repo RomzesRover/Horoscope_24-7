@@ -86,7 +86,6 @@
     <string name="introduce_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
     <string name="introduce_time">SET GEBURTSZEIT</string>
     <string name="introduce_time_1">*dieser Wert nur verwendet werden, goroskop.ru</string>
-    <string name="introduce_show_devices">Lesen Sie differents Horoskope von de.horoskop.yahoo.com in einer Anwendung!</string>
     <string name="trial_period">Zeit bis wählen</string>
     <string name="trial_until">Zeit bis zum</string>
     <string name="trial_buyed">Unendliche, Anzeige deaktiviert</string>
