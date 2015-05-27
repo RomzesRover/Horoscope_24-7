@@ -1,6 +1,5 @@
 package com.BBsRs.horoscopeFullNew;
 
-import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.RelativeLayout;
@@ -35,38 +34,36 @@ public class ActivityLoader extends BaseActivity {
     //banner 
     int banner = 0;
     
-    //alert for trial
-	AlertDialog alert = null;	
-	
 	public class timer extends CountDownTimer{
 	public timer(long millisInFuture, long countDownInterval) {
 		super(millisInFuture, countDownInterval);}
 
 	@Override
 	public void onFinish() {
-		if (isNetworkAvailable())
-		//check if user still not set up data
-        if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13){
-        	Intent refresh = new Intent(getApplicationContext(), IntroduceActivityOne.class);
-			//restart activity
-		    startActivity(refresh);   
-		    //set  animation
-		    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-		    // stop curr activity
-		    finish();
-        } else {
-        	Thread thr=new Thread(new Runnable() {			
-		        public void run() {
-		        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
-					//restart activity
-				    startActivity(refresh);   
-				    //set  animation
-				    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-				    // stop curr activity
-				    finish();
-		        }
-        	});
-		    thr.start();
+		if (isNetworkAvailable()) {
+			//check if user still not set up data
+	        if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13){
+	        	Intent refresh = new Intent(getApplicationContext(), IntroduceActivityOne.class);
+				//restart activity
+			    startActivity(refresh);   
+			    //set  animation
+			    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+			    // stop curr activity
+			    finish();
+	        } else {
+	        	Thread thr=new Thread(new Runnable() {			
+			        public void run() {
+			        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
+						//restart activity
+					    startActivity(refresh);   
+					    //set  animation
+					    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+					    // stop curr activity
+					    finish();
+			        }
+	        	});
+			    thr.start();
+	        } 
         } else {
         	relativeContentLayout.setVisibility(View.GONE);
         	relativeErrorLayout.setVisibility(View.VISIBLE);

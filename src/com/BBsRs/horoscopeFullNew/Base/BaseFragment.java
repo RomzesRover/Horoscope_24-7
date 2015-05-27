@@ -21,7 +21,6 @@ public class BaseFragment extends Fragment{
 	public void showAd(View v, SharedPreferences sPref){
 		
 		//!----------------------------------AD-----------------------------------------------------!
-		if (sPref.getBoolean("agreeWithAd", false)){
 		// INIT adView.
 	    adView = new AdView(getActivity());
 	    adView.setAdUnitId("ca-app-pub-6690318766939525/6143267693");
@@ -37,10 +36,6 @@ public class BaseFragment extends Fragment{
 
 	    // download AD.
 	    adView.loadAd(adRequest);
-		} else {
-			LinearLayout layout = (LinearLayout)v.findViewById(R.id.mainRtLt);
-			layout.setVisibility(View.GONE);
-		}
 		//!----------------------------------AD-----------------------------------------------------!
 	}
 	
