@@ -32,7 +32,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ScrollView;
 
-import com.BBsRs.horoscopeFullNew.R;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 
 public class HoroscopeComTomorrowLoaderFragment extends BaseFragment {

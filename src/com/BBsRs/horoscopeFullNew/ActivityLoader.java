@@ -25,6 +25,7 @@ import android.widget.Button;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 

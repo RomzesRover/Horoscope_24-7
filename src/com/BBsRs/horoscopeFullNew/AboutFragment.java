@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
+import com.BBsRs.horoscopeNewEdition.R;
 
 public class AboutFragment extends BasePreferenceFragment {
 	

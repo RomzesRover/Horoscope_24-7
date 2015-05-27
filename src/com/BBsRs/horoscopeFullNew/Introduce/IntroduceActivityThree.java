@@ -17,7 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.BBsRs.horoscopeFullNew.R;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 
 public class IntroduceActivityThree extends BaseActivity {

@@ -13,7 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
-import com.BBsRs.horoscopeFullNew.R;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 
 public class IntroduceActivityTwo extends BaseActivity {

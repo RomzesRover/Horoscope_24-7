@@ -44,6 +44,7 @@ import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComTomorrowLoaderF
 import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.TarotComLoaderFragment.TarotComYesterdayLoaderFragment;
+import com.BBsRs.horoscopeNewEdition.R;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity {

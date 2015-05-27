@@ -7,7 +7,7 @@ import org.holoeverywhere.widget.LinearLayout;
 import android.content.Intent;
 import android.view.View;
 
-import com.BBsRs.horoscopeFullNew.R;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;

@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 

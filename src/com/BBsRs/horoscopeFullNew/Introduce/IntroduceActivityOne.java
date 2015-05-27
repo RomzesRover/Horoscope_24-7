@@ -19,7 +19,7 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView.BufferType;
 
-import com.BBsRs.horoscopeFullNew.R;
+import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 
 public class IntroduceActivityOne extends BaseActivity {
