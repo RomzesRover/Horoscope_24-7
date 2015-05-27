@@ -94,7 +94,7 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[5], MailRuMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[6], MailRuYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=7;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;
         case 1:
@@ -106,7 +106,7 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[4], GoroskopRuWeekLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.goroskop_ru_horoscopes)[5], GoroskopRuMoneyLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=6;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(1);
             break;
         case 2:
@@ -119,7 +119,7 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[5], HoroscopeComMoneyLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[6], HoroscopeComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=7;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;
         case 3:
@@ -133,7 +133,7 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[6], TarotComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.tarot_com_horoscopes)[7], TarotComYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=8;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;
         case 4:
@@ -144,7 +144,7 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[3], DeHoroscopeYahooComMonthLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             sliderMenu.add(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[4], DeHoroscopeYahooComYearLoaderFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
             pref_id=5;
-            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) && (sPref.getInt("banner", 0)!=2))
+            if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;
         }
@@ -161,16 +161,6 @@ public class ContentShowActivity extends BaseActivity {
     		ed.putBoolean("preference_start", false); 	
     		ed.commit();
     		check=true;
-        }
-        
-        //init banner info below
-        //1 just load w/o force show
-		//2 load with force show
-		//3 disabled at all
-        if (sPref.getInt("banner", 0)==1 || sPref.getInt("banner", 0)==2){
-        	sliderMenu.add(getResources().getStringArray(R.array.application_titles)[2], BannerFragment.class, new int[]{R.color.slider_menu_custom_color_black, R.color.slider_menu_custom_color_pink}).setTextAppereanceInverse(1);
-        	if (!check && (savedInstanceState == null) && sPref.getInt("banner", 0)==2)
-        	sliderMenu.setCurrentPage(pref_id+4);
         }
     }
     

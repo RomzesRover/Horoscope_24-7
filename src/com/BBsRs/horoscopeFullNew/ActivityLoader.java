@@ -74,36 +74,13 @@ public class ActivityLoader extends BaseActivity {
         } else {
         	Thread thr=new Thread(new Runnable() {			
 		        public void run() {
-        	
-        	try {
-        		//1 just load w/o force show
-        		//2 load with force show
-        		//3 disabled at all
-				banner=Integer.parseInt(Jsoup.connect("http://brothers-rovers.3dn.ru/banner2.txt").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get().text());
-        	} catch (NotFoundException e) {
-        		banner = 0;
-				e.printStackTrace();
-			} catch (IOException e) {
-				banner = 0;
-				e.printStackTrace();
-			} catch (NullPointerException e) {
-				banner = 0;
-				e.printStackTrace();
-			} catch (Exception e) {
-				banner = 0;
-				e.printStackTrace();
-			}
-        	Editor ed = sPref.edit();   
-    		ed.putInt("banner", banner); 	
-    		ed.commit();
-        	
-        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
-			//restart activity
-		    startActivity(refresh);   
-		    //set  animation
-		    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-		    // stop curr activity
-		    finish();
+		        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
+					//restart activity
+				    startActivity(refresh);   
+				    //set  animation
+				    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+				    // stop curr activity
+				    finish();
 		        }
         	});
 		    thr.start();
