@@ -12,8 +12,6 @@ import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
-import org.holoeverywhere.preference.TimePreference;
-import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
 import org.holoeverywhere.widget.Toast;
 
 import android.content.Intent;
@@ -28,7 +26,6 @@ public class SettingsFragment extends BasePreferenceFragment {
     SharedPreferences sPref;
     
     DatePreference myDatePref;
-    TimePreference myTimePref;
     ListPreference myLocaleListPref;
     ListPreference myProviderListPref;
     
@@ -92,25 +89,6 @@ public class SettingsFragment extends BasePreferenceFragment {
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
 				}
-				return false;
-			}
-        });
-        
-        //setting up date change preference, cuz we need save time.
-        myTimePref = (TimePreference) findPreference("preference_time_born");
-        
-        myTimePref.setHour(sPref.getInt("hourBorn", cal.get(Calendar.HOUR_OF_DAY)));
-        myTimePref.setMinute(sPref.getInt("minuteBorn", cal.get(Calendar.MINUTE)));
-        
-        myTimePref.setOnTimeSetListener(new OnTimeSetListener(){
-			@Override
-			public boolean onTimeSet(TimePreference preference, long date,
-					int hour, int minute) {
-				//save time born
-				Editor ed = sPref.edit();   
-				ed.putInt("minuteBorn", minute); 	
-			    ed.putInt("hourBorn", hour);		
-				ed.commit();
 				return false;
 			}
         });
