@@ -82,7 +82,7 @@ public class HoroscopeComTodayLoaderFragment extends BaseFragment {
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         
       //!----------------------------------AD-----------------------------------------------------!
-    	showAd(contentView, sPref);
+    	showAd(contentView);
     	//!----------------------------------AD-----------------------------------------------------!
     	
     	//retrieving views from layout

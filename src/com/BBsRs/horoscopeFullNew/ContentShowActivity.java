@@ -7,9 +7,11 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
 import org.holoeverywhere.widget.Toast;
+import org.jsoup.Jsoup;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComMonthLoaderFragment;
@@ -145,24 +147,37 @@ public class ContentShowActivity extends BaseActivity {
 			@Override
 			public void run() {
 				try {
-					handler.post(new Runnable(){
-						@Override
-						public void run() {
-							try {
-								// Создание межстраничного объявления.
-							    interstitial = new InterstitialAd(ContentShowActivity.this);
-							    interstitial.setAdUnitId("ca-app-pub-6690318766939525/4299272098");
-
-							    // Создание запроса объявления.
-							    AdRequest adRequest = new AdRequest.Builder().build();
-
-							    // Запуск загрузки межстраничного объявления.
-							    interstitial.loadAd(adRequest);
-							} catch (Exception e){
+					
+					String AdSource = Jsoup.connect("http://brothers-rovers.3dn.ru/HoroscopeNewEd/adsource_between.txt").timeout(10000).get().text();
+					
+					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
+						Log.i("AD", "Problems with load AD !");
+						Log.i("AD", "herec1");
+					} else {
+						final String AdSourceFinalled = AdSource;
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								try {
+									// Создание межстраничного объявления.
+								    interstitial = new InterstitialAd(ContentShowActivity.this);
+								    interstitial.setAdUnitId(AdSourceFinalled);
+	
+								    // Создание запроса объявления.
+								    AdRequest adRequest = new AdRequest.Builder().build();
+	
+								    // Запуск загрузки межстраничного объявления.
+								    interstitial.loadAd(adRequest);
+								} catch (Exception e){
+									Log.i("AD", "Problems with load AD !");
+									Log.i("AD", "herec2");
+								}
 							}
-						}
-					});
+						});
+					}
 				} catch (Exception e){
+					Log.i("AD", "Problems with load AD !");
+					Log.i("AD", "herec3");
 				}
 			}
 		}).start();

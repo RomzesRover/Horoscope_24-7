@@ -1,10 +1,12 @@
 package com.BBsRs.horoscopeFullNew.Base;
 
 import org.holoeverywhere.app.Fragment;
-import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.LinearLayout;
+import org.jsoup.Jsoup;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.BBsRs.horoscopeNewEdition.R;
@@ -16,26 +18,71 @@ public class BaseFragment extends Fragment{
 	
 	//!----------------------------------AD-----------------------------------------------------!
   	private AdView adView;
+	private final Handler handler2 = new Handler();
   	//!----------------------------------AD-----------------------------------------------------!
 	
-	public void showAd(View v, SharedPreferences sPref){
+	public void showAd(View v){
+		
+		final LinearLayout layout = (LinearLayout) v.findViewById(R.id.mainRtLt);
+		
+		new Thread (new Runnable(){
+			@Override
+			public void run() {
+				try {
+					
+					String AdSource = Jsoup.connect("http://brothers-rovers.3dn.ru/HoroscopeNewEd/adsource.txt").timeout(10000).get().text();
+					
+					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
+						Log.i("AD", "Problems with load AD !");
+						Log.i("AD", "here1b");
+						handler2.post(new Runnable(){
+							@Override
+							public void run() {
+								layout.setVisibility(View.GONE);
+							}
+						});
+					} else {
+						final String AdSourceFinalled = AdSource;
+						handler2.post(new Runnable(){
+							@Override
+							public void run() {
+								try {
+									// INIT adView.
+								    adView = new AdView(getActivity());
+								    adView.setAdUnitId(AdSourceFinalled);
+								    adView.setAdSize(AdSize.BANNER);
+								    // adding adView to view.
+								    layout.addView(adView);
+								    layout.setVisibility(View.VISIBLE);
+								    // init base request.
+								    AdRequest adRequest = new AdRequest.Builder().build();
+
+								    // download AD.
+								    adView.loadAd(adRequest);
+								} catch (Exception e){
+									Log.i("AD", "Problems with load AD !");
+									Log.i("AD", "hereb2");
+									layout.setVisibility(View.GONE);
+								}
+							}
+						});
+					}
+					
+				} catch (Exception e){
+					Log.i("AD", "Problems with load AD !");
+					Log.i("AD", "hereb3");
+					handler2.post(new Runnable(){
+						@Override
+						public void run() {
+							layout.setVisibility(View.GONE);
+						}
+					});
+				}
+			}
+		}).start();
 		
 		//!----------------------------------AD-----------------------------------------------------!
-		// INIT adView.
-	    adView = new AdView(getActivity());
-	    adView.setAdUnitId("ca-app-pub-6690318766939525/6143267693");
-	    adView.setAdSize(AdSize.BANNER);
 
-	    LinearLayout layout = (LinearLayout) v.findViewById(R.id.mainRtLt);
-
-	    // adding adView to view.
-	    layout.addView(adView);
-	    layout.setVisibility(View.VISIBLE);
-	    // init base request.
-	    AdRequest adRequest = new AdRequest.Builder().build();
-
-	    // download AD.
-	    adView.loadAd(adRequest);
 		//!----------------------------------AD-----------------------------------------------------!
 	}
 	
