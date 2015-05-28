@@ -16,11 +16,14 @@ import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLa
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,6 +37,8 @@ import android.widget.ScrollView;
 
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
+import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
+import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
 
 public class MailRuWeekLoaderFragment extends BaseFragment {
 	
@@ -125,16 +130,23 @@ public class MailRuWeekLoaderFragment extends BaseFragment {
 			}
 		});
         
+      //set fonts
+        HelvFont.HELV_LIGHT.apply(getActivity(), textContent);
+        
         return contentView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //set titile for action bar
-        getSupportActionBar().setTitle(getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]);
-        //set subtitle for a current fragment
-        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
+        //set titile for action bar with custom font
+        SpannableString sb = new SpannableString(getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]);
+        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(sb);
+        //set subtitle for a current fragment with custom font
+        sb = new SpannableString(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
+        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setSubtitle(sb);
         
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){

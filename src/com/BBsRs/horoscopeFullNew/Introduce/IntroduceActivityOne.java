@@ -6,14 +6,19 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.AdapterView;
 import org.holoeverywhere.widget.AdapterView.OnItemSelectedListener;
+import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.CheckedTextView;
 import org.holoeverywhere.widget.Spinner;
+import org.holoeverywhere.widget.TextView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
+import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class IntroduceActivityOne extends BaseActivity {
@@ -67,6 +72,26 @@ public class IntroduceActivityOne extends BaseActivity {
 		});
 	    
 	    final Spinner locale = (Spinner)findViewById(R.id.spinnerLocale);
+	    
+	    //set fonts for spinner
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.locales)) {
+
+			public View getView(int position, View convertView, ViewGroup parent) {
+				View v = super.getView(position, convertView, parent);
+				HelvFont.HELV_ROMAN.apply(getApplicationContext(), (CheckedTextView) v);
+				return v;
+			}
+
+			public View getDropDownView(int position, View convertView,
+					ViewGroup parent) {
+				View v = super.getDropDownView(position, convertView, parent);
+				HelvFont.HELV_ROMAN.apply(getApplicationContext(), (CheckedTextView) v);
+				return v;
+			}
+		};
+		locale.setAdapter(adapter);
+	    
 	    if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("ru"))
 	    locale.setSelection(0);
 	    if (sPref.getString("preference_locales", getResources().getString(R.string.default_locale)).equals("en"))
@@ -89,6 +114,13 @@ public class IntroduceActivityOne extends BaseActivity {
 	    	@Override     
 	    	public void onNothingSelected(AdapterView<?> parentView) {}
 	    }); 
+	    
+	    //set fonts
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), next);
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), back);
+	    HelvFont.HELV_MEDIUM.apply(getApplicationContext(), (TextView)findViewById(R.id.textView1));
+	    HelvFont.HELV_ROMAN.apply(getApplicationContext(), (TextView)findViewById(R.id.textView2));
+	    
 	    
 	}
 	

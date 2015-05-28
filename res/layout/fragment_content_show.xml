@@ -20,6 +20,7 @@
                 android:id="@+id/textContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textSize="21sp"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </ScrollView>
 

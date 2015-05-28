@@ -20,6 +20,7 @@ import android.view.View;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.ActivityLoader;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
+import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
 
 public class IntroduceActivityThree extends BaseActivity {
 	
@@ -123,6 +124,14 @@ public class IntroduceActivityThree extends BaseActivity {
 				dpd.show(getSupportFragmentManager());
 			}
 		});
+	    
+	    //set fonts
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), next);
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), back);
+	    HelvFont.HELV_MEDIUM.apply(getApplicationContext(), (TextView)findViewById(R.id.textView1));
+	    HelvFont.HELV_ROMAN.apply(getApplicationContext(), (TextView)findViewById(R.id.textView2));
+	    HelvFont.HELV_ROMAN.apply(getApplicationContext(), setDate);
+	    HelvFont.HELV_ROMAN.apply(getApplicationContext(), textDateBorn);
 	}
 	
 	String zodiacNumber (int day, int month){

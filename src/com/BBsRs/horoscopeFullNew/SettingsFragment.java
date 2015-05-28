@@ -85,6 +85,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 					ed.putString("preference_zodiac_sign", zodiacNumber(day, month+1));
 					Toast.makeText(getActivity(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(day, month+1))], Toast.LENGTH_LONG).show();
 					ed.commit();
+					activityRefresh();
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
 				}
