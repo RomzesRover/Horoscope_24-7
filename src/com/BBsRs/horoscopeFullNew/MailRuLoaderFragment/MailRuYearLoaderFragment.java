@@ -202,7 +202,7 @@ public class MailRuYearLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horo.mail.ru
                     	Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopeForLoadMailRu)[UNIVERSAL_ID]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("article__text").first().html()+"<br />";
+                    	data = doc.getElementsByClass("article__text").first().html();
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {

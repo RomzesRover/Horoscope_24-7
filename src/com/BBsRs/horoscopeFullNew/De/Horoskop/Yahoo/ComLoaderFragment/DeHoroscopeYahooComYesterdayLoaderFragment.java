@@ -205,7 +205,7 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
                     	c.add(Calendar.DATE, (UNIVERSAL_ID-1));
                         //load and retrieve data from http://de.horoskop.yahoo.com/horoskop/
                     	Document doc = Jsoup.connect("http://de.horoskop.yahoo.com/horoskop/"+getResources().getStringArray(R.array.nameOfzodiacForLoadDeYahooCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].replace("*", "%C3%B6").replace("+", "%C3%BC")+"/astro"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadDeYahooCom)[UNIVERSAL_ID]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)))+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text()+"<br /><br />";
+                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text();
                     	if (!(doc.getElementsByClass("astro-tab-body").first().text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {

@@ -202,7 +202,7 @@ public class HoroscopeComMoneyLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horoscope.com
                     	Document doc = Jsoup.connect("http://astrology.horoscope.com/"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[UNIVERSAL_ID]+"-horoscope-"+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopeCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("fontdef1").get(0).text()+"<br /><br />";
+                    	data = doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("fontdef1").get(0).text();
                     	if (!(doc.getElementsByClass("fontdef1").get(0).text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {

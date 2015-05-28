@@ -204,7 +204,7 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horo.mail.ru
                     	Document doc = Jsoup.connect("http://horo.mail.ru/numerology/calc/31/?v1="+String.valueOf(sPref.getInt("yearBorn", 1995))+"-"+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"-"+String.valueOf(sPref.getInt("dayBorn", 10))+"&v2="+String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH)+1)+"-"+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("article__text").first().html()+"<br />";
+                    	data = doc.getElementsByClass("article__text").first().html();
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
