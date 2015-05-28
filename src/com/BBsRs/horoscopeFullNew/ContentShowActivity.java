@@ -9,6 +9,7 @@ import org.holoeverywhere.slider.SliderMenu;
 import org.holoeverywhere.widget.Toast;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComMonthLoaderFragment;
@@ -31,6 +32,8 @@ import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYesterdayLoaderFragment;
 import com.BBsRs.horoscopeNewEdition.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity {
@@ -124,11 +127,61 @@ public class ContentShowActivity extends BaseActivity {
         }
     }
     
+	//!----------------------------------AD-----------------------------------------------------!
+	/** StartAppAd object declaration */
+	private InterstitialAd interstitial;
+	private final Handler handler = new Handler();
+	
+	public void showIntersttial(){
+		if (interstitial !=null && interstitial.isLoaded()) {
+			interstitial.show();
+		}
+	}
+	//!----------------------------------AD-----------------------------------------------------!
+    
+	public void showAd(){
+		//!----------------------------------AD-----------------------------------------------------!
+		new Thread (new Runnable(){
+			@Override
+			public void run() {
+				try {
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								// Создание межстраничного объявления.
+							    interstitial = new InterstitialAd(ContentShowActivity.this);
+							    interstitial.setAdUnitId("ca-app-pub-6690318766939525/4299272098");
+
+							    // Создание запроса объявления.
+							    AdRequest adRequest = new AdRequest.Builder().build();
+
+							    // Запуск загрузки межстраничного объявления.
+							    interstitial.loadAd(adRequest);
+							} catch (Exception e){
+							}
+						}
+					});
+				} catch (Exception e){
+				}
+			}
+		}).start();
+		//!----------------------------------AD-----------------------------------------------------!
+	}
+	
+	@Override
+	public void onBackPressed(){
+		showIntersttial();
+		super.onBackPressed();
+	}
+    
     @Override
     protected void onResume(){
     	super.onResume();
     	//set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
+        //show AD
+        showAd();
     }
       
 }
