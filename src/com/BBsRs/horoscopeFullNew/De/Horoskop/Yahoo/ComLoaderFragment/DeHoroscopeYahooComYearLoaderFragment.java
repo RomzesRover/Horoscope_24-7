@@ -133,9 +133,9 @@ public class DeHoroscopeYahooComYearLoaderFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         //set titile for action bar
-        getSupportActionBar().setTitle(sPref.getString("preference_name", getResources().getString(R.string.default_name)));
+        getSupportActionBar().setTitle(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID]);
         //set subtitle for a current fragment
-        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+" - "+getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID]);
+        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
         
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){

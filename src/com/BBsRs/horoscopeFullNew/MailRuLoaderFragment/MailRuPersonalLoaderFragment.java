@@ -133,9 +133,9 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         //set titile for action bar
-        getSupportActionBar().setTitle(sPref.getString("preference_name", getResources().getString(R.string.default_name)));
+        getSupportActionBar().setTitle(getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]);
         //set subtitle for a current fragment
-        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+" - "+getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]);
+        getSupportActionBar().setSubtitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
         
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
@@ -167,8 +167,6 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
         	actionProvider.setShareIntent(createShareIntent(
         			getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]
         			+" "+getResources().getString(R.string.share_personal_1)
-        			+" "+getResources().getString(R.string.share_personal_2)
-        			+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
         			+"\n\n"
         			+String.valueOf(textContent.getText())
         			+"\n\n"+getResources().getString(R.string.share_send_from)
@@ -241,8 +239,6 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
                         actionProvider.setShareIntent(createShareIntent(
                         		getResources().getStringArray(R.array.mail_ru_horoscopes)[UNIVERSAL_ID]
                         		+" "+getResources().getString(R.string.share_personal_1)
-                        		+" "+getResources().getString(R.string.share_personal_2)
-                        		+" "+sPref.getString("preference_name", getResources().getString(R.string.default_name))
                         		+"\n\n"
                         		+String.valueOf(textContent.getText())
                         		+"\n\n"+getResources().getString(R.string.share_send_from)

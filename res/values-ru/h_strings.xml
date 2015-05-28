@@ -55,20 +55,16 @@
     <string name="preference_zodiac_signs_1">Знак зодиака</string>
     <string name="preference_provider_1">Поставщик гороскопа</string>
     <string name="preference_provider_2">Выберете Поставщика гороскопа</string>
-    <string name="preference_name_1">Ваше имя</string>
-    <string name="preference_name_2">Введите как вас зовут</string>
     <string name="preference_locale_1">Язык</string>
     <string name="preference_locale_2">Русский</string>
     <string name="default_sign">0</string>
     <string name="default_provider">0</string>
     <string name="default_locale">ru</string>
-    <string name="default_name">Любитель гороскопов</string>
     <string name="share">Поделиться</string>
     <string name="share_content_horo_for">Гороскоп на</string>
     <string name="share_content_horo_for_2">для знака зодиака:</string>
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
     <string name="share_personal_1">гороскоп</string>
-    <string name="share_personal_2">для пользователя</string>
     <string name="share_money_1">Денежный</string>
     <string name="share_send_from">Отправлено из приложения Гороскоп</string>
     <string name="pre_use">Для начала вам необходимо указать информацию о себе :)</string>

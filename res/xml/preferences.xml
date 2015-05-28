@@ -3,16 +3,6 @@
     xmlns:holo="http://schemas.android.com/apk/res-auto" >
 
     <PreferenceCategory android:title="@string/preference_base" >
-        <EditTextPreference
-            android:id="@+id/preference_name"
-            android:defaultValue="@string/default_name"
-            android:dialogIcon="@drawable/logo_human"
-            android:dialogTitle="@string/preference_name_2"
-            android:icon="@drawable/logo_human"
-            android:key="preference_name"
-            android:summary="@string/preference_name_2"
-            android:title="@string/preference_name_1" />
-
         <DatePreference
             android:id="@+id/preference_date_born"
             android:icon="@drawable/logo_calendar"

@@ -55,21 +55,17 @@
     <string name="preference_zodiac_signs_1">Sternzeichen</string>
     <string name="preference_provider_1">Horoskop Anbieter</string>
     <string name="preference_provider_2">Wählen Sie ein Horoskop-Anbieter</string>
-    <string name="preference_name_1">Ihren Namen</string>
-    <string name="preference_name_2">Wie ist dein Name</string>
     <string name="preference_locale_1">Sprache</string>
     <string name="preference_locale_2">Deutsch</string>
     <string name="default_sign">0</string>
     <string name="default_provider">4</string>
     <string name="default_locale">de</string>
-    <string name="default_name">Horoskope Liebhaber</string>
     <string name="share">Aktie</string>
     <string name="share_content_horo_for">Horoskop für</string>
     <string name="share_content_horo_for_2">Für Sternzeichen:</string>
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
     <string name="share_send_from">Nachricht aus der Anwendung Horoskop</string>
     <string name="share_personal_1">Horoskop</string>
-    <string name="share_personal_2">für Anwender</string>
     <string name="share_money_1">Geld</string>
     <string name="pre_use">Zunächst erzeugen Informationen über sich selbst:)</string>
     <string name="automatic_determined_sign">Automatische Ermittlung der Vorzeichen</string>

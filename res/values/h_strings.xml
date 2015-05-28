@@ -202,21 +202,17 @@
     <string name="preference_zodiac_signs_1">Zodiac sign</string>
     <string name="preference_provider_1">Horoscope provider</string>
     <string name="preference_provider_2">Select a horoscope provider</string>
-    <string name="preference_name_1">Your name</string>
-    <string name="preference_name_2">What is your name</string>
     <string name="preference_locale_1">Language</string>
     <string name="preference_locale_2">English</string>
     <string name="default_sign">0</string>
     <string name="default_provider">2</string>
     <string name="default_locale">en</string>
-    <string name="default_name">Horoscopes lover</string>
     <string name="share">Share</string>
     <string name="share_content_horo_for">Horoscope for</string>
     <string name="share_content_horo_for_2">for zodiac sign:</string>
     <string name="share_content_url">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeFullNew</string>
     <string name="share_send_from">Send from application Horoscope</string>
     <string name="share_personal_1">horoscope</string>
-    <string name="share_personal_2">for user</string>
     <string name="share_money_1">Money</string>
     <string name="pre_use">First of all produce information about yourself :)</string>
     <string name="automatic_determined_sign">Automatic determination of the sign is</string>
