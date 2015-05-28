@@ -6,6 +6,21 @@
 
     <integer name="user_timeout">10000</integer>
     <!-- end of data only for download from internet -->
+    
+    <string-array name="zodiac_signs_imgs_whoa">
+        <item>@drawable/a</item>
+        <item>@drawable/b</item>
+        <item>@drawable/c</item>
+        <item>@drawable/d</item>
+        <item>@drawable/e</item>
+        <item>@drawable/f</item>
+        <item>@drawable/g</item>
+        <item>@drawable/h</item>
+        <item>@drawable/i</item>
+        <item>@drawable/j</item>
+        <item>@drawable/k</item>
+        <item>@drawable/l</item>
+    </string-array>
 
 
     <!-- This data below closed to translate ! Using only for download mail.ru horoscope -->

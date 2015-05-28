@@ -9,6 +9,7 @@ import org.holoeverywhere.slider.SliderMenu;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -195,6 +196,10 @@ public class ContentShowActivity extends BaseActivity {
     	super.onResume();
     	//set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
+        //set icon
+        TypedArray images = getResources().obtainTypedArray(R.array.zodiac_signs_imgs_whoa);
+        getSupportActionBar().setIcon(images.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1));
+        images.recycle();
         //show AD
         showAd();
     }

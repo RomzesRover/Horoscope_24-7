@@ -157,7 +157,7 @@ public class IntroduceActivityThree extends BaseActivity {
 			 return "6";
 		 } else if((month == 10) || (month == 11) && (day <= 22)) {
 			 return "7";
-		 } else if(month == 12) {
+		 } else if(month == 12 || month == 11) {
 			 return "8";
 		 }
 		 return "0";
