@@ -200,8 +200,6 @@
     <string name="preference_date_2">Enter when you born</string>
     <string name="preference_zodiac_signs_2">Select your zodiac sign</string>
     <string name="preference_zodiac_signs_1">Zodiac sign</string>
-    <string name="preference_provider_1">Horoscope provider</string>
-    <string name="preference_provider_2">Select a horoscope provider</string>
     <string name="preference_locale_1">Language</string>
     <string name="preference_locale_2">English</string>
     <string name="default_sign">0</string>

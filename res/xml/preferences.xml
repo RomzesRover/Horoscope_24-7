@@ -22,17 +22,6 @@
             android:summary="@string/preference_zodiac_signs_2"
             android:title="@string/preference_zodiac_signs_1" />
         <ListPreference
-            android:id="@+id/preference_provider"
-            android:defaultValue="@string/default_provider"
-            android:dialogIcon="@drawable/logo_providers"
-            android:dialogTitle="@string/preference_provider_2"
-            android:entries="@array/providers"
-            android:entryValues="@array/providers_entryValues"
-            android:icon="@drawable/logo_providers"
-            android:key="preference_provider"
-            android:summary="@string/preference_provider_2"
-            android:title="@string/preference_provider_1" />
-        <ListPreference
             android:id="@+id/preference_locale"
             android:defaultValue="@string/default_locale"
             android:dialogIcon="@drawable/logo_locales"

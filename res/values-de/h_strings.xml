@@ -53,8 +53,6 @@
     <string name="preference_date_2">Geben Sie, wenn Sie geboren</string>
     <string name="preference_zodiac_signs_2">Wählen Sie Ihr Sternzeichen</string>
     <string name="preference_zodiac_signs_1">Sternzeichen</string>
-    <string name="preference_provider_1">Horoskop Anbieter</string>
-    <string name="preference_provider_2">Wählen Sie ein Horoskop-Anbieter</string>
     <string name="preference_locale_1">Sprache</string>
     <string name="preference_locale_2">Deutsch</string>
     <string name="default_sign">0</string>

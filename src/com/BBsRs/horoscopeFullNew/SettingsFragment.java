@@ -27,7 +27,6 @@ public class SettingsFragment extends BasePreferenceFragment {
     
     DatePreference myDatePref;
     ListPreference myLocaleListPref;
-    ListPreference myProviderListPref;
     
 	AlertDialog alert = null;	
 	
@@ -106,23 +105,6 @@ public class SettingsFragment extends BasePreferenceFragment {
 				ed.commit();
 				setLocale((String) newValue);
 				updateProviderToLang();
-				activityRefresh();
-				return false;
-			}
-        	
-        });
-        
-        //setting up provider change preference, cuz we need change provider.
-        myProviderListPref = (ListPreference) findPreference("preference_provider");
-        
-        myProviderListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
-
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-				Editor ed = sPref.edit();   
-				ed.putString("preference_provider", (String) newValue);
-				ed.commit();
 				activityRefresh();
 				return false;
 			}

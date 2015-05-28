@@ -53,8 +53,6 @@
     <string name="preference_date_2">Введите когда вы родились</string>
     <string name="preference_zodiac_signs_2">Выберета ваш знак зодиака</string>
     <string name="preference_zodiac_signs_1">Знак зодиака</string>
-    <string name="preference_provider_1">Поставщик гороскопа</string>
-    <string name="preference_provider_2">Выберете Поставщика гороскопа</string>
     <string name="preference_locale_1">Язык</string>
     <string name="preference_locale_2">Русский</string>
     <string name="default_sign">0</string>
