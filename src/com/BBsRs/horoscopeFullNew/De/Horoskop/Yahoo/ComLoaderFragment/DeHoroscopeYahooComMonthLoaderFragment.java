@@ -192,7 +192,7 @@ public class DeHoroscopeYahooComMonthLoaderFragment extends BaseFragment {
                     	Calendar c = Calendar.getInstance();
                         //load and retrieve data from http://de.horoskop.yahoo.com/horoskop/
                     	Document doc = Jsoup.connect("http://de.horoskop.yahoo.com/horoskop/"+getResources().getStringArray(R.array.nameOfzodiacForLoadDeYahooCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].replace("*", "%C3%B6").replace("+", "%C3%BC")+"/astro"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadDeYahooCom)[UNIVERSAL_ID]+getResources().getStringArray(R.array.nameOfmonthsForLoadDeYahooCom)[c.get(Calendar.MONTH)].replace("*", "%C3%A4")+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text()+"<br /><br />"+getResources().getString(R.string.copyright_de_horoskop_yahoo_com);
+                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text()+"<br /><br />";
                     	if (!(doc.getElementsByClass("astro-tab-body").first().text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {

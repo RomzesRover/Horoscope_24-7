@@ -44,7 +44,6 @@
         <item>2015</item>
     </string-array>
 
-    <string name="copyright_horo_mail_ru">© Леди Mail Ru, эксклюзивный прогноз</string>
     <!-- end of data only for download mail.ru horoscope -->
 
 
@@ -84,7 +83,6 @@
         <item>free-monthly</item>
     </string-array>
 
-    <string name="copyright_horoscope_com">© Copyright 2014 - Horoscope.com, Inc. - All rights reserved</string>
     <!-- end of data only for download horoscope.com horoscope -->
 
 
@@ -134,7 +132,6 @@
         <item>dezember<item></item></item>
     </string-array>
 
-    <string name="copyright_de_horoskop_yahoo_com">© Bereitgestellt von Viversum</string>
     <!-- end of data only for download de.horoscope.yahoo.com horoscope -->
 
 
