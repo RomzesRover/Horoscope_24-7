@@ -7,14 +7,17 @@ import org.holoeverywhere.widget.TextView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
+import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
 import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne;
 import com.BBsRs.horoscopeNewEdition.R;
 
@@ -111,6 +114,14 @@ public class ActivityLoader extends BaseActivity {
 		//start timer
 		CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
 		CountDownTimer.start();							//start timer
+		
+		//set fonts
+	    HelvFont.HELV_LIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
+	    
+        //set icon
+        TypedArray images = getResources().obtainTypedArray(R.array.zodiac_signs_imgs_whoa_logos);
+        ((ImageView)this.findViewById(R.id.logo)).setImageResource(images.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1));
+        images.recycle();
 	}
 
     private boolean isNetworkAvailable() {

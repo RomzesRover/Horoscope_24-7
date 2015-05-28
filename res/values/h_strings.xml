@@ -21,6 +21,21 @@
         <item>@drawable/k</item>
         <item>@drawable/l</item>
     </string-array>
+    
+        <string-array name="zodiac_signs_imgs_whoa_logos">
+        <item>@drawable/logo_a</item>
+        <item>@drawable/logo_b</item>
+        <item>@drawable/logo_c</item>
+        <item>@drawable/logo_d</item>
+        <item>@drawable/logo_e</item>
+        <item>@drawable/logo_f</item>
+        <item>@drawable/logo_g</item>
+        <item>@drawable/logo_h</item>
+        <item>@drawable/logo_i</item>
+        <item>@drawable/logo_j</item>
+        <item>@drawable/logo_k</item>
+        <item>@drawable/logo_l</item>
+    </string-array>
 
 
     <!-- This data below closed to translate ! Using only for download mail.ru horoscope -->
