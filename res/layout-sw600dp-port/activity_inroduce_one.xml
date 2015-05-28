@@ -88,19 +88,6 @@
             android:layout_marginBottom="3dp"
             android:src="@color/slider_menu_custom_text_color" />
         
-        <TextView
-            android:id="@+id/textAgreement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/linearLayout1"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="@dimen/fragment_standart_padding"
-            android:text="@string/clickable_string"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/simple_white_color"
-            android:textStyle="italic"
-            android:layout_marginLeft="@dimen/intro_def_padd"
-            android:layout_marginRight="@dimen/intro_def_padd"  />
 
     </RelativeLayout>
     

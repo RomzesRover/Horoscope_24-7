@@ -9,7 +9,7 @@
 
 
     <!-- This data below closed to translate ! Using only for download mail.ru horoscope -->
-    <string name="mail_ru_title">horo.mail.ru</string>
+    <string name="mail_ru_title">Гороскоп</string>
 
     <string-array name="mail_ru_horoscopes">
         <item>Вчера</item>
@@ -48,7 +48,7 @@
 
 
     <!-- This data below closed to translate ! Using only for download horoscope.com horoscope -->
-    <string name="horoscope_com_title">horoscope.com</string>
+    <string name="horoscope_com_title">Horoscope</string>
 
     <string-array name="horoscope_com_horoscopes">
         <item>Yesterday</item>
@@ -87,7 +87,7 @@
 
 
     <!-- This data below closed to translate ! Using only for download de.horoscope.yahoo. horoscope -->
-    <string name="de_horoskop_yahoo_com_title">de.horoskop.yahoo.com</string>
+    <string name="de_horoskop_yahoo_com_title">Horoskop</string>
 
     <string-array name="de_horoskop_yahoo_com_horoscopes">
         <item>Gestern</item>
@@ -220,9 +220,6 @@
     <string name="introduce_start">START!</string>
     <string name="introduce_date">SET BIRTH DATE</string>
     <string name="introduce_date_check">Check your data is correct</string>
-    <string name="clickable_string">by clicking next, you agree with our [user agreement]</string>
-    <string name="agreement_top">Agreement:</string>
-    <string name="agreement">For users:\n • I agree that the application performs the function of a conventional internet browser\n • I agree to use this app for free only if I will turn on advertisment\n • I agree that the content provided by third party Internet sites, and nothing against the content does not have the\n\nFor right holders:\n • I agree that the application performs the function of a conventional internet browser\n • If the information belongs to me, and I do not want her to be freely disseminated, I personally undertake to try to remove this information from sites that can open this Internet browser\n • If I am unable to delete the information from the site, I agree to contact the developer of the application to negotiate the removal of the possibility to read information that belongs to me, the right holder\n\nContact:\n • Roman Gaitbaev\n • romzesrover @ gmail. com\n • vk.com / romzesrover</string>
 
     <string-array name="moths_of_year">
         <item>January</item>
