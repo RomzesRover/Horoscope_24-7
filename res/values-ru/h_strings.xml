@@ -90,5 +90,10 @@
         <item>Ноября</item>
         <item>Декабря</item>
     </string-array>
+    
+    <string name="title_dialog">Нравится это приложение?</string>
+    <string name="review">Оцени на Гугл Плей!</string>
+    <string name="review_summary">Ты сделаешь неоценимый вклад в развитие проекта!</string>
+    <string name="ok">Хорошо</string>
 
 </resources>

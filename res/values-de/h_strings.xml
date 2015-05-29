@@ -91,5 +91,10 @@
         <item>November</item>
         <item>Dezember</item>
     </string-array>
+    
+    <string name="title_dialog">Gefällt Ihnen dieses Anwendung?</string>
+    <string name="review">Bewertung auf Google Play</string>
+    <string name="review_summary">Sie werden einen unschätzbaren Beitrag zur Entwicklung des Projekts zu machen!</string>
+    <string name="ok">Ok</string>
 
 </resources>

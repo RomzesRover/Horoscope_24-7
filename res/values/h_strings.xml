@@ -265,5 +265,10 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+    
+    <string name="title_dialog">Like this app?</string>
+    <string name="review">Review on GPlay!</string>
+    <string name="review_summary">You will make an invaluable contribution to the development of the project!</string>
+    <string name="ok">Ok</string>
 
 </resources>

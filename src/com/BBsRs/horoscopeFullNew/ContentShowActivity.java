@@ -1,18 +1,33 @@
 package com.BBsRs.horoscopeFullNew;
 
+import java.util.Calendar;
+
+import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.addon.AddonSlider;
 import org.holoeverywhere.addon.Addons;
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.preference.HelvFont;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
+import org.holoeverywhere.widget.RelativeLayout;
+import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
+import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComMonthLoaderFragment;
@@ -20,6 +35,7 @@ import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscop
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYesterdayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComMoneyLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComPersonalLoaderFragment;
@@ -52,6 +68,9 @@ public class ContentShowActivity extends BaseActivity {
     SharedPreferences sPref;
     
     boolean check = false;
+    
+    //alert dialog
+    AlertDialog alert = null;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +147,79 @@ public class ContentShowActivity extends BaseActivity {
     		ed.commit();
     		check=true;
         }
+        
+        showDialog();
+        
     }
+    
+	public void showDialog(){
+		
+		final String shownNotifacation = "SHOWN_NOTIFICATION,HORO";
+		final String clickedReview = "CLICKED_REVIEW,HORO";
+		
+		if (sPref.getBoolean(clickedReview, false))
+			return;
+		
+		//calendar job
+		if (sPref.getLong(shownNotifacation, -1)==-1){
+			sPref.edit().putLong(shownNotifacation, System.currentTimeMillis()).commit();
+		}
+		
+		//init all dates
+		Calendar shownNotification = Calendar.getInstance();
+		shownNotification.setTimeInMillis(sPref.getLong(shownNotifacation, System.currentTimeMillis()));
+				
+		Calendar currentDate = Calendar.getInstance();
+		currentDate.setTimeInMillis(System.currentTimeMillis());
+				
+		//add 3 days to shown notification
+		shownNotification.add(Calendar.DATE, +2);
+		
+		if (currentDate.before(shownNotification))
+			return;
+		
+		sPref.edit().putLong(shownNotifacation, System.currentTimeMillis()).commit();
+		
+ 		final Context context = ContentShowActivity.this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
+    	View content = inflater.inflate(R.layout.dialog_content_sponsor, null);
+    	
+    	//set fonts
+    	HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.textTitle));
+	    HelvFont.HELV_MEDIUM.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView05));
+	    HelvFont.HELV_ROMAN.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView04));
+    	
+    	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
+    	makeReview.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sPref.edit().putBoolean(clickedReview, true).commit();
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse("market://details?id="+getPackageName()));
+				startActivity(intent);
+				makeReview.setVisibility(View.GONE);
+				alert.dismiss();
+			}
+		});
+    	
+    	//with font
+    	SpannableString sb = new SpannableString(getString(R.string.ok));
+        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+    	
+    	build.setPositiveButton(sb, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				alert.dismiss();
+			}
+		});
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
+	}
+
     
 	//!----------------------------------AD-----------------------------------------------------!
 	/** StartAppAd object declaration */
