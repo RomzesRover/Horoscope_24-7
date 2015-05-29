@@ -8,6 +8,7 @@ import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
+import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 import org.jsoup.Jsoup;
@@ -33,13 +34,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ScrollView;
 
-import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
 import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
+import com.BBsRs.horoscopeNewEdition.R;
 
 public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
 	
@@ -133,6 +133,8 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
         
       //set fonts
         HelvFont.HELV_LIGHT.apply(getActivity(), textContent);
+	    HelvFont.HELV_LIGHT.apply(getActivity(), errorMessage);
+	    HelvFont.HELV_ROMAN.apply(getActivity(), errorRetryButton);
         
         return contentView;
     }

@@ -2,6 +2,7 @@ package com.BBsRs.horoscopeFullNew;
 
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 
@@ -13,7 +14,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
@@ -117,6 +117,9 @@ public class ActivityLoader extends BaseActivity {
 		
 		//set fonts
 	    HelvFont.HELV_LIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
+	    HelvFont.HELV_LIGHT.apply(this, errorMessage);
+	    HelvFont.HELV_ROMAN.apply(this, errorRetryButton);
+	    
 	    
         //set icon
         TypedArray images = getResources().obtainTypedArray(R.array.zodiac_signs_imgs_whoa_logos);

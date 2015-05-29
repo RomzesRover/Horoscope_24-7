@@ -32,7 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
+import org.holoeverywhere.widget.Button;
 import android.widget.ScrollView;
 
 import com.BBsRs.horoscopeNewEdition.R;
@@ -132,6 +132,8 @@ public class HoroscopeComTodayLoaderFragment extends BaseFragment {
         
       //set fonts
         HelvFont.HELV_LIGHT.apply(getActivity(), textContent);
+	    HelvFont.HELV_LIGHT.apply(getActivity(), errorMessage);
+	    HelvFont.HELV_ROMAN.apply(getActivity(), errorRetryButton);
         
         return contentView;
     }
