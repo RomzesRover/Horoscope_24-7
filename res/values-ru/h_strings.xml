@@ -95,5 +95,12 @@
     <string name="review">Оцени на Гугл Плей!</string>
     <string name="review_summary">Ты сделаешь неоценимый вклад в развитие проекта!</string>
     <string name="ok">Хорошо</string>
+    
+    <string-array name="notification_messages">
+        <item>Хороший день начинается с прочтения свежего гороскопа!</item>
+        <item>Не забудьте узнать ваш прогноз на сегодня!</item>
+        <item>Нам только что сообщили, что ждёт вас сегодня!</item>
+        <item>Давайте выясним, благоволят ли звезды вам сегодня!</item>
+    </string-array>
 
 </resources>

@@ -1,11 +1,16 @@
 package com.BBsRs.horoscopeFullNew;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -13,12 +18,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
 import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
 import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne;
+import com.BBsRs.horoscopeNewEdition.NotificationService;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class ActivityLoader extends BaseActivity {
@@ -56,6 +63,9 @@ public class ActivityLoader extends BaseActivity {
 	        } else {
 	        	Thread thr=new Thread(new Runnable() {			
 			        public void run() {
+			        	//start service
+			        	scheduleUpdate(getApplicationContext());
+			        	//create intent
 			        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
 						//restart activity
 					    startActivity(refresh);   
@@ -133,4 +143,33 @@ public class ActivityLoader extends BaseActivity {
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null;
 	}
+    
+    private static void scheduleUpdate(Context context) {
+    	cancelUpdates(context);
+    	
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        
+        Calendar currentDate = Calendar.getInstance();
+		currentDate.setTimeInMillis(System.currentTimeMillis());
+		
+		//send notification everyday at morning
+		currentDate.set(Calendar.HOUR_OF_DAY, 10);
+		currentDate.set(Calendar.MINUTE, 0);
+		currentDate.set(Calendar.SECOND, 0);
+		
+		currentDate.add(Calendar.DATE, +1);
+
+        Log.i("From loader", "Scheduling next update at " + new Date(currentDate.getTimeInMillis()));
+        am.set(AlarmManager.RTC_WAKEUP, currentDate.getTimeInMillis(), getUpdateIntent(context));
+    }
+    
+    public static PendingIntent getUpdateIntent(Context context) {
+        Intent i = new Intent(context, NotificationService.class);
+        return PendingIntent.getService(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+    
+    public static void cancelUpdates(Context context) {
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        am.cancel(getUpdateIntent(context));
+    }
 }

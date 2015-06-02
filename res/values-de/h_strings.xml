@@ -96,5 +96,12 @@
     <string name="review">Bewertung auf Google Play</string>
     <string name="review_summary">Sie werden einen unschätzbaren Beitrag zur Entwicklung des Projekts zu machen!</string>
     <string name="ok">Ok</string>
+    
+        <string-array name="notification_messages">
+        <item>Ein guter Tag beginnt mit einem frischen Horoskop Lesen!</item>
+        <item>Vergessen Sie nicht, Ihr Horoskop für heute lernen!</item>
+        <item>Wir haben gerade darüber informiert, dass Sie heute erwartet!</item>
+        <item>Lassen Sie uns herausfinden, ob die Sterne bevorzugen Sie noch heute!</item>
+    </string-array>
 
 </resources>

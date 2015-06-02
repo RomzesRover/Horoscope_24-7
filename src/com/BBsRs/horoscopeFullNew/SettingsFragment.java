@@ -15,9 +15,13 @@ import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.Toast;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
+import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class SettingsFragment extends BasePreferenceFragment {
@@ -116,8 +120,14 @@ public class SettingsFragment extends BasePreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getSupportActionBar().setTitle(R.string.app_name);
-        getSupportActionBar().setSubtitle(R.string.preference);
+        //set titile for action bar with custom font
+        SpannableString sb = new SpannableString(getString(R.string.app_name));
+        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(sb);
+        //set subtitle for a current fragment with custom font
+        sb = new SpannableString(getString(R.string.preference));
+        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setSubtitle(sb);
     }
     
 	String zodiacNumber (int day, int month){

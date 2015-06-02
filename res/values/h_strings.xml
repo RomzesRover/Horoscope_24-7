@@ -271,4 +271,11 @@
     <string name="review_summary">You will make an invaluable contribution to the development of the project!</string>
     <string name="ok">Ok</string>
 
+        <string-array name="notification_messages">
+        <item>A good day starts with a fresh horoscope reading!</item>
+        <item>Do not forget to learn your horoscope for today!</item>
+        <item>We have just been informed that awaits you today!</item>
+        <item>Let\'s find out if the stars favor you today!</item>
+    </string-array>
+    
 </resources>
