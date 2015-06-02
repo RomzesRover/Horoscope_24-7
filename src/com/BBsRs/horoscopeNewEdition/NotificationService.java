@@ -17,6 +17,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -125,6 +127,9 @@ public class NotificationService extends Service {
 				//create new
 				mBuilder = new NotificationCompat.Builder(mContext);
 				
+				// define sound URI, the sound to be played when there's a notification
+				Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+				
 				mBuilder.setContentTitle(mContext.getString(R.string.app_name))
 				.setContentText(mContext.getResources().getStringArray(R.array.notification_messages)[randomNum])
 				.setSmallIcon(images.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1))
@@ -132,7 +137,8 @@ public class NotificationService extends Service {
 				.setOngoing(false)
 				.setAutoCancel(true)
 				.setProgress(0, 0, false)
-				.setPriority(NotificationCompat.PRIORITY_HIGH);;
+				.setSound(soundUri)
+				.setPriority(NotificationCompat.PRIORITY_HIGH);
 				
 				//show not
 				notification = mBuilder.build();
