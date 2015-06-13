@@ -152,15 +152,20 @@ public class ActivityLoader extends BaseActivity {
         Calendar currentDate = Calendar.getInstance();
 		currentDate.setTimeInMillis(System.currentTimeMillis());
 		
-		//send notification everyday at morning
-		currentDate.set(Calendar.HOUR_OF_DAY, 10);
-		currentDate.set(Calendar.MINUTE, 0);
-		currentDate.set(Calendar.SECOND, 0);
+        Calendar workDate = Calendar.getInstance();
+        workDate.setTimeInMillis(System.currentTimeMillis());
 		
-		currentDate.add(Calendar.DATE, +1);
-
-        Log.i("From loader", "Scheduling next update at " + new Date(currentDate.getTimeInMillis()));
-        am.set(AlarmManager.RTC_WAKEUP, currentDate.getTimeInMillis(), getUpdateIntent(context));
+		//send notification everyday at morning
+        workDate.set(Calendar.HOUR_OF_DAY, 10);
+        workDate.set(Calendar.MINUTE, 0);
+        workDate.set(Calendar.SECOND, 0);
+		
+        if (workDate.before(currentDate)){
+        	workDate.add(Calendar.DATE, +1);
+        }
+        
+        Log.i("From_LOADER", "Scheduling next update at " + new Date(workDate.getTimeInMillis()));
+        am.set(AlarmManager.RTC_WAKEUP, workDate .getTimeInMillis(), getUpdateIntent(context));
     }
     
     public static PendingIntent getUpdateIntent(Context context) {
