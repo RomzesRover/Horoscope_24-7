@@ -240,7 +240,13 @@ public class ContentShowActivity extends BaseActivity {
 			public void run() {
 				try {
 					
-					String AdSource = Jsoup.connect("http://brothers-rovers.3dn.ru/HoroscopeNewEd/adsource_between.txt").timeout(10000).get().text();
+					String AdSource = "ca-app-pub-6690318766939525/2467455298";
+					try {
+						AdSource = Jsoup.connect("http://brothers-rovers.3dn.ru/HoroscopeNewEd/adsource_between.txt").timeout(10000).get().text();
+					} catch (Exception e) {
+						AdSource = "ca-app-pub-6690318766939525/2467455298";
+						e.printStackTrace();
+					}
 					
 					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
 						Log.i("AD", "Problems with load AD !");

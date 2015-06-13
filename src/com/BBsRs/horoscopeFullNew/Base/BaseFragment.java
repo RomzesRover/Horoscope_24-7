@@ -30,7 +30,13 @@ public class BaseFragment extends Fragment{
 			public void run() {
 				try {
 					
-					String AdSource = Jsoup.connect("http://brothers-rovers.3dn.ru/HoroscopeNewEd/adsource.txt").timeout(10000).get().text();
+					String AdSource = "ca-app-pub-6690318766939525/9990722098";
+					try {
+						AdSource = Jsoup.connect("http://brothers-rovers.3dn.ru/HoroscopeNewEd/adsource.txt").timeout(10000).get().text();
+					} catch (Exception e) {
+						AdSource = "ca-app-pub-6690318766939525/9990722098";
+						e.printStackTrace();
+					}
 					
 					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
 						Log.i("AD", "Problems with load AD !");
