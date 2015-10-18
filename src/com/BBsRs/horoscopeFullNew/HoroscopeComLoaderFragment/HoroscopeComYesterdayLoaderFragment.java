@@ -203,9 +203,9 @@ public class HoroscopeComYesterdayLoaderFragment extends BaseFragment {
                     	error=true;
                     	
                         //load and retrieve data from horoscope.com
-                    	Document doc = Jsoup.connect("http://my.horoscope.com/astrology/"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[UNIVERSAL_ID]+"-horoscope-"+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopeCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("fontdef1").get(1).text();
-                    	if (!(doc.getElementsByClass("fontdef1").get(1).text().length()<10))
+                    	Document doc = Jsoup.connect("http://www.horoscope.com/us/horoscopes/general/horoscope-general"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[UNIVERSAL_ID]+".aspx?sign="+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopeCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	data = doc.getElementsByClass("block-horoscope-date").get(0).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("block-horoscope-text").get(0).text();
+                    	if (!(doc.getElementsByClass("block-horoscope-text").get(0).text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
                     	error=true;

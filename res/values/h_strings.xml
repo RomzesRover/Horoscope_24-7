@@ -90,27 +90,27 @@
         <item>Month</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadHoroscopeCom">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
     </string-array>
     <string-array name="nameOfHoroscopecForLoadHoroscopeCom">
-        <item>yesterday</item>
-        <item>free-daily</item>
-        <item>tomorrow</item>
+        <item>-daily-yesterday</item>
+        <item>-daily-today</item>
+        <item>-daily-tomorrow</item>
         <item>daily-numerology</item>
-        <item>free-weekly</item>
-        <item>free-weekly-money</item>
-        <item>free-monthly</item>
+        <item>-weekly</item>
+        <item>-money-weekly</item>
+        <item>-monthly</item>
     </string-array>
 
     <!-- end of data only for download horoscope.com horoscope -->
