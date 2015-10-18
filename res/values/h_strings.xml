@@ -48,7 +48,8 @@
         <item>Персональный</item>
         <item>Неделя</item>
         <item>Месяц</item>
-        <item>Год</item>
+        <item>Год 2015</item>
+        <item>Год 2016</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadMailRu">
         <item>aries</item>
@@ -72,6 +73,7 @@
         <item>week</item>
         <item>month</item>
         <item>2015</item>
+        <item>2016</item>
     </string-array>
 
     <!-- end of data only for download mail.ru horoscope -->
