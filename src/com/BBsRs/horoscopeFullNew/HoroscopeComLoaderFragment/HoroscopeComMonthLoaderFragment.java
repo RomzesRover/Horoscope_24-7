@@ -229,39 +229,43 @@ public class HoroscopeComMonthLoaderFragment extends BaseFragment {
 
                 @Override
                 protected void onPostExecute(Void result) {
-                    super.onPostExecute(result);
-                    
-                    if (error){
-                    	scrollView.setVisibility(View.GONE);
-                    	relativeErrorLayout.setVisibility(View.VISIBLE);
-                    	errorRetryButton.setEnabled(true);
-                    } else {
-                    	scrollView.setVisibility(View.VISIBLE);
-                    	relativeErrorLayout.setVisibility(View.GONE);
-                    	
-                    	//download data is cancelled, setting up views 
-                    	textContent.setText(Html.fromHtml(data)+" ");
-                    	
-                    
-                    	//with fly up animation
-                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-                    	textContent.startAnimation(flyUpAnimation);
-                    	
-                    	//set shareable content
-                    	actionProvider.setShareIntent(createShareIntent(
-                    			getResources().getString(R.string.share_content_horo_for)
-                    			+" "+getResources().getStringArray(R.array.horoscope_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
-                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
-                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
-                    			+"\n\n"
-                    			+String.valueOf(textContent.getText())
-                    			+"\n\n"+getResources().getString(R.string.share_send_from)
-                    			+"\n"+getResources().getString(R.string.share_content_url)));
-                    }
-                    
-                    
-                    // Notify PullToRefreshLayout that the refresh has finished
-                    mPullToRefreshLayout.setRefreshComplete();
+                	try{
+	                    super.onPostExecute(result);
+	                    
+	                    if (error){
+	                    	scrollView.setVisibility(View.GONE);
+	                    	relativeErrorLayout.setVisibility(View.VISIBLE);
+	                    	errorRetryButton.setEnabled(true);
+	                    } else {
+	                    	scrollView.setVisibility(View.VISIBLE);
+	                    	relativeErrorLayout.setVisibility(View.GONE);
+	                    	
+	                    	//download data is cancelled, setting up views 
+	                    	textContent.setText(Html.fromHtml(data)+" ");
+	                    	
+	                    
+	                    	//with fly up animation
+	                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+	                    	textContent.startAnimation(flyUpAnimation);
+	                    	
+	                    	//set shareable content
+	                    	actionProvider.setShareIntent(createShareIntent(
+	                    			getResources().getString(R.string.share_content_horo_for)
+	                    			+" "+getResources().getStringArray(R.array.horoscope_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
+	                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
+	                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+	                    			+"\n\n"
+	                    			+String.valueOf(textContent.getText())
+	                    			+"\n\n"+getResources().getString(R.string.share_send_from)
+	                    			+"\n"+getResources().getString(R.string.share_content_url)));
+	                    }
+	                    
+	                    
+	                    // Notify PullToRefreshLayout that the refresh has finished
+	                    mPullToRefreshLayout.setRefreshComplete();
+                	} catch (Exception e){
+                		e.printStackTrace();
+                	}
                 }
             }.execute();
 		}
