@@ -244,7 +244,7 @@ public class ContentShowActivity extends BaseActivity {
 					
 					String AdSource = "ca-app-pub-6690318766939525/2467455298";
 					try {
-						AdSource = Jsoup.connect("http://brothers-rowers.3dn.ru/HoroscopeNew/adsource_between.txt").timeout(10000).get().text();
+						AdSource = Jsoup.connect("https://raw.githubusercontent.com/RomzesRover/Horoscope_24-7/new_edition/horo_files/adsource_between.txt").timeout(10000).get().text();
 					} catch (Exception e) {
 						AdSource = "ca-app-pub-6690318766939525/2467455298";
 						e.printStackTrace();
