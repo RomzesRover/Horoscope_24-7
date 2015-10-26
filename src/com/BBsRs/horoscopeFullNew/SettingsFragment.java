@@ -4,6 +4,7 @@ package com.BBsRs.horoscopeFullNew;
 import java.util.Calendar;
 
 import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.preference.CheckBoxPreference;
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.ListPreference;
@@ -12,6 +13,8 @@ import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
+import org.holoeverywhere.preference.TimePreference;
+import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
 import org.holoeverywhere.widget.Toast;
 
 import android.content.Intent;
@@ -30,9 +33,12 @@ public class SettingsFragment extends BasePreferenceFragment {
     SharedPreferences sPref;
     
     DatePreference myDatePref;
-    ListPreference myLocaleListPref;
+    ListPreference myLocaleListPref, myZodiacSignPref;
+    CheckBoxPreference myNotificationsPref;
+    TimePreference myNotificationsTimePref;
     
 	AlertDialog alert = null;	
+	Calendar cal;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +71,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         //setting up date change preference, cuz we need save date.
         myDatePref = (DatePreference) findPreference("preference_date_born");
         
-        Calendar cal=Calendar.getInstance();
+        cal = Calendar.getInstance();
         myDatePref.setDay(sPref.getInt("dayBorn", cal.get(Calendar.DAY_OF_MONTH)));
         myDatePref.setMonth(sPref.getInt("monthBorn", cal.get(Calendar.MONTH)));
         myDatePref.setYear(sPref.getInt("yearBorn", cal.get(Calendar.YEAR)));
@@ -93,13 +99,14 @@ public class SettingsFragment extends BasePreferenceFragment {
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
 				}
+				
+				updateSummary();
 				return false;
 			}
         });
         
         //setting up locale change preference, cuz we need change locale.
         myLocaleListPref = (ListPreference) findPreference("preference_locales");
-        
         myLocaleListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
 
 			@Override
@@ -115,6 +122,63 @@ public class SettingsFragment extends BasePreferenceFragment {
 			}
         	
         });
+        
+        myZodiacSignPref = (ListPreference) findPreference("preference_zodiac_sign");
+        myZodiacSignPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				Editor ed = sPref.edit();   
+				ed.putString("preference_zodiac_sign", (String) newValue); 	
+				ed.commit();
+				
+				updateSummary();
+				return false;
+			}
+        	
+        });
+        
+        //setting up locale change preference, cuz we need change notifications.
+        myNotificationsPref = (CheckBoxPreference) findPreference("preference_show_notifications");
+        myNotificationsPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				myNotificationsPref.setChecked(!myNotificationsPref.isChecked());
+				Editor ed = sPref.edit();   
+				ed.putBoolean("preference_show_notifications", myNotificationsPref.isChecked()); 	
+				ed.commit();
+				
+				updateSummary();
+				return false;
+			}
+        });
+        
+        myNotificationsTimePref = (TimePreference) findPreference("preference_show_notifications_time");
+        myNotificationsTimePref.setMinute(sPref.getInt("preference_show_notifications_time_minute", 0));
+        myNotificationsTimePref.setHour(sPref.getInt("preference_show_notifications_time_hour", 8));
+
+        myNotificationsTimePref.setOnTimeSetListener(new OnTimeSetListener(){
+			@Override
+			public boolean onTimeSet(TimePreference preference, long date,
+					int hour, int minute) {
+				Editor ed = sPref.edit();   
+				ed.putInt("preference_show_notifications_time_minute", minute);				
+				ed.putInt("preference_show_notifications_time_hour", hour);				
+				ed.commit();
+				
+				updateSummary();
+				return false;
+			}
+        });
+    }
+    
+    public void updateSummary(){
+    	myNotificationsTimePref.setEnabled(sPref.getBoolean("preference_show_notifications", true));
+    	myNotificationsTimePref.setSummary(intPlusZero(sPref.getInt("preference_show_notifications_time_hour", 8)) + ":" + intPlusZero(sPref.getInt("preference_show_notifications_time_minute", 0)));
+    	myDatePref.setSummary(intPlusZero(sPref.getInt("dayBorn", cal.get(Calendar.DAY_OF_MONTH))) + "." + intPlusZero(sPref.getInt("monthBorn", cal.get(Calendar.MONTH))+1) + "." + intPlusZero(sPref.getInt("yearBorn", cal.get(Calendar.YEAR))));
+    	myZodiacSignPref.setSummary(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
     }
 
     @Override
@@ -128,6 +192,12 @@ public class SettingsFragment extends BasePreferenceFragment {
         sb = new SpannableString(getString(R.string.preference));
         sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         getSupportActionBar().setSubtitle(sb);
+        
+        updateSummary();
+    }
+    
+    String intPlusZero(int s){
+    	return s/10==0 ? "0"+s : ""+s;
     }
     
 	String zodiacNumber (int day, int month){

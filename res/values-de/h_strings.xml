@@ -48,6 +48,9 @@
     <string name="error_retry">wiederholen</string>
     <string name="preference">Einstellungen</string>
     <string name="preference_base">Basis</string>
+    <string name="preference_notifications">Benachrichtigungen</string>
+    <string name="preference_notifications_1">Benachrichtigungen anzeigen</string>
+    <string name="preference_notifications_2">Zeit</string>
     <string name="preference_ad">Anzeige</string>
     <string name="preference_date_1">Ihr Geburtsdatum</string>
     <string name="preference_date_2">Geben Sie, wenn Sie geboren</string>

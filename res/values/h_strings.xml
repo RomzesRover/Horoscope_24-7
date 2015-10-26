@@ -224,6 +224,9 @@
     <string name="error_retry">Retry</string>
     <string name="preference">Settings</string>
     <string name="preference_base">Base</string>
+    <string name="preference_notifications">Notifications</string>
+    <string name="preference_notifications_1">Show notifications</string>
+    <string name="preference_notifications_2">Time</string>
     <string name="preference_ad">Advertisement</string>
     <string name="preference_date_1">Your birth date</string>
     <string name="preference_date_2">Enter when you born</string>
