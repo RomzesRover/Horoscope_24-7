@@ -184,8 +184,11 @@ public class NotificationService extends Service {
 		}
 	}
     
-    private static void scheduleUpdate(Context context) {
+    private void scheduleUpdate(Context context) {
     	cancelUpdates(context);
+    	
+    	if (!sPref.getBoolean("preference_show_notifications", true))
+    		return;
     	
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         
@@ -196,8 +199,8 @@ public class NotificationService extends Service {
         workDate.setTimeInMillis(System.currentTimeMillis());
 		
 		//send notification everyday at morning
-        workDate.set(Calendar.HOUR_OF_DAY, 10);
-        workDate.set(Calendar.MINUTE, 0);
+        workDate.set(Calendar.HOUR_OF_DAY, sPref.getInt("preference_show_notifications_time_hour", 8));
+        workDate.set(Calendar.MINUTE, sPref.getInt("preference_show_notifications_time_minute", 0));
         workDate.set(Calendar.SECOND, 0);
 		
         if (workDate.before(currentDate)){
