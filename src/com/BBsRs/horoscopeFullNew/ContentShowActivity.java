@@ -298,6 +298,18 @@ public class ContentShowActivity extends BaseActivity {
 		super.onPause();
 		//unregister receiver
         super.unregisterReceiver(fragmentChanged);
+        //setting up list zodiac change listener preference, cuz we need update horo if zodiac was changed.
+		Editor ed = sPref.edit(); 
+		ed.putBoolean("changed_0", true);	
+		ed.putBoolean("changed_1", true);	
+		ed.putBoolean("changed_2", true);	
+		ed.putBoolean("changed_3", true);	
+		ed.putBoolean("changed_4", true);	
+		ed.putBoolean("changed_5", true);	
+		ed.putBoolean("changed_6", true);	
+		ed.putBoolean("changed_7", true);	
+		ed.putBoolean("changed_8", true);	
+		ed.commit();
 	}
     
     @Override

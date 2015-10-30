@@ -153,8 +153,10 @@ public class DeHoroscopeYahooComMonthLoaderFragment extends BaseFragment {
         
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
-        	mPullToRefreshLayout.setRefreshing(true);
-        	customOnRefreshListener.onRefreshStarted(null);
+        	if (!customOnRefreshListener.isRefreshing){
+	        	mPullToRefreshLayout.setRefreshing(true);
+	        	customOnRefreshListener.onRefreshStarted(null);
+        	}
         	Editor ed = sPref.edit();   
 			ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 			ed.commit();
@@ -191,9 +193,12 @@ public class DeHoroscopeYahooComMonthLoaderFragment extends BaseFragment {
     }
 
     public class  CustomOnRefreshListener implements OnRefreshListener{
+    	
+    	public boolean isRefreshing = false;
 
 		@Override
 		public void onRefreshStarted(View view) {
+			isRefreshing = true;
 			// TODO Auto-generated method stub
 			new AsyncTask<Void, Void, Void>() {
 				 
@@ -268,6 +273,7 @@ public class DeHoroscopeYahooComMonthLoaderFragment extends BaseFragment {
                 	} catch (Exception e){
                 		e.printStackTrace();
                 	}
+                	isRefreshing = false;
                 }
             }.execute();
 		}
