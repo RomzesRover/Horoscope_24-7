@@ -220,6 +220,7 @@
     </string-array>
 
     <string name="app_name">Horoscope</string>
+    <string name="set_date_first">To start, you need to enter your date of birth</string>
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_retry">Retry</string>
     <string name="preference">Settings</string>

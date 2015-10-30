@@ -26,6 +26,7 @@ public class IntroduceActivityThree extends BaseActivity {
 	
 	//preferences 
     SharedPreferences sPref;
+    boolean isDateSettet=false;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -48,13 +49,17 @@ public class IntroduceActivityThree extends BaseActivity {
 	    next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
-				//restart activity
-			    startActivity(refresh);   
-			    //set  animation
-			    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-			    // stop curr activity
-			    finish();
+				if (isDateSettet){
+					Intent refresh = new Intent(getApplicationContext(), ActivityLoader.class);
+					//restart activity
+				    startActivity(refresh);   
+				    //set  animation
+				    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+				    // stop curr activity
+				    finish();
+				} else {
+					Toast.makeText(getApplicationContext(), getResources().getString(R.string.set_date_first), Toast.LENGTH_LONG).show();
+				}
 
 			}
 		});
@@ -78,7 +83,7 @@ public class IntroduceActivityThree extends BaseActivity {
 	    final TextView textDateBorn = (TextView)this.findViewById(R.id.textDateBorn);
 	    
 	    //dis next bttn
-	    next.setEnabled(false);
+	    isDateSettet = false;
 	    
 	    final Calendar currDate = Calendar.getInstance();
 	    final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -102,18 +107,18 @@ public class IntroduceActivityThree extends BaseActivity {
 					ed.putString("preference_zodiac_sign", zodiacNumber(dayOfMonth, monthOfYear+1));
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(dayOfMonth, monthOfYear+1))], Toast.LENGTH_LONG).show();
 					ed.commit();
-					next.setEnabled(true);
+					isDateSettet = true;
 					textDateBorn.setText(dateFormat.format(calSet.getTime())+" - "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(dayOfMonth, monthOfYear+1))]);
 				} else {
 					Toast.makeText(getApplicationContext(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
-					next.setEnabled(false);
+					isDateSettet = false;
 				}
 			}
 	    };
 	    final DatePickerDialog dpd = DatePickerDialog.newInstance(lis, sPref.getInt("yearBorn", currDate.get(Calendar.YEAR)), sPref.getInt("monthBorn", currDate.get(Calendar.MONTH)), sPref.getInt("dayBorn", currDate.get(Calendar.DAY_OF_MONTH)));
 	    
 	    if (sPref.getInt("yearBorn", 0)!=0) {
-	    	next.setEnabled(true);
+	    	isDateSettet = true;
 			textDateBorn.setText(monthPlusZero(String.valueOf(sPref.getInt("dayBorn", currDate.get(Calendar.DAY_OF_MONTH))+1))+"/"+monthPlusZero(String.valueOf(sPref.getInt("monthBorn", currDate.get(Calendar.MONTH))))+"/"+String.valueOf(sPref.getInt("yearBorn", currDate.get(Calendar.YEAR))));
 	    }
 

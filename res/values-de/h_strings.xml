@@ -44,6 +44,7 @@
     </string-array>
 
     <string name="app_name">Horoskop</string>
+    <string name="set_date_first">Um zu beginnen, müssen Sie Ihr Geburtsdatum eingeben</string>
     <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
     <string name="error_retry">wiederholen</string>
     <string name="preference">Einstellungen</string>
