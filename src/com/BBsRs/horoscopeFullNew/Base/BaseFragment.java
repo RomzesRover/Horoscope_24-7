@@ -104,6 +104,9 @@ public class BaseFragment extends Fragment{
 		super.onResume();
 		if (adView != null)
 		adView.resume();
+		
+		//send that new fragment is created!
+		getActivity().sendBroadcast(new Intent("fragment_changed"));
 	}     		
    		
  	@Override

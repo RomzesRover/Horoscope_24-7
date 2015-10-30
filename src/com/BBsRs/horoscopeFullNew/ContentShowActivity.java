@@ -1,6 +1,7 @@
 package com.BBsRs.horoscopeFullNew;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.addon.AddonSlider;
@@ -16,9 +17,11 @@ import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -69,6 +72,7 @@ public class ContentShowActivity extends BaseActivity {
     SharedPreferences sPref;
     
     boolean check = false;
+    boolean firstLaunch = true;
     
     //alert dialog
     AlertDialog alert = null;
@@ -286,13 +290,21 @@ public class ContentShowActivity extends BaseActivity {
 	
 	@Override
 	public void onBackPressed(){
-		showIntersttial();
 		super.onBackPressed();
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		//unregister receiver
+        super.unregisterReceiver(fragmentChanged);
 	}
     
     @Override
     protected void onResume(){
     	super.onResume();
+    	//first launch
+    	firstLaunch = true;
     	//set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         //set icon
@@ -301,6 +313,20 @@ public class ContentShowActivity extends BaseActivity {
         images.recycle();
         //show AD
         showAd();
+        //register receiver
+        super.registerReceiver(fragmentChanged, new IntentFilter("fragment_changed"));
     }
+    
+	private BroadcastReceiver fragmentChanged = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	if (firstLaunch){
+	    		firstLaunch = false;
+	    		return;
+	    	}
+	    	if (((new Random()).nextInt(7) + 1) == 4)
+	    		showIntersttial();
+	    }
+	};
       
 }
