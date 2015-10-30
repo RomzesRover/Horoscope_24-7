@@ -40,6 +40,7 @@ public class BootUpReceiver extends BroadcastReceiver {
         
         Calendar currentDate = Calendar.getInstance();
 		currentDate.setTimeInMillis(System.currentTimeMillis());
+		currentDate.add(Calendar.SECOND, +30);
 		
         Calendar workDate = Calendar.getInstance();
         workDate.setTimeInMillis(System.currentTimeMillis());
@@ -52,8 +53,8 @@ public class BootUpReceiver extends BroadcastReceiver {
         if (workDate.before(currentDate)){
         	workDate.add(Calendar.DATE, +1);
         }
-        
-        Log.i("From_BootUpReceiver", "Scheduling next update at " + new Date(workDate.getTimeInMillis()));
+
+        Log.i("BOOT UP", "Scheduling next update at " + new Date(workDate.getTimeInMillis()));
         am.set(AlarmManager.RTC_WAKEUP, workDate .getTimeInMillis(), getUpdateIntent(context));
     }
     

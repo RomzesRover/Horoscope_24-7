@@ -273,6 +273,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         
         Calendar currentDate = Calendar.getInstance();
 		currentDate.setTimeInMillis(System.currentTimeMillis());
+		currentDate.add(Calendar.SECOND, +30);
 		
         Calendar workDate = Calendar.getInstance();
         workDate.setTimeInMillis(System.currentTimeMillis());
