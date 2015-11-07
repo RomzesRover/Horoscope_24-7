@@ -45,5 +45,11 @@
             android:key="preference_show_notifications_time"
             android:title="@string/preference_notifications_2" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_ad" >
+        <Preference
+            android:id="@+id/preference_ad_disabler"
+            android:key="preference_ad_disabler"
+            android:title="@string/preference_ad_disable" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

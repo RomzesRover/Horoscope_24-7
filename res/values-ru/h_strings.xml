@@ -53,6 +53,8 @@
     <string name="preference_notifications_1">Показ уведомлений</string>
     <string name="preference_notifications_2">Время</string>
     <string name="preference_ad">Реклама</string>
+    <string name="preference_ad_disable">Отключить рекламу</string>
+    <string name="preference_ad_disabled_succesfully">Реклама отключена</string>
     <string name="preference_date_1">Дата вашего рождения</string>
     <string name="preference_date_2">Введите когда вы родились</string>
     <string name="preference_zodiac_signs_2">Выберета ваш знак зодиака</string>

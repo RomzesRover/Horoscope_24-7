@@ -52,7 +52,9 @@
     <string name="preference_notifications">Benachrichtigungen</string>
     <string name="preference_notifications_1">Benachrichtigungen anzeigen</string>
     <string name="preference_notifications_2">Zeit</string>
-    <string name="preference_ad">Anzeige</string>
+    <string name="preference_ad">Werbung</string>
+    <string name="preference_ad_disable">Disable advertisement</string>
+    <string name="preference_ad_disabled_succesfully">Werbung deaktiviert</string>
     <string name="preference_date_1">Ihr Geburtsdatum</string>
     <string name="preference_date_2">Geben Sie, wenn Sie geboren</string>
     <string name="preference_zodiac_signs_2">Wählen Sie Ihr Sternzeichen</string>

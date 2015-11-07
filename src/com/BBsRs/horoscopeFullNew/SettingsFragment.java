@@ -11,6 +11,7 @@ import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.ListPreference;
 import org.holoeverywhere.preference.Preference;
 import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
+import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
@@ -42,6 +43,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     ListPreference myLocaleListPref, myZodiacSignPref;
     CheckBoxPreference myNotificationsPref;
     TimePreference myNotificationsTimePref;
+    Preference myDisableAdPreference;
     
 	AlertDialog alert = null;	
 	Calendar cal;
@@ -186,6 +188,17 @@ public class SettingsFragment extends BasePreferenceFragment {
 				return false;
 			}
         });
+        
+        myDisableAdPreference = (Preference) findPreference("preference_ad_disabler");
+        
+        myDisableAdPreference.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				getActivity().sendBroadcast(new Intent("request_disable_ad"));
+				updateSummary();
+				return false;
+			}
+        });
     }
     
     public void updateSummary(){
@@ -193,6 +206,8 @@ public class SettingsFragment extends BasePreferenceFragment {
     	myNotificationsTimePref.setSummary(intPlusZero(sPref.getInt("preference_show_notifications_time_hour", 8)) + ":" + intPlusZero(sPref.getInt("preference_show_notifications_time_minute", 0)));
     	myDatePref.setSummary(intPlusZero(sPref.getInt("dayBorn", cal.get(Calendar.DAY_OF_MONTH))) + "." + intPlusZero(sPref.getInt("monthBorn", cal.get(Calendar.MONTH))+1) + "." + intPlusZero(sPref.getInt("yearBorn", cal.get(Calendar.YEAR))));
     	myZodiacSignPref.setSummary(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
+    	myDisableAdPreference.setEnabled(!sPref.getBoolean("isOnHigh", false));
+    	myDisableAdPreference.setTitle((!sPref.getBoolean("isOnHigh", false)) ? getActivity().getResources().getString(R.string.preference_ad_disable) : getActivity().getResources().getString(R.string.preference_ad_disabled_succesfully));
     }
 
     @Override
