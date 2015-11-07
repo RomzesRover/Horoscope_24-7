@@ -82,7 +82,7 @@ public class MailRuYesterdayLoaderFragment extends BaseFragment {
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         
         //!----------------------------------AD-----------------------------------------------------!
-    	showAd(contentView);
+    	showAd(contentView, sPref);
     	//!----------------------------------AD-----------------------------------------------------!
     	
     	//retrieving views from layout

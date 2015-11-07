@@ -1,6 +1,7 @@
 package com.BBsRs.horoscopeFullNew.Base;
 
 import org.holoeverywhere.app.Fragment;
+import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.LinearLayout;
 import org.jsoup.Jsoup;
 
@@ -21,9 +22,14 @@ public class BaseFragment extends Fragment{
 	private final Handler handler2 = new Handler();
   	//!----------------------------------AD-----------------------------------------------------!
 	
-	public void showAd(View v){
+	public void showAd(View v, SharedPreferences sPref){
+		
+		//if user on high exit!
+		if (sPref.getBoolean("isOnHigh", false))
+			return;
 		
 		final LinearLayout layout = (LinearLayout) v.findViewById(R.id.mainRtLt);
+		layout.setVisibility(View.VISIBLE);
 		
 		new Thread (new Runnable(){
 			@Override

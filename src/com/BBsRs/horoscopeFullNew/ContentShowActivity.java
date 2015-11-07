@@ -55,6 +55,8 @@ import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearTwoLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYesterdayLoaderFragment;
 import com.BBsRs.horoscopeNewEdition.R;
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
@@ -63,6 +65,15 @@ public class ContentShowActivity extends BaseActivity {
 	public AddonSlider.AddonSliderA addonSlider() {
 	      return addon(AddonSlider.class);
 	}
+	
+	//!----------------------------------BILLING-----------------------------------------------------!
+	// PRODUCT & SUBSCRIPTION IDS
+    private static final String PRODUCT_ID = "android.test.purchased";
+    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+
+	private BillingProcessor bp;
+	private boolean readyToPurchase = false;
+	//!----------------------------------BILLING-----------------------------------------------------!
 	
 	// some data to slider menu
 	SliderMenu sliderMenu;
@@ -84,6 +95,29 @@ public class ContentShowActivity extends BaseActivity {
         
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        
+	    //!----------------------------------BILLING-----------------------------------------------------!
+	    bp = new BillingProcessor(this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(String productId, TransactionDetails details) {
+            	sPref.edit().putBoolean("isOnHigh", true).commit();
+            	startActivity(new Intent(getApplicationContext(), ContentShowActivity.class));
+            	overridePendingTransition(0, 0);
+            	finish();
+            }
+            @Override
+            public void onBillingError(int errorCode, Throwable error) {
+            }
+            @Override
+            public void onBillingInitialized() {
+                readyToPurchase = true;
+                sPref.edit().putBoolean("isOnHigh", bp.isPurchased(PRODUCT_ID)).commit();
+            }
+            @Override
+            public void onPurchaseHistoryRestored() {
+            }
+        });
+	    //!----------------------------------BILLING-----------------------------------------------------!
         
         //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
@@ -242,8 +276,13 @@ public class ContentShowActivity extends BaseActivity {
 	//!----------------------------------AD-----------------------------------------------------!
     
 	public void showAd(){
+		//if ad already shown exit!
 		if (alreadyShow)
 			return;
+		//if user on high exit!
+		if (sPref.getBoolean("isOnHigh", false))
+			return;
+		
 		//!----------------------------------AD-----------------------------------------------------!
 		new Thread (new Runnable(){
 			@Override
