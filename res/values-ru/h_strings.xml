@@ -102,6 +102,11 @@
     <string name="review_summary">Ты сделаешь неоценимый вклад в развитие проекта!</string>
     <string name="ok">Хорошо</string>
     
+    <string name="title_dialog_ad">Удалить рекламу</string>
+    <string name="summary_dialog_ad">Удалить все виды рекламных объявлений за 30 руб.\nПомните, что купив однажды, реклама удалится навсегда.</string>
+    <string name="i_want_to_buy">Я хочу купить</string>
+    <string name="no_thanks">Нет, спасибо</string>
+    
     <string-array name="notification_messages">
         <item>Хороший день начинается с прочтения свежего гороскопа!</item>
         <item>Не забудьте узнать ваш прогноз на сегодня!</item>

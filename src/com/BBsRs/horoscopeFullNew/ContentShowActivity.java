@@ -20,16 +20,12 @@ import org.jsoup.Jsoup;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 
@@ -39,7 +35,6 @@ import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscop
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment.DeHoroscopeYahooComYesterdayLoaderFragment;
-import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComMoneyLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNew.HoroscopeComLoaderFragment.HoroscopeComPersonalLoaderFragment;
@@ -194,7 +189,6 @@ public class ContentShowActivity extends BaseActivity {
         }
         
         showDialog();
-        
     }
     
 	public void showDialog(){
@@ -234,8 +228,8 @@ public class ContentShowActivity extends BaseActivity {
     	
     	//set fonts
     	HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.textTitle));
-	    HelvFont.HELV_MEDIUM.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView05));
-	    HelvFont.HELV_ROMAN.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView04));
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView05));
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView04));
     	
     	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
     	makeReview.setOnClickListener(new View.OnClickListener() {
@@ -250,16 +244,43 @@ public class ContentShowActivity extends BaseActivity {
 			}
 		});
     	
-    	//with font
-    	SpannableString sb = new SpannableString(getString(R.string.ok));
-        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
+	}
+	
+	public void showDialogInvite(){
+		
+ 		final Context context = ContentShowActivity.this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	
-    	build.setPositiveButton(sb, new DialogInterface.OnClickListener() {
+    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
+    	
+    	//set fonts
+    	HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.textTitle));
+    	HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.textView1));
+    	HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView05));
+	    HelvFont.HELV_LIGHT.apply(getApplicationContext(), (TextView)content.findViewById(R.id.TextView06));
+    	
+    	final RelativeLayout buy = (RelativeLayout)content.findViewById(R.id.buy);
+    	buy.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(DialogInterface dialog, int which) {
+			public void onClick(View v) {
+				sendBroadcast(new Intent("request_disable_ad"));
 				alert.dismiss();
 			}
 		});
+    	
+    	final RelativeLayout no = (RelativeLayout)content.findViewById(R.id.no);
+    	no.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
     	build.setView(content);
     	alert = build.create();															// show dialog
     	alert.show();
@@ -273,6 +294,7 @@ public class ContentShowActivity extends BaseActivity {
 	
 	public void showIntersttial(){
 		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
+			showDialogInvite();
 			alreadyShow = true;
 			interstitial.show();
 		}

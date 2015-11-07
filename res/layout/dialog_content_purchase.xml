@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="@string/title_dialog_ad"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/slider_menu_custom_color_pink" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:scaleType="fitXY"
+        android:src="@color/slider_menu_custom_color_pink" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="@string/summary_dialog_ad"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/slider_menu_custom_text_color" />
+
+        <RelativeLayout
+            android:id="@+id/buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/holo_theme_light_pinkactionbar_list_selector_holo_light" >
+
+            <TextView
+                android:id="@+id/TextView05"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:text="@string/i_want_to_buy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/slider_menu_custom_color_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/holo_theme_light_pinkactionbar_list_selector_holo_light" >
+
+            <TextView
+                android:id="@+id/TextView06"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:text="@string/no_thanks"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/slider_menu_custom_color_black" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

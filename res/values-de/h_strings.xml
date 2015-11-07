@@ -103,6 +103,11 @@
     <string name="review_summary">Sie werden einen unschätzbaren Beitrag zur Entwicklung des Projekts zu machen!</string>
     <string name="ok">Ok</string>
     
+    <string name="title_dialog_ad">Anzeigen entfernen</string>
+    <string name="summary_dialog_ad">Entfernen Sie alle Arten von Werbung für 0,99 $.\nDenken Sie daran, dass der Kauf einer, wird Werbung immer beseitigt.</string>
+    <string name="i_want_to_buy">ich möchte kaufen</string>
+    <string name="no_thanks">Nein Danke</string>
+    
         <string-array name="notification_messages">
         <item>Ein guter Tag beginnt mit einem frischen Horoskop Lesen!</item>
         <item>Vergessen Sie nicht, Ihr Horoskop für heute lernen!</item>

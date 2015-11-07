@@ -278,6 +278,11 @@
     <string name="review">Review on GPlay!</string>
     <string name="review_summary">You will make an invaluable contribution to the development of the project!</string>
     <string name="ok">Ok</string>
+    
+    <string name="title_dialog_ad">Remove ads</string>
+    <string name="summary_dialog_ad">Remove all kinds of advertisements for 0.99$.\nKeep in mind that buying one, advertising is removed forever.</string>
+    <string name="i_want_to_buy">I want to buy</string>
+    <string name="no_thanks">No, thanks</string>
 
         <string-array name="notification_messages">
         <item>A good day starts with a fresh horoscope reading!</item>
