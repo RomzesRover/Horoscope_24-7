@@ -73,6 +73,7 @@ public class ContentShowActivity extends BaseActivity {
     
     boolean check = false;
     boolean firstLaunch = true;
+    boolean alreadyShow = false;
     
     //alert dialog
     AlertDialog alert = null;
@@ -234,12 +235,15 @@ public class ContentShowActivity extends BaseActivity {
 	
 	public void showIntersttial(){
 		if (interstitial !=null && interstitial.isLoaded()) {
+			alreadyShow = true;
 			interstitial.show();
 		}
 	}
 	//!----------------------------------AD-----------------------------------------------------!
     
 	public void showAd(){
+		if (alreadyShow)
+			return;
 		//!----------------------------------AD-----------------------------------------------------!
 		new Thread (new Runnable(){
 			@Override
@@ -336,7 +340,7 @@ public class ContentShowActivity extends BaseActivity {
 	    		firstLaunch = false;
 	    		return;
 	    	}
-	    	if (((new Random()).nextInt(7) + 1) == 4)
+	    	if (((new Random(System.currentTimeMillis())).nextInt(3) + 1) == 2)
 	    		showIntersttial();
 	    }
 	};
