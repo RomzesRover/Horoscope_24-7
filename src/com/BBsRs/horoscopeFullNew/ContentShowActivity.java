@@ -272,7 +272,7 @@ public class ContentShowActivity extends BaseActivity {
 	private final Handler handler = new Handler();
 	
 	public void showIntersttial(){
-		if (interstitial !=null && interstitial.isLoaded()) {
+		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
 			alreadyShow = true;
 			interstitial.show();
 		}
