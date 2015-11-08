@@ -436,6 +436,12 @@ public class ContentShowActivity extends BaseActivity {
             bp.release();
         super.onDestroy();
     }
+	
+	@Override
+    public void onRestart() {
+		alreadyShow = false;
+        super.onRestart();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
