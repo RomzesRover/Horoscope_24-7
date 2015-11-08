@@ -96,6 +96,8 @@ public class ActivityLoader extends BaseActivity {
 	    super.onCreate(savedInstanceState);
 	    //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //grant ad show
+        sPref.edit().putBoolean("grantAdShow", true).commit();
         //set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         

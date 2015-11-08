@@ -81,7 +81,6 @@ public class ContentShowActivity extends BaseActivity {
     
     boolean check = false;
     boolean firstLaunch = true;
-    boolean alreadyShow = false;
     
     //alert dialog
     AlertDialog alert = null;
@@ -294,7 +293,7 @@ public class ContentShowActivity extends BaseActivity {
 	public void showIntersttial(){
 		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
 			showDialogInvite();
-			alreadyShow = true;
+			sPref.edit().putBoolean("grantAdShow", false).commit();
 			interstitial.show();
 		}
 	}
@@ -302,7 +301,7 @@ public class ContentShowActivity extends BaseActivity {
     
 	public void showAd(){
 		//if ad already shown exit!
-		if (alreadyShow)
+		if (!sPref.getBoolean("grantAdShow", true))
 			return;
 		//if user on high exit!
 		if (sPref.getBoolean("isOnHigh", false))
@@ -437,12 +436,6 @@ public class ContentShowActivity extends BaseActivity {
         super.onDestroy();
     }
 	
-	@Override
-    public void onRestart() {
-		alreadyShow = false;
-        super.onRestart();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (!bp.handleActivityResult(requestCode, resultCode, data))
