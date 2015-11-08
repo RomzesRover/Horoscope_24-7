@@ -237,6 +237,9 @@ public class HoroscopeComYesterdayLoaderFragment extends BaseFragment {
                 	try{
 	                    super.onPostExecute(result);
 	                    
+	                 // Notify PullToRefreshLayout that the refresh has finished
+	                    mPullToRefreshLayout.setRefreshComplete();
+	                    
 	                    if (error){
 	                    	scrollView.setVisibility(View.GONE);
 	                    	relativeErrorLayout.setVisibility(View.VISIBLE);
@@ -264,10 +267,6 @@ public class HoroscopeComYesterdayLoaderFragment extends BaseFragment {
 	                    			+"\n\n"+getResources().getString(R.string.share_send_from)
 	                    			+"\n"+getResources().getString(R.string.share_content_url)));
 	                    }
-	                    
-	                    
-	                    // Notify PullToRefreshLayout that the refresh has finished
-	                    mPullToRefreshLayout.setRefreshComplete();
                 	} catch (Exception e){
                 		e.printStackTrace();
                 	}
