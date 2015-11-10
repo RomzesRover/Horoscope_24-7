@@ -31,6 +31,7 @@ import android.util.Log;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
 import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
+import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.NotificationService;
 import com.BBsRs.horoscopeNewEdition.R;
 
@@ -269,7 +270,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 		Editor ed = sPref.edit();  
 		ed.putBoolean("preference_start", true); 	
 		ed.commit();
-		Intent refresh = new Intent(getActivity(), ContentShowActivity.class);
+		Intent refresh = new Intent(getActivity(), ActivityRestarter.class);
 		//restart activity
 	    startActivity(refresh);   
 	    //set no animation

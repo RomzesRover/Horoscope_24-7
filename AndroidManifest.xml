@@ -61,11 +61,12 @@
         <service android:name="com.BBsRs.horoscopeNewEdition.NotificationService" >
         </service>
 
-        <receiver android:name="BootUpReceiver" >
+        <receiver android:name="com.BBsRs.horoscopeNewEdition.BootUpReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <activity android:name="com.BBsRs.horoscopeNewEdition.ActivityRestarter"></activity>
     </application>
 
 </manifest>

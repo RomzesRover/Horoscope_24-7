@@ -50,6 +50,7 @@ import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearTwoLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYesterdayLoaderFragment;
+import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
@@ -98,7 +99,7 @@ public class ContentShowActivity extends BaseActivity {
             @Override
             public void onProductPurchased(String productId, TransactionDetails details) {
             	sPref.edit().putBoolean("isOnHigh", true).commit();
-            	startActivity(new Intent(getApplicationContext(), ContentShowActivity.class));
+            	startActivity(new Intent(getApplicationContext(), ActivityRestarter.class));
             	overridePendingTransition(0, 0);
             	finish();
             }
