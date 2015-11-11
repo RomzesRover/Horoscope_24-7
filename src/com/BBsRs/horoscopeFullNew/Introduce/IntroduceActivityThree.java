@@ -125,7 +125,7 @@ public class IntroduceActivityThree extends BaseActivity {
 	    setDate.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				dpd.setDate(sPref.getInt("yearBorn", currDate.get(Calendar.YEAR)), sPref.getInt("monthBorn", currDate.get(Calendar.MONTH)), sPref.getInt("dayBorn", currDate.get(Calendar.DAY_OF_MONTH)));
+				dpd.setDate(sPref.getInt("yearBorn", currDate.get(Calendar.YEAR)-20), sPref.getInt("monthBorn", currDate.get(Calendar.MONTH)), sPref.getInt("dayBorn", currDate.get(Calendar.DAY_OF_MONTH)));
 				dpd.show(getSupportFragmentManager());
 			}
 		});
