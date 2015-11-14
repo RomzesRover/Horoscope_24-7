@@ -208,7 +208,7 @@ public class MailRuYesterdayLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horo.mail.ru
                     	Document doc = Jsoup.connect("http://horo.mail.ru/prediction/"+getResources().getStringArray(R.array.nameOfzodiacForLoadMailRu)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+"/"+getResources().getStringArray(R.array.nameOfHoroscopeForLoadMailRu)[UNIVERSAL_ID]+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("p-prediction__subtitle").first().html()+"<br /><br />"+doc.getElementsByClass("article__text").first().html();
+                    	data = doc.getElementsByClass("p-prediction__subtitle").first().html()+"<br /><br />"+doc.getElementsByClass("article__text").first().html()+"<br />"+getResources().getString(R.string.mail_ru_copyright)+"<br />";
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {

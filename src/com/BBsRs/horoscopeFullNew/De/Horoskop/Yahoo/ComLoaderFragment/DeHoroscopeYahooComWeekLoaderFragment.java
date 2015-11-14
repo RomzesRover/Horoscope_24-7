@@ -211,7 +211,7 @@ public class DeHoroscopeYahooComWeekLoaderFragment extends BaseFragment {
                     	Calendar c = Calendar.getInstance();
                         //load and retrieve data from http://de.horoskop.yahoo.com/horoskop/
                     	Document doc = Jsoup.connect("http://de.horoskop.yahoo.com/horoskop/"+getResources().getStringArray(R.array.nameOfzodiacForLoadDeYahooCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].replace("*", "%C3%B6").replace("+", "%C3%BC")+"/astro"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadDeYahooCom)[UNIVERSAL_ID]+monthPlusZero(String.valueOf(c.get(Calendar.WEEK_OF_YEAR)))+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text();
+                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text()+"<br /><br />"+getResources().getString(R.string.de_horoskop_yahoo_com_copyright)+"<br />";
                     	if (!(doc.getElementsByClass("astro-tab-body").first().text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
