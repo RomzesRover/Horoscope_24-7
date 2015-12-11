@@ -2,83 +2,115 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="@string/title_dialog"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/slider_menu_custom_color_pink" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:scaleType="fitXY"
-        android:src="@color/slider_menu_custom_color_pink" />
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp" >
-    
+    android:padding="13dp" >
+
     <RelativeLayout
-        android:id="@+id/make_review"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="@drawable/holo_theme_light_pinkactionbar_list_selector_holo_light" >
-
-        <TextView
-            android:id="@+id/TextView05"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/TextView06"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:text="@string/review"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/slider_menu_custom_color_black" />
-
-        <TextView
-            android:id="@+id/TextView04"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TextView05"
-            android:layout_alignRight="@+id/TextView05"
-            android:layout_below="@+id/TextView05"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:text="@string/review_summary"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/gray_hard_hard"
-            android:textColorHint="@color/slider_menu_custom_text_color"
-            android:textColorLink="@color/slider_menu_custom_text_color"
-            android:textSize="13sp" />
+        android:layout_height="wrap_content" >
 
         <ImageView
-            android:id="@+id/TextView06"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/TextView04"
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/icon"
+            android:text="@string/title_dialog"
+            android:singleLine="true"
+            android:textColor="@color/intro_main_text"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <RelativeLayout
+            android:id="@+id/make_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/ic_dialog_btn" >
+
+            <TextView
+                android:id="@+id/TextView05"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/TextView06"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:text="@string/review"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/TextView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextView05"
+                android:layout_alignRight="@+id/TextView05"
+                android:layout_below="@+id/TextView05"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="@string/review_summary"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_second_text"
+                android:textColorHint="@color/slider_menu_custom_text_color"
+                android:textColorLink="@color/slider_menu_custom_text_color"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/TextView06"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignBottom="@+id/TextView04"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:scaleType="center"
+                android:src="@drawable/logo_google_play" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:gravity="center"
-            android:scaleType="center"
-            android:src="@drawable/logo_google_play" />
+            android:background="@drawable/ic_dialog_btn"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textColor="@color/intro_main_text"
+            android:textSize="16sp" />
 
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/apply"
+            android:background="@drawable/ic_dialog_btn"
+            android:padding="5dp"
+            android:text="@string/cancel"
+            android:textColor="@color/intro_main_text"
+            android:textSize="16sp"/>
     </RelativeLayout>
 
 </LinearLayout>
-
-</LinearLayout>
-
-
-
-

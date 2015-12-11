@@ -17,15 +17,16 @@ import org.jsoup.nodes.Document;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.ShareActionProvider;
 import android.text.Html;
+import android.text.Layout.Alignment;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.AlignmentSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,7 +39,8 @@ import android.widget.ScrollView;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
-import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
+import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
+import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFontPath;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
@@ -58,6 +60,7 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
     
     //retrieved data
     String data = "";
+    int dateLenght = 0;
     
     //LOG_TAG for log
     String LOG_TAG = "de.horoskop.yahoo.com"+UNIVERSAL_ID;
@@ -68,9 +71,6 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
     //preferences 
     SharedPreferences sPref;
     
-    //share action providers, use it to set current horoscope
-    ShareActionProvider actionProvider;
-	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -115,7 +115,14 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
             	relativeErrorLayout.setVisibility(View.VISIBLE);
             } else {
             	data = savedInstanceState.getString("data");
-            	textContent.setText(Html.fromHtml(data)+" ");
+            	dateLenght = savedInstanceState.getInt("dateLenght");
+            	SpannableString sb = new SpannableString(Html.fromHtml("<br />"+data)+" ");
+                sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.MEDIUM)), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.LIGHT)), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            	textContent.setText(sb);
+            	
             	scrollView.setVisibility(View.VISIBLE);
             	relativeErrorLayout.setVisibility(View.GONE);
         	}
@@ -132,9 +139,8 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
 		});
         
       //set fonts
-        HelvFont.HELV_LIGHT.apply(getActivity(), textContent);
-	    HelvFont.HELV_LIGHT.apply(getActivity(), errorMessage);
-	    HelvFont.HELV_ROMAN.apply(getActivity(), errorRetryButton);
+		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), errorMessage);
+		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), errorRetryButton);
         
         return contentView;
     }
@@ -142,14 +148,9 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        //set titile for action bar with custom font
-        SpannableString sb = new SpannableString(getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID]);
-        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        getSupportActionBar().setTitle(sb);
         //set subtitle for a current fragment with custom font
-        sb = new SpannableString(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
-        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        getSupportActionBar().setSubtitle(sb);
+        setTitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
         
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
@@ -167,29 +168,42 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		 outState.putString("data", data);
+		 outState.putInt("dateLenght", dateLenght);
 		 outState.putBoolean("error", error);
 	}
     
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.fragment_content_menu, menu);
-        
-        MenuItem actionItem = menu.findItem(R.id.menu_share);
-        actionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(actionItem);
-        
-        //fix share action
-        if (!error && data.length()>10)
-        	//set shareable content
-        	actionProvider.setShareIntent(createShareIntent(
-        			getResources().getString(R.string.share_content_horo_for)
-        			+" "+getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
-        			+", "+getResources().getString(R.string.share_content_horo_for_2)
-        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
-        			+"\n\n"
-        			+String.valueOf(textContent.getText())
-        			+"\n\n"+getResources().getString(R.string.share_send_from)
-        			+"\n"+getResources().getString(R.string.share_content_url)));
-        return;
+    }
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+	      case android.R.id.home:
+	    	  Intent i = new Intent("horo_open_menu_drawer");
+	    	  getActivity().sendBroadcast(i);
+	    	  break;
+	      case R.id.menu_share_new:
+	    	  if (error || data.length()<10)
+	    		  break;
+			  String shareBody = getResources().getString(R.string.share_content_horo_for)
+	        			+" "+getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
+	        			+", "+getResources().getString(R.string.share_content_horo_for_2)
+	        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
+	        			+"\n"
+	        			+String.valueOf(textContent.getText()).replaceAll(getResources().getString(R.string.de_horoskop_yahoo_com_copyright), "")
+	        			+getResources().getString(R.string.share_send_from)
+	        			+"\n"+getResources().getString(R.string.share_content_url);
+			  Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+			  sharingIntent.setType("text/plain");
+			  sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
+			  sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+			  startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share)));
+	    	  break;
+    	}
+		return true;
+    	
     }
 
     public class  CustomOnRefreshListener implements OnRefreshListener{
@@ -213,6 +227,7 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
                         //load and retrieve data from http://de.horoskop.yahoo.com/horoskop/
                     	Document doc = Jsoup.connect("http://de.horoskop.yahoo.com/horoskop/"+getResources().getStringArray(R.array.nameOfzodiacForLoadDeYahooCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].replace("*", "%C3%B6").replace("+", "%C3%BC")+"/astro"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadDeYahooCom)[UNIVERSAL_ID]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)))+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text()+"<br /><br />"+getResources().getString(R.string.de_horoskop_yahoo_com_copyright)+"<br />";
+                    	dateLenght = Html.fromHtml(doc.getElementById("tab-date").text()).length()+1;
                     	if (!(doc.getElementsByClass("astro-tab-body").first().text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
@@ -252,23 +267,17 @@ public class DeHoroscopeYahooComYesterdayLoaderFragment extends BaseFragment {
 	                    	relativeErrorLayout.setVisibility(View.GONE);
 	                    	
 	                    	//download data is cancelled, setting up views 
-	                    	textContent.setText(Html.fromHtml(data)+" ");
+	                    	SpannableString sb = new SpannableString(Html.fromHtml("<br />"+data)+" ");
+	                        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.MEDIUM)), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.LIGHT)), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                    	textContent.setText(sb);
 	                    	
 	                    
 	                    	//with fly up animation
 	                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
 	                    	textContent.startAnimation(flyUpAnimation);
-	                    	
-	                    	//set shareable content
-	                    	actionProvider.setShareIntent(createShareIntent(
-	                    			getResources().getString(R.string.share_content_horo_for)
-	                    			+" "+getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
-	                    			+", "+getResources().getString(R.string.share_content_horo_for_2)
-	                    			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
-	                    			+"\n\n"
-	                    			+String.valueOf(textContent.getText())
-	                    			+"\n\n"+getResources().getString(R.string.share_send_from)
-	                    			+"\n"+getResources().getString(R.string.share_content_url)));
 	                    }
                 	} catch (Exception e){
                 		e.printStackTrace();

@@ -2,23 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="13dp" >
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="@string/title_dialog_ad"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/slider_menu_custom_color_pink" />
-
-    <ImageView
-        android:id="@+id/imageView1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:scaleType="fitXY"
-        android:src="@color/slider_menu_custom_color_pink" />
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/icon"
+            android:text="@string/title_dialog_ad"
+            android:singleLine="true"
+            android:textColor="@color/intro_main_text"
+            android:textSize="18sp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,55 +34,55 @@
         android:orientation="vertical"
         android:padding="5dp" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:text="@string/summary_dialog_ad"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/slider_menu_custom_text_color" />
-
         <RelativeLayout
-            android:id="@+id/buy"
+            android:id="@+id/make_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:background="@drawable/holo_theme_light_pinkactionbar_list_selector_holo_light" >
+            android:background="@drawable/ic_dialog_btn" >
 
             <TextView
                 android:id="@+id/TextView05"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_horizontal_margin"
-                android:text="@string/i_want_to_buy"
+                android:text="@string/summary_dialog_ad"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/slider_menu_custom_color_black" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/holo_theme_light_pinkactionbar_list_selector_holo_light" >
-
-            <TextView
-                android:id="@+id/TextView06"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_horizontal_margin"
-                android:text="@string/no_thanks"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/slider_menu_custom_color_black" />
+                android:textColor="@color/intro_main_text"
+                android:textSize="16sp" />
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_dialog_btn"
+            android:padding="5dp"
+            android:text="@string/i_want_to_buy"
+            android:textColor="@color/intro_main_text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/apply"
+            android:background="@drawable/ic_dialog_btn"
+            android:padding="5dp"
+            android:text="@string/no_thanks"
+            android:textColor="@color/intro_main_text"
+            android:textSize="16sp"/>
+    </RelativeLayout>
 
 </LinearLayout>

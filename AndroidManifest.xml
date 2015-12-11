@@ -20,7 +20,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Holo_Theme_Light_PinkActionBar" >
+        android:theme="@style/ContentTheme" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -29,30 +29,18 @@
             android:name="com.BBsRs.horoscopeFullNew.ContentShowActivity"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:launchMode="singleInstance" >
+            android:launchMode="singleInstance" android:theme="@style/ContentTheme">
         </activity>
         <activity
             android:name="com.BBsRs.horoscopeFullNew.ActivityLoader"
             android:configChanges="locale"
             android:label="@string/app_name"
-            android:theme="@style/Holo.Theme.Light.DarkActionBar.NoActionBar" >
+            android:theme="@style/ContentTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne"
-            android:configChanges="locale"
-            android:label="@string/app_name"
-            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityThree"
-            android:configChanges="locale"
-            android:label="@string/app_name"
-            android:theme="@style/Holo.Theme.NoActionBar.Fullscreen" >
         </activity>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
@@ -66,7 +54,11 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <activity android:name="com.BBsRs.horoscopeNewEdition.ActivityRestarter"></activity>
+
+        <activity android:name="com.BBsRs.horoscopeNewEdition.ActivityRestarter" >
+        </activity>
+        <activity android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityNewTheme" android:theme="@style/ContentTheme">
+        </activity>
     </application>
 
 </manifest>

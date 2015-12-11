@@ -7,37 +7,51 @@
     <integer name="user_timeout">10000</integer>
     <!-- end of data only for download from internet -->
     
-    <string-array name="zodiac_signs_imgs_whoa">
-        <item>@drawable/a</item>
-        <item>@drawable/b</item>
-        <item>@drawable/c</item>
-        <item>@drawable/d</item>
-        <item>@drawable/e</item>
-        <item>@drawable/f</item>
-        <item>@drawable/g</item>
-        <item>@drawable/h</item>
-        <item>@drawable/i</item>
-        <item>@drawable/j</item>
-        <item>@drawable/k</item>
-        <item>@drawable/l</item>
+    <string-array name="zodiac_stars_imgs">
+        <item>@drawable/zod_aries_star</item>
+        <item>@drawable/zod_taurus_star</item>
+        <item>@drawable/zod_gemini_star</item>
+        <item>@drawable/zod_cancer_star</item>
+        <item>@drawable/zod_leo_star</item>
+        <item>@drawable/zod_virgo_star</item>
+        <item>@drawable/zod_libra_star</item>
+        <item>@drawable/zod_scorpio_star</item>
+        <item>@drawable/zod_sagittarius_star</item>
+        <item>@drawable/zod_capricorn_star</item>
+        <item>@drawable/zod_aquarius_star</item>
+        <item>@drawable/zod_pisces_star</item>
     </string-array>
     
-        <string-array name="zodiac_signs_imgs_whoa_logos">
-        <item>@drawable/logo_a</item>
-        <item>@drawable/logo_b</item>
-        <item>@drawable/logo_c</item>
-        <item>@drawable/logo_d</item>
-        <item>@drawable/logo_e</item>
-        <item>@drawable/logo_f</item>
-        <item>@drawable/logo_g</item>
-        <item>@drawable/logo_h</item>
-        <item>@drawable/logo_i</item>
-        <item>@drawable/logo_j</item>
-        <item>@drawable/logo_k</item>
-        <item>@drawable/logo_l</item>
+    <string-array name="zodiac_lines_imgs">
+        <item>@drawable/zod_aries_lines</item>
+        <item>@drawable/zod_taurus_lines</item>
+        <item>@drawable/zod_gemini_lines</item>
+        <item>@drawable/zod_cancer_lines</item>
+        <item>@drawable/zod_leo_lines</item>
+        <item>@drawable/zod_virgo_lines</item>
+        <item>@drawable/zod_libra_lines</item>
+        <item>@drawable/zod_scorpio_lines</item>
+        <item>@drawable/zod_sagittarius_lines</item>
+        <item>@drawable/zod_capricorn_lines</item>
+        <item>@drawable/zod_aquarius_lines</item>
+        <item>@drawable/zod_pisces_lines</item>
     </string-array>
-
-
+    
+    <string-array name="zodiac_signs_imgs">
+        <item>@drawable/zod_aries_sign</item>
+        <item>@drawable/zod_taurus_sign</item>
+        <item>@drawable/zod_gemini_sign</item>
+        <item>@drawable/zod_cancer_sign</item>
+        <item>@drawable/zod_leo_sign</item>
+        <item>@drawable/zod_virgo_sign</item>
+        <item>@drawable/zod_libra_sign</item>
+        <item>@drawable/zod_scorpio_sign</item>
+        <item>@drawable/zod_sagittarius_sign</item>
+        <item>@drawable/zod_capricorn_sign</item>
+        <item>@drawable/zod_aquarius_sign</item>
+        <item>@drawable/zod_pisces_sign</item>
+    </string-array>
+    
     <!-- This data below closed to translate ! Using only for download mail.ru horoscope -->
     <string name="mail_ru_title">Гороскоп</string>
     <string name="mail_ru_copyright">© lady.mail.ru</string>
@@ -49,7 +63,6 @@
         <item>Персональный</item>
         <item>Неделя</item>
         <item>Месяц</item>
-        <item>Год 2015</item>
         <item>Год 2016</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadMailRu">
@@ -73,7 +86,6 @@
         <item>personal</item>
         <item>week</item>
         <item>month</item>
-        <item>2015</item>
         <item>2016</item>
     </string-array>
 
@@ -234,7 +246,7 @@
     <string name="preference_ad">Advertisement</string>
     <string name="preference_ad_disable">Disable advertisement</string>
     <string name="preference_ad_disabled_succesfully">Advertising disabled</string>
-    <string name="preference_date_1">Your birth date</string>
+    <string name="preference_date_1">Birth date</string>
     <string name="preference_date_2">Enter when you born</string>
     <string name="preference_zodiac_signs_2">Select your zodiac sign</string>
     <string name="preference_zodiac_signs_1">Zodiac sign</string>
@@ -254,13 +266,14 @@
     <string name="automatic_determined_sign">Automatic determination of the sign is</string>
     <string name="introduce_one">Online horoscope</string>
     <string name="introduce_two">Welcome!</string>
-    <string name="introduce_two_1">choose your language</string>
+    <string name="introduce_two_1">Choose your language</string>
     <string name="introduce_next">NEXT</string>
     <string name="introduce_back">BACK</string>
     <string name="introduce_exit">EXIT</string>
-    <string name="introduce_start">START!</string>
-    <string name="introduce_date">SET BIRTH DATE</string>
+    <string name="introduce_start">Start</string>
+    <string name="introduce_date">Choose</string>
     <string name="introduce_date_check">Check your data is correct</string>
+    <string name="introduce_slogan">Your personal daily assistant</string>
 
     <string-array name="moths_of_year">
         <item>January</item>
@@ -281,6 +294,7 @@
     <string name="review">Review on GPlay!</string>
     <string name="review_summary">You will make an invaluable contribution to the development of the project!</string>
     <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
     
     <string name="title_dialog_ad">Remove ads</string>
     <string name="summary_dialog_ad">Remove all kinds of advertisements for 0.99$.\nKeep in mind that buying one, advertising is removed forever.</string>

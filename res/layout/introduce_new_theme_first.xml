@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/introduce_two"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/intro_main_text"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:text="@string/introduce_two_1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/intro_second_text"
+        android:textSize="11sp" />
+
+    <Button
+        android:id="@+id/chooseLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/subTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_intro_btn"
+        android:paddingLeft="26dp"
+        android:paddingRight="40dp"
+        android:text="@string/preference_locale_2"
+        android:textColor="@color/intro_main_text"
+        android:textSize="17sp" />
+
+</RelativeLayout>

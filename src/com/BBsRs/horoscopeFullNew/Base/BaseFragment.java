@@ -3,13 +3,17 @@ package com.BBsRs.horoscopeFullNew.Base;
 import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.LinearLayout;
+import org.holoeverywhere.widget.TextView;
 import org.jsoup.Jsoup;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 
+import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -108,6 +112,10 @@ public class BaseFragment extends Fragment{
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		getSupportActionBar().setSubtitle(null);
+		getSupportActionBar().setTitle(null);
+		
 		if (adView != null)
 		adView.resume();
 		
@@ -128,5 +136,31 @@ public class BaseFragment extends Fragment{
 	      shareIntent.putExtra(Intent.EXTRA_TEXT, text);
 	      return shareIntent;
 	}	
+	
+    public void setTitle(String title){
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayShowCustomEnabled(true);
+		View actionTitle = getLayoutInflater().inflate(R.layout.action_bar, null);
+		//set font
+		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), ((TextView)actionTitle.findViewById(R.id.titleActionBar)));
+		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), ((TextView)actionTitle.findViewById(R.id.subtitleActionBar)));
+		//separate text
+		String[] titles = title.split(";");
+		if (titles.length==1){
+			((TextView)actionTitle.findViewById(R.id.titleActionBar)).setText(titles[0]);
+			((TextView)actionTitle.findViewById(R.id.subtitleActionBar)).setVisibility(View.GONE);
+		} else {
+			((TextView)actionTitle.findViewById(R.id.titleActionBar)).setText(titles[0]);
+			((TextView)actionTitle.findViewById(R.id.subtitleActionBar)).setText(titles[1]);
+			((TextView)actionTitle.findViewById(R.id.subtitleActionBar)).setVisibility(View.VISIBLE);
+		}
+		actionBar.setCustomView(actionTitle,
+		        new ActionBar.LayoutParams(
+		                ActionBar.LayoutParams.WRAP_CONTENT,
+		                ActionBar.LayoutParams.MATCH_PARENT,
+		                Gravity.CENTER
+		        )
+		);
+    }
 
 }

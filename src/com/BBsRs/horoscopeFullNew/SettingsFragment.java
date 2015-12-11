@@ -4,11 +4,12 @@ package com.BBsRs.horoscopeFullNew;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.drawable.ColorDrawable;
 import org.holoeverywhere.preference.CheckBoxPreference;
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
-import org.holoeverywhere.preference.ListPreference;
 import org.holoeverywhere.preference.Preference;
 import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
 import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
@@ -17,20 +18,25 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.preference.TimePreference;
 import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
+import org.holoeverywhere.widget.ArrayAdapter;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.widget.RadioButton;
+import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
-import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
+import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.NotificationService;
 import com.BBsRs.horoscopeNewEdition.R;
@@ -38,13 +44,12 @@ import com.BBsRs.horoscopeNewEdition.R;
 public class SettingsFragment extends BasePreferenceFragment {
 	
 	//preferences 
-    SharedPreferences sPref;
+    SharedPreferences sPref; 
     
     DatePreference myDatePref;
-    ListPreference myLocaleListPref, myZodiacSignPref;
     CheckBoxPreference myNotificationsPref;
     TimePreference myNotificationsTimePref;
-    Preference myDisableAdPreference;
+    Preference myDisableAdPreference, myLocaleListPref, myZodiacSignPref;
     
 	AlertDialog alert = null;	
 	Calendar cal;
@@ -74,6 +79,13 @@ public class SettingsFragment extends BasePreferenceFragment {
 		
 		startMainTask();
         
+    }
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        view.setBackgroundColor(getResources().getColor(R.color.slider_menu_background));
+        return view;
     }
     
     public void startMainTask(){
@@ -115,37 +127,174 @@ public class SettingsFragment extends BasePreferenceFragment {
         });
         
         //setting up locale change preference, cuz we need change locale.
-        myLocaleListPref = (ListPreference) findPreference("preference_locales");
-        myLocaleListPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
-
+        myLocaleListPref = (Preference) findPreference("preference_locales");
+        myLocaleListPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-				Editor ed = sPref.edit();   
-				ed.putString("preference_locales", (String) newValue); 	
-				ed.commit();
-				setLocale((String) newValue);
-				updateProviderToLang();
-				activityRefresh();
+			public boolean onPreferenceClick(Preference preference) {
+				final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    	
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+		    		      (Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	//init views
+		    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+		    	TextView title = (TextView)content.findViewById(R.id.title);
+		    	Button cancel = (Button)content.findViewById(R.id.cancel);
+		    	Button apply = (Button)content.findViewById(R.id.apply);
+		    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+		    	
+		    	//set fonts
+		    	SFUIDisplayFont.MEDIUM.apply(context, title);
+		    	SFUIDisplayFont.LIGHT.apply(context, cancel);
+		    	SFUIDisplayFont.LIGHT.apply(context, apply);
+		    	
+		    	//view job
+		    	title.setText(context.getString(R.string.introduce_two_1));
+		    	icon.setImageResource(R.drawable.ic_icon_settings_language);
+		    	
+		    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		    	// custom adapter
+		    	final String [] listArray = context.getResources().getStringArray(R.array.locales);
+		        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+		            @Override
+		            public View getView(final int position, View convertView, ViewGroup parent) {
+		            	 View v = super.getView(position, convertView, parent);
+		            	 //set font
+		            	 SFUIDisplayFont.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 //set radio
+		                 RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+		                 if (list.isItemChecked(position)) {
+		                	 radio.setChecked(true);
+		                 } else {
+		                	 radio.setChecked(false);
+		                 }
+		                 
+		                 View.OnClickListener clickItem = new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								sPref.edit().putString("preference_locales", context.getResources().getStringArray(R.array.locales_entryValues)[position]).commit();
+								alert.dismiss();
+								setLocale(context.getResources().getStringArray(R.array.locales_entryValues)[position]);
+								updateProviderToLang();
+								activityRefresh();
+							}
+						};
+		                 
+		                 v.setOnClickListener(clickItem);
+		                 radio.setOnClickListener(clickItem);
+		                 return v;
+		            }
+		        });
+		        
+				int index=0;
+				for (String summaryValue : getActivity().getResources().getStringArray(R.array.locales_entryValues)){
+					if (summaryValue.equals(sPref.getString("preference_locales", getString(R.string.default_locale)))){
+						list.setItemChecked(index, true);
+						break;
+					}
+					index++;
+				}
+		    	
+		    	apply.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						alert.dismiss();
+					}
+				});
+		    	
+		    	cancel.setVisibility(View.GONE);
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
 				return false;
 			}
-        	
         });
         
-        myZodiacSignPref = (ListPreference) findPreference("preference_zodiac_sign");
-        myZodiacSignPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
-
+        myZodiacSignPref = (Preference) findPreference("preference_zodiac_sign");
+        myZodiacSignPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-				Editor ed = sPref.edit();   
-				ed.putString("preference_zodiac_sign", (String) newValue); 	
-				ed.commit();
-				
-				updateSummary();
+			public boolean onPreferenceClick(Preference preference) {
+				final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    	
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+		    		      (Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	//init views
+		    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+		    	TextView title = (TextView)content.findViewById(R.id.title);
+		    	Button cancel = (Button)content.findViewById(R.id.cancel);
+		    	Button apply = (Button)content.findViewById(R.id.apply);
+		    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+		    	
+		    	//set fonts
+		    	SFUIDisplayFont.MEDIUM.apply(context, title);
+		    	SFUIDisplayFont.LIGHT.apply(context, cancel);
+		    	SFUIDisplayFont.LIGHT.apply(context, apply);
+		    	
+		    	//view job
+		    	title.setText(context.getString(R.string.preference_zodiac_signs_1));
+		    	icon.setImageResource(R.drawable.ic_icon_settings_sign);
+		    	
+		    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		    	// custom adapter
+		    	final String [] listArray = context.getResources().getStringArray(R.array.zodiac_signs);
+		        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+		            @Override
+		            public View getView(final int position, View convertView, ViewGroup parent) {
+		            	 View v = super.getView(position, convertView, parent);
+		            	 //set font
+		            	 SFUIDisplayFont.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 //set radio
+		                 RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+		                 if (list.isItemChecked(position)) {
+		                	 radio.setChecked(true);
+		                 } else {
+		                	 radio.setChecked(false);
+		                 }
+		                 
+		                 View.OnClickListener clickItem = new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								sPref.edit().putString("preference_zodiac_sign", context.getResources().getStringArray(R.array.zodiac_signs_entryValues)[position]).commit();
+								alert.dismiss();
+								updateSummary();
+							}
+						};
+		                 
+		                 v.setOnClickListener(clickItem);
+		                 radio.setOnClickListener(clickItem);
+		                 return v;
+		            }
+		        });
+		        
+				int index=0;
+				for (String summaryValue : getActivity().getResources().getStringArray(R.array.zodiac_signs_entryValues)){
+					if (summaryValue.equals(sPref.getString("preference_zodiac_sign", getString(R.string.default_sign)))){
+						list.setItemChecked(index, true);
+						break;
+					}
+					index++;
+				}
+		    	
+		    	apply.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						alert.dismiss();
+					}
+				});
+		    	
+		    	cancel.setVisibility(View.GONE);
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
 				return false;
 			}
-        	
         });
         
         //setting up locale change preference, cuz we need change notifications.
@@ -215,13 +364,8 @@ public class SettingsFragment extends BasePreferenceFragment {
     public void onResume() {
         super.onResume();
         //set titile for action bar with custom font
-        SpannableString sb = new SpannableString(getString(R.string.app_name));
-        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        getSupportActionBar().setTitle(sb);
-        //set subtitle for a current fragment with custom font
-        sb = new SpannableString(getString(R.string.preference));
-        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), "fonts/HelveticaNeueCyr-Light.otf")), 0, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        getSupportActionBar().setSubtitle(sb);
+        setTitle(getString(R.string.preference));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.action_bar_color)));
         
         updateSummary();
     }

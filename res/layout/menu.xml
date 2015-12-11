@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?sliderMenuPanelBackground"
+    android:background="@color/slider_menu_background"
     android:orientation="vertical">
 
     <ListView
@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="@android:color/transparent"
-        android:listSelector="@drawable/holo_theme_light_pinkactionbar_list_selector_holo_light" />
+        android:divider="@color/slider_menu_custom_divider"
+        android:dividerHeight="0.5dip"
+        android:listSelector="@drawable/ic_dialog_btn" />
     	
 </LinearLayout>

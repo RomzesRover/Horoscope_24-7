@@ -55,7 +55,7 @@
     <string name="preference_ad">Реклама</string>
     <string name="preference_ad_disable">Отключить рекламу</string>
     <string name="preference_ad_disabled_succesfully">Реклама отключена</string>
-    <string name="preference_date_1">Дата вашего рождения</string>
+    <string name="preference_date_1">Дата рождения</string>
     <string name="preference_date_2">Введите когда вы родились</string>
     <string name="preference_zodiac_signs_2">Выберета ваш знак зодиака</string>
     <string name="preference_zodiac_signs_1">Знак зодиака</string>
@@ -79,9 +79,11 @@
     <string name="introduce_next">ДАЛЕЕ</string>
     <string name="introduce_back">НАЗАД</string>
     <string name="introduce_exit">ВЫХОД</string>
-    <string name="introduce_start">СТАРТ!</string>
-    <string name="introduce_date">УСТАНОВИТЬ ДАТУ РОЖДЕНИЯ</string>
+    <string name="introduce_start">Начать</string>
+    <string name="introduce_date">Выбрать</string>
     <string name="introduce_date_check">Проверьте правильность введенных данных</string>
+    <string name="introduce_slogan">Ваш личный ежедневный помощник</string>
+    
     <string-array name="moths_of_year">
         <item>Января</item>
         <item>Февраля</item>
@@ -97,10 +99,11 @@
         <item>Декабря</item>
     </string-array>
     
-    <string name="title_dialog">Нравится это приложение?</string>
+    <string name="title_dialog">Нравится приложение?</string>
     <string name="review">Оцени на Гугл Плей!</string>
     <string name="review_summary">Ты сделаешь неоценимый вклад в развитие проекта!</string>
     <string name="ok">Хорошо</string>
+    <string name="cancel">Отмена</string>
     
     <string name="title_dialog_ad">Удалить рекламу</string>
     <string name="summary_dialog_ad">Удалить все виды рекламных объявлений за 30 руб.\nПомните, что купив однажды, реклама удалится навсегда.</string>

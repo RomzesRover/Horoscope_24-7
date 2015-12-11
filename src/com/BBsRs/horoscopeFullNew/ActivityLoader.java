@@ -18,13 +18,16 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
-import com.BBsRs.horoscopeFullNew.Fonts.HelvFont;
-import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityOne;
+import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
+import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityNewTheme;
 import com.BBsRs.horoscopeNewEdition.NotificationService;
 import com.BBsRs.horoscopeNewEdition.R;
 
@@ -40,6 +43,10 @@ public class ActivityLoader extends BaseActivity {
     RelativeLayout relativeContentLayout;
     TextView errorMessage;
     Button errorRetryButton;
+    ImageView stars, sign, lines;
+ 
+    //handler
+    Handler handler = new Handler();
     
     //banner 
     int banner = 0;
@@ -53,7 +60,7 @@ public class ActivityLoader extends BaseActivity {
 		if (isNetworkAvailable()) {
 			//check if user still not set up data
 	        if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13){
-	        	Intent refresh = new Intent(getApplicationContext(), IntroduceActivityOne.class);
+	        	Intent refresh = new Intent(getApplicationContext(), IntroduceActivityNewTheme.class);
 				//restart activity
 			    startActivity(refresh);   
 			    //set  animation
@@ -61,21 +68,16 @@ public class ActivityLoader extends BaseActivity {
 			    // stop curr activity
 			    finish();
 	        } else {
-	        	Thread thr=new Thread(new Runnable() {			
-			        public void run() {
-			        	//start service
-			        	scheduleUpdate(getApplicationContext());
-			        	//create intent
-			        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
-						//restart activity
-					    startActivity(refresh);   
-					    //set  animation
-					    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-					    // stop curr activity
-					    finish();
-			        }
-	        	});
-			    thr.start();
+	        	//start service
+	        	scheduleUpdate(getApplicationContext());
+	        	//create intent
+	        	Intent refresh = new Intent(getApplicationContext(), ContentShowActivity.class);
+				//restart activity
+			    startActivity(refresh);   
+			    //set  animation
+			    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+			    // stop curr activity
+			    finish();
 	        } 
         } else {
         	relativeContentLayout.setVisibility(View.GONE);
@@ -108,6 +110,9 @@ public class ActivityLoader extends BaseActivity {
     	errorMessage = (TextView)this.findViewById(R.id.errorMessage);
     	errorRetryButton = (Button)this.findViewById(R.id.errorRetryButton);
     	relativeContentLayout = (RelativeLayout)this.findViewById(R.id.contentLayout);
+        stars = (ImageView)findViewById(R.id.stars);
+        sign = (ImageView)findViewById(R.id.sign);
+        lines = (ImageView)findViewById(R.id.lines);
     	
     	//programing error button
         errorRetryButton.setOnClickListener(new View.OnClickListener() {
@@ -123,20 +128,84 @@ public class ActivityLoader extends BaseActivity {
 			}
 		});
         
-		//start timer
-		CountDownTimer = new timer (3000, 1000);   		//timer to 2 seconds (tick one second)
-		CountDownTimer.start();							//start timer
+		if (Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13){
+			Intent refresh = new Intent(getApplicationContext(), IntroduceActivityNewTheme.class);
+			//restart activity
+		    startActivity(refresh);   
+		    //set  animation
+		    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+		    // stop curr activity
+		    finish();
+		} else {
+			//start timer
+			CountDownTimer = new timer (4000, 1000);   		//timer to 2 seconds (tick one second)
+			CountDownTimer.start();							//start timer
+			//start animation
+			//delete old image
+			stars.setImageResource(android.R.color.transparent);
+			sign.setImageResource(android.R.color.transparent);
+			lines.setImageResource(android.R.color.transparent);
+			
+			handler.postDelayed(new Runnable(){
+				@Override
+				public void run() {
+					try{
+						//start stars animation
+						//set icon
+				        TypedArray imagesStars = getResources().obtainTypedArray(R.array.zodiac_stars_imgs);
+				        stars.setImageResource(imagesStars.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1));
+				        imagesStars.recycle();
+		            	Animation flyUpAnimationStars = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in_stars);
+		            	stars.startAnimation(flyUpAnimationStars);
+					}
+					catch(Exception e){
+						e.printStackTrace();
+					}
+					
+	            	handler.postDelayed(new Runnable(){
+						@Override
+						public void run() {
+							try{
+								//start lines animation
+								//set icon
+						        TypedArray imagesLines = getResources().obtainTypedArray(R.array.zodiac_lines_imgs);
+						        lines.setImageResource(imagesLines.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1));
+						        imagesLines.recycle();
+				            	Animation flyUpAnimationLines = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in_stars);
+				            	lines.startAnimation(flyUpAnimationLines);
+							}
+							catch(Exception e){
+								e.printStackTrace();
+							}
+			            	
+			            	handler.postDelayed(new Runnable(){
+								@Override
+								public void run() {
+									try{
+										//start sign animation
+										//set icon
+								        TypedArray images = getResources().obtainTypedArray(R.array.zodiac_signs_imgs);
+								        sign.setImageResource(images.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1));
+								        images.recycle();
+						            	Animation flyUpAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in_sign);
+						            	sign.startAnimation(flyUpAnimation);
+									}
+									catch(Exception e){
+										e.printStackTrace();
+									}
+								}
+			            	}, 500);
+						}
+	            	}, 500);
+				}
+			}, 500);
+		}
 		
 		//set fonts
-	    HelvFont.HELV_LIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
-	    HelvFont.HELV_LIGHT.apply(this, errorMessage);
-	    HelvFont.HELV_ROMAN.apply(this, errorRetryButton);
-	    
-	    
-        //set icon
-        TypedArray images = getResources().obtainTypedArray(R.array.zodiac_signs_imgs_whoa_logos);
-        ((ImageView)this.findViewById(R.id.logo)).setImageResource(images.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1));
-        images.recycle();
+		SFUIDisplayFont.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
+		SFUIDisplayFont.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.subTitle)));
+		SFUIDisplayFont.ULTRALIGHT.apply(this, errorMessage);
+		SFUIDisplayFont.ULTRALIGHT.apply(this, errorRetryButton);
 	}
 
     private boolean isNetworkAvailable() {

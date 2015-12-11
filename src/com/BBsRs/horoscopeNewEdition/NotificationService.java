@@ -16,7 +16,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.TypedArray;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -121,9 +120,6 @@ public class NotificationService extends Service {
 				Random rand = new Random();
 				int randomNum  = rand.nextInt((3 - 0) + 1) + 0;
 				
-		        //set icon
-		        TypedArray images = getResources().obtainTypedArray(R.array.zodiac_signs_imgs_whoa);
-				
 				//create new
 				mBuilder = new NotificationCompat.Builder(mContext);
 				
@@ -132,7 +128,7 @@ public class NotificationService extends Service {
 				
 				mBuilder.setContentTitle(mContext.getString(R.string.app_name))
 				.setContentText(mContext.getResources().getStringArray(R.array.notification_messages)[randomNum])
-				.setSmallIcon(images.getResourceId(Integer.parseInt(sPref.getString("preference_zodiac_sign", "1")), 1))
+				.setSmallIcon(R.drawable.ic_notification)
 				.setContentIntent(contentIntent)
 				.setOngoing(false)
 				.setAutoCancel(true)
@@ -148,8 +144,6 @@ public class NotificationService extends Service {
 				notification.deleteIntent = PendingDeleteIntent;
 				
 				mNotificationManager.notify(25, notification);
-				
-				images.recycle();
 			} catch (Exception e) {
 				this.cancel(false);
 				e.printStackTrace();

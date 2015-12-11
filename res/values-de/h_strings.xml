@@ -55,7 +55,7 @@
     <string name="preference_ad">Werbung</string>
     <string name="preference_ad_disable">Disable advertisement</string>
     <string name="preference_ad_disabled_succesfully">Werbung deaktiviert</string>
-    <string name="preference_date_1">Ihr Geburtsdatum</string>
+    <string name="preference_date_1">Geburtsdatum</string>
     <string name="preference_date_2">Geben Sie, wenn Sie geboren</string>
     <string name="preference_zodiac_signs_2">Wählen Sie Ihr Sternzeichen</string>
     <string name="preference_zodiac_signs_1">Sternzeichen</string>
@@ -74,14 +74,15 @@
     <string name="pre_use">Zunächst erzeugen Informationen über sich selbst:)</string>
     <string name="automatic_determined_sign">Automatische Ermittlung der Vorzeichen</string>
     <string name="introduce_one">Online-Horoskop</string>
-    <string name="introduce_two">willkommen!</string>
-    <string name="introduce_two_1">wählen Sie Ihre Sprache</string>
+    <string name="introduce_two">Willkommen!</string>
+    <string name="introduce_two_1">Wählen Sie Ihre Sprache</string>
     <string name="introduce_next">NÄCHSTER</string>
     <string name="introduce_back">ZURÜCK</string>
     <string name="introduce_exit">AUSGANG</string>
-    <string name="introduce_start">START!</string>
-    <string name="introduce_date">SET GEBURTSDATUM</string>
+    <string name="introduce_start">Start</string>
+    <string name="introduce_date">Wählen</string>
     <string name="introduce_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
+    <string name="introduce_slogan">Ihr persönlicher Tagesassistent</string>
 
     <string-array name="moths_of_year">
         <item>Januar</item>
@@ -102,6 +103,7 @@
     <string name="review">Bewertung auf Google Play</string>
     <string name="review_summary">Sie werden einen unschätzbaren Beitrag zur Entwicklung des Projekts zu machen!</string>
     <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
     
     <string name="title_dialog_ad">Anzeigen entfernen</string>
     <string name="summary_dialog_ad">Entfernen Sie alle Arten von Werbung für 0,99 $.\nDenken Sie daran, dass der Kauf einer, wird Werbung immer beseitigt.</string>

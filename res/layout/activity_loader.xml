@@ -1,39 +1,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/slider_menu_custom_color_pink" >
+    android:layout_height="fill_parent" >
 
     <RelativeLayout
         android:id="@+id/contentLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/intro_main_text"
+            android:textSize="30sp" />
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo_b" />
+        <TextView
+            android:id="@+id/subTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:text="@string/introduce_slogan"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/intro_second_text"
+            android:textSize="11sp" />
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/app_name"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/simple_white_color"
-                android:textSize="22sp"
-                android:textStyle="bold|italic" />
+        <ImageView
+            android:id="@+id/stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerInside" />
 
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerInside" />
 
+        <ImageView
+            android:id="@+id/lines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerInside" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -60,16 +79,21 @@
                 android:gravity="center"
                 android:text="@string/error_message"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/simple_white_color" />
+                android:textColor="@color/simple_white_color"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/errorRetryButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_intro_btn"
+                android:paddingLeft="26dp"
+                android:paddingRight="40dp"
                 android:text="@string/error_retry"
-                android:textColor="@color/simple_white_color" />
-
+                android:textColor="@color/intro_main_text"
+                android:textSize="17sp" />
         </LinearLayout>
     </RelativeLayout>
 
