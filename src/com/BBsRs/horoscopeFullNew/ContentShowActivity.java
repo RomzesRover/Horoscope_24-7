@@ -396,6 +396,8 @@ public class ContentShowActivity extends BaseActivity {
     @Override
     protected void onResume(){
     	super.onResume();
+        //delete notification is exist
+        sendBroadcast(new Intent("MP_DELETE_INTENT"));
     	//first launch
     	firstLaunch = true;
     	//set app lang

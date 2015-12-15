@@ -84,6 +84,13 @@ public class NotificationService extends Service {
 		}
 		
 		try {
+			//cancel show notification
+			mNotificationManager.cancelAll();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
 			unregisterReceiver(startActivity);
 			unregisterReceiver(deleteNotification);
 		} catch (Exception e){
