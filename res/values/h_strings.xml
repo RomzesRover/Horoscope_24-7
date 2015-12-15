@@ -200,18 +200,18 @@
 
     <!-- Data below need to be translate text UI -->
     <string-array name="zodiac_signs">
-        <item>Ram</item>
-        <item>Bull</item>
-        <item>Twins</item>
-        <item>Crab</item>
-        <item>Lion</item>
-        <item>Maiden</item>
-        <item>Scales</item>
-        <item>Scorpion</item>
-        <item>Archer</item>
-        <item>Goat-horned</item>
-        <item>Water-Bearer</item>
-        <item>Fish</item>
+        <item>Ram / Aries</item>
+        <item>Bull / Taurus</item>
+        <item>Twins / Gemini</item>
+        <item>Crab / Cancer</item>
+        <item>Lion / Leo</item>
+        <item>Maiden / Virgo</item>
+        <item>Scales / Libra</item>
+        <item>Scorpion / Scorpio</item>
+        <item>Archer / Sagittarius</item>
+        <item>Goat-horned / Capricorn</item>
+        <item>Water-Bearer / Aquarius</item>
+        <item>Fish / Pisces</item>
     </string-array>
     <string-array name="zodiac_signs_entryValues">
         <item>0</item>
