@@ -196,6 +196,45 @@
     </string-array>
 
     <!-- end of data only for download de.horoscope.yahoo.com horoscope -->
+    
+    <!-- This data below closed to translate ! Using only for download horoscopo.com horoscope -->
+    <string name="horoscopo_com_title">Horóscopo</string>
+    <string name="horoscopo_com_copyright">© horoscopo.com</string>
+
+    <string-array name="horoscopo_com_horoscopes">
+        <item>Ayer</item>
+        <item>Hoy</item>
+        <item>Mañana</item>
+        <item>Personal</item>
+        <item>Esta Semana</item>
+        <item>Este Mes</item>
+        <item>Año</item>
+    </string-array>
+    <string-array name="nameOfzodiacForLoadHoroscopoCom">
+        <item>aries</item>
+        <item>tauro</item>
+        <item>geminis</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>escorpion</item>
+        <item>sagitario</item>
+        <item>capricornio</item>
+        <item>acuario</item>
+        <item>piscis</item>
+    </string-array>
+    <string-array name="nameOfHoroscopecForLoadHoroscopoCom">
+        <item>-ayer-</item>
+        <item>-diario-gratis-</item>
+        <item>-manana-</item>
+        <item>daily-numerology</item>
+        <item>-semanal-gratis-</item>
+        <item>-mensual-gratis-</item>
+        <item>-horoscopo-2016</item>
+    </string-array>
+
+    <!-- end of data only for download horoscopo.com horoscope -->
 
 
     <!-- Data below need to be translate text UI -->
@@ -237,11 +276,13 @@
         <item>Русский</item>
         <item>English</item>
         <item>Deutsch</item>
+        <item>Español</item>
     </string-array>
     <string-array name="locales_entryValues">
         <item>ru</item>
         <item>en</item>
         <item>de</item>
+        <item>es</item>
     </string-array>
 
     <string name="application_title">Application</string>
