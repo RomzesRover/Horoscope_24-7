@@ -104,6 +104,7 @@
         <item>Week</item>
         <item>Money</item>
         <item>Month</item>
+        <item>Year</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadHoroscopeCom">
         <item>1</item>
@@ -119,6 +120,20 @@
         <item>11</item>
         <item>12</item>
     </string-array>
+    <string-array name="nameOfzodiacForLoadHoroscopeComYearly">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
     <string-array name="nameOfHoroscopecForLoadHoroscopeCom">
         <item>-daily-yesterday</item>
         <item>-daily-today</item>
@@ -127,6 +142,7 @@
         <item>-weekly</item>
         <item>-money-weekly</item>
         <item>-monthly</item>
+        <item>yearly/2016-horoscope-</item>
     </string-array>
 
     <!-- end of data only for download horoscope.com horoscope -->
