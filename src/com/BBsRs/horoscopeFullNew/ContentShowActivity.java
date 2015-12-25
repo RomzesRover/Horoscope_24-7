@@ -280,6 +280,7 @@ public class ContentShowActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				sPref.edit().putBoolean(clickedCancel, true).commit();
+				alert.dismiss();
 			}
 		});
     	
