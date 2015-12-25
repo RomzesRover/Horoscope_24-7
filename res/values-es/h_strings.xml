@@ -103,6 +103,7 @@
     <string name="review">Precio en Google Play!</string>
     <string name="review_summary">Va a hacer una contribución inestimable al desarrollo del proyecto!</string>
     <string name="ok">Buena</string>
+    <string name="later">Recuérdame más tarde</string>
     <string name="cancel">Cancelar</string>
     
     <string name="title_dialog_ad">Eliminar publicidad</string>

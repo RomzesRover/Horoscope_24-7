@@ -213,8 +213,12 @@ public class ContentShowActivity extends BaseActivity {
 		
 		final String shownNotifacation = "SHOWN_NOTIFICATION,HORO";
 		final String clickedReview = "CLICKED_REVIEW,HORO";
+		final String clickedCancel = "CLICKED_CANCEL,HORO";
 		
 		if (sPref.getBoolean(clickedReview, false))
+			return;
+		
+		if (sPref.getBoolean(clickedCancel, false))
 			return;
 		
 		//calendar job
@@ -272,7 +276,12 @@ public class ContentShowActivity extends BaseActivity {
 			}
 		});
     	
-    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
+    	((Button)content.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sPref.edit().putBoolean(clickedCancel, true).commit();
+			}
+		});
     	
     	build.setView(content);
     	alert = build.create();															// show dialog
