@@ -107,6 +107,13 @@
     <string name="later">Напомнить позже</string>
     <string name="cancel">Отмена</string>
     
+    <string name="dialog_sponsor_share">Поделиться</string>
+    <string name="dialog_sponsor_share_sumarry">Вы можете рассказать вашим друзьям, как это приложение вам помогает.</string>
+    <string name="share_text">Я читаю гороскоп только в этом приложении.</string>
+    <string name="dialog_sponsor_vk">Посетите нашу стр. ВК</string>
+    <string name="dialog_sponsor_vk_sumarry">На нашей странице ВК можно следить за последними обновлениями, либо задать вопрос разработчику.</string>
+    <string name="dialog_sponsor_vk_link">https://vk.com/brothersrovers</string>
+    
     <string name="title_dialog_ad">Удалить рекламу</string>
     <string name="summary_dialog_ad">Удалить все виды рекламных объявлений за 30 руб.\nПомните, что купив однажды, реклама удалится навсегда.</string>
     <string name="i_want_to_buy">Я хочу купить</string>

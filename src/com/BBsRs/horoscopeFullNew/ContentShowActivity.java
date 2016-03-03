@@ -214,8 +214,10 @@ public class ContentShowActivity extends BaseActivity {
 		final String shownNotifacation = "SHOWN_NOTIFICATION,HORO";
 		final String clickedReview = "CLICKED_REVIEW,HORO";
 		final String clickedCancel = "CLICKED_CANCEL,HORO";
+		final String clickedVK = "CLICKED_VK,HORO";
+		final String clickedShare = "CLICKED_SHARE,HORO";
 		
-		if (sPref.getBoolean(clickedReview, false))
+		if (sPref.getBoolean(clickedReview, false) && sPref.getBoolean(clickedVK, false) && sPref.getBoolean(clickedShare, false))
 			return;
 		
 		if (sPref.getBoolean(clickedCancel, false))
@@ -254,9 +256,15 @@ public class ContentShowActivity extends BaseActivity {
     	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
     	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView04));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView15));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView14));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView25));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView24));
     	
     	
     	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
+    	if (sPref.getBoolean(clickedReview, false))
+    		makeReview.setVisibility(View.GONE);
     	makeReview.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -265,7 +273,35 @@ public class ContentShowActivity extends BaseActivity {
 				intent.setData(Uri.parse("market://details?id="+getPackageName()));
 				startActivity(intent);
 				makeReview.setVisibility(View.GONE);
-				alert.dismiss();
+			}
+		});
+    	
+    	final RelativeLayout share = (RelativeLayout)content.findViewById(R.id.make_share);
+    	share.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try { 
+					sPref.edit().putBoolean(clickedShare, true).commit();
+					Intent i = new Intent(Intent.ACTION_SEND);  
+					i.setType("text/plain");
+					i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+					String sAux = "\n"+getString(R.string.share_text)+"\n\n";
+					sAux = sAux + getString(R.string.share_content_url)+" \n\n";
+					i.putExtra(Intent.EXTRA_TEXT, sAux);  
+					startActivity(Intent.createChooser(i, "Share with"));
+				} catch(Exception e) {}   
+			}
+		});
+    	
+    	final RelativeLayout vk = (RelativeLayout)content.findViewById(R.id.make_vk);
+    	vk.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try { 
+					sPref.edit().putBoolean(clickedVK, true).commit();
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dialog_sponsor_vk_link)));
+					startActivity(browserIntent);
+				} catch(Exception e) {}   
 			}
 		});
     	

@@ -355,6 +355,13 @@
     <string name="later">Remind me later</string>
     <string name="cancel">Cancel</string>
     
+    <string name="dialog_sponsor_share">Share this app</string>
+    <string name="dialog_sponsor_share_sumarry">You can tell your friends and relatives how this app is helping you.</string>
+    <string name="share_text">I read the horoscope only in this application.</string>
+    <string name="dialog_sponsor_vk">Visit our VK page</string>
+    <string name="dialog_sponsor_vk_sumarry">Follow our vk page to keep abreast of the latest news or ask questions.</string>
+    <string name="dialog_sponsor_vk_link">https://vk.com/brothersrovers</string>
+    
     <string name="title_dialog_ad">Remove ads</string>
     <string name="summary_dialog_ad">Remove all kinds of advertisements for 0.99$.\nKeep in mind that buying one, advertising is removed forever.</string>
     <string name="i_want_to_buy">I want to buy</string>
