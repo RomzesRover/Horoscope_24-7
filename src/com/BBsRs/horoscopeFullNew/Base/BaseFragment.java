@@ -42,7 +42,7 @@ public class BaseFragment extends Fragment{
 					
 					String AdSource = "ca-app-pub-6690318766939525/9990722098";
 					try {
-						AdSource = Jsoup.connect("https://raw.githubusercontent.com/RomzesRover/Horoscope_24-7/new_edition/horo_files/adsource.txt").timeout(10000).get().text();
+						AdSource = Jsoup.connect("https://raw.githubusercontent.com/RomzesRover/common_repository_for_static_files/master/Horoscope/horo_files/adsource.txt").timeout(10000).get().text();
 					} catch (Exception e) {
 						AdSource = "ca-app-pub-6690318766939525/9990722098";
 						e.printStackTrace();
