@@ -80,6 +80,7 @@
     <string name="introduce_back">ZURÜCK</string>
     <string name="introduce_exit">AUSGANG</string>
     <string name="introduce_start">Start</string>
+    <string name="introduce_notMy">es ist nicht Ihr Sternzeichen ?</string>
     <string name="introduce_date">Wählen</string>
     <string name="introduce_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
     <string name="introduce_slogan">Ihr persönlicher Tagesassistent</string>

@@ -10,7 +10,10 @@ import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.TextView;
 
 import android.app.AlarmManager;
@@ -41,7 +44,7 @@ public class IntroduceNewThemeThirdFragment extends Fragment{
     //preferences 
     SharedPreferences sPref;
     //views
-    TextView title, subtitle;
+    TextView title, subtitle, notMy;
     Button start;
     ImageView stars, sign, lines;
     
@@ -58,6 +61,7 @@ public class IntroduceNewThemeThirdFragment extends Fragment{
         //init views
         title = (TextView)contentView.findViewById(R.id.title);
         subtitle = (TextView)contentView.findViewById(R.id.subTitle);
+        notMy = (TextView)contentView.findViewById(R.id.notMy);
         start = (Button)contentView.findViewById(R.id.start);
         stars = (ImageView)contentView.findViewById(R.id.stars);
         sign = (ImageView)contentView.findViewById(R.id.sign);
@@ -66,7 +70,91 @@ public class IntroduceNewThemeThirdFragment extends Fragment{
 		//set fonts
 		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), title);
 		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), subtitle);
+		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), notMy);
 		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), start);
+		
+		notMy.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    	
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+		    		      (Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	//init views
+		    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+		    	TextView title = (TextView)content.findViewById(R.id.title);
+		    	Button cancel = (Button)content.findViewById(R.id.cancel);
+		    	Button apply = (Button)content.findViewById(R.id.apply);
+		    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+		    	
+		    	//set fonts
+		    	SFUIDisplayFont.MEDIUM.apply(context, title);
+		    	SFUIDisplayFont.LIGHT.apply(context, cancel);
+		    	SFUIDisplayFont.LIGHT.apply(context, apply);
+		    	
+		    	//view job
+		    	title.setText(context.getString(R.string.preference_zodiac_signs_1));
+		    	icon.setImageResource(R.drawable.ic_icon_settings_sign);
+		    	
+		    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		    	// custom adapter
+		    	final String [] listArray = context.getResources().getStringArray(R.array.zodiac_signs);
+		        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+		            @Override
+		            public View getView(final int position, View convertView, ViewGroup parent) {
+		            	 View v = super.getView(position, convertView, parent);
+		            	 //set font
+		            	 SFUIDisplayFont.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 //set radio
+		                 RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+		                 if (list.isItemChecked(position)) {
+		                	 radio.setChecked(true);
+		                 } else {
+		                	 radio.setChecked(false);
+		                 }
+		                 
+		                 View.OnClickListener clickItem = new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								sPref.edit().putString("preference_zodiac_sign", context.getResources().getStringArray(R.array.zodiac_signs_entryValues)[position]).commit();
+								alert.dismiss();
+								context.sendBroadcast(new Intent("horo_inro_other_screen"));
+								context.sendBroadcast(new Intent("horo_inro_all_is_normal"));
+							}
+						};
+		                 
+		                 v.setOnClickListener(clickItem);
+		                 radio.setOnClickListener(clickItem);
+		                 return v;
+		            }
+		        });
+		        
+				int index=0;
+				for (String summaryValue : getActivity().getResources().getStringArray(R.array.zodiac_signs_entryValues)){
+					if (summaryValue.equals(sPref.getString("preference_zodiac_sign", getString(R.string.default_sign)))){
+						list.setItemChecked(index, true);
+						break;
+					}
+					index++;
+				}
+		    	
+		    	apply.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						alert.dismiss();
+					}
+				});
+		    	
+		    	cancel.setVisibility(View.GONE);
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
+			}
+		});
 		return contentView;
 	}
 	

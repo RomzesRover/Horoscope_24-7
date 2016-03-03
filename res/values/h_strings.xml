@@ -328,6 +328,7 @@
     <string name="introduce_back">BACK</string>
     <string name="introduce_exit">EXIT</string>
     <string name="introduce_start">Start</string>
+    <string name="introduce_notMy">it\'s not your zodiac sign?</string>
     <string name="introduce_date">Choose</string>
     <string name="introduce_date_check">Check your data is correct</string>
     <string name="introduce_slogan">Your personal daily assistant</string>

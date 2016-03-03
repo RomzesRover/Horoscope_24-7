@@ -80,6 +80,7 @@
     <string name="introduce_back">VOLVER</string>
     <string name="introduce_exit">SALIDA</string>
     <string name="introduce_start">Publicar</string>
+    <string name="introduce_notMy">que no es su muestra del zodiaco?</string>
     <string name="introduce_date">Elija</string>
     <string name="introduce_date_check">Compruebe los datos introducidos</string>
     <string name="introduce_slogan">Su asistente personal diaria</string>
