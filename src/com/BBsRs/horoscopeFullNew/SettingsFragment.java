@@ -101,28 +101,31 @@ public class SettingsFragment extends BasePreferenceFragment {
 			@Override
 			public boolean onDateSet(DatePreference preference, long date,
 					int year, int month, int day) {
-				
-				Calendar currDate=Calendar.getInstance();
-				Calendar calSet = Calendar.getInstance();
-				calSet.setTimeInMillis(0);
-				calSet.set(year, month, day, currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-
-				if (calSet.getTime().before(currDate.getTime())){
-					//save date born
-					Editor ed = sPref.edit();   
-					ed.putInt("dayBorn", day);				
-					ed.putInt("monthBorn", month);				
-					ed.putInt("yearBorn", year);	
-					ed.putString("preference_zodiac_sign", zodiacNumber(day, month+1));
-					Toast.makeText(getActivity(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(day, month+1))], Toast.LENGTH_LONG).show();
-					ed.commit();
-					activityRefresh();
-				} else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
-				}
-				
-				updateSummary();
-				return false;
+					try{
+						Calendar currDate=Calendar.getInstance();
+						Calendar calSet = Calendar.getInstance();
+						calSet.setTimeInMillis(0);
+						calSet.set(year, month, day, currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+		
+						if (calSet.getTime().before(currDate.getTime())){
+							//save date born
+							Editor ed = sPref.edit();   
+							ed.putInt("dayBorn", day);				
+							ed.putInt("monthBorn", month);				
+							ed.putInt("yearBorn", year);	
+							ed.putString("preference_zodiac_sign", zodiacNumber(day, month+1));
+							ed.commit();
+							Toast.makeText(getActivity(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(day, month+1))], Toast.LENGTH_LONG).show();
+							activityRefresh();
+						} else {
+							Toast.makeText(getActivity(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
+						}
+						
+						updateSummary();
+					} catch (Exception e){
+						//
+					}
+					return false;
 			}
         });
         
