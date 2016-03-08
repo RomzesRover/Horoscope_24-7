@@ -1,0 +1,539 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="@dimen/fragment_standart_padding"
+        android:paddingRight="@dimen/fragment_standart_padding"
+        android:scrollbarStyle="insideInset" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="@string/order_personal_horoscope_info_2"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/info"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_type"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupSetectTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type" >
+
+                <RadioButton
+                    android:id="@+id/natal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/order_personal_horoscope_type_1"
+                    android:textColor="@color/intro_main_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/sovm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_personal_horoscope_type_2"
+                    android:textColor="@color/intro_main_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/forecast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_personal_horoscope_type_3"
+                    android:textColor="@color/intro_main_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/kid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_personal_horoscope_type_4"
+                    android:textColor="@color/intro_main_text"
+                    android:textSize="15sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/radioGroupSetectTest"
+                android:paddingTop="30dp"
+                android:text="@string/order_personal_horoscope_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMaskUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/username"
+                android:layout_alignLeft="@+id/username"
+                android:layout_alignRight="@+id/username"
+                android:layout_alignTop="@+id/username"
+                android:layout_below="@id/name"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_name_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/username"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_birthday_date"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMaskUserbirthdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/userbirthdate"
+                android:layout_alignLeft="@+id/userbirthdate"
+                android:layout_alignRight="@+id/userbirthdate"
+                android:layout_alignTop="@+id/userbirthdate"
+                android:layout_below="@id/birthdate"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_birthday_date_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/userbirthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/birthdate"
+                android:ems="10"
+                android:inputType="date"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/birthtime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/userbirthdate"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_birthday_time"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMaskUserbirthtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/userbirthtime"
+                android:layout_alignLeft="@+id/userbirthtime"
+                android:layout_alignRight="@+id/userbirthtime"
+                android:layout_alignTop="@+id/userbirthtime"
+                android:layout_below="@id/birthtime"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_birthday_time_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/userbirthtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/birthtime"
+                android:ems="10"
+                android:inputType="time"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/birthplace"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/userbirthtime"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_birthday_place"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMaskUserbirthplace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/userbirthplace"
+                android:layout_alignLeft="@+id/userbirthplace"
+                android:layout_alignRight="@+id/userbirthplace"
+                android:layout_alignTop="@+id/userbirthplace"
+                android:layout_below="@id/birthplace"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_birthday_place_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/userbirthplace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/birthplace"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/userbirthplace"
+                android:paddingTop="30dp"
+                android:text="@string/order_personal_horoscope_email"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMaskUseremail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/useremail"
+                android:layout_alignLeft="@+id/useremail"
+                android:layout_alignRight="@+id/useremail"
+                android:layout_alignTop="@+id/useremail"
+                android:layout_below="@id/email"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_email_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/useremail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/tel_skype"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/useremail"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_tel_skype"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textMaskUsertel_skype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/usertel_skype"
+                android:layout_alignLeft="@+id/usertel_skype"
+                android:layout_alignRight="@+id/usertel_skype"
+                android:layout_alignTop="@+id/usertel_skype"
+                android:layout_below="@id/tel_skype"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_tel_skype_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/usertel_skype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tel_skype"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/partner_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/usertel_skype"
+                android:paddingTop="30dp"
+                android:text="@string/order_personal_horoscope_name_partner"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partner_textMaskUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/partner_username"
+                android:layout_alignLeft="@+id/partner_username"
+                android:layout_alignRight="@+id/partner_username"
+                android:layout_alignTop="@+id/partner_username"
+                android:layout_below="@id/partner_name"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_name_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/partner_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/partner_name"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/partner_birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/partner_username"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_birthday_date_child"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partner_textMaskUserbirthdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/partner_userbirthdate"
+                android:layout_alignLeft="@+id/partner_userbirthdate"
+                android:layout_alignRight="@+id/partner_userbirthdate"
+                android:layout_alignTop="@+id/partner_userbirthdate"
+                android:layout_below="@id/partner_birthdate"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_birthday_date_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/partner_userbirthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/partner_birthdate"
+                android:ems="10"
+                android:inputType="date"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/partner_birthtime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/partner_userbirthdate"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_birthday_time_child"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partner_textMaskUserbirthtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/partner_userbirthtime"
+                android:layout_alignLeft="@+id/partner_userbirthtime"
+                android:layout_alignRight="@+id/partner_userbirthtime"
+                android:layout_alignTop="@+id/partner_userbirthtime"
+                android:layout_below="@id/partner_birthtime"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_birthday_time_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/partner_userbirthtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/partner_birthtime"
+                android:ems="10"
+                android:inputType="time"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/partner_birthplace"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/partner_userbirthtime"
+                android:paddingTop="10dp"
+                android:text="@string/order_personal_horoscope_birthday_place_child"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partner_textMaskUserbirthplace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/partner_userbirthplace"
+                android:layout_alignLeft="@+id/partner_userbirthplace"
+                android:layout_alignRight="@+id/partner_userbirthplace"
+                android:layout_alignTop="@+id/partner_userbirthplace"
+                android:layout_below="@id/partner_birthplace"
+                android:background="@drawable/edit_text_holo_light"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/order_personal_horoscope_birthday_place_sumarry"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/partner_userbirthplace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/partner_birthplace"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingTop="5dp"
+                android:textColor="@color/intro_main_text"
+                android:textSize="15sp"
+                android:visibility="gone" >
+            </EditText>
+
+            <Button
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/partner_userbirthplace"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_intro_btn"
+                android:paddingLeft="26dp"
+                android:paddingRight="40dp"
+                android:text="@string/order_personal_horoscope_order"
+                android:textColor="@color/intro_main_text"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/info_order"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/order"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="70dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/order_personal_horoscope_info_6"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/slider_menu_custom_text_color"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_darkness_fade" />
+
+    <LinearLayout
+        android:id="@+id/mainRtLt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:visibility="gone" >
+    </LinearLayout>
+
+</RelativeLayout>

@@ -50,6 +50,7 @@ import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuTomorrowLoaderFragm
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuWeekLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYearTwoLoaderFragment;
 import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.MailRuYesterdayLoaderFragment;
+import com.BBsRs.horoscopeFullNew.MailRuLoaderFragment.OrderPersonalHoroscopeFragment;
 import com.BBsRs.horoscopeFullNewHoroscopoComLoaderFragment.HoroscopoComMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNewHoroscopoComLoaderFragment.HoroscopoComPersonalLoaderFragment;
 import com.BBsRs.horoscopeFullNewHoroscopoComLoaderFragment.HoroscopoComTodayLoaderFragment;
@@ -149,9 +150,11 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[4], MailRuWeekLoaderFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[5], MailRuMonthLoaderFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[6], MailRuYearTwoLoaderFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-            pref_id=7;
+            sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[7], OrderPersonalHoroscopeFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+            pref_id=8;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
+            showDialogNewFeature();
         	break;
         case 2:
         	sliderMenu.add(getResources().getString(R.string.horoscope_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
@@ -319,6 +322,47 @@ public class ContentShowActivity extends BaseActivity {
 				alert.dismiss();
 			}
 		});
+    	
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
+	}
+	
+	public void showDialogNewFeature(){
+		
+		final String shownNotifacationNewFeature = "SHOWN_NOTIFICATION_NEW_FEATURE,HORO";
+		
+		if (sPref.getBoolean(shownNotifacationNewFeature, false)){
+			return;
+		}
+		
+		sPref.edit().putBoolean(shownNotifacationNewFeature, true).commit();
+		
+ 		final Context context = this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
+    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
+    	
+    	//set fonts
+    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	
+    	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_9));
+    	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info));
+    	
+    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
+    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
+    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
     	
     	build.setView(content);
     	alert = build.create();															// show dialog

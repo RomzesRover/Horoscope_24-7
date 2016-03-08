@@ -3,6 +3,7 @@ package com.BBsRs.horoscopeFullNew.Fonts;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.CheckedTextView;
 import org.holoeverywhere.widget.EditText;
+import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.TextView;
 
 import android.content.Context;
@@ -76,6 +77,17 @@ public class SFUIDisplayFont {
 			}
 		}
 		mEditText.setTypeface(typeface);
+	}
+	
+	public void apply(Context context, RadioButton mRadioButton) {
+		if (typeface == null) {
+			synchronized (this) {
+				if (typeface == null) {
+					typeface = Typeface.createFromAsset(context.getAssets(), assetName);
+				}
+			}
+		}
+		mRadioButton.setTypeface(typeface);
 	}
 	
 	public void apply(Context context, MenuItem mMenuItem) {

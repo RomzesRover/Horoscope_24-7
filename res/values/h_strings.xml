@@ -64,6 +64,7 @@
         <item>Неделя</item>
         <item>Месяц</item>
         <item>Год 2016</item>
+        <item>Заказать гороскоп</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadMailRu">
         <item>aries</item>
