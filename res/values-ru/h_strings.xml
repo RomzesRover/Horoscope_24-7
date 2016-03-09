@@ -138,7 +138,7 @@
     <string name="order_personal_horoscope_info_6">Я понимаю, что это <u>платная</u> услуга.</string>
     <string name="order_personal_horoscope_info_7">Вы не можете посылать больше, чем 1 запрос в минуту.</string>
     <string name="order_personal_horoscope_type">Какой гороскоп?</string>
-    <string name="order_personal_horoscope_type_1">Натальный</string>
+    <string name="order_personal_horoscope_type_1">Индивидуальный</string>
     <string name="order_personal_horoscope_type_2">Совместимости</string>
     <string name="order_personal_horoscope_type_3">Прогнозы</string>
     <string name="order_personal_horoscope_type_4">Детский</string>
