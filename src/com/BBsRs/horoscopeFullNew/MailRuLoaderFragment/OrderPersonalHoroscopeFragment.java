@@ -612,6 +612,8 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 	
 	public void showDialogSuccess(){
 		
+		sPref.edit().putBoolean("SHOWN_NOTIFICATION_NEW_FEATURE,HORO", true).commit();
+		
  		final Context context = getActivity(); 								// create context
  		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
     		

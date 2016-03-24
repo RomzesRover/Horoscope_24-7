@@ -330,13 +330,27 @@ public class ContentShowActivity extends BaseActivity {
 	
 	public void showDialogNewFeature(){
 		
-		final String shownNotifacationNewFeature = "SHOWN_NOTIFICATION_NEW_FEATURE,HORO";
+		final String shownNotifacationNewFeatureDate = "SHOWN_NOTIFICATION_NEW_FEATURE_DATE,HORO";
 		
-		if (sPref.getBoolean(shownNotifacationNewFeature, false)){
+		if (sPref.getBoolean("SHOWN_NOTIFICATION_NEW_FEATURE,HORO", false)){
 			return;
 		}
 		
-		sPref.edit().putBoolean(shownNotifacationNewFeature, true).commit();
+		//calendar job		
+		//init all dates
+		Calendar shownNotification = Calendar.getInstance();
+		shownNotification.setTimeInMillis(sPref.getLong(shownNotifacationNewFeatureDate, System.currentTimeMillis()));
+				
+		Calendar currentDate = Calendar.getInstance();
+		currentDate.setTimeInMillis(System.currentTimeMillis());
+				
+		//add 9 days to shown notification
+		shownNotification.add(Calendar.DATE, +9);
+		
+		if (currentDate.before(shownNotification) && !(sPref.getLong(shownNotifacationNewFeatureDate, -1)==-1))
+			return;
+		
+		sPref.edit().putLong(shownNotifacationNewFeatureDate, System.currentTimeMillis()).commit();
 		
  		final Context context = this; 								// create context
  		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
