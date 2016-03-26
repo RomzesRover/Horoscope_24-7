@@ -45,7 +45,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 	EditText partner_username, partner_userbirthdate, partner_userbirthtime, partner_userbirthplace;
 	TextView partner_name, partner_birthdate, partner_birthtime, partner_birthplace;
 	TextView partner_username_mask, partner_userbirthdate_mask, partner_userbirthtime_mask, partner_userbirthplace_mask;
-	RadioButton natal, sovm, forecast, kid;
+	RadioButton natal, sovm, forecast, prof, kid;
 	Button order;
 	
     //preferences 
@@ -111,6 +111,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     	sovm = (RadioButton)contentView.findViewById(R.id.sovm);
     	forecast = (RadioButton)contentView.findViewById(R.id.forecast);
     	kid  = (RadioButton)contentView.findViewById(R.id.kid);
+    	prof  = (RadioButton)contentView.findViewById(R.id.prof);
     	
     	order = (Button)contentView.findViewById(R.id.order);
     	
@@ -279,6 +280,46 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 				}
 			}
     	});
+    	prof.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if (arg1){
+					name.setText(getActivity().getString(R.string.order_personal_horoscope_name));
+					birthdate.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_date));
+					birthtime.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_time));
+					birthplace.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_place));
+					//set text
+					final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+					Calendar calSet = Calendar.getInstance();
+					Calendar currDate = Calendar.getInstance();
+					calSet.setTimeInMillis(0);
+					calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+					userbirthdate.setText(dateFormat.format(calSet.getTime()));
+					userbirthdate_mask.setVisibility(View.GONE);
+					
+					//partner
+					partner_username.setText("");
+			    	partner_userbirthdate.setText("");
+			    	partner_userbirthtime.setText("");
+			    	partner_userbirthplace.setText("");
+			    	
+			    	partner_username.setVisibility(View.GONE);
+			    	partner_userbirthdate.setVisibility(View.GONE);
+			    	partner_userbirthtime.setVisibility(View.GONE);
+			    	partner_userbirthplace.setVisibility(View.GONE);
+			    	
+			    	partner_username_mask.setVisibility(View.GONE);
+			    	partner_userbirthdate_mask.setVisibility(View.GONE);
+			    	partner_userbirthtime_mask.setVisibility(View.GONE);
+			    	partner_userbirthplace_mask.setVisibility(View.GONE);
+			    	
+			    	partner_name.setVisibility(View.GONE);
+			    	partner_birthdate.setVisibility(View.GONE);
+			    	partner_birthtime.setVisibility(View.GONE);
+			    	partner_birthplace.setVisibility(View.GONE);
+				}
+			}
+    	});    	
     	
     	//on edit text
     	username.addTextChangedListener(new TextWatcher() {
@@ -463,6 +504,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     	SFUIDisplayFont.LIGHT.apply(getActivity(), natal);
     	SFUIDisplayFont.LIGHT.apply(getActivity(), sovm);
     	SFUIDisplayFont.LIGHT.apply(getActivity(), kid);
+    	SFUIDisplayFont.LIGHT.apply(getActivity(), prof);
     	SFUIDisplayFont.LIGHT.apply(getActivity(), forecast);
     	
   		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info));
@@ -560,7 +602,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 							"&birth_time=" + URLEncoder.encode(String.valueOf(userbirthtime.getText()), "UTF-8")+
 							"&email=" + URLEncoder.encode(String.valueOf(useremail.getText()), "UTF-8")+
 							"&tel_skype=" + URLEncoder.encode(String.valueOf(usertel_skype.getText()), "UTF-8")+
-							"&horoscope_type=" + (natal.isChecked() ? getString(R.string.order_personal_horoscope_type_1) : sovm.isChecked() ? getString(R.string.order_personal_horoscope_type_2) : forecast.isChecked() ? getString(R.string.order_personal_horoscope_type_3) : kid.isChecked() ? getString(R.string.order_personal_horoscope_type_4) : "Error in determ") +
+							"&horoscope_type=" + (natal.isChecked() ? getString(R.string.order_personal_horoscope_type_1) : sovm.isChecked() ? getString(R.string.order_personal_horoscope_type_2) : forecast.isChecked() ? getString(R.string.order_personal_horoscope_type_3) : kid.isChecked() ? getString(R.string.order_personal_horoscope_type_4) : prof.isChecked() ? getString(R.string.order_personal_horoscope_type_5) : "Error in determ") +
 							"&partner_name=" + URLEncoder.encode(String.valueOf(partner_username.getText()), "UTF-8")+
 							"&partner_birth_date=" + URLEncoder.encode(String.valueOf(partner_userbirthdate.getText()), "UTF-8")+
 							"&partner_birth_place=" + URLEncoder.encode(String.valueOf(partner_userbirthplace.getText()), "UTF-8")+

@@ -49,6 +49,14 @@
                     android:text="@string/order_personal_horoscope_type_1"
                     android:textColor="@color/intro_main_text"
                     android:textSize="15sp" />
+                
+                <RadioButton
+                    android:id="@+id/prof"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_personal_horoscope_type_5"
+                    android:textColor="@color/intro_main_text"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/sovm"

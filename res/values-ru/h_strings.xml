@@ -142,6 +142,7 @@
     <string name="order_personal_horoscope_type_2">Совместимости</string>
     <string name="order_personal_horoscope_type_3">Прогнозы</string>
     <string name="order_personal_horoscope_type_4">Детский</string>
+    <string name="order_personal_horoscope_type_5">Профориентация</string>
     <string name="order_personal_horoscope_order">Заказать</string>
      
     <string name="order_personal_horoscope_name">Как вас зовут?</string>
