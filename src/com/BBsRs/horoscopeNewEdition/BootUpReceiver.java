@@ -5,7 +5,6 @@ import java.util.Date;
 
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
-import org.holoeverywhere.widget.Toast;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

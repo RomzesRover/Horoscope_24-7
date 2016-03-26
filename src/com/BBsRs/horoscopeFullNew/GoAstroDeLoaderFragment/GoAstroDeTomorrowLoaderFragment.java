@@ -1,8 +1,7 @@
 
-package com.BBsRs.horoscopeFullNew.De.Horoskop.Yahoo.ComLoaderFragment;
+package com.BBsRs.horoscopeFullNew.GoAstroDeLoaderFragment;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.preference.PreferenceManager;
@@ -43,9 +42,9 @@ import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFontPath;
 import com.BBsRs.horoscopeNewEdition.R;
 
-public class DeHoroscopeYahooComTodayLoaderFragment extends BaseFragment {
+public class GoAstroDeTomorrowLoaderFragment extends BaseFragment {
 	
-	int UNIVERSAL_ID = 1;
+	int UNIVERSAL_ID = 2;
 	
 	//public for class views which will retrieve from fragment_content_show.xml layout
 	PullToRefreshLayout mPullToRefreshLayout;
@@ -63,7 +62,7 @@ public class DeHoroscopeYahooComTodayLoaderFragment extends BaseFragment {
     int dateLenght = 0;
     
     //LOG_TAG for log
-    String LOG_TAG = "de.horoskop.yahoo.com"+UNIVERSAL_ID;
+    String LOG_TAG = "goastro.de"+UNIVERSAL_ID;
     
     //flag for error
     boolean error=false;
@@ -188,11 +187,11 @@ public class DeHoroscopeYahooComTodayLoaderFragment extends BaseFragment {
 	    	  if (error || data.length()<10)
 	    		  break;
 			  String shareBody = getResources().getString(R.string.share_content_horo_for)
-	        			+" "+getResources().getStringArray(R.array.de_horoskop_yahoo_com_horoscopes)[UNIVERSAL_ID].toLowerCase()
+	        			+" "+getResources().getStringArray(R.array.go_astro_de_horoscopes)[UNIVERSAL_ID].toLowerCase()
 	        			+", "+getResources().getString(R.string.share_content_horo_for_2)
 	        			+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].toLowerCase()
 	        			+"\n"
-	        			+String.valueOf(textContent.getText()).replaceAll(getResources().getString(R.string.de_horoskop_yahoo_com_copyright), "")
+	        			+String.valueOf(textContent.getText()).replaceAll(getResources().getString(R.string.go_astro_de_copyright), "")
 	        			+getResources().getString(R.string.share_send_from)
 	        			+"\n"+getResources().getString(R.string.share_content_url);
 			  Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -221,14 +220,11 @@ public class DeHoroscopeYahooComTodayLoaderFragment extends BaseFragment {
                     try {
                     	// set no error, cuz we can reach it
                     	error=true;
-                    	
-                    	Calendar c = Calendar.getInstance();
-                    	c.add(Calendar.DATE, (UNIVERSAL_ID-1));
-                        //load and retrieve data from http://de.horoskop.yahoo.com/horoskop/
-                    	Document doc = Jsoup.connect("http://de.horoskop.yahoo.com/horoskop/"+getResources().getStringArray(R.array.nameOfzodiacForLoadDeYahooCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))].replace("*", "%C3%B6").replace("+", "%C3%BC")+"/astro"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadDeYahooCom)[UNIVERSAL_ID]+String.valueOf(c.get(Calendar.YEAR))+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+monthPlusZero(String.valueOf(c.get(Calendar.DAY_OF_MONTH)))+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementById("tab-date").text()+"<br /><br />"+doc.getElementsByClass("astro-tab-body").first().text()+"<br /><br />"+getResources().getString(R.string.de_horoskop_yahoo_com_copyright)+"<br />";
-                    	dateLenght = Html.fromHtml(doc.getElementById("tab-date").text()).length()+1;
-                    	if (!(doc.getElementsByClass("astro-tab-body").first().text().length()<10))
+                    	//load and retrieve data from http://www.goastro.de/horoskop-widder-0_1.jsp
+                    	Document doc = Jsoup.connect("http://www.goastro.de/" + getResources().getStringArray(R.array.nameOfHoroscopecForLoadGoAstroDe)[UNIVERSAL_ID] + "-" + getResources().getStringArray(R.array.nameOfzodiacForLoadGoAstroDe)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))] + "_" + UNIVERSAL_ID + ".jsp").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	data = doc.getElementsByClass("text_orange_fett2").get(1).text()+"<br /><br />"+doc.getElementsByClass("text_container_klein").html().replaceAll("<img src=\"(.*)\">", "").replaceAll("<br(.*)>", "")+"<br /><br />"+getResources().getString(R.string.go_astro_de_copyright)+"<br />";
+                    	dateLenght = Html.fromHtml(doc.getElementsByClass("text_orange_fett2").get(1).text()).length()+1;
+                    	if (!(doc.getElementsByClass("text_container_klein").text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
                     	error=true;

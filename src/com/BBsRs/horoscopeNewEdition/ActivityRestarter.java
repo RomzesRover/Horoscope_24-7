@@ -2,10 +2,10 @@ package com.BBsRs.horoscopeNewEdition;
 
 import org.holoeverywhere.app.Activity;
 
-import com.BBsRs.horoscopeFullNew.ContentShowActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.BBsRs.horoscopeFullNew.ContentShowActivity;
 
 public class ActivityRestarter extends Activity {
 

@@ -149,54 +149,42 @@
     <!-- end of data only for download horoscope.com horoscope -->
 
 
-    <!-- This data below closed to translate ! Using only for download de.horoscope.yahoo. horoscope -->
-    <string name="de_horoskop_yahoo_com_title">Horoskop</string>
-    <string name="de_horoskop_yahoo_com_copyright">© de.horoskop.yahoo.com</string>
+    <!-- This data below closed to translate ! Using only for download goAstroDe horoscope -->
+    <string name="go_astro_de_title">Horoskop</string>
+    <string name="go_astro_de_copyright">© goastro.de</string>
 
-    <string-array name="de_horoskop_yahoo_com_horoscopes">
+    <string-array name="go_astro_de_horoscopes">
         <item>Gestern</item>
         <item>Heute</item>
+        <item>Morgen</item>
         <item>Woche</item>
         <item>Monat</item>
-        <item>Jahr</item>
+        <item>Numeroskope</item>
     </string-array>
-    <string-array name="nameOfzodiacForLoadDeYahooCom">
-        <item>widder</item>
-        <item>stier</item>
-        <item>zwillinge</item>
-        <item>krebs</item>
-        <item>l*we</item>
-        <item>jungfrau</item>
-        <item>waage</item>
-        <item>skorpion</item>
-        <item>sch+tze</item>
-        <item>steinbock</item>
-        <item>wassermann</item>
-        <item>fische</item>
+    <string-array name="nameOfzodiacForLoadGoAstroDe">
+        <item>widder-0</item>
+        <item>stier-1</item>
+        <item>zwillinge-2</item>
+        <item>krebs-3</item>
+        <item>loewe-4</item>
+        <item>jungfrau-5</item>
+        <item>waage-6</item>
+        <item>skorpion-7</item>
+        <item>schuetze-8</item>
+        <item>steinbock-9</item>
+        <item>wassermann-10</item>
+        <item>fische-11</item>
     </string-array>
-    <string-array name="nameOfHoroscopecForLoadDeYahooCom">
-        <item>-tag-</item>
-        <item>-tag-</item>
-        <item>-woche-</item>
-        <item>-monat-</item>
-        <item>-jahr-</item>
-    </string-array>
-    <string-array name="nameOfmonthsForLoadDeYahooCom">
-        <item>januar</item>
-        <item>februar</item>
-        <item>m*rz</item>
-        <item>april</item>
-        <item>mai</item>
-        <item>juni</item>
-        <item>juli</item>
-        <item>august</item>
-        <item>september</item>
-        <item>october</item>
-        <item>november</item>
-        <item>dezember<item></item></item>
+    <string-array name="nameOfHoroscopecForLoadGoAstroDe">
+        <item>horoskop</item>
+        <item>horoskop</item>
+        <item>horoskop</item>
+        <item>wochenhoroskop</item>
+        <item>monatshoroskop</item>
+        <item>numeroskope</item>
     </string-array>
 
-    <!-- end of data only for download de.horoscope.yahoo.com horoscope -->
+    <!-- end of data only for download goAstroDe horoscope -->
     
     <!-- This data below closed to translate ! Using only for download horoscopo.com horoscope -->
     <string name="horoscopo_com_title">Horóscopo</string>
