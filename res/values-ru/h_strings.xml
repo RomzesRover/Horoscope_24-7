@@ -133,7 +133,7 @@
     <string name="order_personal_horoscope_info_2">Пожалуйста, указывайте максимально точную информацию.</string>
     <string name="order_personal_horoscope_info_3">Пожалуйста, проверьте правильность заполненных данных.</string>
     <string name="order_personal_horoscope_info_8">Спасибо, за заказ!</string>
-    <string name="order_personal_horoscope_info_4">Запрос успешно отправлен, для подтверждения заказа, с вами, по указанным контактным данным, в ближайшее время свяжется наш менеджер.</string>
+    <string name="order_personal_horoscope_info_4">Запрос успешно отправлен, для подтверждения заказа, с вами, по указанным контактным данным, в ближайшее время свяжется наш менеджер с телефона +1(1) 111111111.</string>
     <string name="order_personal_horoscope_info_5">Ошибка. Повторите запрос позже.</string>
     <string name="order_personal_horoscope_info_6">Я понимаю, что это <u>платная</u> услуга.</string>
     <string name="order_personal_horoscope_info_7">Вы не можете посылать больше, чем 1 запрос в минуту.</string>
