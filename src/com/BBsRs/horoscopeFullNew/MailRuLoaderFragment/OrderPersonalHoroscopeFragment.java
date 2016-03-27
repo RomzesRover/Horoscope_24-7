@@ -602,7 +602,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 							"&birth_time=" + URLEncoder.encode(String.valueOf(userbirthtime.getText()), "UTF-8")+
 							"&email=" + URLEncoder.encode(String.valueOf(useremail.getText()), "UTF-8")+
 							"&tel_skype=" + URLEncoder.encode(String.valueOf(usertel_skype.getText()), "UTF-8")+
-							"&horoscope_type=" + (natal.isChecked() ? getString(R.string.order_personal_horoscope_type_1) : sovm.isChecked() ? getString(R.string.order_personal_horoscope_type_2) : forecast.isChecked() ? getString(R.string.order_personal_horoscope_type_3) : kid.isChecked() ? getString(R.string.order_personal_horoscope_type_4) : prof.isChecked() ? getString(R.string.order_personal_horoscope_type_5) : "Error in determ") +
+							"&horoscope_type=" + (natal.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8") : sovm.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_2), "UTF-8") : forecast.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_3), "UTF-8") : kid.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_4), "UTF-8") : prof.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_5), "UTF-8") : "Error in determ") +
 							"&partner_name=" + URLEncoder.encode(String.valueOf(partner_username.getText()), "UTF-8")+
 							"&partner_birth_date=" + URLEncoder.encode(String.valueOf(partner_userbirthdate.getText()), "UTF-8")+
 							"&partner_birth_place=" + URLEncoder.encode(String.valueOf(partner_userbirthplace.getText()), "UTF-8")+
