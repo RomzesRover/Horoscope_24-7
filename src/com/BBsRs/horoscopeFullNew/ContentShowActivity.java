@@ -28,6 +28,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 
@@ -179,6 +180,7 @@ public class ContentShowActivity extends BaseActivity {
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
             showDialogNewFeature();
+            checkOrderStatus();
         	break;
         case 2:
         	sliderMenu.add(getResources().getString(R.string.horoscope_com_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
@@ -194,6 +196,8 @@ public class ContentShowActivity extends BaseActivity {
             pref_id=9;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
+            showDialogNewFeature();
+            checkOrderStatus();
         	break;
         case 4:
         	sliderMenu.add(getResources().getString(R.string.go_astro_de_title).toUpperCase()).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
@@ -444,6 +448,38 @@ public class ContentShowActivity extends BaseActivity {
     	alert.show();
 	}
 	
+	public void checkOrderStatus(){
+		
+		if (sPref.getString("ordered_id", "-1").equals("-1")){
+			return;
+		}
+		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					
+					Thread.sleep(500);
+					
+					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/order_status.php" +
+							"?id="+URLEncoder.encode(sPref.getString("ordered_id", "-1"), "UTF-8")).timeout(10000).get();
+					
+					Thread.sleep(500);
+					
+					if (doc.text().equals("1")){
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								//show dialog that horoscope is available
+								showDialogHoroscopeIsAvailable();
+							}
+						});
+					}
+				} catch (Exception e) {} 
+			}
+		}).start();
+	}
+	
 	public void sendOrderToServer(){
 		
 		//show an dialog intermediate 
@@ -465,7 +501,7 @@ public class ContentShowActivity extends BaseActivity {
 					
 					Thread.sleep(500);
 					
-					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/add_to_database.php" +
+					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/add_to_database_new.php" +
 							"?name="+URLEncoder.encode(name, "UTF-8")+
 							"&birth_date=" + URLEncoder.encode(datebirth, "UTF-8")+
 							"&birth_place=" + URLEncoder.encode(placebirth, "UTF-8")+
@@ -481,10 +517,13 @@ public class ContentShowActivity extends BaseActivity {
 					
 					Thread.sleep(500);
 					
-					if (doc.text().equals("request_accepted")){
+					if (doc.text().contains("request_accepted")){
+						//save id 
+						sPref.edit().putString("ordered_id", doc.text().split("=")[1]).commit();
 						handler.post(new Runnable(){
 							@Override
 							public void run() {
+								sPref.edit().putLong("order_send_time", System.currentTimeMillis()).commit();
 								showDialogSuccess();
 							}
 						});
@@ -540,6 +579,41 @@ public class ContentShowActivity extends BaseActivity {
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
     	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_4));
+    	
+    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
+    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
+    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
+    	
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
+	}
+	
+	public void showDialogHoroscopeIsAvailable(){
+		
+ 		final Context context = this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
+    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
+    	
+    	//set fonts
+    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	
+    	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
+    	((TextView)content.findViewById(R.id.TextView05)).setText(String.format(context.getString(R.string.order_personal_horoscope_info_10), "http://brothers-rovers.ru/application_horoscope_order_feature/horos/result.php?id="+sPref.getString("ordered_id", "-1")));
+    	//stop check horo
+    	sPref.edit().putString("ordered_id", "-1").commit();
     	
     	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
     	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {

@@ -50,6 +50,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_horizontal_margin"
                 android:text="@string/summary_dialog_ad"
+                android:autoLink="web"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/intro_main_text"
                 android:textSize="16sp" />

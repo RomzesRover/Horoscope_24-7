@@ -269,7 +269,6 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 						handler.post(new Runnable(){
 							@Override
 							public void run() {
-								sPref.edit().putLong("order_send_time", System.currentTimeMillis()).commit();
 								//show buy dialog
 								Intent intent = new Intent("request_order_horo");
 								intent.putExtra("name", String.valueOf(username.getText()));
