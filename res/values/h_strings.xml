@@ -106,6 +106,7 @@
         <item>Money</item>
         <item>Month</item>
         <item>Year</item>
+        <item>Order horoscope</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadHoroscopeCom">
         <item>1</item>
@@ -383,7 +384,7 @@
     <string name="order_personal_horoscope_birthday_time">Which time were you born?</string>
     <string name="order_personal_horoscope_birthday_time_sumarry">23:60</string>
     <string name="order_personal_horoscope_birthday_place">Where were you born??</string>
-    <string name="order_personal_horoscope_birthday_place_sumarry">England, London</string>
+    <string name="order_personal_horoscope_birthday_place_sumarry">USA, California, Los Angeles</string>
     <string name="order_personal_horoscope_email">E-mail</string>
     <string name="order_personal_horoscope_email_sumarry">admin@brothers-rovers.ru</string>
     

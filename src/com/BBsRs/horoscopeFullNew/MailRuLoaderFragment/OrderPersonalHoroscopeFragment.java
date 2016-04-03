@@ -19,8 +19,10 @@ import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -178,7 +180,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 			public void onClick(View v) {
 				if((username.length() > 2) && (userbirthdate.length() > 2) && (userbirthtime.length() > 2) && (userbirthplace.length() > 2) && (useremail.length() > 2)){
 					Log.i("aza", "sendnormal");
-					sendOrderToServer();
+					checkServerStatus();
 				} else {
 					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.order_personal_horoscope_info_3), Toast.LENGTH_LONG).show();
 				}
@@ -214,7 +216,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
         return contentView;
     }
 	
-	public void sendOrderToServer(){
+	public void checkServerStatus(){
 		
 		if (sPref.getLong("order_send_time", -1)==-1){
 			sPref.edit().putLong("order_send_time", System.currentTimeMillis()).commit();
@@ -233,8 +235,6 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 				return;
 			}
 		}
-			
-		
 		
 		//show an dialog intermediate 
         prDialog.setIndeterminate(true);
@@ -255,28 +255,29 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 					
 					Thread.sleep(500);
 					
-					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/add_to_database.php" +
-							"?name="+URLEncoder.encode(String.valueOf(username.getText()), "UTF-8")+
-							"&birth_date=" + URLEncoder.encode(String.valueOf(userbirthdate.getText()), "UTF-8")+
-							"&birth_place=" + URLEncoder.encode(String.valueOf(userbirthplace.getText()), "UTF-8")+
-							"&birth_time=" + URLEncoder.encode(String.valueOf(userbirthtime.getText()), "UTF-8")+
-							"&email=" + URLEncoder.encode(String.valueOf(useremail.getText()), "UTF-8")+
-							"&tel_skype=" + ""+
-							"&horoscope_type=" + URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8")+
-							"&partner_name=" + ""+
-							"&partner_birth_date=" + ""+
-							"&partner_birth_place=" + ""+
-							"&partner_birth_time=" + ""+
-							"&status=0").timeout(10000).get();
+					String status = "";
+					try {
+						status = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/check_status.txt").timeout(10000).get().text();
+					} catch (Exception e) {
+						status = "";
+						e.printStackTrace();
+					}
 					
 					Thread.sleep(500);
 					
-					if (doc.text().equals("request_accepted")){
+					if (status.equals("all_is_ok")){
 						handler.post(new Runnable(){
 							@Override
 							public void run() {
 								sPref.edit().putLong("order_send_time", System.currentTimeMillis()).commit();
-								showDialogSuccess();
+								//show buy dialog
+								Intent intent = new Intent("request_order_horo");
+								intent.putExtra("name", String.valueOf(username.getText()));
+								intent.putExtra("datebirth", String.valueOf(userbirthdate.getText()));
+								intent.putExtra("timebirth", String.valueOf(userbirthtime.getText()));
+								intent.putExtra("email", String.valueOf(useremail.getText()));
+								intent.putExtra("placebirth", String.valueOf(userbirthplace.getText()));
+								getActivity().sendBroadcast(intent);
 							}
 						});
 					} else {
@@ -312,41 +313,6 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 		}).start();
 	}
 	
-	public void showDialogSuccess(){
-		
-		sPref.edit().putBoolean("SHOWN_NOTIFICATION_NEW_FEATURE,HORO", true).commit();
-		
- 		final Context context = getActivity(); 								// create context
- 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
-    		
-    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    	
-    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
-    	
-    	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
-    	
-    	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
-    	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_4));
-    	
-    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
-    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				alert.dismiss();
-			}
-		});
-    	
-    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
-    	
-    	build.setView(content);
-    	alert = build.create();															// show dialog
-    	alert.show();
-	}
-
     @Override
     public void onResume() {
         super.onResume();
