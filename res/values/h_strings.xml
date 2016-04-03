@@ -356,11 +356,35 @@
     <string name="i_want_to_buy">I want to buy</string>
     <string name="no_thanks">No, thanks</string>
 
-        <string-array name="notification_messages">
+    <string-array name="notification_messages">
         <item>A good day starts with a fresh horoscope reading!</item>
         <item>Do not forget to learn your horoscope for today!</item>
         <item>We have just been informed that awaits you today!</item>
         <item>Let\'s find out if the stars favor you today!</item>
     </string-array>
+    
+    <string name="wait">Please. wait</string>
+    <string name="order_personal_horoscope_info_9">Now you can order horoscope!</string>
+    <string name="order_personal_horoscope_info">If you want to get high quality horoscope, written especially for you, visit new section "Order horoscope"</string>
+    <string name="order_personal_horoscope_info_2">Please type most accurate information.</string>
+    <string name="order_personal_horoscope_info_3">Please check the correctness of the data filled.</string>
+    <string name="order_personal_horoscope_info_8">Thank you for order!</string>
+    <string name="order_personal_horoscope_info_4">Request submitted successfully, link to the horoscope you\'ll get in application, also we\'ll send it on your e-mail</string>
+    <string name="order_personal_horoscope_info_5">Error. Try again later.</string>
+    <string name="order_personal_horoscope_info_6">I understand, that this is <u>paid</u> service.</string>
+    <string name="order_personal_horoscope_info_7">You can not send more than one request per minute.</string>
+    <string name="order_personal_horoscope_type_1">Natal (stamp)</string> 
+    <string name="order_personal_horoscope_order">Order</string>
+     
+    <string name="order_personal_horoscope_name">What is your name?</string>
+    <string name="order_personal_horoscope_name_sumarry">James Bond</string>
+    <string name="order_personal_horoscope_birthday_date">When were you born?</string>
+    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991</string>
+    <string name="order_personal_horoscope_birthday_time">Which time were you born?</string>
+    <string name="order_personal_horoscope_birthday_time_sumarry">23:60</string>
+    <string name="order_personal_horoscope_birthday_place">Where were you born??</string>
+    <string name="order_personal_horoscope_birthday_place_sumarry">England, London</string>
+    <string name="order_personal_horoscope_email">E-mail</string>
+    <string name="order_personal_horoscope_email_sumarry">admin@brothers-rovers.ru</string>
     
 </resources>

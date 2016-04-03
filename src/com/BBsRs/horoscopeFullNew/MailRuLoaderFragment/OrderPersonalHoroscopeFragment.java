@@ -14,7 +14,6 @@ import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.EditText;
-import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
@@ -30,8 +29,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
@@ -39,13 +36,9 @@ import com.BBsRs.horoscopeNewEdition.R;
 
 public class OrderPersonalHoroscopeFragment extends BaseFragment {
 	
-	EditText username, userbirthdate, userbirthtime, userbirthplace, useremail, usertel_skype;
-	TextView name, birthdate, birthtime, birthplace, email, tel_skype;
-	TextView username_mask, userbirthdate_mask, userbirthtime_mask, userbirthplace_mask, useremail_mask, usertel_skype_mask;
-	EditText partner_username, partner_userbirthdate, partner_userbirthtime, partner_userbirthplace;
-	TextView partner_name, partner_birthdate, partner_birthtime, partner_birthplace;
-	TextView partner_username_mask, partner_userbirthdate_mask, partner_userbirthtime_mask, partner_userbirthplace_mask;
-	RadioButton natal, sovm, forecast, prof, kid;
+	EditText username, userbirthdate, userbirthtime, userbirthplace, useremail;
+	TextView name, birthdate, birthtime, birthplace, email;
+	TextView username_mask, userbirthdate_mask, userbirthtime_mask, userbirthplace_mask, useremail_mask; 
 	Button order;
 	
     //preferences 
@@ -76,42 +69,18 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     	userbirthtime = (EditText)contentView.findViewById(R.id.userbirthtime);
     	userbirthplace = (EditText)contentView.findViewById(R.id.userbirthplace);
     	useremail = (EditText)contentView.findViewById(R.id.useremail);
-    	usertel_skype = (EditText)contentView.findViewById(R.id.usertel_skype);
     	
     	username_mask = (TextView)contentView.findViewById(R.id.textMaskUsername);
     	userbirthdate_mask = (TextView)contentView.findViewById(R.id.textMaskUserbirthdate);
     	userbirthtime_mask = (TextView)contentView.findViewById(R.id.textMaskUserbirthtime);
     	userbirthplace_mask = (TextView)contentView.findViewById(R.id.textMaskUserbirthplace);
     	useremail_mask = (TextView)contentView.findViewById(R.id.textMaskUseremail);
-    	usertel_skype_mask = (TextView)contentView.findViewById(R.id.textMaskUsertel_skype);
     	
     	name = (TextView)contentView.findViewById(R.id.name);
     	birthdate = (TextView)contentView.findViewById(R.id.birthdate);
     	birthtime = (TextView)contentView.findViewById(R.id.birthtime);
     	birthplace = (TextView)contentView.findViewById(R.id.birthplace);
     	email = (TextView)contentView.findViewById(R.id.email);
-    	tel_skype = (TextView)contentView.findViewById(R.id.tel_skype);
-    	
-    	partner_username = (EditText)contentView.findViewById(R.id.partner_username);
-    	partner_userbirthdate = (EditText)contentView.findViewById(R.id.partner_userbirthdate);
-    	partner_userbirthtime = (EditText)contentView.findViewById(R.id.partner_userbirthtime);
-    	partner_userbirthplace = (EditText)contentView.findViewById(R.id.partner_userbirthplace);
-    	
-    	partner_username_mask = (TextView)contentView.findViewById(R.id.partner_textMaskUsername);
-    	partner_userbirthdate_mask = (TextView)contentView.findViewById(R.id.partner_textMaskUserbirthdate);
-    	partner_userbirthtime_mask = (TextView)contentView.findViewById(R.id.partner_textMaskUserbirthtime);
-    	partner_userbirthplace_mask = (TextView)contentView.findViewById(R.id.partner_textMaskUserbirthplace);
-    	
-    	partner_name = (TextView)contentView.findViewById(R.id.partner_name);
-    	partner_birthdate = (TextView)contentView.findViewById(R.id.partner_birthdate);
-    	partner_birthtime = (TextView)contentView.findViewById(R.id.partner_birthtime);
-    	partner_birthplace = (TextView)contentView.findViewById(R.id.partner_birthplace);
-    	
-    	natal = (RadioButton)contentView.findViewById(R.id.natal);
-    	sovm = (RadioButton)contentView.findViewById(R.id.sovm);
-    	forecast = (RadioButton)contentView.findViewById(R.id.forecast);
-    	kid  = (RadioButton)contentView.findViewById(R.id.kid);
-    	prof  = (RadioButton)contentView.findViewById(R.id.prof);
     	
     	order = (Button)contentView.findViewById(R.id.order);
     	
@@ -124,202 +93,6 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 		userbirthdate.setText(dateFormat.format(calSet.getTime()));
 		userbirthdate_mask.setVisibility(View.GONE);
     	
-//    	//on radio button click
-    	natal.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				if (arg1){
-					name.setText(getActivity().getString(R.string.order_personal_horoscope_name));
-					birthdate.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_date));
-					birthtime.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_time));
-					birthplace.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_place));
-					//set text
-					final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-					Calendar calSet = Calendar.getInstance();
-					Calendar currDate = Calendar.getInstance();
-					calSet.setTimeInMillis(0);
-					calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-					userbirthdate.setText(dateFormat.format(calSet.getTime()));
-					userbirthdate_mask.setVisibility(View.GONE);
-					
-					//partner
-					partner_username.setText("");
-			    	partner_userbirthdate.setText("");
-			    	partner_userbirthtime.setText("");
-			    	partner_userbirthplace.setText("");
-			    	
-			    	partner_username.setVisibility(View.GONE);
-			    	partner_userbirthdate.setVisibility(View.GONE);
-			    	partner_userbirthtime.setVisibility(View.GONE);
-			    	partner_userbirthplace.setVisibility(View.GONE);
-			    	
-			    	partner_username_mask.setVisibility(View.GONE);
-			    	partner_userbirthdate_mask.setVisibility(View.GONE);
-			    	partner_userbirthtime_mask.setVisibility(View.GONE);
-			    	partner_userbirthplace_mask.setVisibility(View.GONE);
-			    	
-			    	partner_name.setVisibility(View.GONE);
-			    	partner_birthdate.setVisibility(View.GONE);
-			    	partner_birthtime.setVisibility(View.GONE);
-			    	partner_birthplace.setVisibility(View.GONE);
-				}
-			}
-    	});
-    	sovm.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				if (arg1){
-					name.setText(getActivity().getString(R.string.order_personal_horoscope_name));
-					birthdate.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_date));
-					birthtime.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_time));
-					birthplace.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_place));
-					//set text
-					final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-					Calendar calSet = Calendar.getInstance();
-					Calendar currDate = Calendar.getInstance();
-					calSet.setTimeInMillis(0);
-					calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-					userbirthdate.setText(dateFormat.format(calSet.getTime()));
-					userbirthdate_mask.setVisibility(View.GONE);
-					
-					//partner
-			    	partner_username.setVisibility(View.VISIBLE);
-			    	partner_userbirthdate.setVisibility(View.VISIBLE);
-			    	partner_userbirthtime.setVisibility(View.VISIBLE);
-			    	partner_userbirthplace.setVisibility(View.VISIBLE);
-			    	
-			    	partner_username_mask.setVisibility(View.VISIBLE);
-			    	partner_userbirthdate_mask.setVisibility(View.VISIBLE);
-			    	partner_userbirthtime_mask.setVisibility(View.VISIBLE);
-			    	partner_userbirthplace_mask.setVisibility(View.VISIBLE);
-			    	
-			    	partner_name.setVisibility(View.VISIBLE);
-			    	partner_birthdate.setVisibility(View.VISIBLE);
-			    	partner_birthtime.setVisibility(View.VISIBLE);
-			    	partner_birthplace.setVisibility(View.VISIBLE);
-			    	
-			    	partner_username.setText("");
-			    	partner_userbirthdate.setText("");
-			    	partner_userbirthtime.setText("");
-			    	partner_userbirthplace.setText("");
-				}
-			}
-    	});
-    	forecast.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				if (arg1){
-					name.setText(getActivity().getString(R.string.order_personal_horoscope_name));
-					birthdate.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_date));
-					birthtime.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_time));
-					birthplace.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_place));
-					//set text
-					final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-					Calendar calSet = Calendar.getInstance();
-					Calendar currDate = Calendar.getInstance();
-					calSet.setTimeInMillis(0);
-					calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-					userbirthdate.setText(dateFormat.format(calSet.getTime()));
-					userbirthdate_mask.setVisibility(View.GONE);
-					
-					//partner
-					partner_username.setText("");
-			    	partner_userbirthdate.setText("");
-			    	partner_userbirthtime.setText("");
-			    	partner_userbirthplace.setText("");
-			    	
-			    	partner_username.setVisibility(View.GONE);
-			    	partner_userbirthdate.setVisibility(View.GONE);
-			    	partner_userbirthtime.setVisibility(View.GONE);
-			    	partner_userbirthplace.setVisibility(View.GONE);
-			    	
-			    	partner_username_mask.setVisibility(View.GONE);
-			    	partner_userbirthdate_mask.setVisibility(View.GONE);
-			    	partner_userbirthtime_mask.setVisibility(View.GONE);
-			    	partner_userbirthplace_mask.setVisibility(View.GONE);
-			    	
-			    	partner_name.setVisibility(View.GONE);
-			    	partner_birthdate.setVisibility(View.GONE);
-			    	partner_birthtime.setVisibility(View.GONE);
-			    	partner_birthplace.setVisibility(View.GONE);
-				}
-			}
-    	});
-    	kid.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				if (arg1){
-					name.setText(getActivity().getString(R.string.order_personal_horoscope_name_child));
-					birthdate.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_date_child));
-					birthtime.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_time_child));
-					birthplace.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_place_child));
-					//set text
-					userbirthdate.setText("");
-					userbirthdate_mask.setVisibility(View.VISIBLE);
-					
-					//partner
-					partner_username.setText("");
-			    	partner_userbirthdate.setText("");
-			    	partner_userbirthtime.setText("");
-			    	partner_userbirthplace.setText("");
-			    	
-			    	partner_username.setVisibility(View.GONE);
-			    	partner_userbirthdate.setVisibility(View.GONE);
-			    	partner_userbirthtime.setVisibility(View.GONE);
-			    	partner_userbirthplace.setVisibility(View.GONE);
-			    	
-			    	partner_username_mask.setVisibility(View.GONE);
-			    	partner_userbirthdate_mask.setVisibility(View.GONE);
-			    	partner_userbirthtime_mask.setVisibility(View.GONE);
-			    	partner_userbirthplace_mask.setVisibility(View.GONE);
-			    	
-			    	partner_name.setVisibility(View.GONE);
-			    	partner_birthdate.setVisibility(View.GONE);
-			    	partner_birthtime.setVisibility(View.GONE);
-			    	partner_birthplace.setVisibility(View.GONE);
-				}
-			}
-    	});
-    	prof.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				if (arg1){
-					name.setText(getActivity().getString(R.string.order_personal_horoscope_name));
-					birthdate.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_date));
-					birthtime.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_time));
-					birthplace.setText(getActivity().getString(R.string.order_personal_horoscope_birthday_place));
-					//set text
-					final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-					Calendar calSet = Calendar.getInstance();
-					Calendar currDate = Calendar.getInstance();
-					calSet.setTimeInMillis(0);
-					calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
-					userbirthdate.setText(dateFormat.format(calSet.getTime()));
-					userbirthdate_mask.setVisibility(View.GONE);
-					
-					//partner
-					partner_username.setText("");
-			    	partner_userbirthdate.setText("");
-			    	partner_userbirthtime.setText("");
-			    	partner_userbirthplace.setText("");
-			    	
-			    	partner_username.setVisibility(View.GONE);
-			    	partner_userbirthdate.setVisibility(View.GONE);
-			    	partner_userbirthtime.setVisibility(View.GONE);
-			    	partner_userbirthplace.setVisibility(View.GONE);
-			    	
-			    	partner_username_mask.setVisibility(View.GONE);
-			    	partner_userbirthdate_mask.setVisibility(View.GONE);
-			    	partner_userbirthtime_mask.setVisibility(View.GONE);
-			    	partner_userbirthplace_mask.setVisibility(View.GONE);
-			    	
-			    	partner_name.setVisibility(View.GONE);
-			    	partner_birthdate.setVisibility(View.GONE);
-			    	partner_birthtime.setVisibility(View.GONE);
-			    	partner_birthplace.setVisibility(View.GONE);
-				}
-			}
-    	});    	
     	
     	//on edit text
     	username.addTextChangedListener(new TextWatcher() {
@@ -397,101 +170,15 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 	    		   useremail_mask.setVisibility(View.GONE);
 	    	   }
 	    });
-    	usertel_skype.addTextChangedListener(new TextWatcher() {
-	    	   public void afterTextChanged(Editable s) {
-	    		   if (s.length()<=0){
-	    			   usertel_skype_mask.setVisibility(View.VISIBLE);
-	    		   } else {
-	    		   }
-	    	   }
-	    	   public void beforeTextChanged(CharSequence s, int start, 
-	    	     int count, int after) {
-	    	   }
-	    	   public void onTextChanged(CharSequence s, int start, 
-	    	     int before, int count) {
-	    		   usertel_skype_mask.setVisibility(View.GONE);
-	    	   }
-	    });
-    	
-    	partner_username.addTextChangedListener(new TextWatcher() {
-	    	   public void afterTextChanged(Editable s) {
-	    		   if (s.length()<=0){
-	    			   partner_username_mask.setVisibility(View.VISIBLE);
-	    		   } else {
-	    		   }
-	    	   }
-	    	   public void beforeTextChanged(CharSequence s, int start, 
-	    	     int count, int after) {
-	    	   }
-	    	   public void onTextChanged(CharSequence s, int start, 
-	    	     int before, int count) {
-	    		   partner_username_mask.setVisibility(View.GONE);
-	    	   }
-	    });
-    	partner_userbirthdate.addTextChangedListener(new TextWatcher() {
-	    	   public void afterTextChanged(Editable s) {
-	    		   if (s.length()<=0){
-	    			   partner_userbirthdate_mask.setVisibility(View.VISIBLE);
-	    		   } else {
-	    		   }
-	    	   }
-	    	   public void beforeTextChanged(CharSequence s, int start, 
-	    	     int count, int after) {
-	    	   }
-	    	   public void onTextChanged(CharSequence s, int start, 
-	    	     int before, int count) {
-	    		   partner_userbirthdate_mask.setVisibility(View.GONE);
-	    	   }
-	    });
-    	partner_userbirthtime.addTextChangedListener(new TextWatcher() {
-	    	   public void afterTextChanged(Editable s) {
-	    		   if (s.length()<=0){
-	    			   partner_userbirthtime_mask.setVisibility(View.VISIBLE);
-	    		   } else {
-	    		   }
-	    	   }
-	    	   public void beforeTextChanged(CharSequence s, int start, 
-	    	     int count, int after) {
-	    	   }
-	    	   public void onTextChanged(CharSequence s, int start, 
-	    	     int before, int count) {
-	    		   partner_userbirthtime_mask.setVisibility(View.GONE);
-	    	   }
-	    });
-    	partner_userbirthplace.addTextChangedListener(new TextWatcher() {
-	    	   public void afterTextChanged(Editable s) {
-	    		   if (s.length()<=0){
-	    			   partner_userbirthplace_mask.setVisibility(View.VISIBLE);
-	    		   } else {
-	    		   }
-	    	   }
-	    	   public void beforeTextChanged(CharSequence s, int start, 
-	    	     int count, int after) {
-	    	   }
-	    	   public void onTextChanged(CharSequence s, int start, 
-	    	     int before, int count) {
-	    		   partner_userbirthplace_mask.setVisibility(View.GONE);
-	    	   }
-	    });
     	
     	//order button
     	order.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				if((username.length() > 2) && (userbirthdate.length() > 2) && (userbirthtime.length() > 2) && (userbirthplace.length() > 2) && (useremail.length() > 2) && (usertel_skype.length() > 2)){
-					if (sovm.isChecked()){
-						if((partner_username.length() > 2) && (partner_userbirthdate.length() > 2) && (partner_userbirthtime.length() > 2) && (partner_userbirthplace.length() > 2)){
-							Log.i("aza", "sendsovm");
-							sendOrderToServer();
-						} else {
-							Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.order_personal_horoscope_info_3), Toast.LENGTH_LONG).show();
-						}
-					} else {
-						Log.i("aza", "sendnormal");
-						sendOrderToServer();
-					}
-					
+				if((username.length() > 2) && (userbirthdate.length() > 2) && (userbirthtime.length() > 2) && (userbirthplace.length() > 2) && (useremail.length() > 2)){
+					Log.i("aza", "sendnormal");
+					sendOrderToServer();
 				} else {
 					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.order_personal_horoscope_info_3), Toast.LENGTH_LONG).show();
 				}
@@ -500,13 +187,6 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     	
     	
         //set fonts
-    	SFUIDisplayFont.MEDIUM.apply(getActivity(), (TextView)contentView.findViewById(R.id.type));
-    	SFUIDisplayFont.LIGHT.apply(getActivity(), natal);
-    	SFUIDisplayFont.LIGHT.apply(getActivity(), sovm);
-    	SFUIDisplayFont.LIGHT.apply(getActivity(), kid);
-    	SFUIDisplayFont.LIGHT.apply(getActivity(), prof);
-    	SFUIDisplayFont.LIGHT.apply(getActivity(), forecast);
-    	
   		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info));
   		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info_order));
   		SFUIDisplayFont.MEDIUM.apply(getActivity(), name);
@@ -528,26 +208,6 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
   		SFUIDisplayFont.MEDIUM.apply(getActivity(), email);
   		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), useremail_mask);
   		SFUIDisplayFont.LIGHT.apply(getActivity(), useremail);
-  		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), tel_skype);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), usertel_skype_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), usertel_skype);
-  		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), partner_name);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), partner_username_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), partner_username);
-  		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), partner_birthdate);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(),  partner_userbirthdate_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), partner_userbirthdate);
-  		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), partner_birthtime);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), partner_userbirthtime_mask );
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), partner_userbirthtime);
-  		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), partner_birthplace);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), partner_userbirthplace_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), partner_userbirthplace);
   		
   		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), order);
     	
@@ -601,12 +261,12 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 							"&birth_place=" + URLEncoder.encode(String.valueOf(userbirthplace.getText()), "UTF-8")+
 							"&birth_time=" + URLEncoder.encode(String.valueOf(userbirthtime.getText()), "UTF-8")+
 							"&email=" + URLEncoder.encode(String.valueOf(useremail.getText()), "UTF-8")+
-							"&tel_skype=" + URLEncoder.encode(String.valueOf(usertel_skype.getText()), "UTF-8")+
-							"&horoscope_type=" + (natal.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8") : sovm.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_2), "UTF-8") : forecast.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_3), "UTF-8") : kid.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_4), "UTF-8") : prof.isChecked() ? URLEncoder.encode(getString(R.string.order_personal_horoscope_type_5), "UTF-8") : "Error in determ") +
-							"&partner_name=" + URLEncoder.encode(String.valueOf(partner_username.getText()), "UTF-8")+
-							"&partner_birth_date=" + URLEncoder.encode(String.valueOf(partner_userbirthdate.getText()), "UTF-8")+
-							"&partner_birth_place=" + URLEncoder.encode(String.valueOf(partner_userbirthplace.getText()), "UTF-8")+
-							"&partner_birth_time=" + URLEncoder.encode(String.valueOf(partner_userbirthtime.getText()), "UTF-8")+
+							"&tel_skype=" + ""+
+							"&horoscope_type=" + URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8")+
+							"&partner_name=" + ""+
+							"&partner_birth_date=" + ""+
+							"&partner_birth_place=" + ""+
+							"&partner_birth_time=" + ""+
 							"&status=0").timeout(10000).get();
 					
 					Thread.sleep(500);
