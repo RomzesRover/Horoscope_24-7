@@ -1,5 +1,6 @@
 package com.BBsRs.horoscopeFullNew;
 
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -8,6 +9,7 @@ import org.holoeverywhere.addon.AddonSlider;
 import org.holoeverywhere.addon.Addons;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.app.ProgressDialog;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
@@ -17,6 +19,7 @@ import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -75,8 +78,16 @@ public class ContentShowActivity extends BaseActivity {
 	//!----------------------------------BILLING-----------------------------------------------------!
 	private Activity mCurrentActivity = null;
 	// PRODUCT & SUBSCRIPTION IDS
-    private static final String PRODUCT_ID = "ad_disabler";
+//	private static final String PRODUCT_ID_ORDER = "android.test.purchased";
+//	private static final String PRODUCT_ID_AD = "android.test.purchased";
+//  private static final String LICENSE_KEY = null;
+	
+	private static final String PRODUCT_ID_ORDER = "order_horo";
+    private static final String PRODUCT_ID_AD = "ad_disabler";
     private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+    
+    String name, datebirth, timebirth, placebirth, email;
+    ProgressDialog prDialog = null;
 
 	private BillingProcessor bp;
 	private boolean readyToPurchase = false;
@@ -101,15 +112,27 @@ public class ContentShowActivity extends BaseActivity {
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         
+        //prDialog
+        prDialog = new ProgressDialog(this);
+        
 	    //!----------------------------------BILLING-----------------------------------------------------!
         mCurrentActivity = this;
 	    bp = new BillingProcessor(this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
             @Override
             public void onProductPurchased(String productId, TransactionDetails details) {
-            	sPref.edit().putBoolean("isOnHigh", true).commit();
-            	startActivity(new Intent(getApplicationContext(), ActivityRestarter.class));
-            	overridePendingTransition(0, 0);
-            	finish();
+            	if (productId.equals(PRODUCT_ID_AD)){
+	            	sPref.edit().putBoolean("isOnHigh", true).commit();
+	            	startActivity(new Intent(getApplicationContext(), ActivityRestarter.class));
+	            	overridePendingTransition(0, 0);
+	            	finish();
+            	}
+            	if (productId.equals(PRODUCT_ID_ORDER)){
+            		//send horoscope request to server
+            		sendOrderToServer();
+            		
+            		//it can be bought again so we need to consume it
+            		bp.consumePurchase(PRODUCT_ID_ORDER);
+            	}
             }
             @Override
             public void onBillingError(int errorCode, Throwable error) {
@@ -117,7 +140,7 @@ public class ContentShowActivity extends BaseActivity {
             @Override
             public void onBillingInitialized() {
                 readyToPurchase = true;
-                sPref.edit().putBoolean("isOnHigh", bp.isPurchased(PRODUCT_ID)).commit();
+                sPref.edit().putBoolean("isOnHigh", bp.isPurchased(PRODUCT_ID_AD)).commit();
             }
             @Override
             public void onPurchaseHistoryRestored() {
@@ -167,7 +190,8 @@ public class ContentShowActivity extends BaseActivity {
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[5], HoroscopeComMoneyLoaderFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[6], HoroscopeComMonthLoaderFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
             sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[7], HoroscopeComYearLoaderFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-            pref_id=8;
+            sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[8], OrderPersonalHoroscopeFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+            pref_id=9;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
         	break;
@@ -419,6 +443,118 @@ public class ContentShowActivity extends BaseActivity {
     	alert = build.create();															// show dialog
     	alert.show();
 	}
+	
+	public void sendOrderToServer(){
+		
+		//show an dialog intermediate 
+        prDialog.setIndeterminate(true);
+        prDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        prDialog.setMessage(getText(R.string.wait));
+        prDialog.setCancelable(false);
+        prDialog.setCanceledOnTouchOutside(false);
+        try {
+        	prDialog.show();
+    	} catch (Exception e){
+    		e.printStackTrace();
+    	}
+		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					
+					Thread.sleep(500);
+					
+					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/add_to_database.php" +
+							"?name="+URLEncoder.encode(name, "UTF-8")+
+							"&birth_date=" + URLEncoder.encode(datebirth, "UTF-8")+
+							"&birth_place=" + URLEncoder.encode(placebirth, "UTF-8")+
+							"&birth_time=" + URLEncoder.encode(timebirth, "UTF-8")+
+							"&email=" + URLEncoder.encode(email, "UTF-8")+
+							"&tel_skype=" + ""+
+							"&horoscope_type=" + URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8")+
+							"&partner_name=" + ""+
+							"&partner_birth_date=" + ""+
+							"&partner_birth_place=" + ""+
+							"&partner_birth_time=" + ""+
+							"&status=2").timeout(10000).get();
+					
+					Thread.sleep(500);
+					
+					if (doc.text().equals("request_accepted")){
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								showDialogSuccess();
+							}
+						});
+					} else {
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								Toast.makeText(getApplicationContext(), getResources().getString(R.string.order_personal_horoscope_info_5), Toast.LENGTH_LONG).show();
+							}
+						});
+					}
+				} catch (Exception e) {
+					handler.post(new Runnable(){
+						@Override
+						public void run() {
+							Toast.makeText(getApplicationContext(), getResources().getString(R.string.order_personal_horoscope_info_5), Toast.LENGTH_LONG).show();
+						}
+					});
+					e.printStackTrace();
+				} 
+				
+				handler.post(new Runnable(){
+					@Override
+					public void run() {
+				        try {
+				        	prDialog.dismiss();
+				    	} catch (Exception e){
+				    		e.printStackTrace();
+				    	}
+					}
+				});
+				
+			}
+		}).start();
+	}
+	
+	public void showDialogSuccess(){
+		
+		sPref.edit().putBoolean("SHOWN_NOTIFICATION_NEW_FEATURE,HORO", true).commit();
+		
+ 		final Context context = this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
+    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
+    	
+    	//set fonts
+    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	
+    	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
+    	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_4));
+    	
+    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
+    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
+    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
+    	
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
+	}
 
     
 	//!----------------------------------AD-----------------------------------------------------!
@@ -504,6 +640,7 @@ public class ContentShowActivity extends BaseActivity {
         	super.unregisterReceiver(fragmentChanged);
             super.unregisterReceiver(requestDisableAd);
             super.unregisterReceiver(openMenuDrawer);
+            super.unregisterReceiver(requestOrderHoro);
         } catch (Exception e){
         	e.printStackTrace();
         }
@@ -539,6 +676,7 @@ public class ContentShowActivity extends BaseActivity {
 	        super.registerReceiver(fragmentChanged, new IntentFilter("fragment_changed"));
 	        super.registerReceiver(openMenuDrawer, new IntentFilter("horo_open_menu_drawer"));
 	        super.registerReceiver(requestDisableAd, new IntentFilter("request_disable_ad"));
+	        super.registerReceiver(requestOrderHoro, new IntentFilter("request_order_horo"));
         } catch (Exception e){
         	e.printStackTrace();
         }
@@ -562,7 +700,23 @@ public class ContentShowActivity extends BaseActivity {
 	    	if (!readyToPurchase) {
 	            Toast.makeText(getApplication(), "Billing not initialized.", Toast.LENGTH_LONG).show();
 	        } else{
-	        	bp.purchase(mCurrentActivity, PRODUCT_ID);
+	        	bp.purchase(mCurrentActivity, PRODUCT_ID_AD);
+	        }
+	    }
+	};
+	
+	private BroadcastReceiver requestOrderHoro = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	if (!readyToPurchase) {
+	            Toast.makeText(getApplication(), "Billing not initialized.", Toast.LENGTH_LONG).show();
+	        } else{
+	        	name = intent.getExtras().getString("name");
+	        	datebirth = intent.getExtras().getString("datebirth");
+	        	timebirth = intent.getExtras().getString("timebirth");
+	        	placebirth = intent.getExtras().getString("placebirth");
+	        	email = intent.getExtras().getString("email");
+	        	bp.purchase(mCurrentActivity, PRODUCT_ID_ORDER);
 	        }
 	    }
 	};
