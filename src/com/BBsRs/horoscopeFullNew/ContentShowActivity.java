@@ -70,7 +70,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
 @Addons(AddonSlider.class)
-public class ContentShowActivity extends BaseActivity {
+public class ContentShowActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
 	public AddonSlider.AddonSliderA addonSlider() {
 	      return addon(AddonSlider.class);
 	}
@@ -86,7 +86,6 @@ public class ContentShowActivity extends BaseActivity {
     private static final String PRODUCT_ID_AD = "ad_disabler";
     private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
     
-    String name, datebirth, timebirth, placebirth, email;
     ProgressDialog prDialog = null;
 
 	private BillingProcessor bp;
@@ -117,32 +116,7 @@ public class ContentShowActivity extends BaseActivity {
         
 	    //!----------------------------------BILLING-----------------------------------------------------!
         mCurrentActivity = this;
-	    bp = new BillingProcessor(this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
-            @Override
-            public void onProductPurchased(String productId, TransactionDetails details) {
-            	if (productId.equals(PRODUCT_ID_AD)){
-	            	sPref.edit().putBoolean("isOnHigh", true).commit();
-	            	startActivity(new Intent(getApplicationContext(), ActivityRestarter.class));
-	            	overridePendingTransition(0, 0);
-	            	finish();
-            	}
-            	if (productId.equals(PRODUCT_ID_ORDER)){
-            		//send horoscope request to server
-            		sendOrderToServer();
-            	}
-            }
-            @Override
-            public void onBillingError(int errorCode, Throwable error) {
-            }
-            @Override
-            public void onBillingInitialized() {
-                readyToPurchase = true;
-                sPref.edit().putBoolean("isOnHigh", bp.isPurchased(PRODUCT_ID_AD)).commit();
-            }
-            @Override
-            public void onPurchaseHistoryRestored() {
-            }
-        });
+        bp = new BillingProcessor(this, LICENSE_KEY, this);
 	    //!----------------------------------BILLING-----------------------------------------------------!
         
         //set app lang
@@ -494,15 +468,14 @@ public class ContentShowActivity extends BaseActivity {
 			@Override
 			public void run() {
 				try {
-					
 					Thread.sleep(500);
 					
 					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/add_to_database_new.php" +
-							"?name="+URLEncoder.encode(name, "UTF-8")+
-							"&birth_date=" + URLEncoder.encode(datebirth, "UTF-8")+
-							"&birth_place=" + URLEncoder.encode(placebirth, "UTF-8")+
-							"&birth_time=" + URLEncoder.encode(timebirth, "UTF-8")+
-							"&email=" + URLEncoder.encode(email, "UTF-8")+
+							"?name="+URLEncoder.encode(sPref.getString("name", "Roman"), "UTF-8")+
+							"&birth_date=" + URLEncoder.encode(sPref.getString("datebirth", "10.05.1995"), "UTF-8")+
+							"&birth_place=" + URLEncoder.encode(sPref.getString("timebirth", "22.10"), "UTF-8")+
+							"&birth_time=" + URLEncoder.encode(sPref.getString("placebirth", "Baymak"), "UTF-8")+
+							"&email=" + URLEncoder.encode(sPref.getString("email", "admin@brothers-rovers.ru"), "UTF-8")+
 							"&tel_skype=" + ""+
 							"&horoscope_type=" + URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8")+
 							"&partner_name=" + ""+
@@ -784,11 +757,6 @@ public class ContentShowActivity extends BaseActivity {
 	    	if (!readyToPurchase) {
 	            Toast.makeText(getApplication(), "Billing not initialized.", Toast.LENGTH_LONG).show();
 	        } else{
-	        	name = intent.getExtras().getString("name");
-	        	datebirth = intent.getExtras().getString("datebirth");
-	        	timebirth = intent.getExtras().getString("timebirth");
-	        	placebirth = intent.getExtras().getString("placebirth");
-	        	email = intent.getExtras().getString("email");
 	        	bp.purchase(mCurrentActivity, PRODUCT_ID_ORDER);
 	        }
 	    }
@@ -814,10 +782,47 @@ public class ContentShowActivity extends BaseActivity {
         super.onDestroy();
     }
 	
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data))
-            super.onActivityResult(requestCode, resultCode, data);
-    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (!bp.handleActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onBillingError(int arg0, Throwable arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBillingInitialized() {
+		readyToPurchase = true;
+        sPref.edit().putBoolean("isOnHigh", bp.isPurchased(PRODUCT_ID_AD)).commit();
+        
+    	if (bp.isPurchased(PRODUCT_ID_ORDER)){
+    		//send horoscope request to server
+    		sendOrderToServer();
+    	}
+	}
+
+	@Override
+	public void onProductPurchased(String productId, TransactionDetails arg1) {
+    	if (productId.equals(PRODUCT_ID_AD)){
+        	sPref.edit().putBoolean("isOnHigh", true).commit();
+        	startActivity(new Intent(getApplicationContext(), ActivityRestarter.class));
+        	overridePendingTransition(0, 0);
+        	finish();
+    	}
+    	if (productId.equals(PRODUCT_ID_ORDER)){
+    		//send horoscope request to server
+    		sendOrderToServer();
+    	}
+	}
+
+	@Override
+	public void onPurchaseHistoryRestored() {
+		// TODO Auto-generated method stub
+		
+	}
       
 }

@@ -241,7 +241,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     	} catch (Exception e){
     		e.printStackTrace();
     	}
-		
+        
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -263,13 +263,18 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
 						handler.post(new Runnable(){
 							@Override
 							public void run() {
+								
+								//save data
+								sPref.edit().putString("name", String.valueOf(username.getText())).commit();
+								sPref.edit().putString("datebirth", String.valueOf(userbirthdate.getText())).commit();
+								sPref.edit().putString("timebirth", String.valueOf(userbirthtime.getText())).commit();
+								sPref.edit().putString("email", String.valueOf(useremail.getText())).commit();
+								sPref.edit().putString("placebirth", String.valueOf(userbirthplace.getText())).commit();
+								sPref.edit().putString("name", String.valueOf(username.getText())).commit();
+								sPref.edit().putString("name", String.valueOf(username.getText())).commit();
+								
 								//show buy dialog
 								Intent intent = new Intent("request_order_horo");
-								intent.putExtra("name", String.valueOf(username.getText()));
-								intent.putExtra("datebirth", String.valueOf(userbirthdate.getText()));
-								intent.putExtra("timebirth", String.valueOf(userbirthtime.getText()));
-								intent.putExtra("email", String.valueOf(useremail.getText()));
-								intent.putExtra("placebirth", String.valueOf(userbirthplace.getText()));
 								getActivity().sendBroadcast(intent);
 							}
 						});

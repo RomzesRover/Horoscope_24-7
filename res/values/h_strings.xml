@@ -371,7 +371,7 @@
     <string name="order_personal_horoscope_info_3">Please check the correctness of the data filled.</string>
     <string name="order_personal_horoscope_info_8">Thank you for order!</string>
     <string name="order_personal_horoscope_info_4">Request submitted successfully, link to the horoscope you\'ll get in application, also we\'ll send it on your e-mail</string>
-    <string name="order_personal_horoscope_info_5">Error. Try again later. Payment is valid until the request is successful.</string>
+    <string name="order_personal_horoscope_info_5">Error. Try again later. Payment is valid until the request is successful. It also can send request automatically on next time opening app.</string>
     <string name="order_personal_horoscope_info_6">I understand, that this is <u>paid</u> service.</string>
     <string name="order_personal_horoscope_info_7">You can not send more than one request per minute.</string>
     <string name="order_personal_horoscope_info_10">Your order of individual horoscope is made and available on this %s link. We also sent this link to your email.</string>
