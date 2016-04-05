@@ -610,7 +610,7 @@ public class ContentShowActivity extends BaseActivity {
     	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
-    	((TextView)content.findViewById(R.id.TextView05)).setText(String.format(context.getString(R.string.order_personal_horoscope_info_10), "http://brothers-rovers.ru/application_horoscope_order_feature/horos/result.php?id="+sPref.getString("ordered_id", "-1")));
+    	((TextView)content.findViewById(R.id.TextView05)).setText(String.format(context.getString(R.string.order_personal_horoscope_info_10), "http://brothers-rovers.ru/application_horoscope_order_feature/horos/result.php?id="+sPref.getString("ordered_id", "-1")+"&lang="+getString(R.string.order_personal_horoscope_lang)));
     	//stop check horo
     	sPref.edit().putString("ordered_id", "-1").commit();
     	
