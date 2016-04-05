@@ -134,12 +134,13 @@
     <string name="order_personal_horoscope_info_3">Пожалуйста, проверьте правильность заполненных данных.</string>
     <string name="order_personal_horoscope_info_8">Спасибо, за заказ!</string>
     <string name="order_personal_horoscope_info_4">Запрос успешно отправлен, ссылку на гороскоп вы получите в приложении, а так-же на указанную электронную почту.</string>
-    <string name="order_personal_horoscope_info_5">Ошибка. Повторите запрос позже.</string>
+    <string name="order_personal_horoscope_info_5">Ошибка. Повторите запрос позже. Платеж действует, пока запрос не пройдет успешно.</string>
     <string name="order_personal_horoscope_info_6">Я понимаю, что это <u>платная</u> услуга.</string>
     <string name="order_personal_horoscope_info_7">Вы не можете посылать больше, чем 1 запрос в минуту.</string>
     <string name="order_personal_horoscope_info_10">Ваш заказ на индивидуальный гороскоп выполнен и доступен по этой %s ссылке. Так-же мы выслали эту ссылку на вашу электронную почту.</string>
     <string name="order_personal_horoscope_type_1">Натальный (штамп)</string> 
     <string name="order_personal_horoscope_order">Заказать</string>
+    <string name="order_personal_horoscope_title">Заказать гороскоп</string>
      
     <string name="order_personal_horoscope_name">Как вас зовут?</string>
     <string name="order_personal_horoscope_name_sumarry">Иванов Иван Иванович</string>

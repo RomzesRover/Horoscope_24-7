@@ -129,9 +129,6 @@ public class ContentShowActivity extends BaseActivity {
             	if (productId.equals(PRODUCT_ID_ORDER)){
             		//send horoscope request to server
             		sendOrderToServer();
-            		
-            		//it can be bought again so we need to consume it
-            		bp.consumePurchase(PRODUCT_ID_ORDER);
             	}
             }
             @Override
@@ -512,7 +509,7 @@ public class ContentShowActivity extends BaseActivity {
 							"&partner_birth_date=" + ""+
 							"&partner_birth_place=" + ""+
 							"&partner_birth_time=" + ""+
-							"&status=2").timeout(10000).get();
+							"&status=2").timeout(30000).get();
 					
 					Thread.sleep(500);
 					
@@ -522,6 +519,9 @@ public class ContentShowActivity extends BaseActivity {
 						handler.post(new Runnable(){
 							@Override
 							public void run() {
+								//consume purchase so user can buy it again
+								bp.consumePurchase(PRODUCT_ID_ORDER);
+								//you can not send more than one request per minute
 								sPref.edit().putLong("order_send_time", System.currentTimeMillis()).commit();
 								showDialogSuccess();
 							}

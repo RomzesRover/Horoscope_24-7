@@ -310,7 +310,7 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         //set subtitle for a current fragment with custom font
-        setTitle(getResources().getStringArray(R.array.mail_ru_horoscopes)[7]);
+        setTitle(getResources().getString(R.string.order_personal_horoscope_title));
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
     }
     
