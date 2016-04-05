@@ -141,11 +141,12 @@
     <string name="order_personal_horoscope_type_1">Натальный (штамп)</string> 
     <string name="order_personal_horoscope_order">Заказать</string>
     <string name="order_personal_horoscope_title">Заказать гороскоп</string>
+    <string name="order_personal_horoscope_lang">ru</string>
      
     <string name="order_personal_horoscope_name">Как вас зовут?</string>
     <string name="order_personal_horoscope_name_sumarry">Иванов Иван Иванович</string>
     <string name="order_personal_horoscope_birthday_date">Когда вы родились?</string>
-    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991</string>
+    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991, Dateformat: dd.MM.yyyy</string>
     <string name="order_personal_horoscope_birthday_time">Во сколько вы родились?</string>
     <string name="order_personal_horoscope_birthday_time_sumarry">23:60</string>
     <string name="order_personal_horoscope_birthday_place">Где вы родились?</string>

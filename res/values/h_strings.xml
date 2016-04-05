@@ -378,11 +378,12 @@
     <string name="order_personal_horoscope_type_1">Natal (stamp)</string> 
     <string name="order_personal_horoscope_order">Order</string>
     <string name="order_personal_horoscope_title">Order horoscope</string>
+    <string name="order_personal_horoscope_lang">en</string>
      
     <string name="order_personal_horoscope_name">What is your name?</string>
     <string name="order_personal_horoscope_name_sumarry">James Bond</string>
     <string name="order_personal_horoscope_birthday_date">When were you born?</string>
-    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991</string>
+    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991, Dateformat: dd.MM.yyyy</string>
     <string name="order_personal_horoscope_birthday_time">Which time were you born?</string>
     <string name="order_personal_horoscope_birthday_time_sumarry">23:60</string>
     <string name="order_personal_horoscope_birthday_place">Where were you born??</string>
