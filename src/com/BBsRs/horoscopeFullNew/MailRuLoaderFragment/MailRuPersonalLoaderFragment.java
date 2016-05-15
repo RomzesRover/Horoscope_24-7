@@ -224,7 +224,7 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
                     	Calendar c = Calendar.getInstance(); 
                     	
                         //load and retrieve data from horo.mail.ru
-                    	Document doc = Jsoup.connect("http://horo.mail.ru/numerology/calc/31/?v1="+String.valueOf(sPref.getInt("yearBorn", 1995))+"-"+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"-"+String.valueOf(sPref.getInt("dayBorn", 10))+"&v2="+String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH)+1)+"-"+String.valueOf(c.get(Calendar.DAY_OF_MONTH))+"/").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	Document doc = Jsoup.connect("https://horo.mail.ru/numerology/calc/31/?v1="+String.valueOf(sPref.getInt("yearBorn", 1995))+"-"+monthPlusZero(String.valueOf(sPref.getInt("monthBorn", 4)+1))+"-"+String.valueOf(sPref.getInt("dayBorn", 10))+"&v2="+String.valueOf(c.get(Calendar.YEAR))+"-"+monthPlusZero(String.valueOf(c.get(Calendar.MONTH)+1))+"-"+String.valueOf(c.get(Calendar.DAY_OF_MONTH))).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	data = "Прогноз на "+c.get(Calendar.DAY_OF_MONTH)+" "+getActivity().getResources().getStringArray(R.array.moths_of_year)[c.get(Calendar.MONTH)]+"<br /><br />"+doc.getElementsByClass("article__text").first().html()+"<br />"+getResources().getString(R.string.mail_ru_copyright)+"<br />";
                     	dateLenght = ("Прогноз на "+c.get(Calendar.DAY_OF_MONTH)+" "+getActivity().getResources().getStringArray(R.array.moths_of_year)[c.get(Calendar.MONTH)]).length()+1;
                     	if (!(doc.getElementsByClass("article__text").first().html().length()<10))
@@ -285,8 +285,14 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
                 }
             }.execute();
 		}
-         
     }
+    
+	public String monthPlusZero(String arg1){
+		if (arg1.length()==1)
+		return "0"+arg1;
+		else 
+		return arg1;
+	}
 }
 
 

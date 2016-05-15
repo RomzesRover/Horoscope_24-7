@@ -473,8 +473,8 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/add_to_database_new.php" +
 							"?name="+URLEncoder.encode(sPref.getString("name", "Roman"), "UTF-8")+
 							"&birth_date=" + URLEncoder.encode(sPref.getString("datebirth", "10.05.1995"), "UTF-8")+
-							"&birth_place=" + URLEncoder.encode(sPref.getString("timebirth", "22.10"), "UTF-8")+
-							"&birth_time=" + URLEncoder.encode(sPref.getString("placebirth", "Baymak"), "UTF-8")+
+							"&birth_place=" + URLEncoder.encode(sPref.getString("placebirth", "Baymak"), "UTF-8")+
+							"&birth_time=" + URLEncoder.encode(sPref.getString("timebirth", "22.10"), "UTF-8")+
 							"&email=" + URLEncoder.encode(sPref.getString("email", "admin@brothers-rovers.ru"), "UTF-8")+
 							"&tel_skype=" + ""+
 							"&horoscope_type=" + URLEncoder.encode(getString(R.string.order_personal_horoscope_type_1), "UTF-8")+
