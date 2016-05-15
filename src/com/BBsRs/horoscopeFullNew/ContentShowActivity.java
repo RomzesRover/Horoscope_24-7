@@ -431,12 +431,23 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 					
 					Thread.sleep(500);
 					
-					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/order_status.php" +
+					Document doc = Jsoup.connect("http://brothers-rovers.ru/application_horoscope_order_feature/order_status_new.php" +
 							"?id="+URLEncoder.encode(sPref.getString("ordered_id", "-1"), "UTF-8")).timeout(10000).get();
 					
 					Thread.sleep(500);
 					
-					if (doc.text().equals("1")){
+					if (doc.text().equals("-1") || doc.text().equals("-2")){
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								//stop check horo
+								sPref.edit().putString("ordered_id", "-1").commit();
+								showDialogConfirmPayment();
+							}
+						});
+					}
+					
+					if (doc.text().equals("4")){
 						handler.post(new Runnable(){
 							@Override
 							public void run() {
@@ -551,6 +562,39 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
     	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_4));
+    	
+    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
+    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
+    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
+    	
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
+	}
+	
+	public void showDialogConfirmPayment(){
+		
+ 		final Context context = this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
+    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
+    	
+    	//set fonts
+    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	
+    	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
+    	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_11));
     	
     	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
     	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
