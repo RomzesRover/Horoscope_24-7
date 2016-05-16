@@ -499,7 +499,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 							"&partner_name=" + ""+
 							"&partner_birth_date=" + ""+
 							"&partner_birth_place=" + ""+
-							"&partner_birth_time=" + ""+
+							"&partner_birth_time=" + bp.getPurchaseTransactionDetails(PRODUCT_ID_ORDER).orderId+
 							"&status=2").timeout(30000).get();
 					
 					Thread.sleep(500);
