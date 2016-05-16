@@ -387,7 +387,7 @@
     <string name="order_personal_horoscope_birthday_date">When were you born?</string>
     <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991, Dateformat: dd.MM.yyyy</string>
     <string name="order_personal_horoscope_birthday_time">Which time were you born?</string>
-    <string name="order_personal_horoscope_birthday_time_sumarry">23:60</string>
+    <string name="order_personal_horoscope_birthday_time_sumarry">23:60, 24-hour clock</string>
     <string name="order_personal_horoscope_birthday_place">Where were you born??</string>
     <string name="order_personal_horoscope_birthday_place_sumarry">USA, California, Los Angeles</string>
     <string name="order_personal_horoscope_email">E-mail</string>
