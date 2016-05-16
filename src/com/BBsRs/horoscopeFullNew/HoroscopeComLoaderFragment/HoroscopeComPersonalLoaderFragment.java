@@ -220,10 +220,70 @@ public class HoroscopeComPersonalLoaderFragment extends BaseFragment {
                     	error=true;
                     	
                         //load and retrieve data from horoscope.com
-                    	Document doc = Jsoup.connect("http://horoscope.com/horoscope/numerology/"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[UNIVERSAL_ID]+".aspx?nDate="+String.valueOf(sPref.getInt("dayBorn", 10))+"&nMonth="+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"&nYear="+String.valueOf(sPref.getInt("yearBorn", 1995))).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("fontdef1").get(0).text()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
-                    	dateLenght = Html.fromHtml(doc.getElementsByClass("col420").get(0).child(2).text().replaceAll("Share with friends:","")).length()+1;
-                    	if (!(doc.getElementsByClass("fontdef1").get(0).text().length()<10))
+                    	
+                    	int personalNumberTemp = 0;
+                    	
+                    	int day = sPref.getInt("dayBorn", 10);
+                    	int daySummTemp = 0;
+                    	while (day > 9 && day!=11 && day!=22){
+                    		daySummTemp = day;
+                    		day = 0;
+                    		
+	                    	while (daySummTemp > 0) {
+	                    		day += daySummTemp % 10;
+	                    		daySummTemp = daySummTemp / 10;
+	                    	}
+                    	}
+                    	Log.i(LOG_TAG, "DAY^ "+day+"");
+                    	personalNumberTemp += day;
+                    	
+                    	int month = sPref.getInt("monthBorn", 4)+1;
+                    	int monthSummTemp = 0;
+                    	while (month > 9 && month!=11 && month!=22){
+                    		monthSummTemp = month;
+                    		month = 0;
+                    		
+	                    	while (monthSummTemp > 0) {
+	                    		month += monthSummTemp % 10;
+	                    		monthSummTemp = monthSummTemp / 10;
+	                    	}
+                    	}
+                    	Log.i(LOG_TAG, "MONTH^ "+month+"");
+                    	personalNumberTemp += month;
+                    	
+                    	int year = sPref.getInt("yearBorn", 1995);
+                    	int yearSummTemp = 0;
+                    	while (year > 9 && year!=11 && year!=22){
+                    		yearSummTemp = year;
+                    		year = 0;
+                    		
+	                    	while (yearSummTemp > 0) {
+	                    		year += yearSummTemp % 10;
+	                    		yearSummTemp = yearSummTemp / 10;
+	                    	}
+                    	}
+                    	Log.i(LOG_TAG, "YEAR^ "+year+"");
+                    	personalNumberTemp += year;
+                    	
+                    	Log.i(LOG_TAG, personalNumberTemp+"");
+                    	
+                    	int personalNumber = personalNumberTemp;
+                    	while (personalNumber > 9 && personalNumber!=11 && personalNumber!=22){
+                    		personalNumberTemp = personalNumber;
+                    		personalNumber = 0;
+                    		
+	                    	while (personalNumberTemp > 0) {
+	                    		personalNumber += personalNumberTemp % 10;
+	                    		personalNumberTemp = personalNumberTemp / 10;
+	                    	}
+                    	}
+                    	
+                    	Log.i(LOG_TAG, "PERSONAL RESULT HERE^ "+personalNumber+"");
+                    	
+                    	Document doc = Jsoup.connect("http://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-today.aspx?sign="+personalNumber).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
+                    	data = doc.getElementsByClass("block-horoscope-numero-date").get(0).text()+"<br /><br />"+doc.getElementsByClass("block-horoscope-numero-text").get(0).text()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
+                    	dateLenght = Html.fromHtml(doc.getElementsByClass("block-horoscope-numero-date").get(0).text()).length()+1;
+                    	if (!(doc.getElementsByClass("block-horoscope-numero-text").get(0).text().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
                     	error=true;
