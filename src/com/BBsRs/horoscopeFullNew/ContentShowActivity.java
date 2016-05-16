@@ -368,15 +368,22 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_9));
     	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info));
     	
-    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.ok));
+    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.roulette));
     	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				sliderMenu.setCurrentPage(pref_id);
+				alert.dismiss();
+			}
+		});
+    	
+    	((Button)content.findViewById(R.id.cancel)).setText(context.getString(R.string.ok));
+    	((Button)content.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				alert.dismiss();
 			}
 		});
-    	
-    	((Button)content.findViewById(R.id.cancel)).setVisibility(View.GONE);
     	
     	build.setView(content);
     	alert = build.create();															// show dialog
