@@ -28,7 +28,6 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
@@ -66,8 +65,7 @@ import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import com.appodeal.ads.Appodeal;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
@@ -655,15 +653,13 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 
     
 	//!----------------------------------AD-----------------------------------------------------!
-	/** StartAppAd object declaration */
-	private InterstitialAd interstitial;
 	private final Handler handler = new Handler();
 	
 	public void showIntersttial(){
-		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
+		if (Appodeal.isLoaded(Appodeal.INTERSTITIAL) && !sPref.getBoolean("isOnHigh", false)){
 			showDialogInvite();
 			sPref.edit().putBoolean("grantAdShow", false).commit();
-			interstitial.show();
+			Appodeal.show(this, Appodeal.INTERSTITIAL);
 		}
 	}
 	//!----------------------------------AD-----------------------------------------------------!
@@ -676,52 +672,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		if (sPref.getBoolean("isOnHigh", false))
 			return;
 		
-		//!----------------------------------AD-----------------------------------------------------!
-		new Thread (new Runnable(){
-			@Override
-			public void run() {
-				try {
-					
-					String AdSource = "ca-app-pub-6690318766939525/2467455298";
-					try {
-						AdSource = Jsoup.connect("https://raw.githubusercontent.com/RomzesRover/common_repository_for_static_files/master/Horoscope/horo_files/adsource_between.txt").timeout(10000).get().text();
-					} catch (Exception e) {
-						AdSource = "ca-app-pub-6690318766939525/2467455298";
-						e.printStackTrace();
-					}
-					
-					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
-						Log.i("AD", "Problems with load AD !");
-						Log.i("AD", "herec1");
-					} else {
-						final String AdSourceFinalled = AdSource;
-						handler.post(new Runnable(){
-							@Override
-							public void run() {
-								try {
-									// Создание межстраничного объявления.
-								    interstitial = new InterstitialAd(ContentShowActivity.this);
-								    interstitial.setAdUnitId(AdSourceFinalled);
-	
-								    // Создание запроса объявления.
-								    AdRequest adRequest = new AdRequest.Builder().build();
-	
-								    // Запуск загрузки межстраничного объявления.
-								    interstitial.loadAd(adRequest);
-								} catch (Exception e){
-									Log.i("AD", "Problems with load AD !");
-									Log.i("AD", "herec2");
-								}
-							}
-						});
-					}
-				} catch (Exception e){
-					Log.i("AD", "Problems with load AD !");
-					Log.i("AD", "herec3");
-				}
-			}
-		}).start();
-		//!----------------------------------AD-----------------------------------------------------!
+		String appKey = "4fe576e6c019d276423e5f1d75deb87e09481ac2363d615e";
+		Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER);
+		Appodeal.show(this, Appodeal.BANNER_BOTTOM);
+		
 	}
 	
 	@Override
@@ -758,6 +712,9 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     @Override
     protected void onResume(){
     	super.onResume();
+    	
+    	Appodeal.onResume(this, Appodeal.BANNER);
+    	
         //delete notification is exist
         sendBroadcast(new Intent("MP_DELETE_INTENT"));
     	//first launch
