@@ -1,7 +1,6 @@
 package com.BBsRs.horoscopeFullNew.Base;
 
 import org.holoeverywhere.app.Fragment;
-import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.TextView;
 
 import android.content.Intent;
@@ -13,11 +12,6 @@ import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class BaseFragment extends Fragment{
-	
-	
-	public void showAd(View v, SharedPreferences sPref){
-		
-	}
 	
 	@Override
 	public void onResume() {
