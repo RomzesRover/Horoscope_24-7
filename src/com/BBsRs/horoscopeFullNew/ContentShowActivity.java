@@ -208,6 +208,8 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         }
         
         showDialog();
+        //show AD
+        showAd();
     }
     
 	public void showDialog(){
@@ -675,7 +677,11 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		Appodeal.disableNetwork(this, "avocarrot");
 		Appodeal.disableNetwork(this, "flurry");
 		String appKey = "4fe576e6c019d276423e5f1d75deb87e09481ac2363d615e";
+		
+		Appodeal.setAutoCache(Appodeal.INTERSTITIAL, false);
 		Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER);
+		Appodeal.cache(this, Appodeal.INTERSTITIAL);
+		
 		Appodeal.show(this, Appodeal.BANNER_BOTTOM);
 		
 	}
@@ -725,8 +731,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         //set icon
         getSupportActionBar().setIcon(R.drawable.ic_menu);
-        //show AD
-        showAd();
         //register receiver
         try {
 	        super.registerReceiver(fragmentChanged, new IntentFilter("fragment_changed"));
