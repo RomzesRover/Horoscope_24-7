@@ -216,7 +216,7 @@ public class GoAstroDePersonalLoaderFragment extends BaseFragment {
                     	error=true;
                     	//load and retrieve data from http://www.goastro.de/numeroskope_1_1996-03-26.php
                     	Document doc = Jsoup.connect("http://www.goastro.de/" + getResources().getStringArray(R.array.nameOfHoroscopecForLoadGoAstroDe)[UNIVERSAL_ID] + "_1_" + String.valueOf(sPref.getInt("yearBorn", 1995))+"-"+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"-"+String.valueOf(sPref.getInt("dayBorn", 10)) + ".php").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("text_orange_fett2").first().text()+"<br /><br />" + doc.getElementsByClass("text_orange").first().text() + "<br />" + doc.getElementsByClass("text_container_klein").html().replaceAll("<img src=\"(.*)\">", "").replaceAll("<br(.*)>", "")+"<br /><br />"+getResources().getString(R.string.go_astro_de_copyright)+"<br />";
+                    	data = doc.getElementsByClass("text_orange_fett2").first().text()+"<br /><br />" + doc.getElementsByClass("text_orange").first().text() + "<br />" + doc.getElementsByClass("text_container_klein").html().replaceAll("<img src=\"(.*)\">", "").replaceAll("<br(.*)>", "")+"<br /><br />"+getResources().getString(R.string.go_astro_de_copyright)+"<br /><br /><br /><br />";
                     	dateLenght = Html.fromHtml(doc.getElementsByClass("text_orange_fett2").first().text()).length()+1;
                     	if (!(doc.getElementsByClass("text_container_klein").text().length()<10))
                     		error=false;

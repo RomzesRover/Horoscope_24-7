@@ -219,7 +219,7 @@ public class HoroscopoComYesterdayLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horoscope.com 
                     	Document doc = Jsoup.connect("http://www.horoscopo.com/horoscopo"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopoCom)[UNIVERSAL_ID]+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopoCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("advert").get(1).text()+"<br /><br />"+doc.getElementById("textline").text()+"<br /><br />"+getResources().getString(R.string.horoscopo_com_copyright)+"<br />";
+                    	data = doc.getElementsByClass("advert").get(1).text()+"<br /><br />"+doc.getElementById("textline").text()+"<br /><br />"+getResources().getString(R.string.horoscopo_com_copyright)+"<br /><br /><br /><br />";
                     	dateLenght = Html.fromHtml(doc.getElementsByClass("advert").get(1).text()).length()+1;
                     	if (!(doc.getElementById("textline").text().length()<10))
                     		error=false;
