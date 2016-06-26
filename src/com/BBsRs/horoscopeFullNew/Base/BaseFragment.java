@@ -4,7 +4,6 @@ import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.TextView;
-import org.jsoup.Jsoup;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -40,12 +39,6 @@ public class BaseFragment extends Fragment{
 				try {
 					
 					String AdSource = "ca-app-pub-6690318766939525/9990722098";
-					try {
-						AdSource = Jsoup.connect("https://raw.githubusercontent.com/RomzesRover/common_repository_for_static_files/master/Horoscope/horo_files/adsource.txt").timeout(10000).get().text();
-					} catch (Exception e) {
-						AdSource = "ca-app-pub-6690318766939525/9990722098";
-						e.printStackTrace();
-					}
 					
 					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
 						Log.i("AD", "Problems with load AD !");
