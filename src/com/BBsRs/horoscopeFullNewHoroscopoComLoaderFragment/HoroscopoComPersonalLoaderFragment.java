@@ -217,7 +217,7 @@ public class HoroscopoComPersonalLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horoscope.com
                     	Document doc = Jsoup.connect("http://horoscopo.com/horoscopo/numerology/"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopoCom)[UNIVERSAL_ID]+".aspx?nDate="+String.valueOf(sPref.getInt("dayBorn", 10))+"&nMonth="+String.valueOf(sPref.getInt("monthBorn", 4)+1)+"&nYear="+String.valueOf(sPref.getInt("yearBorn", 1995))).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("advert").get(0).text()+"<br /><br />"+doc.getElementById("textline").text()+"<br /><br />"+getResources().getString(R.string.horoscopo_com_copyright)+"<br /><br /><br /><br />";
+                    	data = doc.getElementsByClass("advert").get(0).text()+"<br /><br />"+doc.getElementById("textline").text()+"<br /><br />"+getResources().getString(R.string.horoscopo_com_copyright)+"<br />";
                     	dateLenght = Html.fromHtml(doc.getElementsByClass("advert").get(0).text()).length()+1;
                     	if (!(doc.getElementById("textline").text().length()<10))
                     		error=false;

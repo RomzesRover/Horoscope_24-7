@@ -219,7 +219,7 @@ public class HoroscopeComTomorrowLoaderFragment extends BaseFragment {
                     	
                         //load and retrieve data from horoscope.com
                     	Document doc = Jsoup.connect("http://www.horoscope.com/us/horoscopes/general/horoscope-general"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[UNIVERSAL_ID]+".aspx?sign="+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopeCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("block-horoscope-date").get(0).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("block-horoscope-text").get(0).text()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br /><br /><br /><br />";
+                    	data = doc.getElementsByClass("block-horoscope-date").get(0).text().replaceAll("Share with friends:","")+"<br /><br />"+doc.getElementsByClass("block-horoscope-text").get(0).text()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
                     	dateLenght = Html.fromHtml(doc.getElementsByClass("block-horoscope-date").get(0).text().replaceAll("Share with friends:","")).length()+1;
                     	if (!(doc.getElementsByClass("block-horoscope-text").get(0).text().length()<10))
                     		error=false;
