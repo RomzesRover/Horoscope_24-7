@@ -28,6 +28,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
@@ -65,6 +66,8 @@ import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
@@ -652,13 +655,15 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 
     
 	//!----------------------------------AD-----------------------------------------------------!
+	/** StartAppAd object declaration */
+	private InterstitialAd interstitial;
 	private final Handler handler = new Handler();
 	
 	public void showIntersttial(){
-		if (!sPref.getBoolean("isOnHigh", false)){
+		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
 			showDialogInvite();
 			sPref.edit().putBoolean("grantAdShow", false).commit();
-			//TODO
+			interstitial.show();
 		}
 	}
 	//!----------------------------------AD-----------------------------------------------------!
@@ -671,7 +676,49 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		if (sPref.getBoolean("isOnHigh", false))
 			return;
 		
-		//TODO
+		//!----------------------------------AD-----------------------------------------------------!
+		new Thread (new Runnable(){
+			@Override
+			public void run() {
+				try {
+					
+					String AdSource = "ca-app-pub-6690318766939525/2467455298";
+					try {
+						AdSource = Jsoup.connect("https://raw.githubusercontent.com/RomzesRover/common_repository_for_static_files/master/Horoscope/horo_files/adsource_between.txt").timeout(10000).get().text();
+					} catch (Exception e) {
+						AdSource = "ca-app-pub-6690318766939525/2467455298";
+						e.printStackTrace();
+					}
+					
+					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
+						Log.i("AD", "Problems with load AD !");
+						Log.i("AD", "herec1");
+					} else {
+						final String AdSourceFinalled = AdSource;
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								try {
+								    interstitial = new InterstitialAd(ContentShowActivity.this);
+								    interstitial.setAdUnitId(AdSourceFinalled);
+	
+								    AdRequest adRequest = new AdRequest.Builder().build();
+	
+								    interstitial.loadAd(adRequest);
+								} catch (Exception e){
+									Log.i("AD", "Problems with load AD !");
+									Log.i("AD", "herec2");
+								}
+							}
+						});
+					}
+				} catch (Exception e){
+					Log.i("AD", "Problems with load AD !");
+					Log.i("AD", "herec3");
+				}
+			}
+		}).start();
+		//!----------------------------------AD-----------------------------------------------------!
 	}
 	
 	@Override
