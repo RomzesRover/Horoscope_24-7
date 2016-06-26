@@ -38,6 +38,8 @@ public class BaseFragment extends Fragment{
 			public void run() {
 				try {
 					
+					Thread.sleep(500);
+					
 					String AdSource = "ca-app-pub-6690318766939525/9990722098";
 					
 					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){

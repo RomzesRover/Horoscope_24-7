@@ -499,7 +499,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 							"&partner_name=" + ""+
 							"&partner_birth_date=" + ""+
 							"&partner_birth_place=" + ""+
-							"&partner_birth_time=" + bp.getPurchaseTransactionDetails(PRODUCT_ID_ORDER).orderId+
+							"&partner_birth_time=" + (bp.getPurchaseTransactionDetails(PRODUCT_ID_ORDER).orderId.contains("GPA") ? "ALL SHOULD BE OK" : "CHECK")+
 							"&status=2").timeout(30000).get();
 					
 					Thread.sleep(500);
@@ -681,6 +681,8 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 			@Override
 			public void run() {
 				try {
+					
+					Thread.sleep(500);
 					
 					String AdSource = "ca-app-pub-6690318766939525/2467455298";
 					
