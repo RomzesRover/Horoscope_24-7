@@ -65,7 +65,6 @@ import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.appodeal.ads.Appodeal;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
@@ -658,10 +657,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	private final Handler handler = new Handler();
 	
 	public void showIntersttial(){
-		if (Appodeal.isLoaded(Appodeal.INTERSTITIAL) && !sPref.getBoolean("isOnHigh", false)){
+		if (!sPref.getBoolean("isOnHigh", false)){
 			showDialogInvite();
 			sPref.edit().putBoolean("grantAdShow", false).commit();
-			Appodeal.show(this, Appodeal.INTERSTITIAL);
+			//TODO
 		}
 	}
 	//!----------------------------------AD-----------------------------------------------------!
@@ -674,16 +673,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		if (sPref.getBoolean("isOnHigh", false))
 			return;
 		
-		Appodeal.disableNetwork(this, "avocarrot");
-		Appodeal.disableNetwork(this, "flurry");
-		String appKey = "4fe576e6c019d276423e5f1d75deb87e09481ac2363d615e";
-		
-		Appodeal.setAutoCache(Appodeal.INTERSTITIAL, false);
-		Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL | Appodeal.BANNER);
-		Appodeal.cache(this, Appodeal.INTERSTITIAL);
-		
-		Appodeal.show(this, Appodeal.BANNER_BOTTOM);
-		
+		//TODO
 	}
 	
 	@Override
@@ -720,9 +710,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     @Override
     protected void onResume(){
     	super.onResume();
-    	
-    	Appodeal.onResume(this, Appodeal.BANNER);
-    	
         //delete notification is exist
         sendBroadcast(new Intent("MP_DELETE_INTENT"));
     	//first launch
