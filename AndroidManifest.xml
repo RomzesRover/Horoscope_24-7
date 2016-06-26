@@ -40,16 +40,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.BBsRs.horoscopeNewEdition.NotificationService" >
+        <service android:name=".NotificationService" >
         </service>
 
-        <receiver android:name="com.BBsRs.horoscopeNewEdition.BootUpReceiver" >
+        <receiver android:name=".BootUpReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.BBsRs.horoscopeNewEdition.ActivityRestarter" >
+        <activity android:name=".ActivityRestarter" >
         </activity>
         <activity
             android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityNewTheme"
