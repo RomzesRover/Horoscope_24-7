@@ -207,8 +207,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         }
         
         showDialog();
-        //show AD
-        showAd();
     }
     
 	public void showDialog(){
@@ -718,6 +716,8 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         //set icon
         getSupportActionBar().setIcon(R.drawable.ic_menu);
+        //show AD
+        showAd();
         //register receiver
         try {
 	        super.registerReceiver(fragmentChanged, new IntentFilter("fragment_changed"));
