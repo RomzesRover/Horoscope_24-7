@@ -20,9 +20,9 @@
                 android:id="@+id/textContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="15sp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/intro_main_text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textSize="15sp" />
         </ScrollView>
 
         <RelativeLayout
@@ -39,33 +39,33 @@
                 android:layout_centerVertical="true"
                 android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/errorMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="@string/error_message"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/simple_white_color"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/errorMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/error_message"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/simple_white_color"
+                    android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/errorRetryButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/ic_intro_btn"
-                android:paddingLeft="26dp"
-                android:paddingRight="40dp"
-                android:text="@string/error_retry"
-                android:textColor="@color/intro_main_text"
-                android:textSize="17sp" />
+                <Button
+                    android:id="@+id/errorRetryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_intro_btn"
+                    android:paddingLeft="26dp"
+                    android:paddingRight="40dp"
+                    android:text="@string/error_retry"
+                    android:textColor="@color/intro_main_text"
+                    android:textSize="17sp" />
             </LinearLayout>
         </RelativeLayout>
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
-    
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
@@ -74,5 +74,15 @@
         android:layout_alignParentLeft="true"
         android:scaleType="fitXY"
         android:src="@drawable/ic_darkness_fade" />
+
+    <LinearLayout
+        android:id="@+id/mainRtLt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:visibility="gone" >
+    </LinearLayout>
 
 </RelativeLayout>
