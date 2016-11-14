@@ -221,10 +221,10 @@ public class HoroscopeComYearLoaderFragment extends BaseFragment {
                     	// set no error, cuz we can reach it
                     	error=true;
                     	
-                        //load and retrieve data from http://www.horoscope.com/us/horoscopes/yearly/2016-horoscope-aries.aspx
+                        //load and retrieve data from http://www.horoscope.com/us/horoscopes/yearly/2017-horoscope-aries.aspx
                     	Document doc = Jsoup.connect("http://www.horoscope.com/us/horoscopes/"+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopeCom)[UNIVERSAL_ID]+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopeComYearly)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+".aspx").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = "2016"+"<br /><br />"+doc.getElementById("Personal").child(0).html()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
-                    	dateLenght = Html.fromHtml("2016").length()+1;
+                    	data = "2017"+"<br /><br />"+doc.getElementById("Personal").child(0).html()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
+                    	dateLenght = Html.fromHtml("2017").length()+1;
                     	if (!(doc.getElementById("Personal").child(0).html().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {

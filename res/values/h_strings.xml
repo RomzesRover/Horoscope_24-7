@@ -63,7 +63,7 @@
         <item>Персональный</item>
         <item>Неделя</item>
         <item>Месяц</item>
-        <item>Год 2016</item>
+        <item>Год 2017</item>
         <item>Заказать гороскоп</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadMailRu">
@@ -87,7 +87,7 @@
         <item>personal</item>
         <item>week</item>
         <item>month</item>
-        <item>2016</item>
+        <item>2017</item>
     </string-array>
 
     <!-- end of data only for download mail.ru horoscope -->
@@ -105,7 +105,7 @@
         <item>Week</item>
         <item>Money</item>
         <item>Month</item>
-        <item>Year</item>
+        <item>Year 2017</item>
         <item>Order horoscope</item>
     </string-array>
     <string-array name="nameOfzodiacForLoadHoroscopeCom">
@@ -144,7 +144,7 @@
         <item>-weekly</item>
         <item>-money-weekly</item>
         <item>-monthly</item>
-        <item>yearly/2016-horoscope-</item>
+        <item>yearly/2017-horoscope-</item>
     </string-array>
 
     <!-- end of data only for download horoscope.com horoscope -->

@@ -80,7 +80,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	// PRODUCT & SUBSCRIPTION IDS
 //	private static final String PRODUCT_ID_ORDER = "android.test.purchased";
 //	private static final String PRODUCT_ID_AD = "android.test.purchased";
-//  private static final String LICENSE_KEY = null;
+//	private static final String LICENSE_KEY = null;
 	
 	private static final String PRODUCT_ID_ORDER = "order_horo";
     private static final String PRODUCT_ID_AD = "ad_disabler";
