@@ -221,11 +221,11 @@ public class HoroscopoComYearLoaderFragment extends BaseFragment {
                     	// set no error, cuz we can reach it
                     	error=true;
                     	
-                        //load and retrieve data from http://www.horoscopo.com/geminis-horoscopo-2016.html
+                        //load and retrieve data from http://www.horoscopo.com/geminis-horoscopo-2017.html
                     	Document doc = Jsoup.connect("http://www.horoscopo.com/"+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopoCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopoCom)[UNIVERSAL_ID]+".html").userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
                     	Log.d(LOG_TAG, "http://www.horoscopo.com/"+getResources().getStringArray(R.array.nameOfzodiacForLoadHoroscopoCom)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+getResources().getStringArray(R.array.nameOfHoroscopecForLoadHoroscopoCom)[UNIVERSAL_ID]+".html");
-                    	data = "2016"+"<br /><br />"+doc.getElementById("textline").html()+"<br /><br />"+getResources().getString(R.string.horoscopo_com_copyright)+"<br />";
-                    	dateLenght = Html.fromHtml("2016").length()+1;
+                    	data = "2017"+"<br /><br />"+doc.getElementById("textline").html()+"<br /><br />"+getResources().getString(R.string.horoscopo_com_copyright)+"<br />";
+                    	dateLenght = Html.fromHtml("2017").length()+1;
                     	if (!(doc.getElementById("textline").html().length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
