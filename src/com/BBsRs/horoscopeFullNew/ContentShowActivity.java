@@ -238,8 +238,8 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		Calendar currentDate = Calendar.getInstance();
 		currentDate.setTimeInMillis(System.currentTimeMillis());
 				
-		//add 3 days to shown notification
-		shownNotification.add(Calendar.DATE, +2);
+		//add 6 days to shown notification
+		shownNotification.add(Calendar.DATE, +5);
 		
 		if (currentDate.before(shownNotification))
 			return;
@@ -344,10 +344,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		Calendar currentDate = Calendar.getInstance();
 		currentDate.setTimeInMillis(System.currentTimeMillis());
 				
-		//add 9 days to shown notification
-		shownNotification.add(Calendar.DATE, +9);
+		//add 14 days to shown notification
+		shownNotification.add(Calendar.DATE, +13);
 		
-		if (currentDate.before(shownNotification) && !(sPref.getLong(shownNotifacationNewFeatureDate, -1)==-1))
+		if (currentDate.before(shownNotification))
 			return;
 		
 		sPref.edit().putLong(shownNotifacationNewFeatureDate, System.currentTimeMillis()).commit();
@@ -779,8 +779,9 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	    		firstLaunch = false;
 	    		return;
 	    	}
-	    	if (((new Random(System.currentTimeMillis())).nextInt(3) + 1) == 2)
+	    	if (((new Random(System.currentTimeMillis())).nextInt(5) + 1) == 3){
 	    		showIntersttial();
+	    	}
 	    }
 	};
 	
