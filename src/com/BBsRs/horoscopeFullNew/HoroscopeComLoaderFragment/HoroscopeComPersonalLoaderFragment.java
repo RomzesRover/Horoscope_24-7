@@ -281,9 +281,9 @@ public class HoroscopeComPersonalLoaderFragment extends BaseFragment {
                     	Log.i(LOG_TAG, "PERSONAL RESULT HERE^ "+personalNumber+"");
                     	
                     	Document doc = Jsoup.connect("http://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-today.aspx?sign="+personalNumber).userAgent(getResources().getString(R.string.user_agent)).timeout(getResources().getInteger(R.integer.user_timeout)).get();
-                    	data = doc.getElementsByClass("block-horoscope-numero-date").get(0).text()+"<br /><br />"+doc.getElementsByClass("block-horoscope-numero-text").get(0).text()+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
-                    	dateLenght = Html.fromHtml(doc.getElementsByClass("block-horoscope-numero-date").get(0).text()).length()+1;
-                    	if (!(doc.getElementsByClass("block-horoscope-numero-text").get(0).text().length()<10))
+                    	data = doc.getElementsByClass("date").get(0).text()+"<br /><br />"+doc.getElementsByClass("horoscope-content").get(0).text().replaceAll(doc.getElementsByClass("date").get(0).text()+" - ", "")+"<br /><br />"+getResources().getString(R.string.horoscope_com_copyright)+"<br />";
+                    	dateLenght = Html.fromHtml(doc.getElementsByClass("date").get(0).text()).length()+1;
+                    	if (!(doc.getElementsByClass("horoscope-content").get(0).text().replaceAll(doc.getElementsByClass("date").get(0).text()+" - ", "").length()<10))
                     		error=false;
                     } catch (NotFoundException e) {
                     	error=true;
