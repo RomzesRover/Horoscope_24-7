@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
+import com.BBsRs.horoscopeFullNew.ContentShowActivity;
 import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.google.android.gms.ads.AdRequest;
@@ -132,29 +133,7 @@ public class BaseFragment extends Fragment{
 	}	
 	
     public void setTitle(String title){
-		ActionBar actionBar = getSupportActionBar();
-		actionBar.setDisplayShowCustomEnabled(true);
-		View actionTitle = getLayoutInflater().inflate(R.layout.action_bar, null);
-		//set font
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), ((TextView)actionTitle.findViewById(R.id.titleActionBar)));
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), ((TextView)actionTitle.findViewById(R.id.subtitleActionBar)));
-		//separate text
-		String[] titles = title.split(";");
-		if (titles.length==1){
-			((TextView)actionTitle.findViewById(R.id.titleActionBar)).setText(titles[0]);
-			((TextView)actionTitle.findViewById(R.id.subtitleActionBar)).setVisibility(View.GONE);
-		} else {
-			((TextView)actionTitle.findViewById(R.id.titleActionBar)).setText(titles[0]);
-			((TextView)actionTitle.findViewById(R.id.subtitleActionBar)).setText(titles[1]);
-			((TextView)actionTitle.findViewById(R.id.subtitleActionBar)).setVisibility(View.VISIBLE);
-		}
-		actionBar.setCustomView(actionTitle,
-		        new ActionBar.LayoutParams(
-		                ActionBar.LayoutParams.WRAP_CONTENT,
-		                ActionBar.LayoutParams.MATCH_PARENT,
-		                Gravity.CENTER
-		        )
-		);
+    	((ContentShowActivity) getSupportActivity()).setTitle(title);
     }
 
 }

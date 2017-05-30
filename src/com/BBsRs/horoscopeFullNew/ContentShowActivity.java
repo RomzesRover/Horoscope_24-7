@@ -106,7 +106,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     AlertDialog alert = null;
     
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -749,7 +749,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	}
     
     @Override
-    protected void onResume(){
+	public void onResume(){
     	super.onResume();
         //delete notification is exist
         sendBroadcast(new Intent("MP_DELETE_INTENT"));

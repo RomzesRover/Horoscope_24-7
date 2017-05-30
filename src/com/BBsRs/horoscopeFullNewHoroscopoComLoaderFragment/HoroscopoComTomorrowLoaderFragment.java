@@ -148,7 +148,7 @@ public class HoroscopoComTomorrowLoaderFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         //set subtitle for a current fragment with custom font
-        setTitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]);
+        setTitle(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "0"))]+";"+getResources().getStringArray(R.array.horoscopo_com_horoscopes)[UNIVERSAL_ID]);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
         
         //check if settings changed
