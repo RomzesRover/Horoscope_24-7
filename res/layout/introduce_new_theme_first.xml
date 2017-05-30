@@ -22,7 +22,7 @@
         android:text="@string/introduce_two_1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/intro_second_text"
-        android:textSize="11sp" />
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/chooseLanguage"

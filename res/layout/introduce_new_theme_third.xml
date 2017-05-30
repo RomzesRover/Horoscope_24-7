@@ -22,7 +22,7 @@
         android:text="@string/introduce_notMy"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/intro_main_text"
-        android:textSize="11sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/subTitle"
@@ -33,7 +33,7 @@
         android:layout_marginTop="5dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/intro_second_text"
-        android:textSize="11sp" />
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/start"

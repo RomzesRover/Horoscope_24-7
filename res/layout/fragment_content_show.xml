@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/intro_main_text"
-                android:textSize="15sp" />
+                android:textSize="17sp" />
         </ScrollView>
 
         <RelativeLayout
@@ -48,7 +48,7 @@
                     android:text="@string/error_message"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/simple_white_color"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <Button
                     android:id="@+id/errorRetryButton"
