@@ -25,8 +25,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityNewTheme;
 import com.BBsRs.horoscopeNewEdition.NotificationService;
 import com.BBsRs.horoscopeNewEdition.R;
@@ -202,10 +202,10 @@ public class ActivityLoader extends BaseActivity {
 		}
 		
 		//set fonts
-		SFUIDisplayFont.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
-		SFUIDisplayFont.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.subTitle)));
-		SFUIDisplayFont.ULTRALIGHT.apply(this, errorMessage);
-		SFUIDisplayFont.ULTRALIGHT.apply(this, errorRetryButton);
+		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
+		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.subTitle)));
+		SFUIFonts.ULTRALIGHT.apply(this, errorMessage);
+		SFUIFonts.ULTRALIGHT.apply(this, errorRetryButton);
 	}
 
     private boolean isNetworkAvailable() {

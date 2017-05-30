@@ -31,8 +31,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeFullNew.GoAstroDeLoaderFragment.GoAstroDeMonthLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoAstroDeLoaderFragment.GoAstroDePersonalLoaderFragment;
 import com.BBsRs.horoscopeFullNew.GoAstroDeLoaderFragment.GoAstroDeTodayLoaderFragment;
@@ -254,15 +254,15 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	View content = inflater.inflate(R.layout.dialog_content_sponsor, null);
     	
     	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView04));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView15));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView14));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView25));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView24));
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView04));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView15));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView14));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView25));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView24));
     	
     	
     	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
@@ -360,10 +360,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
     	
     	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_9));
     	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info));
@@ -400,10 +400,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
     	
     	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	
     	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -562,10 +562,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
     	
     	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
     	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_4));
@@ -595,10 +595,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
     	
     	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
     	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info_11));
@@ -628,10 +628,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
     	
     	//set fonts
-    	SFUIDisplayFont.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIDisplayFont.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIDisplayFont.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
     	
     	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_8));
     	((TextView)content.findViewById(R.id.TextView05)).setText(String.format(context.getString(R.string.order_personal_horoscope_info_10), "http://brothers-rovers.ru/application_horoscope_order_feature/horos/result.php?id="+sPref.getString("ordered_id", "-1")+"&lang="+getString(R.string.order_personal_horoscope_lang)));

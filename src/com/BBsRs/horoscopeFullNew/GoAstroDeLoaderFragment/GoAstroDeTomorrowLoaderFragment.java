@@ -36,10 +36,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ScrollView;
 
+import com.BBsRs.SFUIFontsEverywhere.CustomTypefaceSpan;
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
+import com.BBsRs.SFUIFontsEverywhere.SFUIFontsPath;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
-import com.BBsRs.horoscopeFullNew.Fonts.CustomTypefaceSpan;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFontPath;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class GoAstroDeTomorrowLoaderFragment extends BaseFragment {
@@ -116,9 +116,9 @@ public class GoAstroDeTomorrowLoaderFragment extends BaseFragment {
             	data = savedInstanceState.getString("data");
             	dateLenght = savedInstanceState.getInt("dateLenght");
             	SpannableString sb = new SpannableString(Html.fromHtml("<br />"+data)+" ");
-                sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.MEDIUM)), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                 sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.LIGHT)), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                 sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             	textContent.setText(sb);
             	
@@ -138,8 +138,8 @@ public class GoAstroDeTomorrowLoaderFragment extends BaseFragment {
 		});
         
       //set fonts
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), errorMessage);
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), errorRetryButton);
+		SFUIFonts.ULTRALIGHT.apply(getActivity(), errorMessage);
+		SFUIFonts.ULTRALIGHT.apply(getActivity(), errorRetryButton);
         
         return contentView;
     }
@@ -264,9 +264,9 @@ public class GoAstroDeTomorrowLoaderFragment extends BaseFragment {
 	                    	
 	                    	//download data is cancelled, setting up views 
 	                    	SpannableString sb = new SpannableString(Html.fromHtml("<br />"+data)+" ");
-	                        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.MEDIUM)), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 	                        sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, dateLenght, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	                        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIDisplayFontPath.LIGHT)), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        sb.setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 	                        sb.setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), dateLenght+1, sb.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 	                    	textContent.setText(sb);
 	                    	

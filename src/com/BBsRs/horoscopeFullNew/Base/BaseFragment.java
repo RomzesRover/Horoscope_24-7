@@ -3,17 +3,13 @@ package com.BBsRs.horoscopeFullNew.Base;
 import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.LinearLayout;
-import org.holoeverywhere.widget.TextView;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.ContentShowActivity;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;

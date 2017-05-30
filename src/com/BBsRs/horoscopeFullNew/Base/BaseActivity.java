@@ -20,7 +20,7 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class BaseActivity extends Activity {
@@ -65,8 +65,8 @@ public class BaseActivity extends Activity {
 		        )
 		);
 		//set font
-		SFUIDisplayFont.ULTRALIGHT.apply(BaseActivity.this, maintitle);
-		SFUIDisplayFont.ULTRALIGHT.apply(this, subtitle);
+		SFUIFonts.ULTRALIGHT.apply(BaseActivity.this, maintitle);
+		SFUIFonts.ULTRALIGHT.apply(this, subtitle);
 	}
 	
 	ActionBar actionBar;

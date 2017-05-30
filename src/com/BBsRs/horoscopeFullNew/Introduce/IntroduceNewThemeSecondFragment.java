@@ -20,7 +20,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class IntroduceNewThemeSecondFragment extends Fragment{
@@ -40,9 +40,9 @@ public class IntroduceNewThemeSecondFragment extends Fragment{
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		
 		//set fonts
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.title));
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.subTitle));
-		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (Button)contentView.findViewById(R.id.chooseLanguage));
+		SFUIFonts.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.title));
+		SFUIFonts.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.subTitle));
+		SFUIFonts.ULTRALIGHT.apply(getActivity(), (Button)contentView.findViewById(R.id.chooseLanguage));
 		
 		//init date dialog
 		final Calendar currDate = Calendar.getInstance();

@@ -26,8 +26,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class OrderPersonalHoroscopeFragment extends BaseFragment {
@@ -183,29 +183,29 @@ public class OrderPersonalHoroscopeFragment extends BaseFragment {
     	
     	
         //set fonts
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info));
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info_order));
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), name);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), username_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), username);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info));
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), (TextView)contentView.findViewById(R.id.info_order));
+  		SFUIFonts.MEDIUM.apply(getActivity(), name);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), username_mask);
+  		SFUIFonts.LIGHT.apply(getActivity(), username);
   		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), birthdate);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(),  userbirthdate_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), userbirthdate);
+  		SFUIFonts.MEDIUM.apply(getActivity(), birthdate);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(),  userbirthdate_mask);
+  		SFUIFonts.LIGHT.apply(getActivity(), userbirthdate);
   		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), birthtime);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), userbirthtime_mask );
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), userbirthtime);
+  		SFUIFonts.MEDIUM.apply(getActivity(), birthtime);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), userbirthtime_mask );
+  		SFUIFonts.LIGHT.apply(getActivity(), userbirthtime);
   		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), birthplace);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), userbirthplace_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), userbirthplace);
+  		SFUIFonts.MEDIUM.apply(getActivity(), birthplace);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), userbirthplace_mask);
+  		SFUIFonts.LIGHT.apply(getActivity(), userbirthplace);
   		
-  		SFUIDisplayFont.MEDIUM.apply(getActivity(), email);
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), useremail_mask);
-  		SFUIDisplayFont.LIGHT.apply(getActivity(), useremail);
+  		SFUIFonts.MEDIUM.apply(getActivity(), email);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), useremail_mask);
+  		SFUIFonts.LIGHT.apply(getActivity(), useremail);
   		
-  		SFUIDisplayFont.ULTRALIGHT.apply(getActivity(), order);
+  		SFUIFonts.ULTRALIGHT.apply(getActivity(), order);
     	
         return contentView;
     }

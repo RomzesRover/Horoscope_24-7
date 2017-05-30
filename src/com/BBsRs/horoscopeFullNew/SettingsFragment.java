@@ -35,8 +35,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeFullNew.Base.BasePreferenceFragment;
-import com.BBsRs.horoscopeFullNew.Fonts.SFUIDisplayFont;
 import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.NotificationService;
 import com.BBsRs.horoscopeNewEdition.R;
@@ -149,9 +149,9 @@ public class SettingsFragment extends BasePreferenceFragment {
 		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
 		    	
 		    	//set fonts
-		    	SFUIDisplayFont.MEDIUM.apply(context, title);
-		    	SFUIDisplayFont.LIGHT.apply(context, cancel);
-		    	SFUIDisplayFont.LIGHT.apply(context, apply);
+		    	SFUIFonts.MEDIUM.apply(context, title);
+		    	SFUIFonts.LIGHT.apply(context, cancel);
+		    	SFUIFonts.LIGHT.apply(context, apply);
 		    	
 		    	//view job
 		    	title.setText(context.getString(R.string.introduce_two_1));
@@ -165,7 +165,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 		            public View getView(final int position, View convertView, ViewGroup parent) {
 		            	 View v = super.getView(position, convertView, parent);
 		            	 //set font
-		            	 SFUIDisplayFont.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
 		            	 //set radio
 		                 RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
 		                 if (list.isItemChecked(position)) {
@@ -235,9 +235,9 @@ public class SettingsFragment extends BasePreferenceFragment {
 		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
 		    	
 		    	//set fonts
-		    	SFUIDisplayFont.MEDIUM.apply(context, title);
-		    	SFUIDisplayFont.LIGHT.apply(context, cancel);
-		    	SFUIDisplayFont.LIGHT.apply(context, apply);
+		    	SFUIFonts.MEDIUM.apply(context, title);
+		    	SFUIFonts.LIGHT.apply(context, cancel);
+		    	SFUIFonts.LIGHT.apply(context, apply);
 		    	
 		    	//view job
 		    	title.setText(context.getString(R.string.preference_zodiac_signs_1));
@@ -251,7 +251,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 		            public View getView(final int position, View convertView, ViewGroup parent) {
 		            	 View v = super.getView(position, convertView, parent);
 		            	 //set font
-		            	 SFUIDisplayFont.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
 		            	 //set radio
 		                 RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
 		                 if (list.isItemChecked(position)) {
