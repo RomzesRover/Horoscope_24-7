@@ -22,6 +22,7 @@ import android.content.res.Resources.NotFoundException;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.text.Layout.Alignment;
 import android.text.Spannable;
@@ -57,6 +58,8 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
     
     //custom refresh listener where in new thread will load job doing, need to customize for all kind of data
     CustomOnRefreshListener customOnRefreshListener = new CustomOnRefreshListener();
+    
+    private final Handler handler = new Handler();
     
     //retrieved data
     String data = "";
@@ -101,14 +104,13 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
           .setup(mPullToRefreshLayout);
         
         //if we have saved info after screen rotating or pause/stop app
-        if(savedInstanceState == null) {
-        //refresh on open to load data when app first time started
-        mPullToRefreshLayout.setRefreshing(true);
-        customOnRefreshListener.onRefreshStarted(null);
-        //we already load data, put false to checker
-        Editor ed = sPref.edit();   
-		ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
-		ed.commit();
+	        if(savedInstanceState == null) {
+	        //refresh on open to load data when app first time started
+	        updateList();
+	        //we already load data, put false to checker
+	        Editor ed = sPref.edit();   
+			ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
+			ed.commit();
         } else {
         	if (savedInstanceState.getBoolean("error")){
         		scrollView.setVisibility(View.GONE);
@@ -133,8 +135,7 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
         errorRetryButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mPullToRefreshLayout.setRefreshing(true);
-		        customOnRefreshListener.onRefreshStarted(null);
+				updateList();
 		        errorRetryButton.setEnabled(false);
 			}
 		});
@@ -145,6 +146,17 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
         
         return contentView;
     }
+	
+	public void updateList(){
+		handler.postDelayed(new Runnable(){
+			@Override
+			public void run() {
+				//refresh on open to load data when app first time started
+		        mPullToRefreshLayout.setRefreshing(true);
+		        customOnRefreshListener.onRefreshStarted(null);
+			}
+      	}, 100);
+	}
 
     @Override
     public void onResume() {
@@ -156,8 +168,7 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
         	if (!customOnRefreshListener.isRefreshing){
-	        	mPullToRefreshLayout.setRefreshing(true);
-	        	customOnRefreshListener.onRefreshStarted(null);
+        		updateList();
         	}
         	Editor ed = sPref.edit();   
 			ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
