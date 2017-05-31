@@ -14,7 +14,8 @@
             android:layout_height="fill_parent"
             android:paddingLeft="@dimen/fragment_standart_padding"
             android:paddingRight="@dimen/fragment_standart_padding"
-            android:scrollbarStyle="insideInset" >
+            android:scrollbarStyle="insideInset"
+            android:visibility="invisible" >
 
             <TextView
                 android:id="@+id/textContent"

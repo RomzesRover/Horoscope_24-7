@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.ScrollView;
 
 import com.BBsRs.SFUIFontsEverywhere.CustomTypefaceSpan;
@@ -229,6 +230,27 @@ public class MailRuMonthLoaderFragment extends BaseFragment {
                 @Override
                 protected Void doInBackground(Void... params) {
                     try {
+                    	//show animataion only if scrollView is already visible
+						if (scrollView.getVisibility() == View.VISIBLE){
+							handler.post(new Runnable(){
+								@Override
+								public void run() {
+									Animation flyDownAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim_out);
+									textContent.startAnimation(flyDownAnimation);
+			                    	flyDownAnimation.setAnimationListener(new AnimationListener(){
+			        					@Override
+			        					public void onAnimationEnd(Animation arg0) {
+			        						scrollView.setVisibility(View.INVISIBLE);
+			        					}
+			        					@Override
+			        					public void onAnimationRepeat(Animation arg0) { }
+			        					@Override
+			        					public void onAnimationStart(Animation arg0) { }
+			                    	});
+								}
+							});
+						}
+						
                     	// set no error, cuz we can reach it
                     	error=true;
                     	
