@@ -83,6 +83,9 @@ public class BaseActivity extends Activity {
 		final String[] titles = title.split(";");
 		
 		if (titles.length==1){
+			
+			if (titles[0].equals(maintitle.getText().toString()) && subtitle.getText().length() == 0) return;
+			
 			if (subtitle.getText().length() > 0){
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 					maintitle.setText(titles[0]);
@@ -134,37 +137,15 @@ public class BaseActivity extends Activity {
 		} else {
 			if (titles[0].equals(maintitle.getText().toString()) && titles[1].equals(subtitle.getText().toString())) return;
 			
-			if (!titles[0].equals(maintitle.getText().toString())){
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-					AnimatorSet animSet = new AnimatorSet();
-					//convertDpToPixel means that we move texview by 5dp converted to pixels
-		            ObjectAnimator transAnim = ObjectAnimator.ofFloat(maintitle, "translationY", 0f, -convertDpToPixel(2f, actionTitle.getContext()));
-		            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(maintitle, "alpha", 1f, 0f);
-		            animSet.playTogether(transAnim, alphaAnim);
-		            animSet.setDuration(250);
-		            animSet.addListener(new  AnimatorListenerAdapter(){
-						@Override
-						public void onAnimationEnd(Animator arg0) {
-							maintitle.setText(titles[0]);
-							AnimatorSet animSet = new AnimatorSet();
-				            ObjectAnimator transAnim = ObjectAnimator.ofFloat(maintitle, "translationY", convertDpToPixel(2f, actionTitle.getContext()), 0f);
-				            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(maintitle, "alpha", 0f, 1f);
-				            animSet.playTogether(transAnim, alphaAnim);
-				            animSet.setDuration(250);
-				            animSet.start();
-						}
-		            });
-		            animSet.start();
-		        } else {
-		        	maintitle.setText(titles[0]);
-		        	maintitle.setVisibility(View.VISIBLE);
-		        }
-			} else {
+			if (subtitle.getText().length() == 0 && maintitle.getText().length() == 0){
+				subtitle.setText(titles[1]);
 				maintitle.setText(titles[0]);
+				return;
 			}
 			
 			if (subtitle.getText().length() == 0){
 				subtitle.setText(titles[1]);
+				maintitle.setText(titles[0]);
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 					AnimatorSet animSet = new AnimatorSet();
 					//convertDpToPixel means that we move texview by 5dp converted to pixels
@@ -177,30 +158,64 @@ public class BaseActivity extends Activity {
 		        	subtitle.setVisibility(View.VISIBLE);
 		        }
 			} else {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-					AnimatorSet animSet = new AnimatorSet();
-					//convertDpToPixel means that we move texview by 5dp converted to pixels
-		            ObjectAnimator transAnim = ObjectAnimator.ofFloat(subtitle, "translationY", 0f, -convertDpToPixel(2f, actionTitle.getContext()));
-		            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(subtitle, "alpha", 1f, 0f);
-		            animSet.playTogether(transAnim, alphaAnim);
-		            animSet.setDuration(250);
-		            animSet.addListener(new  AnimatorListenerAdapter(){
-						@Override
-						public void onAnimationEnd(Animator arg0) {
-							subtitle.setText(titles[1]);
-							AnimatorSet animSet = new AnimatorSet();
-				            ObjectAnimator transAnim = ObjectAnimator.ofFloat(subtitle, "translationY", convertDpToPixel(2f, actionTitle.getContext()), 0f);
-				            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(subtitle, "alpha", 0f, 1f);
-				            animSet.playTogether(transAnim, alphaAnim);
-				            animSet.setDuration(250);
-				            animSet.start();
-						}
-		            });
-		            animSet.start();
-		        } else {
-		        	subtitle.setText(titles[1]);
-		        	subtitle.setVisibility(View.VISIBLE);
-		        }
+				//update subtitle
+				if (!titles[1].equals(subtitle.getText().toString())){
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+						AnimatorSet animSet = new AnimatorSet();
+						//convertDpToPixel means that we move texview by 5dp converted to pixels
+			            ObjectAnimator transAnim = ObjectAnimator.ofFloat(subtitle, "translationY", 0f, -convertDpToPixel(2f, actionTitle.getContext()));
+			            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(subtitle, "alpha", 1f, 0f);
+			            animSet.playTogether(transAnim, alphaAnim);
+			            animSet.setDuration(250);
+			            animSet.addListener(new  AnimatorListenerAdapter(){
+							@Override
+							public void onAnimationEnd(Animator arg0) {
+								subtitle.setText(titles[1]);
+								AnimatorSet animSet = new AnimatorSet();
+					            ObjectAnimator transAnim = ObjectAnimator.ofFloat(subtitle, "translationY", convertDpToPixel(2f, actionTitle.getContext()), 0f);
+					            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(subtitle, "alpha", 0f, 1f);
+					            animSet.playTogether(transAnim, alphaAnim);
+					            animSet.setDuration(250);
+					            animSet.start();
+							}
+			            });
+			            animSet.start();
+			        } else {
+			        	subtitle.setText(titles[1]);
+			        	subtitle.setVisibility(View.VISIBLE);
+			        }
+				} else {
+					subtitle.setText(titles[1]);
+				}
+				//update maintitle
+				if (!titles[0].equals(maintitle.getText().toString())){
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+						AnimatorSet animSet = new AnimatorSet();
+						//convertDpToPixel means that we move texview by 5dp converted to pixels
+			            ObjectAnimator transAnim = ObjectAnimator.ofFloat(maintitle, "translationY", 0f, -convertDpToPixel(2f, actionTitle.getContext()));
+			            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(maintitle, "alpha", 1f, 0f);
+			            animSet.playTogether(transAnim, alphaAnim);
+			            animSet.setDuration(250);
+			            animSet.addListener(new  AnimatorListenerAdapter(){
+							@Override
+							public void onAnimationEnd(Animator arg0) {
+								maintitle.setText(titles[0]);
+								AnimatorSet animSet = new AnimatorSet();
+					            ObjectAnimator transAnim = ObjectAnimator.ofFloat(maintitle, "translationY", convertDpToPixel(2f, actionTitle.getContext()), 0f);
+					            ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(maintitle, "alpha", 0f, 1f);
+					            animSet.playTogether(transAnim, alphaAnim);
+					            animSet.setDuration(250);
+					            animSet.start();
+							}
+			            });
+			            animSet.start();
+			        } else {
+			        	maintitle.setText(titles[0]);
+			        	maintitle.setVisibility(View.VISIBLE);
+			        }
+				} else {
+					maintitle.setText(titles[0]);
+				}
 			}
 		}
     }
