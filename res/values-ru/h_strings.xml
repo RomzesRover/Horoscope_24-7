@@ -147,8 +147,8 @@
      
     <string name="order_personal_horoscope_name">Как вас зовут?</string>
     <string name="order_personal_horoscope_name_sumarry">Иванов Иван Иванович</string>
-    <string name="order_personal_horoscope_birthday_date">Когда вы родились?</string>
-    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991, Dateformat: dd.MM.yyyy</string>
+    <string name="order_personal_horoscope_birthday_date">Когда вы родились? Формат: дд.мм.гггг</string>
+    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991</string>
     <string name="order_personal_horoscope_birthday_time">Во сколько вы родились?</string>
     <string name="order_personal_horoscope_birthday_time_sumarry">23:60</string>
     <string name="order_personal_horoscope_birthday_place">Где вы родились?</string>

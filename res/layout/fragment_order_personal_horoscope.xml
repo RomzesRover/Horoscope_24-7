@@ -22,7 +22,7 @@
                 android:text="@string/order_personal_horoscope_info_2"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/slider_menu_custom_text_color"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/name"
@@ -249,7 +249,7 @@
                 android:text="@string/order_personal_horoscope_info_6"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/slider_menu_custom_text_color"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
         </RelativeLayout>
     </ScrollView>

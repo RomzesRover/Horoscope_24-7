@@ -384,8 +384,8 @@
      
     <string name="order_personal_horoscope_name">What is your name?</string>
     <string name="order_personal_horoscope_name_sumarry">James Bond</string>
-    <string name="order_personal_horoscope_birthday_date">When were you born?</string>
-    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991, Dateformat: dd.MM.yyyy</string>
+    <string name="order_personal_horoscope_birthday_date">When were you born? format: dd.MM.yyyy</string>
+    <string name="order_personal_horoscope_birthday_date_sumarry">31.12.1991</string>
     <string name="order_personal_horoscope_birthday_time">Which time were you born?</string>
     <string name="order_personal_horoscope_birthday_time_sumarry">23:60, 24-hour clock</string>
     <string name="order_personal_horoscope_birthday_place">Where were you born??</string>
