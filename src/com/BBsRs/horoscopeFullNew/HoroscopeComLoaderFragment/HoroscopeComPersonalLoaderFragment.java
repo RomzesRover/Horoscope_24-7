@@ -248,6 +248,12 @@ public class HoroscopeComPersonalLoaderFragment extends BaseFragment {
 								}
 							});
 						}
+						//slep to prevent laggy animations
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						
                     	// set no error, cuz we can reach it
                     	error=true;
@@ -335,6 +341,22 @@ public class HoroscopeComPersonalLoaderFragment extends BaseFragment {
     	        		Log.e(LOG_TAG, "other Load Error");
     					e.printStackTrace();
     				}
+                    
+                    handler.post(new Runnable(){
+						@Override
+						public void run() {
+							// Notify PullToRefreshLayout that the refresh has finished
+		                    mPullToRefreshLayout.setRefreshComplete();
+						}
+					});
+                    
+                    //slep to prevent laggy animations
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
                     return null;
                 }
 
@@ -342,9 +364,6 @@ public class HoroscopeComPersonalLoaderFragment extends BaseFragment {
                 protected void onPostExecute(Void result) {
                 	try{
 	                    super.onPostExecute(result);
-	                    
-	                 // Notify PullToRefreshLayout that the refresh has finished
-	                    mPullToRefreshLayout.setRefreshComplete();
 	                    
 	                    if (error){
 	                    	scrollView.setVisibility(View.GONE);
