@@ -64,19 +64,6 @@ public class SettingsFragment extends BasePreferenceFragment {
         
         addPreferencesFromResource(R.xml.preferences);
         
-        //setting up list zodiac change listener preference, cuz we need update horo if zodiac was changed.
-		Editor ed = sPref.edit(); 
-		ed.putBoolean("changed_0", true);	
-		ed.putBoolean("changed_1", true);	
-		ed.putBoolean("changed_2", true);	
-		ed.putBoolean("changed_3", true);	
-		ed.putBoolean("changed_4", true);	
-		ed.putBoolean("changed_5", true);	
-		ed.putBoolean("changed_6", true);	
-		ed.putBoolean("changed_7", true);	
-		ed.putBoolean("changed_8", true);	
-		ed.commit();
-		
 		startMainTask();
         
     }
@@ -86,6 +73,22 @@ public class SettingsFragment extends BasePreferenceFragment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         view.setBackgroundColor(getResources().getColor(R.color.slider_menu_background));
         return view;
+    }
+    
+    public void forceUpdateContent(){
+		// setting up list zodiac change listener preference, cuz we need update
+		// horo if zodiac was changed.
+		Editor ed = sPref.edit();
+		ed.putBoolean("changed_0", true);
+		ed.putBoolean("changed_1", true);
+		ed.putBoolean("changed_2", true);
+		ed.putBoolean("changed_3", true);
+		ed.putBoolean("changed_4", true);
+		ed.putBoolean("changed_5", true);
+		ed.putBoolean("changed_6", true);
+		ed.putBoolean("changed_7", true);
+		ed.putBoolean("changed_8", true);
+		ed.commit();
     }
     
     public void startMainTask(){
@@ -116,6 +119,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 							ed.putString("preference_zodiac_sign", zodiacNumber(day, month+1));
 							ed.commit();
 							Toast.makeText(getActivity(), getResources().getString(R.string.automatic_determined_sign)+" "+getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(zodiacNumber(day, month+1))], Toast.LENGTH_LONG).show();
+							forceUpdateContent();
 							activityRefresh();
 						} else {
 							Toast.makeText(getActivity(), getResources().getString(R.string.introduce_date_check), Toast.LENGTH_LONG).show();
@@ -178,6 +182,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 							@Override
 							public void onClick(View v) {
 								sPref.edit().putString("preference_locales", context.getResources().getStringArray(R.array.locales_entryValues)[position]).commit();
+								forceUpdateContent();
 								alert.dismiss();
 								setLocale(context.getResources().getStringArray(R.array.locales_entryValues)[position]);
 								updateProviderToLang();
@@ -264,6 +269,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 							@Override
 							public void onClick(View v) {
 								sPref.edit().putString("preference_zodiac_sign", context.getResources().getStringArray(R.array.zodiac_signs_entryValues)[position]).commit();
+								forceUpdateContent();
 								alert.dismiss();
 								updateSummary();
 							}

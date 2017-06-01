@@ -734,23 +734,42 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         } catch (Exception e){
         	e.printStackTrace();
         }
-        //setting up list zodiac change listener preference, cuz we need update horo if zodiac was changed.
-		Editor ed = sPref.edit(); 
-		ed.putBoolean("changed_0", true);	
-		ed.putBoolean("changed_1", true);	
-		ed.putBoolean("changed_2", true);	
-		ed.putBoolean("changed_3", true);	
-		ed.putBoolean("changed_4", true);	
-		ed.putBoolean("changed_5", true);	
-		ed.putBoolean("changed_6", true);	
-		ed.putBoolean("changed_7", true);	
-		ed.putBoolean("changed_8", true);	
-		ed.commit();
+        //save time to pause content
+        Editor ed = sPref.edit(); 
+        ed.putLong("timeToPauseContent", System.currentTimeMillis());
+        ed.commit();
 	}
-    
+	
     @Override
 	public void onResume(){
     	super.onResume();
+    	
+        //decide if we need to force update all texts
+		Calendar timeToPauseContent = Calendar.getInstance();
+		timeToPauseContent.setTimeInMillis(sPref.getLong("timeToPauseContent", System.currentTimeMillis()));
+				
+		Calendar currentTime = Calendar.getInstance();
+		currentTime.setTimeInMillis(System.currentTimeMillis());
+				
+		//add 10 mins to delay force update texts
+		timeToPauseContent.add(Calendar.MINUTE, +10);
+		
+		if (!currentTime.before(timeToPauseContent)){
+		    //setting up list zodiac change listener preference, cuz we need update horo if zodiac was changed.
+			Editor ed = sPref.edit(); 
+			ed.putLong("timeToPauseContent", System.currentTimeMillis());
+			ed.putBoolean("changed_0", true);	
+			ed.putBoolean("changed_1", true);	
+			ed.putBoolean("changed_2", true);	
+			ed.putBoolean("changed_3", true);	
+			ed.putBoolean("changed_4", true);	
+			ed.putBoolean("changed_5", true);	
+			ed.putBoolean("changed_6", true);	
+			ed.putBoolean("changed_7", true);	
+			ed.putBoolean("changed_8", true);	
+			ed.commit();
+		}
+		
         //delete notification is exist
         sendBroadcast(new Intent("MP_DELETE_INTENT"));
     	//first launch
