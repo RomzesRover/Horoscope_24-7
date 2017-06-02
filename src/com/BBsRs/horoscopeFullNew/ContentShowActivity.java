@@ -147,7 +147,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
             pref_id=8;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
-            showDialogNewFeature();
             checkOrderStatus();
         	break;
         case 2:
@@ -164,7 +163,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
             pref_id=9;
             if((savedInstanceState == null) && !(Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))==13) && !sPref.getBoolean("preference_start", false) )
             sliderMenu.setCurrentPage(2);
-            showDialogNewFeature();
             checkOrderStatus();
         	break;
         case 4:
@@ -206,9 +204,11 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     		ed.commit();
     		check=true;
         }
+        
+        showDialogTurnOffAd();
     }
 	
-	public void showDialogNewFeature(){
+	public void showDialogTurnOffAd(){
 		
 		final String shownNotifacationNewFeatureDate = "SHOWN_NOTIFICATION_NEW_FEATURE_DATE,HORO";
 		
@@ -232,45 +232,11 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		
 		sPref.edit().putLong(shownNotifacationNewFeatureDate, System.currentTimeMillis()).commit();
 		
- 		final Context context = this; 								// create context
- 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
-    		
-    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    	
-    	View content = inflater.inflate(R.layout.dialog_content_purchase, null);
-    	
-    	//set fonts
-    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
-    	
-    	((TextView)content.findViewById(R.id.title)).setText(context.getString(R.string.order_personal_horoscope_info_9));
-    	((TextView)content.findViewById(R.id.TextView05)).setText(context.getString(R.string.order_personal_horoscope_info));
-    	
-    	((Button)content.findViewById(R.id.apply)).setText(context.getString(R.string.roulette));
-    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				sliderMenu.setCurrentPage(pref_id);
-				alert.dismiss();
-			}
-		});
-    	
-    	((Button)content.findViewById(R.id.cancel)).setText(context.getString(R.string.ok));
-    	((Button)content.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				alert.dismiss();
-			}
-		});
-    	
-    	build.setView(content);
-    	alert = build.create();															// show dialog
-    	alert.show();
-	}
-	
-	public void showDialogInvite(){
+		//show this message only once
+		sPref.edit().putBoolean("SHOWN_NOTIFICATION_NEW_FEATURE,HORO", true).commit();
+		
+		//if user on high exit!
+		if (sPref.getBoolean("isOnHigh", false)) return;
 		
  		final Context context = ContentShowActivity.this; 								// create context
  		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
@@ -432,8 +398,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	
 	public void showDialogSuccess(){
 		
-		sPref.edit().putBoolean("SHOWN_NOTIFICATION_NEW_FEATURE,HORO", true).commit();
-		
  		final Context context = this; 								// create context
  		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
     		
@@ -541,7 +505,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	
 	public void showIntersttial(){
 		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
-			showDialogInvite();
 			sPref.edit().putBoolean("grantAdShow", false).commit();
 			interstitial.show();
 		}
