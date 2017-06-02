@@ -52,7 +52,8 @@
     <string name="preference_notifications">Уведомления</string>
     <string name="preference_notifications_1">Показ уведомлений</string>
     <string name="preference_notifications_2">Время</string>
-    <string name="preference_ad">Реклама</string>
+    <string name="preference_ad">Приложение</string>
+    <string name="preference_ad_about">О приложении</string>
     <string name="preference_ad_disable">Отключить рекламу</string>
     <string name="preference_ad_disabled_succesfully">Реклама отключена</string>
     <string name="preference_date_1">Дата рождения</string>

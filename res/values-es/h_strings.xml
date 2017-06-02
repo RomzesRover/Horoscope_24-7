@@ -52,7 +52,8 @@
     <string name="preference_notifications">Notificación</string>
     <string name="preference_notifications_1">Mostrar notificaciones</string>
     <string name="preference_notifications_2">Mientras</string>
-    <string name="preference_ad">Publicidad</string>
+    <string name="preference_ad">App</string>
+    <string name="preference_ad_about">Acerca de la aplicación</string>
     <string name="preference_ad_disable">Desactivar anuncio</string>
     <string name="preference_ad_disabled_succesfully">Publicidad deshabilitado</string>
     <string name="preference_date_1">Fecha de nacimiento</string>

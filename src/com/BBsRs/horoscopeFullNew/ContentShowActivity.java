@@ -15,7 +15,6 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
 import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
@@ -25,7 +24,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -208,125 +206,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     		ed.commit();
     		check=true;
         }
-        
-        showDialog();
     }
-    
-	public void showDialog(){
-		
-		final String shownNotifacation = "SHOWN_NOTIFICATION,HORO";
-		final String clickedReview = "CLICKED_REVIEW,HORO";
-		final String clickedCancel = "CLICKED_CANCEL,HORO";
-		final String clickedVK = "CLICKED_VK,HORO";
-		final String clickedShare = "CLICKED_SHARE,HORO";
-		
-		if (sPref.getBoolean(clickedReview, false) && sPref.getBoolean(clickedVK, false) && sPref.getBoolean(clickedShare, false))
-			return;
-		
-		if (sPref.getBoolean(clickedCancel, false))
-			return;
-		
-		//calendar job
-		if (sPref.getLong(shownNotifacation, -1)==-1){
-			sPref.edit().putLong(shownNotifacation, System.currentTimeMillis()).commit();
-		}
-		
-		//init all dates
-		Calendar shownNotification = Calendar.getInstance();
-		shownNotification.setTimeInMillis(sPref.getLong(shownNotifacation, System.currentTimeMillis()));
-				
-		Calendar currentDate = Calendar.getInstance();
-		currentDate.setTimeInMillis(System.currentTimeMillis());
-				
-		//add 6 days to shown notification
-		shownNotification.add(Calendar.DATE, +5);
-		
-		if (currentDate.before(shownNotification))
-			return;
-		
-		sPref.edit().putLong(shownNotifacation, System.currentTimeMillis()).commit();
-		
- 		final Context context = ContentShowActivity.this; 								// create context
- 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
-    		
-    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    	
-    	View content = inflater.inflate(R.layout.dialog_content_sponsor, null);
-    	
-    	//set fonts
-    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
-    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
-    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView04));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView15));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView14));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView25));
-    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView24));
-    	
-    	
-    	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
-    	if (sPref.getBoolean(clickedReview, false))
-    		makeReview.setVisibility(View.GONE);
-    	makeReview.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				sPref.edit().putBoolean(clickedReview, true).commit();
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse("market://details?id="+getPackageName()));
-				startActivity(intent);
-				makeReview.setVisibility(View.GONE);
-			}
-		});
-    	
-    	final RelativeLayout share = (RelativeLayout)content.findViewById(R.id.make_share);
-    	share.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try { 
-					sPref.edit().putBoolean(clickedShare, true).commit();
-					Intent i = new Intent(Intent.ACTION_SEND);  
-					i.setType("text/plain");
-					i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-					String sAux = "\n"+getString(R.string.share_text)+"\n\n";
-					sAux = sAux + getString(R.string.share_content_url)+" \n\n";
-					i.putExtra(Intent.EXTRA_TEXT, sAux);  
-					startActivity(Intent.createChooser(i, "Share with"));
-				} catch(Exception e) {}   
-			}
-		});
-    	
-    	final RelativeLayout vk = (RelativeLayout)content.findViewById(R.id.make_vk);
-    	vk.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try { 
-					sPref.edit().putBoolean(clickedVK, true).commit();
-					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dialog_sponsor_vk_link)));
-					startActivity(browserIntent);
-				} catch(Exception e) {}   
-			}
-		});
-    	
-    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				alert.dismiss();
-			}
-		});
-    	
-    	((Button)content.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				sPref.edit().putBoolean(clickedCancel, true).commit();
-				alert.dismiss();
-			}
-		});
-    	
-    	build.setView(content);
-    	alert = build.create();															// show dialog
-    	alert.show();
-	}
 	
 	public void showDialogNewFeature(){
 		

@@ -290,7 +290,8 @@
     <string name="preference_notifications">Notifications</string>
     <string name="preference_notifications_1">Show notifications</string>
     <string name="preference_notifications_2">Time</string>
-    <string name="preference_ad">Advertisement</string>
+    <string name="preference_ad">App</string>
+    <string name="preference_ad_about">About app</string>
     <string name="preference_ad_disable">Disable advertisement</string>
     <string name="preference_ad_disabled_succesfully">Advertising disabled</string>
     <string name="preference_date_1">Birth date</string>

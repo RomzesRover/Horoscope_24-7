@@ -22,6 +22,7 @@ import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.RadioButton;
+import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
@@ -29,6 +30,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +51,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     DatePreference myDatePref;
     CheckBoxPreference myNotificationsPref;
     TimePreference myNotificationsTimePref;
-    Preference myDisableAdPreference, myLocaleListPref, myZodiacSignPref;
+    Preference myDisableAdPreference, myLocaleListPref, myZodiacSignPref, mAboutPref;
     
 	AlertDialog alert = null;	
 	Calendar cal;
@@ -92,6 +94,88 @@ public class SettingsFragment extends BasePreferenceFragment {
     }
     
     public void startMainTask(){
+    	//setting up about pref
+    	mAboutPref = (Preference) findPreference("preference_ad_about");
+    	mAboutPref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+		 		final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    		
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	View content = inflater.inflate(R.layout.dialog_content_sponsor, null);
+		    	
+		    	//set fonts
+		    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+		    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+		    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView04));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView15));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView14));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView25));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView24));
+		    	
+		    	
+		    	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
+		    	makeReview.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						intent.setData(Uri.parse("market://details?id="+getActivity().getPackageName()));
+						startActivity(intent);
+					}
+				});
+		    	
+		    	final RelativeLayout share = (RelativeLayout)content.findViewById(R.id.make_share);
+		    	share.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						try { 
+							Intent i = new Intent(Intent.ACTION_SEND);  
+							i.setType("text/plain");
+							i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+							String sAux = "\n"+getString(R.string.share_text)+"\n\n";
+							sAux = sAux + getString(R.string.share_content_url)+" \n\n";
+							i.putExtra(Intent.EXTRA_TEXT, sAux);  
+							startActivity(Intent.createChooser(i, "Share with"));
+						} catch(Exception e) {}   
+					}
+				});
+		    	
+		    	final RelativeLayout vk = (RelativeLayout)content.findViewById(R.id.make_vk);
+		    	vk.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						try { 
+							Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dialog_sponsor_vk_link)));
+							startActivity(browserIntent);
+						} catch(Exception e) {}   
+					}
+				});
+		    	
+		    	((Button)content.findViewById(R.id.apply)).setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						alert.dismiss();
+					}
+				});
+		    	
+		    	((Button)content.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						alert.dismiss();
+					}
+				});
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
+				return false;
+			}
+    	});
+    	
         //setting up date change preference, cuz we need save date.
         myDatePref = (DatePreference) findPreference("preference_date_born");
         

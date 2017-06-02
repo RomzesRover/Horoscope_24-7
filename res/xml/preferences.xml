@@ -37,6 +37,10 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/preference_ad" >
         <Preference
+            android:id="@+id/preference_ad_about"
+            android:key="preference_ad_about"
+            android:title="@string/preference_ad_about" />
+        <Preference
             android:id="@+id/preference_ad_disabler"
             android:key="preference_ad_disabler"
             android:title="@string/preference_ad_disable" />
