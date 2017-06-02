@@ -85,10 +85,6 @@ public class GoAstroDeMonthLoaderFragment extends BaseFragment {
     	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         
-        //!----------------------------------AD-----------------------------------------------------!
-      	showAd(contentView, sPref);
-      	//!----------------------------------AD-----------------------------------------------------!
-        
     	//retrieving views from layout
     	textContent=(TextView)contentView.findViewById(R.id.textContent);
     	mPullToRefreshLayout = (PullToRefreshLayout) contentView.findViewById(R.id.ptr_layout);

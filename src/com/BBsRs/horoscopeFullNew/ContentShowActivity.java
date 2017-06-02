@@ -2,7 +2,6 @@ package com.BBsRs.horoscopeFullNew;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
-import java.util.Random;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.addon.AddonSlider;
@@ -26,7 +25,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
@@ -64,8 +62,6 @@ import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
@@ -76,13 +72,13 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	//!----------------------------------BILLING-----------------------------------------------------!
 	private Activity mCurrentActivity = null;
 	// PRODUCT & SUBSCRIPTION IDS
-//	private static final String PRODUCT_ID_ORDER = "android.test.purchased";
-//	private static final String PRODUCT_ID_AD = "android.test.purchased";
-//	private static final String LICENSE_KEY = null;
+	private static final String PRODUCT_ID_ORDER = "android.test.purchased";
+	private static final String PRODUCT_ID_AD = "android.test.purchased";
+	private static final String LICENSE_KEY = null;
 	
-	private static final String PRODUCT_ID_ORDER = "order_horo";
-    private static final String PRODUCT_ID_AD = "ad_disabler";
-    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+//	private static final String PRODUCT_ID_ORDER = "order_horo";
+//    private static final String PRODUCT_ID_AD = "ad_disabler";
+//    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
     
     ProgressDialog prDialog = null;
 
@@ -90,15 +86,14 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	private boolean readyToPurchase = false;
 	//!----------------------------------BILLING-----------------------------------------------------!
 	
+	private final Handler handler = new Handler();
+	
 	// some data to slider menu
 	SliderMenu sliderMenu;
 	int pref_id = 0;
 	
 	//preferences 
     SharedPreferences sPref;
-    
-    boolean check = false;
-    boolean firstLaunch = true;
     
     //alert dialog
     AlertDialog alert = null;
@@ -202,7 +197,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         	Editor ed = sPref.edit();  
     		ed.putBoolean("preference_start", false); 	
     		ed.commit();
-    		check=true;
         }
         
         showDialogTurnOffAd();
@@ -497,69 +491,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     	alert.show();
 	}
 
-    
-	//!----------------------------------AD-----------------------------------------------------!
-	/** StartAppAd object declaration */
-	private InterstitialAd interstitial;
-	private final Handler handler = new Handler();
-	
-	public void showIntersttial(){
-		if (interstitial !=null && interstitial.isLoaded() && !sPref.getBoolean("isOnHigh", false)) {
-			sPref.edit().putBoolean("grantAdShow", false).commit();
-			interstitial.show();
-		}
-	}
-	//!----------------------------------AD-----------------------------------------------------!
-    
-	public void showAd(){
-		//if ad already shown exit!
-		if (!sPref.getBoolean("grantAdShow", true))
-			return;
-		//if user on high exit!
-		if (sPref.getBoolean("isOnHigh", false))
-			return;
-		
-		//!----------------------------------AD-----------------------------------------------------!
-		new Thread (new Runnable(){
-			@Override
-			public void run() {
-				try {
-					
-					Thread.sleep(500);
-					
-					String AdSource = "ca-app-pub-6690318766939525/2467455298";
-					
-					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
-						Log.i("AD", "Problems with load AD !");
-						Log.i("AD", "herec1");
-					} else {
-						final String AdSourceFinalled = AdSource;
-						handler.post(new Runnable(){
-							@Override
-							public void run() {
-								try {
-								    interstitial = new InterstitialAd(ContentShowActivity.this);
-								    interstitial.setAdUnitId(AdSourceFinalled);
-	
-								    AdRequest adRequest = new AdRequest.Builder().build();
-	
-								    interstitial.loadAd(adRequest);
-								} catch (Exception e){
-									Log.i("AD", "Problems with load AD !");
-									Log.i("AD", "herec2");
-								}
-							}
-						});
-					}
-				} catch (Exception e){
-					Log.i("AD", "Problems with load AD !");
-					Log.i("AD", "herec3");
-				}
-			}
-		}).start();
-		//!----------------------------------AD-----------------------------------------------------!
-	}
-	
 	@Override
 	public void onBackPressed(){
 		super.onBackPressed();
@@ -570,7 +501,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		super.onPause();
 		//unregister receiver
         try {
-        	super.unregisterReceiver(fragmentChanged);
             super.unregisterReceiver(requestDisableAd);
             super.unregisterReceiver(openMenuDrawer);
             super.unregisterReceiver(requestOrderHoro);
@@ -615,17 +545,12 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		
         //delete notification is exist
         sendBroadcast(new Intent("MP_DELETE_INTENT"));
-    	//first launch
-    	firstLaunch = true;
     	//set app lang
         setLocale(sPref.getString("preference_locales", getResources().getString(R.string.default_locale)));
         //set icon
         getSupportActionBar().setIcon(R.drawable.ic_menu);
-        //show AD
-        showAd();
         //register receiver
         try {
-	        super.registerReceiver(fragmentChanged, new IntentFilter("fragment_changed"));
 	        super.registerReceiver(openMenuDrawer, new IntentFilter("horo_open_menu_drawer"));
 	        super.registerReceiver(requestDisableAd, new IntentFilter("request_disable_ad"));
 	        super.registerReceiver(requestOrderHoro, new IntentFilter("request_order_horo"));
@@ -634,19 +559,6 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         }
     }
     
-	private BroadcastReceiver fragmentChanged = new BroadcastReceiver() {
-	    @Override
-	    public void onReceive(Context context, Intent intent) {
-	    	if (firstLaunch){
-	    		firstLaunch = false;
-	    		return;
-	    	}
-	    	if (((new Random(System.currentTimeMillis())).nextInt(5) + 1) == 3){
-	    		showIntersttial();
-	    	}
-	    }
-	};
-	
 	private BroadcastReceiver requestDisableAd = new BroadcastReceiver() {
 	    @Override
 	    public void onReceive(Context context, Intent intent) {

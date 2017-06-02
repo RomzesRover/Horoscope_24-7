@@ -1,125 +1,20 @@
 package com.BBsRs.horoscopeFullNew.Base;
 
 import org.holoeverywhere.app.Fragment;
-import org.holoeverywhere.preference.SharedPreferences;
-import org.holoeverywhere.widget.LinearLayout;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 
 import com.BBsRs.horoscopeFullNew.ContentShowActivity;
-import com.BBsRs.horoscopeNewEdition.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 
 public class BaseFragment extends Fragment{
 	
-	//!----------------------------------AD-----------------------------------------------------!
-  	private AdView adView;
-	private final Handler handler2 = new Handler();
-  	//!----------------------------------AD-----------------------------------------------------!
-	
-	public void showAd(View v, SharedPreferences sPref){
-		//if user on high exit!
-		if (sPref.getBoolean("isOnHigh", false))
-			return;
-		
-		final LinearLayout layout = (LinearLayout) v.findViewById(R.id.mainRtLt);
-		layout.setVisibility(View.VISIBLE);
-		
-		new Thread (new Runnable(){
-			@Override
-			public void run() {
-				try {
-					
-					Thread.sleep(500);
-					
-					String AdSource = "ca-app-pub-6690318766939525/9990722098";
-					
-					if (AdSource.equals(null) || AdSource.length()>50 || AdSource.length()<10){
-						Log.i("AD", "Problems with load AD !");
-						Log.i("AD", "here1b");
-						handler2.post(new Runnable(){
-							@Override
-							public void run() {
-								layout.setVisibility(View.GONE);
-							}
-						});
-					} else {
-						final String AdSourceFinalled = AdSource;
-						handler2.post(new Runnable(){
-							@Override
-							public void run() {
-								try {
-									// INIT adView.
-								    adView = new AdView(getActivity());
-								    adView.setAdUnitId(AdSourceFinalled);
-								    adView.setAdSize(AdSize.BANNER);
-								    // adding adView to view.
-								    layout.addView(adView);
-								    layout.setVisibility(View.VISIBLE);
-								    // init base request.
-								    AdRequest adRequest = new AdRequest.Builder().build();
-
-								    // download AD.
-								    adView.loadAd(adRequest);
-								} catch (Exception e){
-									Log.i("AD", "Problems with load AD !");
-									Log.i("AD", "hereb2");
-									layout.setVisibility(View.GONE);
-								}
-							}
-						});
-					}
-					
-				} catch (Exception e){
-					Log.i("AD", "Problems with load AD !");
-					Log.i("AD", "hereb3");
-					handler2.post(new Runnable(){
-						@Override
-						public void run() {
-							layout.setVisibility(View.GONE);
-						}
-					});
-				}
-			}
-		}).start();
-		
-		//!----------------------------------AD-----------------------------------------------------!
-
-		//!----------------------------------AD-----------------------------------------------------!
-	}
-	
-	@Override
-	  public void onPause() {
-		if (adView != null)
-	    adView.pause();
-	    super.onPause();
-	  }
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		
 		getSupportActionBar().setSubtitle(null);
 		getSupportActionBar().setTitle(null);
-		
-		if (adView != null)
-		adView.resume();
-		
-		//send that new fragment is created!
-		getActivity().sendBroadcast(new Intent("fragment_changed"));
 	}     		
-	
- 	@Override
- 	public void onDestroy() {
- 		super.onDestroy();
- 		if (adView != null)
-		adView.destroy();
- 	}
 	
 	public Intent createShareIntent(String text) {
 	      Intent shareIntent = new Intent(Intent.ACTION_SEND);
