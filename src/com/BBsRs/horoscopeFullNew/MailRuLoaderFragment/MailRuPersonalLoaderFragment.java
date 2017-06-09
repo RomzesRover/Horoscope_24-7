@@ -148,9 +148,11 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
 		handler.postDelayed(new Runnable(){
 			@Override
 			public void run() {
-				//refresh on open to load data when app first time started
-		        mPullToRefreshLayout.setRefreshing(true);
-		        customOnRefreshListener.onRefreshStarted(null);
+				if (!customOnRefreshListener.isRefreshing){
+					//refresh on open to load data when app first time started
+			        mPullToRefreshLayout.setRefreshing(true);
+			        customOnRefreshListener.onRefreshStarted(null);
+				}
 			}
       	}, 100);
 	}
@@ -164,9 +166,7 @@ public class MailRuPersonalLoaderFragment extends BaseFragment {
         
         //check if settings changed
         if (sPref.getBoolean("changed_"+UNIVERSAL_ID, false)){
-        	if (!customOnRefreshListener.isRefreshing){
-        		updateList();
-        	}
+        	updateList();
         	Editor ed = sPref.edit();   
 			ed.putBoolean("changed_"+UNIVERSAL_ID, false);	
 			ed.commit();

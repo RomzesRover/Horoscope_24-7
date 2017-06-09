@@ -499,6 +499,7 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	@Override
 	public void onPause() {
 		super.onPause();
+		
 		//unregister receiver
         try {
             super.unregisterReceiver(requestDisableAd);
