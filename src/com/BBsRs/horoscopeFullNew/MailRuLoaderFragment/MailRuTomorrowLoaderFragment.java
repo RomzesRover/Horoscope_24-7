@@ -16,10 +16,12 @@ import org.jsoup.nodes.Document;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -146,7 +148,7 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
 		handler.postDelayed(new Runnable(){
 			@Override
 			public void run() {
-				if (!customOnRefreshListener.isRefreshing){
+				if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
 					//refresh on open to load data when app first time started
 			        mPullToRefreshLayout.setRefreshing(true);
 			        customOnRefreshListener.onRefreshStarted(null);
@@ -213,14 +215,13 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
     	
     }
     
+    AsyncTask<Void, Void, Void> loadM;
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB) 
     public class  CustomOnRefreshListener implements OnRefreshListener{
-
-    	public boolean isRefreshing = false;
 
 		@Override
 		public void onRefreshStarted(View view) {
-			isRefreshing = true;
-			new AsyncTask<Void, Void, Void>() {
+			loadM = new AsyncTask<Void, Void, Void>() {
 				 
                 @Override
                 protected Void doInBackground(Void... params) {
@@ -326,9 +327,15 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
                 	} catch (Exception e){
                 		e.printStackTrace();
                 	}
-                	isRefreshing = false;
                 }
-            }.execute();
+            };
+			
+			//start async
+	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+	        	loadM.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+	        } else {
+	        	loadM.execute();
+	        }
 		}
          
     }
