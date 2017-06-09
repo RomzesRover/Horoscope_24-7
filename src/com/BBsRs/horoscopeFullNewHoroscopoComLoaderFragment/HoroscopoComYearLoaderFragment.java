@@ -232,7 +232,7 @@ public class HoroscopoComYearLoaderFragment extends BaseFragment {
 								@Override
 								public void run() {
 									Animation flyDownAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim_out);
-									textContent.startAnimation(flyDownAnimation);
+									scrollView.startAnimation(flyDownAnimation);
 			                    	flyDownAnimation.setAnimationListener(new AnimationListener(){
 			        					@Override
 			        					public void onAnimationEnd(Animation arg0) {
@@ -323,7 +323,7 @@ public class HoroscopoComYearLoaderFragment extends BaseFragment {
 	                    
 	                    	//with fly up animation
 	                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-	                    	textContent.startAnimation(flyUpAnimation);
+	                    	scrollView.startAnimation(flyUpAnimation);
 	                    }
                 	} catch (Exception e){
                 		e.printStackTrace();
