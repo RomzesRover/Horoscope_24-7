@@ -2,6 +2,7 @@ package com.BBsRs.horoscopeFullNew;
 
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.addon.AddonSlider;
@@ -14,6 +15,7 @@ import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
 import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
@@ -23,9 +25,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeFullNew.Base.BaseActivity;
@@ -62,6 +67,10 @@ import com.BBsRs.horoscopeNewEdition.ActivityRestarter;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 @Addons(AddonSlider.class)
 public class ContentShowActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
@@ -103,6 +112,9 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         super.onCreate(savedInstanceState);
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        
+        //init ad
+        initAd();
         
         //prDialog
         prDialog = new ProgressDialog(this);
@@ -201,6 +213,98 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
         
         showDialogTurnOffAd();
     }
+    
+    /*--------------------------------------AD---------------------------------------*/
+    public AdView adView;
+    AdRequest adRequest;
+    /*0 - not loaded, 1 - successfully loaded, 2 - failed to load*/
+    public int adBannerLoadStatus = 0;
+    
+	public void initAd(){
+		//if user on high exit!
+		if (sPref.getBoolean("isOnHigh", false)) return;
+		
+		//load banner ad
+		Calendar birthday = Calendar.getInstance();
+		birthday.setTimeInMillis(System.currentTimeMillis());
+		
+		try {
+			birthday.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10));
+		} catch (Exception e){
+			e.printStackTrace();
+			birthday.set(2000, 04, 10);
+		}
+		
+		
+		AdRequest.Builder builder = new AdRequest.Builder()
+			.setBirthday(new Date(birthday.getTimeInMillis()))
+			.setGender(AdRequest.GENDER_UNKNOWN);
+		
+		try {
+			final LocationManager mlocManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+			Location loc = mlocManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+			if (loc!=null)
+				builder.setLocation(loc);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		adRequest = builder.build();
+		
+		adView = new AdView(this);
+		adView.setAdSize(AdSize.MEDIUM_RECTANGLE);
+	    adView.setAdUnitId("ca-app-pub-6690318766939525/9990722098");
+	    adView.setAdListener(new AdListener() {
+	        @Override
+	        public void onAdLoaded() {
+	        	adBannerLoadStatus = 1;
+	        }
+	        @Override
+	        public void onAdFailedToLoad(int errorCode) {
+	        	adBannerLoadStatus = 2;
+	        }
+	    });
+	}
+	
+	public void setUpAd(LinearLayout layAd) {
+	    // Locate the Banner Ad in activity xml
+		if (adView != null && adView.getParent() != null) {
+			ViewGroup tempVg = (ViewGroup) adView.getParent();
+			tempVg.removeView(adView);
+		}
+		
+		//if user on high exit!
+		if (sPref.getBoolean("isOnHigh", false)) {
+			layAd.setVisibility(View.GONE);
+			layAd.removeAllViews();
+			return;
+		}
+		
+		if (adView != null && adBannerLoadStatus == 1){
+			layAd.addView(adView);
+			layAd.setVisibility(View.VISIBLE);
+		} else {
+			if (layAd.getVisibility() == View.VISIBLE){
+				layAd.setVisibility(View.GONE);
+				layAd.removeAllViews();
+        	}
+		}
+	}
+	
+	public void loadAd(){
+		//if user on high exit!
+		if (sPref.getBoolean("isOnHigh", false)){
+			adBannerLoadStatus = 2;
+			return;
+		}
+				
+		if (adView != null && adRequest != null && adBannerLoadStatus != 1){
+			adBannerLoadStatus = 0;
+			adView.loadAd(adRequest);
+		}
+	}
+	/*--------------------------------------AD---------------------------------------*/
 	
 	public void showDialogTurnOffAd(){
 		
@@ -500,6 +604,9 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 	public void onPause() {
 		super.onPause();
 		
+		if (adView != null)
+			adView.pause();
+		
 		//unregister receiver
         try {
             super.unregisterReceiver(requestDisableAd);
@@ -517,6 +624,9 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     @Override
 	public void onResume(){
     	super.onResume();
+    	
+    	if (adView != null)
+			adView.resume();
     	
         //decide if we need to force update all texts
 		Calendar timeToPauseContent = Calendar.getInstance();
@@ -599,6 +709,10 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
     public void onDestroy() {
         if (bp != null)
             bp.release();
+        
+        if (adView != null)
+			adView.destroy();
+        
         super.onDestroy();
     }
 	

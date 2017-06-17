@@ -215,9 +215,8 @@ public class IntroduceNewThemeThirdFragment extends Fragment{
 				//set text
 				final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 				Calendar calSet = Calendar.getInstance();
-				Calendar currDate = Calendar.getInstance();
-				calSet.setTimeInMillis(0);
-				calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10), currDate.get(Calendar.HOUR_OF_DAY), currDate.get(Calendar.MINUTE), currDate.get(Calendar.SECOND));
+				calSet.setTimeInMillis(System.currentTimeMillis());
+				calSet.set(sPref.getInt("yearBorn", 1995), sPref.getInt("monthBorn", 4), sPref.getInt("dayBorn", 10));
 				
 				title.setText(getResources().getStringArray(R.array.zodiac_signs)[Integer.parseInt(sPref.getString("preference_zodiac_sign", "13"))]);
 				subtitle.setText(dateFormat.format(calSet.getTime()));
