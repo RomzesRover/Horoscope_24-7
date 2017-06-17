@@ -253,7 +253,14 @@ public class ContentShowActivity extends BaseActivity implements BillingProcesso
 		adRequest = builder.build();
 		
 		adView = new AdView(this);
-		adView.setAdSize(AdSize.MEDIUM_RECTANGLE);
+		switch (getResources().getInteger(R.integer.banner_size)) {
+		case 0:
+			adView.setAdSize(AdSize.MEDIUM_RECTANGLE);
+			break;
+		case 1:
+			adView.setAdSize(AdSize.FULL_BANNER);
+			break;
+		}
 	    adView.setAdUnitId("ca-app-pub-6690318766939525/9990722098");
 	    adView.setAdListener(new AdListener() {
 	        @Override
