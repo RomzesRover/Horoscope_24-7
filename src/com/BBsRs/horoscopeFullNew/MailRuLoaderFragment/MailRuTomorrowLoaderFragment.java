@@ -8,6 +8,7 @@ import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.LinearLayout;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 import org.jsoup.Jsoup;
@@ -35,6 +36,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
@@ -43,6 +45,7 @@ import android.widget.ScrollView;
 import com.BBsRs.SFUIFontsEverywhere.CustomTypefaceSpan;
 import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.SFUIFontsEverywhere.SFUIFontsPath;
+import com.BBsRs.horoscopeFullNew.ContentShowActivity;
 import com.BBsRs.horoscopeFullNew.Base.BaseFragment;
 import com.BBsRs.horoscopeNewEdition.R;
 
@@ -57,6 +60,7 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
     RelativeLayout relativeErrorLayout;
     TextView errorMessage;
     Button errorRetryButton;
+    LinearLayout adLt;
     
     //custom refresh listener where in new thread will load job doing, need to customize for all kind of data
     CustomOnRefreshListener customOnRefreshListener = new CustomOnRefreshListener();
@@ -94,6 +98,7 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
     	relativeErrorLayout = (RelativeLayout)contentView.findViewById(R.id.errorLayout);
     	errorMessage = (TextView)contentView.findViewById(R.id.errorMessage);
     	errorRetryButton = (Button)contentView.findViewById(R.id.errorRetryButton);
+    	adLt = (LinearLayout)contentView.findViewById(R.id.mainRtLt);
     	 
         //init pull to refresh module
         ActionBarPullToRefresh.from(getActivity())
@@ -237,6 +242,10 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
 			        					@Override
 			        					public void onAnimationEnd(Animation arg0) {
 			        						scrollView.setVisibility(View.INVISIBLE);
+			        						//hide all units anyway
+			        	                    adLt.setVisibility(View.GONE);
+			        						adLt.removeAllViews();
+			        						textContent.setText("");
 			        					}
 			        					@Override
 			        					public void onAnimationRepeat(Animation arg0) { }
@@ -279,6 +288,58 @@ public class MailRuTomorrowLoaderFragment extends BaseFragment {
     	        		Log.e(LOG_TAG, "other Load Error");
     					e.printStackTrace();
     				}
+                    
+                    /*--------------------------------------AD---------------------------------------*/
+                    if (!sPref.getBoolean("isOnHigh", false)){
+						handler.post(new Runnable(){
+							@Override
+							public void run() {
+								((ContentShowActivity) getSupportActivity()).loadAd();
+							}
+						});
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						int count = 0;
+						while (((ContentShowActivity) getSupportActivity()).adBannerLoadStatus == 0){
+							try {
+								Thread.sleep(100);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							count++;
+							if (count > 100) break;
+						}
+						if (((ContentShowActivity) getSupportActivity()).adBannerLoadStatus == 1){
+							handler.post(new Runnable(){
+								@Override
+								public void run() {
+									((ContentShowActivity) getSupportActivity()).setUpAd(adLt);
+									
+									//visible for system aint visible for user
+									AlphaAnimation animation1 = new AlphaAnimation(0.001f, 0.001f);
+									animation1.setDuration(0);
+									animation1.setFillAfter(true);
+									scrollView.startAnimation(animation1);
+									scrollView.setVisibility(View.VISIBLE);
+								}
+							});
+							try {
+								Thread.sleep(500);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							handler.post(new Runnable(){
+								@Override
+								public void run() {
+									scrollView.setVisibility(View.INVISIBLE);
+								}
+							});
+						}
+                    }
+					/*--------------------------------------AD---------------------------------------*/
                     
                     handler.post(new Runnable(){
 						@Override
