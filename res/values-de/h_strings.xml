@@ -111,9 +111,9 @@
     <string name="dialog_sponsor_share">Diese App teilen</string>
     <string name="dialog_sponsor_share_sumarry">Teilen Sie ihren Freunden und Verwandten mit, wie Ihnen diese App hilft.</string>
     <string name="share_text">Ich lese das Horoskop nur in dieser Anwendung.</string>
-    <string name="dialog_sponsor_vk">Besuchen Sie unsere Seite VK</string>
-    <string name="dialog_sponsor_vk_sumarry">Folgen Sie unseren vk Seite zu halten über die neuesten Nachrichten oder Fragen.</string>
-    <string name="dialog_sponsor_vk_link">https://vk.com/brothersrovers</string>
+    <string name="dialog_sponsor_vk">Besuchen Sie unsere Seite fb</string>
+    <string name="dialog_sponsor_vk_sumarry">Folgen Sie unseren fb Seite zu halten über die neuesten Nachrichten oder Fragen.</string>
+    <string name="dialog_sponsor_vk_link">https://www.facebook.com/horoscopeFullNew/</string>
     
     <string name="title_dialog_ad">Anzeigen entfernen</string>
     <string name="summary_dialog_ad">Entfernen Sie alle Arten von Werbung für 1,99 $.\nDenken Sie daran, dass der Kauf einer, wird Werbung immer beseitigt.</string>

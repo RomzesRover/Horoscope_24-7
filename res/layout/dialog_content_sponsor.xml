@@ -177,7 +177,7 @@
                 android:layout_alignParentTop="true"
                 android:gravity="center"
                 android:scaleType="center"
-                android:src="@drawable/ic_vk" />
+                android:src="@drawable/ic_sc" />
 
         </RelativeLayout>
     </LinearLayout>
