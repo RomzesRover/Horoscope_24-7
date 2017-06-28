@@ -289,40 +289,12 @@ public class HoroscopoComTodayLoaderFragment extends BaseFragment {
     				}
                     
                     /*--------------------------------------AD---------------------------------------*/
-                    if (!sPref.getBoolean("isOnHigh", false)){
-						handler.post(new Runnable(){
-							@Override
-							public void run() {
-								((ContentShowActivity) getSupportActivity()).loadAd();
-							}
-						});
-						try {
-							Thread.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						int count = 0;
-						while (((ContentShowActivity) getSupportActivity()).adBannerLoadStatus == 0){
-							try {
-								Thread.sleep(100);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-							count++;
-							if (count > 100) break;
-						}
-						if (((ContentShowActivity) getSupportActivity()).adBannerLoadStatus == 1){
+                    try{
+	                    if (!sPref.getBoolean("isOnHigh", false) && !error){
 							handler.post(new Runnable(){
 								@Override
 								public void run() {
-									((ContentShowActivity) getSupportActivity()).setUpAd(adLt);
-									
-									//visible for system aint visible for user
-									AlphaAnimation animation1 = new AlphaAnimation(0.001f, 0.001f);
-									animation1.setDuration(0);
-									animation1.setFillAfter(true);
-									scrollView.startAnimation(animation1);
-									scrollView.setVisibility(View.VISIBLE);
+									((ContentShowActivity) getActivity()).loadAd();
 								}
 							});
 							try {
@@ -330,13 +302,46 @@ public class HoroscopoComTodayLoaderFragment extends BaseFragment {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							handler.post(new Runnable(){
-								@Override
-								public void run() {
-									scrollView.setVisibility(View.INVISIBLE);
+							int count = 0;
+							while (((ContentShowActivity) getActivity()).adBannerLoadStatus == 0){
+								try {
+									Thread.sleep(100);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
 								}
-							});
-						}
+								count++;
+								if (count > 100) break;
+							}
+							if (((ContentShowActivity) getActivity()).adBannerLoadStatus == 1){
+								handler.post(new Runnable(){
+									@Override
+									public void run() {
+										((ContentShowActivity) getActivity()).setUpAd(adLt);
+										
+										//visible for system aint visible for user
+										AlphaAnimation animation1 = new AlphaAnimation(0.001f, 0.001f);
+										animation1.setDuration(0);
+										animation1.setFillAfter(true);
+										scrollView.startAnimation(animation1);
+										scrollView.setVisibility(View.VISIBLE);
+									}
+								});
+								try {
+									Thread.sleep(500);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								handler.post(new Runnable(){
+									@Override
+									public void run() {
+										scrollView.setVisibility(View.INVISIBLE);
+									}
+								});
+							}
+	                    }
+                    } catch(Exception e){
+                    	Log.e(LOG_TAG, "Error in load AD");
+                    	e.printStackTrace();
                     }
 					/*--------------------------------------AD---------------------------------------*/
                     

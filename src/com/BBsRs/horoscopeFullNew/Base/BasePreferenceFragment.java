@@ -30,7 +30,7 @@ public class BasePreferenceFragment extends PreferenceFragment {
 	}  
 	
     public void setTitle(String title){
-    	((ContentShowActivity) getSupportActivity()).setTitle(title);
+    	((ContentShowActivity) getActivity()).setTitle(title);
     }
 
 }

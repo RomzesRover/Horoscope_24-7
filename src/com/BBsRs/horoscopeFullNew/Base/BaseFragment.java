@@ -24,7 +24,7 @@ public class BaseFragment extends Fragment{
 	}	
 	
     public void setTitle(String title){
-    	((ContentShowActivity) getSupportActivity()).setTitle(title);
+    	((ContentShowActivity) getActivity()).setTitle(title);
     }
 
 }
