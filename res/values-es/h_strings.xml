@@ -115,6 +115,10 @@
     <string name="dialog_sponsor_vk_sumarry">Sigue nuestra página de fb para mantenerse al tanto de las últimas noticias o hacer preguntas.</string>
     <string name="dialog_sponsor_vk_link">https://www.facebook.com/horoscopeFullNew/</string>
     
+    <string name="dialog_sponsor_inst">Visita nuestra página Inst</string>
+    <string name="dialog_sponsor_inst_sumarry">Sigue nuestra página de inst para mantenerse al tanto de las últimas noticias o hacer preguntas.</string>
+    <string name="dialog_sponsor_inst_link">https://www.instagram.com/dailyhoroscopefree/</string>
+    
     <string name="title_dialog_ad">Eliminar publicidad</string>
     <string name="summary_dialog_ad">Retire todo tipo de publicidad de $ 1.99.\nTenga en cuenta que la compra de uno, la publicidad se retira para siempre</string>
     <string name="i_want_to_buy">Quiero comprar</string>

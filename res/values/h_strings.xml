@@ -354,6 +354,10 @@
     <string name="dialog_sponsor_vk_sumarry">Follow our fb page to keep abreast of the latest news or ask questions.</string>
     <string name="dialog_sponsor_vk_link">https://www.facebook.com/horoscopeFullNew/</string>
     
+    <string name="dialog_sponsor_inst">Visit our Instagram page</string>
+    <string name="dialog_sponsor_inst_sumarry">Follow our insta page to keep abreast of the latest news or ask questions.</string>
+    <string name="dialog_sponsor_inst_link">https://www.instagram.com/dailyhoroscopefree/</string>
+    
     <string name="title_dialog_ad">Remove ads</string>
     <string name="summary_dialog_ad">Remove all kinds of advertisements for 1.99$.\nKeep in mind that buying one, advertising is removed forever.</string>
     <string name="i_want_to_buy">I want to buy</string>

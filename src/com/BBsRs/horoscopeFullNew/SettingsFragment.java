@@ -116,6 +116,8 @@ public class SettingsFragment extends BasePreferenceFragment {
 		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView14));
 		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView25));
 		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView24));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView251));
+		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView241));
 		    	
 		    	
 		    	final RelativeLayout makeReview = (RelativeLayout)content.findViewById(R.id.make_review);
@@ -150,6 +152,17 @@ public class SettingsFragment extends BasePreferenceFragment {
 					public void onClick(View v) {
 						try { 
 							Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dialog_sponsor_vk_link)));
+							startActivity(browserIntent);
+						} catch(Exception e) {}   
+					}
+				});
+		    	
+		    	final RelativeLayout inst = (RelativeLayout)content.findViewById(R.id.make_inst);
+		    	inst.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						try { 
+							Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dialog_sponsor_inst_link)));
 							startActivity(browserIntent);
 						} catch(Exception e) {}   
 					}

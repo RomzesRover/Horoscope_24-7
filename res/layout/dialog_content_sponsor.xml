@@ -48,7 +48,6 @@
                 android:layout_toLeftOf="@+id/TextView06"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_horizontal_margin"
                 android:text="@string/review"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/intro_main_text"
@@ -61,7 +60,7 @@
                 android:layout_alignLeft="@+id/TextView05"
                 android:layout_alignRight="@+id/TextView05"
                 android:layout_below="@+id/TextView05"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:text="@string/review_summary"
@@ -97,7 +96,6 @@
                 android:layout_toLeftOf="@+id/TextView16"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_horizontal_margin"
                 android:text="@string/dialog_sponsor_share"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/intro_main_text"
@@ -110,7 +108,7 @@
                 android:layout_alignLeft="@+id/TextView15"
                 android:layout_alignRight="@+id/TextView15"
                 android:layout_below="@+id/TextView15"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:text="@string/dialog_sponsor_share_sumarry"
@@ -131,7 +129,8 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_share" />
         </RelativeLayout>
-        <RelativeLayout
+
+        <RelativeLayout
             android:id="@+id/make_vk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,7 +144,6 @@
                 android:layout_toLeftOf="@+id/TextView26"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_horizontal_margin"
                 android:text="@string/dialog_sponsor_vk"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/intro_main_text"
@@ -158,7 +156,7 @@
                 android:layout_alignLeft="@+id/TextView25"
                 android:layout_alignRight="@+id/TextView25"
                 android:layout_below="@+id/TextView25"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingBottom="8dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:text="@string/dialog_sponsor_vk_sumarry"
@@ -178,7 +176,54 @@
                 android:gravity="center"
                 android:scaleType="center"
                 android:src="@drawable/ic_sc" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/make_inst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/ic_dialog_btn" >
+
+            <TextView
+                android:id="@+id/TextView251"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/TextView261"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="@string/dialog_sponsor_inst"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/TextView241"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextView251"
+                android:layout_alignRight="@+id/TextView251"
+                android:layout_below="@+id/TextView251"
+                android:paddingBottom="8dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="@string/dialog_sponsor_inst_sumarry"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_second_text"
+                android:textColorHint="@color/slider_menu_custom_text_color"
+                android:textColorLink="@color/slider_menu_custom_text_color"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/TextView261"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignBottom="@+id/TextView241"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:scaleType="center"
+                android:src="@drawable/ic_inst" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -210,7 +255,6 @@
             android:textColor="@color/intro_main_text"
             android:textSize="16sp"
             android:visibility="gone" />
-
     </RelativeLayout>
 
 </LinearLayout>
