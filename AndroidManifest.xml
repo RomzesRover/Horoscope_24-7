@@ -2,67 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.BBsRs.horoscopeNewEdition"
     android:installLocation="auto"
-    android:versionCode="26"
-    android:versionName="2.2.0.1" >
+    android:versionCode="27"
+    android:versionName="3.0 Alpha" >
 
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="com.android.vending.BILLING" />
-
     <application
-        android:name="org.holoeverywhere.app.Application"
+        android:name="com.BBsRs.horoscopeNewEdition.Base.BaseApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/ContentTheme" >
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
         <activity
-            android:name="com.BBsRs.horoscopeFullNew.ContentShowActivity"
-            android:configChanges="locale"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/ContentTheme" >
-        </activity>
-        <activity
-            android:name="com.BBsRs.horoscopeFullNew.ActivityLoader"
-            android:configChanges="locale"
-            android:label="@string/app_name"
-            android:theme="@style/ContentTheme.NoActionBar" >
+            android:name=".ContentActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".NotificationService" >
-        </service>
-
-        <receiver android:name=".BootUpReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name=".ActivityRestarter" >
-        </activity>
-        <activity
-            android:name="com.BBsRs.horoscopeFullNew.Introduce.IntroduceActivityNewTheme"
-            android:theme="@style/ContentTheme" >
-        </activity>
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|locale" />
     </application>
 
 </manifest>
