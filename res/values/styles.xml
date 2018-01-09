@@ -4,6 +4,8 @@
         <item name="android:windowBackground">@drawable/backgroung_screen</item>
         <item name="actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>
         <item name="android:actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>
+        <item name="android:homeAsUpIndicator">@drawable/contenttheme_ic_navigation_drawer</item>
+        <item name="homeAsUpIndicator">@drawable/contenttheme_ic_navigation_drawer</item>
     </style>
     
     <style name="Widget.AppCompat.Base.ActionBar.Solid.Custom" parent="@style/Widget.AppCompat.Base.ActionBar.Solid">
