@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="action_bar_main_text_color">#fff</color>
+    <color name="action_bar_summary_text_color">#fff</color>
+    
+    <color name="screen_window_background">#000</color>
+    
+</resources>

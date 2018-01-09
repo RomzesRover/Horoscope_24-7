@@ -1,6 +1,25 @@
 <resources>
     <!-- Application theme. -->
     <style name="ContentTheme" parent="@style/Holo.Theme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:windowBackground">@drawable/backgroung_screen</item>
+        <item name="actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>
+        <item name="android:actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>
+    </style>
+    
+    <style name="Widget.AppCompat.Base.ActionBar.Solid.Custom" parent="@style/Widget.AppCompat.Base.ActionBar.Solid">
+        <item name="android:background">@drawable/ic_action_bar_background</item>
+        <item name="android:subtitleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Custom</item>
+        <item name="android:titleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Custom</item>
+        <item name="background">@drawable/ic_action_bar_background</item>
+        <item name="subtitleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Custom</item>
+        <item name="titleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Custom</item>
+    </style>
+    
+     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title.Custom" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/action_bar_main_text_color</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Custom" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">@color/action_bar_summary_text_color</item>
     </style>
 </resources>
