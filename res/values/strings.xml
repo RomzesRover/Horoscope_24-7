@@ -3,6 +3,6 @@
 
     <string name="app_name">Daily Horoscope</string>
     
-    <string name="app_name_to_upper_case">DAILY HOROSCOPE</string>
+    <string name="app_name_to_upper_case">HOROSCOPE</string>
 
 </resources>

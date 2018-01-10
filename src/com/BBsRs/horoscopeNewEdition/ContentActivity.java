@@ -27,6 +27,7 @@ public class ContentActivity extends BaseActivity {
 		
 		sliderMenu.add(getResources().getString(R.string.app_name_to_upper_case)).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
 		sliderMenu.add("Greka", ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add("Greka2", ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 		
 		//set curent page to mainFragment only if fisrt launch Activity
 		if ((savedInstanceState == null))
