@@ -21,8 +21,10 @@
                     android:id="@+id/textContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="@dimen/fragment_content_text_padding"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="17sp" />
+
             </LinearLayout>
         </ScrollView>
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>

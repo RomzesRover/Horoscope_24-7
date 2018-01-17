@@ -7,6 +7,7 @@ import org.holoeverywhere.slider.SliderMenu;
 import android.os.Bundle;
 
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
+import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Fragments.ContentFragment;
 
 
@@ -24,21 +25,38 @@ public class ContentActivity extends BaseActivity {
 		final SliderMenu sliderMenu = addonSlider().obtainDefaultSliderMenu(R.layout.menu);
 		sliderMenu.setInverseTextColorWhenSelected(false);
         addonSlider().setOverlayActionBar(true);
+        
+        //init bundles
+        Bundle yesterday  = new Bundle();
+        yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[0]);
+        Bundle today  = new Bundle();
+        today.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[1]);
+        Bundle tomorrow  = new Bundle();
+        tomorrow.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[2]);
+        Bundle weekly  = new Bundle();
+        weekly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[3]);
+        Bundle monthly  = new Bundle();
+        monthly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[4]);
+        Bundle yearly  = new Bundle();
+        yearly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[5]);
+        Bundle settings  = new Bundle();
+        settings.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getString(R.string.settings));
+        Bundle about  = new Bundle();
+        about.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getString(R.string.about));
 		
 		sliderMenu.add(getResources().getString(R.string.app_name_to_upper_case)).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[0], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_yesterday).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[1], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_today).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[2], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_tomorrow).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[3], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_personal).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[4], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[5], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[6], ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-		sliderMenu.add(getResources().getString(R.string.settings), ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_settings).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[0], ContentFragment.class, yesterday, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_yesterday).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[1], ContentFragment.class, today, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_today).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[2], ContentFragment.class, tomorrow, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_tomorrow).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[3], ContentFragment.class, weekly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[4], ContentFragment.class, monthly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[5], ContentFragment.class, yearly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getString(R.string.settings), ContentFragment.class, settings, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_settings).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 		sliderMenu.add(getResources().getString(R.string.application_to_upper_case)).setCustomLayout(R.layout.custom_slider_menu_item).clickable(false).setTextAppereance(1);
-		sliderMenu.add(getResources().getString(R.string.about), ContentFragment.class, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_about).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+		sliderMenu.add(getResources().getString(R.string.about), ContentFragment.class, about, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_about).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 		
 		//set curent page to mainFragment only if fisrt launch Activity
 		if ((savedInstanceState == null))
-			sliderMenu.setCurrentPage(1);
+			sliderMenu.setCurrentPage(2);
     }
 }
