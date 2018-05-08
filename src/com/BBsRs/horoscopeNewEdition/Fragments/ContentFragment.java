@@ -74,10 +74,41 @@ public class ContentFragment extends BaseFragment{
         .listener(customOnRefreshListener)
         .setup(mPullToRefreshLayout);
 		
-		//refresh on open to load data when app first time started
-		updateList();
+		 //if we have saved info after screen rotating or pause/stop app
+        if(savedInstanceState == null) {
+        	//refresh on open to load data when app first time started
+    		updateList();
+        } else{
+        	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
+        	//set up content text view
+        	finalString = new SpannableString[horoscopeCollection.size()];
+        	int index = 0;
+        	for (HoroscopeCollection one : horoscopeCollection){
+        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        		index++;
+        	}
+        	textContent.setText(TextUtils.concat(finalString));
+        	
+        	scrollView.setVisibility(View.VISIBLE);
+        	//with fly up animation
+        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+        	scrollView.startAnimation(flyUpAnimation);
+        }
+		
 		
 		return contentView;
+	}
+	
+    @Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		if (horoscopeCollection != null){
+			 outState.putParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION, horoscopeCollection);
+		}
 	}
 	
 	@Override

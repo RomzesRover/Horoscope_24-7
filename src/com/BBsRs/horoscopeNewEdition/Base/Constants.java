@@ -10,5 +10,7 @@ public class Constants {
 	public static final int BUNDLE_LIST_TYPE_WEEKLY = 3;
 	public static final int BUNDLE_LIST_TYPE_MONTHLY = 4;
 	public static final int BUNDLE_LIST_TYPE_YEARLY = 5;
+	
+	public static final String EXTRA_HOROSCOPE_COLLECTION = "extra:horoscope_collection";
 
 }
