@@ -6,11 +6,13 @@
         android:id="@+id/ptr_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+
         <ScrollView
             android:id="@+id/scrollview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:scrollbarStyle="insideInset" >
+            android:scrollbarStyle="insideInset"
+            android:visibility="invisible" >
 
             <LinearLayout
                 android:layout_width="match_parent"

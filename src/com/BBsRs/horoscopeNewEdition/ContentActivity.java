@@ -29,16 +29,22 @@ public class ContentActivity extends BaseActivity {
         //init bundles
         Bundle yesterday  = new Bundle();
         yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[0]);
+        yesterday.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_YESTERDAY);
         Bundle today  = new Bundle();
         today.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[1]);
+        today.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_TODAY);
         Bundle tomorrow  = new Bundle();
         tomorrow.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[2]);
+        tomorrow.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_TOMORROW);
         Bundle weekly  = new Bundle();
         weekly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[3]);
+        weekly.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_WEEKLY);
         Bundle monthly  = new Bundle();
         monthly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[4]);
+        monthly.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_MONTHLY);
         Bundle yearly  = new Bundle();
         yearly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[5]);
+        yearly.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_YEARLY);
         Bundle settings  = new Bundle();
         settings.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getString(R.string.settings));
         Bundle about  = new Bundle();
