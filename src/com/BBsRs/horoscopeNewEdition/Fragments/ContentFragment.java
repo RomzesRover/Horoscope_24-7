@@ -75,8 +75,7 @@ public class ContentFragment extends BaseFragment{
         .setup(mPullToRefreshLayout);
 		
 		//refresh on open to load data when app first time started
-        mPullToRefreshLayout.setRefreshing(true);
-        customOnRefreshListener.onRefreshStarted(null);
+		updateList();
 		
 		return contentView;
 	}
@@ -84,7 +83,20 @@ public class ContentFragment extends BaseFragment{
 	@Override
     public void onResume() {
         super.onResume();
-        setTitle(bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+        setTitle(getResources().getStringArray(R.array.zodiac_signs)[4]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+	}
+	
+	public void updateList(){
+		handler.postDelayed(new Runnable(){
+			@Override
+			public void run() {
+				if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
+					//refresh on open to load data when app first time started
+			        mPullToRefreshLayout.setRefreshing(true);
+			        customOnRefreshListener.onRefreshStarted(null);
+				}
+			}
+      	}, 100);
 	}
 	
     AsyncTask<Void, Void, Void> loadM;
