@@ -2,13 +2,14 @@
 <resources>
     <color name="slider_menu_background">#000f24</color>
     <color name="slider_menu_custom_divider">#1a273a</color>
-    <color name="slider_menu_selector_color">#105c7c</color>
+    <color name="slider_menu_selector_color">#28384f</color>
     <color name="slider_menu_selected_color">#08172b</color>
     <color name="slider_menu_summary_text_color">#a2a3a7</color>
     <color name="slider_menu_main_text_color">#fff</color>
     
     <color name="action_bar_main_text_color">#fff</color>
     <color name="action_bar_summary_text_color">#fff</color>
+    <color name="action_bar_color">#092650</color>
     
     <color name="screen_window_background">#000</color>
     
