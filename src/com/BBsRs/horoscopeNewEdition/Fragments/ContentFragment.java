@@ -114,7 +114,8 @@ public class ContentFragment extends BaseFragment{
 	@Override
     public void onResume() {
         super.onResume();
-        setTitle(getResources().getStringArray(R.array.zodiac_signs)[4]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+        setTitle(getResources().getStringArray(R.array.zodiac_signs)[1]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
 	}
 	
 	public void updateList(){

@@ -8,6 +8,10 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     
+    <string name="preference_base">Base</string>
+    <string name="preference_date_1">Birth date</string>
+    <string name="preference_date_2">Enter when you born</string>
+    
     <string-array name="horoscope_com_horoscopes">
     	<item>Yesterday</item>
         <item>Today</item>
