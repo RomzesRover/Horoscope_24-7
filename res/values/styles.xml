@@ -5,6 +5,7 @@
         <item name="actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>
         <item name="android:actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>
         <item name="android:homeAsUpIndicator">@drawable/contenttheme_ic_navigation_drawer</item>
+        <item name="android:checkboxStyle">@style/CheckBoxblue</item>
         <item name="homeAsUpIndicator">@drawable/contenttheme_ic_navigation_drawer</item>
     </style>
     
@@ -15,6 +16,10 @@
         <item name="background">@drawable/ic_action_bar_background</item>
         <item name="subtitleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Custom</item>
         <item name="titleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Custom</item>
+    </style>
+    
+    <style name="CheckBoxblue" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/check_box_to_custom_switch</item>
     </style>
     
      <style name="TextAppearance.AppCompat.Widget.ActionBar.Title.Custom" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
