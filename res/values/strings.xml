@@ -11,6 +11,12 @@
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Birth date</string>
     <string name="preference_date_2">Enter when you born</string>
+    <string name="preference_zodiac_sign_1">Zodiac sign</string>
+    <string name="preference_language_1">Language</string>
+    
+    <string name="preference_notifications">Notifications</string>
+    <string name="preference_show_notification_1">Show notifications</string>
+    <string name="preference_time_1">Time</string>
     
     <string-array name="horoscope_com_horoscopes">
     	<item>Yesterday</item>
