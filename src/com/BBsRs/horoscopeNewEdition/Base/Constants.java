@@ -17,5 +17,8 @@ public class Constants {
 	public static final String PREFERENCES_MONTH_BORN = "preferences:month_born";
 	public static final String PREFERENCES_YEAR_BORN = "preferences:year_born";
 	public static final String PREFERENCES_ZODIAC_SIGN = "preferences:zodiac_sign";
+	public static final String PREFERENCES_PERSONAL_NUMBER = "preferences:personal_number";
+	public static final String PREFERENCES_CHINESE_SIGN = "preferences:chinese_sign";
+	public static final String PREFERENCES_CHINESE_SIGN_CORRECTED = "preferences:chinese_sign_corrected";
 
 }

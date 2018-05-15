@@ -36,6 +36,20 @@
         <item>Chinese</item>
         <item>Numerology</item>
     </string-array>
+    <string-array name="horoscope_com_yearly_zodiac_signs">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
     
     <string-array name="zodiac_signs">
         <item>Ram / Aries</item>
@@ -50,6 +64,21 @@
         <item>Goat-horned / Capricorn</item>
         <item>Water-Bearer / Aquarius</item>
         <item>Fish / Pisces</item>
+    </string-array>
+    
+    <string-array name="chinese_zodiac_signs">
+        <item>Rat</item>
+        <item>Ox</item>
+        <item>Tiger</item>
+        <item>Rabbit</item>
+        <item>Dragon</item>
+		<item>Snake</item>
+        <item>Horse</item>
+        <item>Goat</item>
+        <item>Monkey</item>
+        <item>Rooster</item>
+        <item>Dog</item>
+        <item>Pig</item>
     </string-array>
 
 </resources>

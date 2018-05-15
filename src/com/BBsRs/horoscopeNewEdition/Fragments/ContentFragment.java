@@ -3,6 +3,8 @@ package com.BBsRs.horoscopeNewEdition.Fragments;
 import java.util.ArrayList;
 
 import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.preference.PreferenceManager;
+import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -53,6 +55,9 @@ public class ContentFragment extends BaseFragment{
     
     //handler
     Handler handler = new Handler();
+    
+    // preferences 
+    SharedPreferences sPref; 
 
     
 	@Override
@@ -61,6 +66,9 @@ public class ContentFragment extends BaseFragment{
 		
 		//retrieve bundle
       	bundle = this.getArguments();
+      	
+      	//set up preferences
+        sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
       	
       	//init views
       	textContent = (TextView)contentView.findViewById(R.id.textContent);
@@ -114,7 +122,7 @@ public class ContentFragment extends BaseFragment{
 	@Override
     public void onResume() {
         super.onResume();
-        setTitle(getResources().getStringArray(R.array.zodiac_signs)[1]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+        setTitle(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
 	}
 	
@@ -172,85 +180,85 @@ public class ContentFragment extends BaseFragment{
                 		
                 		switch(bundle.getInt(Constants.BUNDLE_LIST_TYPE)){
                 		case Constants.BUNDLE_LIST_TYPE_YESTERDAY:
-                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-yesterday.aspx?sign=2").get();
+                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-yesterday.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-yesterday.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-yesterday.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-daily-yesterday.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-daily-yesterday.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-yesterday.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-yesterday.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-yesterday.aspx?sign=12").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-yesterday.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-yesterday.aspx?sign=3").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-yesterday.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                 			break;
                 		case Constants.BUNDLE_LIST_TYPE_TODAY:
-                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign=2").get();
+                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-today.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-today.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-daily-today.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-daily-today.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-today.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-today.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-today.aspx?sign=12").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-today.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-today.aspx?sign=3").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-today.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                 			break;
                 		case Constants.BUNDLE_LIST_TYPE_TOMORROW:
-                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-tomorrow.aspx?sign=2").get();
+                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-tomorrow.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-tomorrow.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-daily-tomorrow.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-daily-tomorrow.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-daily-tomorrow.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-tomorrow.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-tomorrow.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-tomorrow.aspx?sign=12").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-tomorrow.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-tomorrow.aspx?sign=3").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-tomorrow.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                 			break;
                 		case Constants.BUNDLE_LIST_TYPE_WEEKLY:
-                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-weekly.aspx?sign=2").get();
+                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-weekly-single.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-weekly-single.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-weekly.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-weekly.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[3], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/money/horoscope-money-weekly.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/money/horoscope-money-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-weekly.aspx?sign=12").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-weekly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-weekly.aspx?sign=3").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-weekly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                 			break;
                 		case Constants.BUNDLE_LIST_TYPE_MONTHLY:
-                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-monthly.aspx?sign=2").get();
+                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-monthly.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-monthly.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-monthly.aspx?sign=2").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-monthly.aspx?sign=12").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-monthly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-monthly.aspx?sign=3").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-monthly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                 			break;
                 		case Constants.BUNDLE_LIST_TYPE_YEARLY:
-                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-taurus.aspx?type=personal").get();
+                			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=personal").get();
                     		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("personal").child(0).html(), doc.getElementById("personal").child(1).html()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-taurus.aspx?type=career").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=career").get();
                     		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("career").child(0).html(), doc.getElementById("career").child(1).html()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-taurus.aspx?type=love_single").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_single").get();
                     		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("singles").child(0).html(), doc.getElementById("singles").child(1).html()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-taurus.aspx?type=love_couples").get();
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_couples").get();
                     		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("couples").child(0).html(), doc.getElementById("couples").child(1).html()));
                 			break;
                 		}
@@ -301,7 +309,6 @@ public class ContentFragment extends BaseFragment{
 	        	loadM.execute();
 	        }
 		}
-		
     }
 
 }
