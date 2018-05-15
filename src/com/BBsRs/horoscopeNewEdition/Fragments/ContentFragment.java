@@ -225,7 +225,9 @@ public class ContentFragment extends BaseFragment{
                 			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                     		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-weekly-single.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
-                    		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+                    		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1] + " single", doc.getElementsByClass("horoscope-content").get(0).child(1).text()));
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-weekly-couple.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
+                    		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1] + " couple", doc.getElementsByClass("horoscope-content").get(0).child(1).text()));
                     		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                     		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
@@ -240,8 +242,10 @@ public class ContentFragment extends BaseFragment{
                 		case Constants.BUNDLE_LIST_TYPE_MONTHLY:
                 			doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[0], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
-                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
-                    		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-monthly-single.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
+                    		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1] + " single", doc.getElementsByClass("horoscope-content").get(0).child(1).text()));
+                    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/love/horoscope-love-monthly-couple.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
+                    		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[1] + " couple", doc.getElementsByClass("horoscope-content").get(0).child(1).text()));
                     		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/career/horoscope-career-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
                     		horoscopeCollection.add(new HoroscopeCollection(getResources().getStringArray(R.array.horoscope_com_kinds)[2], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
                     		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
