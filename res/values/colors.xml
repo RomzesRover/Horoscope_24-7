@@ -13,4 +13,7 @@
     
     <color name="screen_window_background">#000</color>
     
+    <color name="dialog_window_background">#000f24</color>
+    <color name="dialog_title_text_color">#fff</color>
+    
 </resources>

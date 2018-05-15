@@ -1,0 +1,11 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/dialog_title_text_color" android:state_enabled="true" android:state_window_focused="false"/>
+    <item android:color="@color/dialog_title_text_color" android:state_enabled="false" android:state_window_focused="false"/>
+    <item android:color="@color/dialog_window_background" android:state_pressed="true"/>
+    <item android:color="@color/dialog_title_text_color" android:state_enabled="true" android:state_focused="true"/>
+    <item android:color="@color/dialog_title_text_color" android:state_enabled="true"/>
+    <item android:color="@color/dialog_title_text_color" android:state_focused="true"/>
+    <item android:color="@color/dialog_title_text_color"/>
+
+</selector>

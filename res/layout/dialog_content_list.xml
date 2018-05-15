@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_window_background"
+    android:orientation="vertical"
+    android:padding="@dimen/dialog_content_margin_whole" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dialog_icon_padding"
+            android:src="@drawable/ic_icon_settings_sign" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/icon"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:singleLine="true"
+                android:text="@string/preference_zodiac_sign_1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/dialog_title_text_color"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dialog_content_margin" >
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@color/slider_menu_custom_divider">
+
+        </ListView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dialog_content_margin_buttons_list"
+            android:layout_marginTop="@dimen/dialog_content_margin_buttons"
+            android:layout_weight="0.01" >
+
+            <Button
+                android:id="@+id/apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dialog_content_margin_buttons"
+                android:background="@drawable/button_custom"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/ok"
+                android:textColor="@drawable/button_color_custom"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="@dimen/dialog_content_margin_buttons"
+                android:layout_toLeftOf="@+id/apply"
+                android:background="@drawable/button_custom"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/cancel"
+                android:textColor="@drawable/button_color_custom"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,17 +3,29 @@ package com.BBsRs.horoscopeNewEdition.Fragments;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.drawable.ColorDrawable;
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.Preference;
+import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
+import org.holoeverywhere.widget.ArrayAdapter;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.widget.RadioButton;
+import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.BasePreferenceFragment;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
@@ -30,6 +42,9 @@ public class SettingsFragment extends BasePreferenceFragment {
     
     Preference zodiacSign;
     DatePreference dateBorn;
+    
+	//alert dialog
+    AlertDialog alert = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,6 +98,88 @@ public class SettingsFragment extends BasePreferenceFragment {
 				return false;
 			}
         });
+        
+        zodiacSign = (Preference) findPreference ("preference_zodiac_sign");
+        zodiacSign.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    	
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+		    		      (Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	//init views
+		    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+		    	TextView title = (TextView)content.findViewById(R.id.title);
+		    	Button cancel = (Button)content.findViewById(R.id.cancel);
+		    	Button apply = (Button)content.findViewById(R.id.apply);
+		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+		    	
+		    	//set fonts
+		    	SFUIFonts.MEDIUM.apply(context, title);
+		    	SFUIFonts.LIGHT.apply(context, cancel);
+		    	SFUIFonts.LIGHT.apply(context, apply);
+		    	
+		    	//view job
+		    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		    	// custom adapter
+		    	final String [] listArray = context.getResources().getStringArray(R.array.zodiac_signs);
+		        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+		            @Override
+		            public View getView(final int position, View convertView, ViewGroup parent) {
+		            	 View v = super.getView(position, convertView, parent);
+		            	 //set font
+		            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 //set radio
+		                 final RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+		                 if (list.isItemChecked(position)) {
+		                	 radio.setChecked(true);
+		                 } else {
+		                	 radio.setChecked(false);
+		                 }
+		                 
+		                 View.OnClickListener clickItem = new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								sPref.edit().putInt(Constants.PREFERENCES_ZODIAC_SIGN, position).commit();
+								notifyDataSetChanged();
+								list.setItemChecked(position, true);
+							}
+						};
+		                 
+		                 v.setOnClickListener(clickItem);
+		                 radio.setOnClickListener(clickItem);
+		                 return v;
+		            }
+		        });
+		        
+		        final int indexCalculated = sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0);
+		        list.setItemChecked(indexCalculated, true);
+				
+				apply.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
+						alert.dismiss();
+					}
+				});
+		    	
+		    	cancel.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						sPref.edit().putInt(Constants.PREFERENCES_ZODIAC_SIGN, indexCalculated).commit();
+						zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[indexCalculated]);
+						alert.dismiss();
+					}
+				});
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
+				return false;
+			}
+        });
 
     }
     
@@ -116,6 +213,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         	break;
         }
         dateBorn.setSummary(format1.format(cal.getTime()));
+        zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
     }
     
 	int zodiacNumber (int day, int month){
