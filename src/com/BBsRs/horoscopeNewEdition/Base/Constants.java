@@ -12,5 +12,10 @@ public class Constants {
 	public static final int BUNDLE_LIST_TYPE_YEARLY = 5;
 	
 	public static final String EXTRA_HOROSCOPE_COLLECTION = "extra:horoscope_collection";
+	
+	public static final String PREFERENCES_DAY_BORN = "preferences:day_born";
+	public static final String PREFERENCES_MONTH_BORN = "preferences:month_born";
+	public static final String PREFERENCES_YEAR_BORN = "preferences:year_born";
+	public static final String PREFERENCES_ZODIAC_SIGN = "preferences:zodiac_sign";
 
 }

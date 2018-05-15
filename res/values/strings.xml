@@ -10,7 +10,8 @@
     
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Birth date</string>
-    <string name="preference_date_2">Enter when you born</string>
+    <string name="preference_date_check">Check your data is correct</string>
+    <string name="preference_date_set">Looks like %s is your zodiac sign</string>
     <string name="preference_zodiac_sign_1">Zodiac sign</string>
     <string name="preference_language_1">Language</string>
     
