@@ -189,7 +189,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         setTitle(bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.action_bar_color)));
         //setup preferences listview
-        getListView().setBackgroundColor(getResources().getColor(R.color.slider_menu_background));
+        getListView().setBackgroundColor(getResources().getColor(R.color.dialog_window_background));
         getListView().setDivider(getResources().getDrawable(R.color.slider_menu_custom_divider));
         getListView().setSelector(getResources().getDrawable(R.drawable.slider_menu_selector));
         
