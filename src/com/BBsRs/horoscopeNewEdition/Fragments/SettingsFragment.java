@@ -6,13 +6,16 @@ import java.util.Calendar;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.drawable.ColorDrawable;
+import org.holoeverywhere.preference.CheckBoxPreference;
 import org.holoeverywhere.preference.DatePreference;
 import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.Preference;
+import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
 import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
+import org.holoeverywhere.preference.TimePreference;
 import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.ListView;
@@ -42,6 +45,8 @@ public class SettingsFragment extends BasePreferenceFragment {
     
     Preference zodiacSign;
     DatePreference dateBorn;
+    CheckBoxPreference showNotifications;
+    TimePreference notificationTime;
     
 	//alert dialog
     AlertDialog alert = null;
@@ -81,12 +86,13 @@ public class SettingsFragment extends BasePreferenceFragment {
 						ed.putInt(Constants.PREFERENCES_MONTH_BORN, month);				
 						ed.putInt(Constants.PREFERENCES_YEAR_BORN, year);	
 						ed.putInt(Constants.PREFERENCES_ZODIAC_SIGN, zodiacNumber(day, month+1));
-						ed.putInt(Constants.PREFERENCES_PERSONAL_NUMBER, personalNumber(day, month+1, year));
+						int lifePathNumber = personalNumber(day, month+1, year);
+						ed.putInt(Constants.PREFERENCES_PERSONAL_NUMBER, lifePathNumber);
 						int chineseSignCalculated = chineseSign(day, month+1, year);
 						ed.putInt(Constants.PREFERENCES_CHINESE_SIGN, chineseSignCalculated);
 						ed.putInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, chineseSignCorrected(chineseSignCalculated));
 						ed.commit();
-						Toast.makeText(getActivity(), String.format(getResources().getString(R.string.preference_date_set), getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber(day, month+1)]), Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), String.format(getResources().getString(R.string.preference_date_set), getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber(day, month+1)], getResources().getStringArray(R.array.chinese_zodiac_signs)[chineseSignCalculated], lifePathNumber), Toast.LENGTH_LONG).show();
 					} else {
 						Toast.makeText(getActivity(), getResources().getString(R.string.preference_date_check), Toast.LENGTH_LONG).show();
 					}
@@ -180,6 +186,21 @@ public class SettingsFragment extends BasePreferenceFragment {
 				return false;
 			}
         });
+        
+        notificationTime = (TimePreference) findPreference ("preference_show_notifications_time");
+        showNotifications = (CheckBoxPreference) findPreference ("preference_show_notifications");
+        showNotifications.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				showNotifications.setChecked(!showNotifications.isChecked());
+				notificationTime.setEnabled(showNotifications.isChecked());
+				
+				Editor ed = sPref.edit();   
+				ed.putBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, showNotifications.isChecked()); 	
+				ed.commit();
+				return false;
+			}
+        });
 
     }
     
@@ -214,6 +235,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         }
         dateBorn.setSummary(format1.format(cal.getTime()));
         zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
+        notificationTime.setEnabled(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true));
     }
     
 	int zodiacNumber (int day, int month){

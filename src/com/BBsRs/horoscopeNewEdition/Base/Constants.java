@@ -20,5 +20,7 @@ public class Constants {
 	public static final String PREFERENCES_PERSONAL_NUMBER = "preferences:personal_number";
 	public static final String PREFERENCES_CHINESE_SIGN = "preferences:chinese_sign";
 	public static final String PREFERENCES_CHINESE_SIGN_CORRECTED = "preferences:chinese_sign_corrected";
+	public static final String PREFERENCES_SHOW_NOTIFICATIONS = "preferences:show_notifications";
+	public static final String PREFERENCES_NOTIFICATIONS_TIME = "preference_show_notifications_time";
 
 }

@@ -30,6 +30,8 @@
         <TimePreference
             android:id="@+id/preference_show_notifications_time"
             android:key="preference_show_notifications_time"
+            android:defaultValue="08:00"
+            android:summary="08:00"
             android:title="@string/preference_time_1" />
     </PreferenceCategory>
 </PreferenceScreen>

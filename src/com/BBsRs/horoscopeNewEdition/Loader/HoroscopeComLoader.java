@@ -41,9 +41,9 @@ public class HoroscopeComLoader {
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-yesterday.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-yesterday.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-yesterday.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_TODAY:
 				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-today.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
@@ -55,9 +55,9 @@ public class HoroscopeComLoader {
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-today.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-today.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-today.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_TOMORROW:
 				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-daily-tomorrow.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
@@ -69,9 +69,9 @@ public class HoroscopeComLoader {
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-daily-tomorrow.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-daily-tomorrow.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-daily-tomorrow.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_WEEKLY:
 				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
@@ -87,9 +87,9 @@ public class HoroscopeComLoader {
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/money/horoscope-money-weekly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-weekly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-weekly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_MONTHLY:
 				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/general/horoscope-general-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
@@ -103,9 +103,9 @@ public class HoroscopeComLoader {
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/wellness/horoscope-wellness-monthly.aspx?sign="+(sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)+1)).get();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[4], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/chinese/horoscope-chinese-monthly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, 1)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[5] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/numerology/horoscope-numerology-monthly.aspx?sign="+sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3)).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6], doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), doc.getElementsByClass("horoscope-content").get(0).child(0).text()));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_YEARLY:
 				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=personal").get();
