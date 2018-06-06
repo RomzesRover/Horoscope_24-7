@@ -86,24 +86,28 @@ public class ContentFragment extends BaseFragment{
         	//refresh on open to load data when app first time started
     		updateList();
         } else{
-        	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
-        	//set up content text view
-        	finalString = new SpannableString[horoscopeCollection.size()];
-        	int index = 0;
-        	for (HoroscopeCollection one : horoscopeCollection){
-        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
-        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        		index++;
-        	}
-        	textContent.setText(TextUtils.concat(finalString));
-        	
-        	scrollView.setVisibility(View.VISIBLE);
-        	//with fly up animation
-        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-        	scrollView.startAnimation(flyUpAnimation);
+        	if (sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false)){
+            	updateList();
+            } else {
+	        	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
+	        	//set up content text view
+	        	finalString = new SpannableString[horoscopeCollection.size()];
+	        	int index = 0;
+	        	for (HoroscopeCollection one : horoscopeCollection){
+	        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+	        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	        		index++;
+	        	}
+	        	textContent.setText(TextUtils.concat(finalString));
+	        	
+	        	scrollView.setVisibility(View.VISIBLE);
+	        	//with fly up animation
+	        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+	        	scrollView.startAnimation(flyUpAnimation);
+            }
         }
 		
 		
@@ -126,16 +130,19 @@ public class ContentFragment extends BaseFragment{
 	}
 	
 	public void updateList(){
-		handler.postDelayed(new Runnable(){
-			@Override
-			public void run() {
-				if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
-					//refresh on open to load data when app first time started
-			        mPullToRefreshLayout.setRefreshing(true);
-			        customOnRefreshListener.onRefreshStarted(null);
+		sPref.edit().putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false).commit();
+		if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
+			handler.postDelayed(new Runnable(){
+				@Override
+				public void run() {
+					if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
+						//refresh on open to load data when app first time started
+				        mPullToRefreshLayout.setRefreshing(true);
+				        customOnRefreshListener.onRefreshStarted(null);
+					}
 				}
-			}
-      	}, 100);
+	      	}, 100);
+		}
 	}
 	
     AsyncTask<Void, Void, Void> loadM;

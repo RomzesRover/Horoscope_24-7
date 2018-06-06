@@ -92,6 +92,14 @@ public class SettingsFragment extends BasePreferenceFragment {
 						int chineseSignCalculated = chineseSign(day, month+1, year);
 						ed.putInt(Constants.PREFERENCES_CHINESE_SIGN, chineseSignCalculated);
 						ed.putInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, chineseSignCorrected(chineseSignCalculated));
+						
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_YESTERDAY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_TODAY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_TOMORROW, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_WEEKLY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_MONTHLY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_YEARLY, true);
+						
 						ed.commit();
 						Toast.makeText(getActivity(), String.format(getResources().getString(R.string.preference_date_set), getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber(day, month+1)], getResources().getStringArray(R.array.chinese_zodiac_signs)[chineseSignCalculated], lifePathNumber), Toast.LENGTH_LONG).show();
 					} else {
@@ -167,6 +175,14 @@ public class SettingsFragment extends BasePreferenceFragment {
 				apply.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						Editor ed = sPref.edit();
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_YESTERDAY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_TODAY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_TOMORROW, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_WEEKLY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_MONTHLY, true);
+						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_YEARLY, true);
+						ed.commit();
 						zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
 						alert.dismiss();
 					}
