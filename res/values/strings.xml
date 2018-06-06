@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Horoscope</string>
+    <string name="version_name">3.0 Alpha</string>
     
     <string name="app_name_to_upper_case">HOROSCOPE</string>
     <string name="application_to_upper_case">APPLICATION</string>
@@ -21,6 +22,44 @@
     
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    
+    <string name="loveapp">Love this app?</string>
+    <string name="googleplay">Google Play</string>
+    <string name="googleplay_summary">Leave us review on Google Play</string>
+    <string name="share">Share app</string>
+    <string name="share_summary">Share app page to friends</string>
+    <string name="share_comment">App to minimize ping of HSPA+ connection.\nAnd boost 3G quality connection.</string>
+    <string name="share_google_play">Google Play</string>
+    <string name="share_google_play_summary">Link to the page of application on Google Play</string>
+    <string name="share_link_google_play">https://play.google.com/store/apps/details?id=com.BBsRs.HSPAP.Tweaker</string>
+    <string name="share_landing">Landing</string>
+    <string name="share_landing_summary">Link to the landing page on brothers rovers\'s website</string>
+    <string name="share_link_landing">http://brothers-rovers.ru/hspap_tweaker_en.html</string>
+    <string name="advertisement">Advertisement</string>
+    <string name="advertisement_summary">Turn off the advertisement</string>
+    <string name="advertisement_interstitials">Interstitials</string>
+    <string name="advertisement_interstitials_summary">You can disable interstitial advertisement for free</string>
+    <string name="advertisement_interstitials_disabled_summary">Interstitial advertisement is disabled</string>
+    <string name="advertisement_banners">Banners</string>
+    <string name="advertisement_banners_summary">You can disable advertisement banners and get extra functions for 2.45$</string>
+    <string name="advertisement_banners_disabled_summary">Banners advertisement is successful disabled</string>
+    
+    <string name="feedback">Feedback</string>
+    <string name="instagram">Instagram</string>
+    <string name="instagram_summary">Follow the updates or ask questions</string>
+    <string name="instagram_link">https://www.instagram.com/hspaptweaker/</string>
+    <string name="vk">VKontakte</string>
+    <string name="vk_summary">Follow the updates or ask questions</string>
+    <string name="vk_link">https://vk.com/brothersrovers</string>
+    <string name="facebook">Facebook</string>
+    <string name="facebook_summary">Follow the updates or ask questions</string>
+    <string name="facebook_link">https://www.facebook.com/HSPA-Tweaker-3G-booster-819692164873159/</string>
+    
+    <string name="developer">Developer</string>
+    <string name="brothersrovers">Brothers Rovers</string>
+    <string name="brothersrovers_summary">Founded in Russia, Bashkortostan</string>
+    <string name="brothersrovers_link">http://brothers-rovers.ru/</string>
+    
     
     <string-array name="horoscope_com_horoscopes">
     	<item>Yesterday</item>

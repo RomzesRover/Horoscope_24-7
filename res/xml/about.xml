@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:holo="http://schemas.android.com/apk/res-auto" >
+
+    <Preference
+        android:icon="@drawable/ic_launcher"
+        android:selectable="false"
+        android:summary="@string/version_name"
+        android:title="@string/app_name" />
+
+    <PreferenceCategory android:title="@string/loveapp" >
+        <Preference
+            android:id="@+id/preference_google_play"
+            android:icon="@drawable/logo_google_play"
+            android:key="preference_google_play"
+            android:summary="@string/googleplay_summary"
+            android:title="@string/googleplay" />
+        <Preference
+            android:id="@+id/preference_share"
+            android:icon="@drawable/ic_share"
+            android:key="preference_share"
+            android:summary="@string/share_summary"
+            android:title="@string/share" />
+        <Preference
+            android:id="@+id/preference_advertisement"
+            android:icon="@drawable/logo_advertisement"
+            android:key="preference_advertisement"
+            android:summary="@string/advertisement_summary"
+            android:title="@string/advertisement" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/feedback" >
+        <Preference
+            android:id="@+id/preference_facebook"
+            android:icon="@drawable/logo_facebook"
+            android:key="preference_facebook"
+            android:summary="@string/facebook_summary"
+            android:title="@string/facebook" />
+        <Preference
+            android:id="@+id/preference_vk"
+            android:icon="@drawable/logo_vkontakte"
+            android:key="preference_vk"
+            android:summary="@string/vk_summary"
+            android:title="@string/vk" />
+        <Preference
+            android:id="@+id/preference_instagram"
+            android:icon="@drawable/logo_instagram"
+            android:key="preference_instagram"
+            android:summary="@string/instagram_summary"
+            android:title="@string/instagram" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/developer" >
+        <Preference
+            android:id="@+id/preference_brothersrovers"
+            android:icon="@drawable/logo_developer"
+            android:key="preference_brothersrovers"
+            android:summary="@string/brothersrovers_summary"
+            android:title="@string/brothersrovers" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
