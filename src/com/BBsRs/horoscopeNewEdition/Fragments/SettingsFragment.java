@@ -16,6 +16,7 @@ import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.preference.TimePreference;
+import org.holoeverywhere.preference.TimePreference.OnTimeSetListener;
 import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.Button;
 import org.holoeverywhere.widget.ListView;
@@ -188,6 +189,20 @@ public class SettingsFragment extends BasePreferenceFragment {
         });
         
         notificationTime = (TimePreference) findPreference ("preference_show_notifications_time");
+        notificationTime.setMinute(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0));
+        notificationTime.setHour(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8));
+        notificationTime.setOnTimeSetListener(new OnTimeSetListener(){
+			@Override
+			public boolean onTimeSet(TimePreference preference, long date, int hour, int minute) {
+				Editor ed = sPref.edit();   
+				ed.putInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, minute);				
+				ed.putInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, hour);				
+				ed.commit();
+				notificationTime.setSummary(intPlusZero(hour) + ":" + intPlusZero(minute));
+				return false;
+			}
+        });
+        
         showNotifications = (CheckBoxPreference) findPreference ("preference_show_notifications");
         showNotifications.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
 			@Override
@@ -236,6 +251,11 @@ public class SettingsFragment extends BasePreferenceFragment {
         dateBorn.setSummary(format1.format(cal.getTime()));
         zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
         notificationTime.setEnabled(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true));
+        notificationTime.setSummary(intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8)) + ":" + intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0)));
+    }
+    
+    String intPlusZero(int s){
+    	return s/10==0 ? "0"+s : ""+s;
     }
     
 	int zodiacNumber (int day, int month){
