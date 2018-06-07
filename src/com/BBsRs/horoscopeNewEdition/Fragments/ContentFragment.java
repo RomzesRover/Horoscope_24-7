@@ -11,6 +11,7 @@ import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLa
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -22,6 +23,9 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AlignmentSpan;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -39,7 +43,7 @@ import com.BBsRs.horoscopeNewEdition.Loader.HoroscopeComLoader;
 
 public class ContentFragment extends BaseFragment{
 	
-	ArrayList<HoroscopeCollection> horoscopeCollection = new ArrayList<HoroscopeCollection>();
+	ArrayList<HoroscopeCollection> horoscopeCollection = null;
 	SpannableString[] finalString;
 	
 	//for retrieve data from activity
@@ -62,6 +66,9 @@ public class ContentFragment extends BaseFragment{
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View contentView = inflater.inflate(R.layout.fragment_content);
+		
+		//enable menu
+    	setHasOptionsMenu(true);
 		
 		//retrieve bundle
       	bundle = this.getArguments();
@@ -145,6 +152,35 @@ public class ContentFragment extends BaseFragment{
 		}
 	}
 	
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_content_menu, menu);
+    }
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+	      case android.R.id.home:
+	    	  Intent i = new Intent(Constants.INTENT_OPEN_DRAWER_MENU);
+	    	  getActivity().sendBroadcast(i);
+	    	  break;
+	      case R.id.menu_share_new:
+	    	  if (horoscopeCollection == null)
+	    		  break;
+			  String shareBody =  String.format(getResources().getString(R.string.share_text_comment), bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME), getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]) + 
+					  "\n\n" + textContent.getText().toString()+
+					  "\n\n" + getResources().getString(R.string.share_comment) + " " + getResources().getString(R.string.share_link_google_play);
+			  Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+			  sharingIntent.setType("text/plain");
+			  sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
+			  sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+			  startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share)));
+	    	  break;
+    	}
+		return true;
+    	
+    }
+	
     AsyncTask<Void, Void, Void> loadM;
     @TargetApi(Build.VERSION_CODES.HONEYCOMB) 
     public class  CustomOnRefreshListener implements OnRefreshListener{
@@ -156,6 +192,7 @@ public class ContentFragment extends BaseFragment{
                 protected Void doInBackground(Void... params) {
                 	try {
                 		//hide prev state
+                		horoscopeCollection = null;
                 		if (scrollView.getVisibility() == View.VISIBLE){
 							handler.post(new Runnable(){
 								@Override

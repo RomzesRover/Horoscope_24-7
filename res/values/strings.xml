@@ -27,8 +27,9 @@
     <string name="googleplay">Google Play</string>
     <string name="googleplay_summary">Leave us review on Google Play</string>
     <string name="share">Share app</string>
+    <string name="share_text_comment">Here is my horoscope for %1$s for %2$s zodiac sign.</string>
     <string name="share_summary">Share app page to friends</string>
-    <string name="share_comment">Here is a handy app with horoscopes.</string>
+    <string name="share_comment">Here is a handy app with horoscopes:</string>
     <string name="share_google_play">Google Play</string>
     <string name="share_google_play_summary">Link to the page of application on Google Play</string>
     <string name="share_link_google_play">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeNewEdition</string>

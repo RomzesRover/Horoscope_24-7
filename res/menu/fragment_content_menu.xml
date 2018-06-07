@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+     xmlns:app="schemas.android.com/apk/res/com.BBsRs.horoscopeNewEdition" >
+     	<item android:id="@+id/menu_share_new"
+          android:title="@string/share"
+          android:showAsAction="always" 
+          android:icon="@drawable/ic_share" />
+</menu>

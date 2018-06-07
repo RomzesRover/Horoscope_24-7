@@ -137,7 +137,7 @@ public class AboutFragment extends BasePreferenceFragment {
 							Intent i = new Intent(Intent.ACTION_SEND);  
 							i.setType("text/plain");
 							i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-							String sAux = "\n"+getString(R.string.share_comment)+"\n\n";
+							String sAux = "\n"+getString(R.string.share_comment)+" ";
 							sAux = sAux + getString(R.string.share_link_google_play)+"\n";
 							i.putExtra(Intent.EXTRA_TEXT, sAux);  
 							startActivity(Intent.createChooser(i, "Share with"));

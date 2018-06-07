@@ -4,6 +4,10 @@ import org.holoeverywhere.addon.AddonSlider;
 import org.holoeverywhere.addon.Addons;
 import org.holoeverywhere.slider.SliderMenu;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
@@ -67,4 +71,41 @@ public class ContentActivity extends BaseActivity {
 		if ((savedInstanceState == null))
 			sliderMenu.setCurrentPage(7);
     }
+    
+    @Override
+	public void onResume(){
+    	super.onResume();
+    	
+        //register receiver
+        try {
+	        super.registerReceiver(openMenuDrawer, new IntentFilter(Constants.INTENT_OPEN_DRAWER_MENU));
+        } catch (Exception e){
+        	e.printStackTrace();
+        }
+    }
+    
+    @Override
+	public void onPause(){
+		//unregister receiver
+        try {
+            super.unregisterReceiver(openMenuDrawer);
+        } catch (Exception e){
+        	e.printStackTrace();
+        }
+        
+        super.onPause();
+    }
+    
+	private BroadcastReceiver openMenuDrawer = new BroadcastReceiver() {
+
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	if (addonSlider() == null)
+	    		return;
+	    	if (addonSlider().isDrawerOpen(addonSlider().getLeftView()))
+	    		  addonSlider().closeLeftView();
+	    	  else 
+	    		  addonSlider().openLeftView();
+	    }
+	};
 }

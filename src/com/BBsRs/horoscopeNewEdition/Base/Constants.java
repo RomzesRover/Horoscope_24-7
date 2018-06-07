@@ -34,5 +34,7 @@ public class Constants {
 	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT = "preferences:show_interstitial_advertisement";
 	public static final String PREFERENCES_SHOW_BANNER_ADVERTISEMENT = "preferences:show_banner_advertisement";
 	
+	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";
+	
 
 }
