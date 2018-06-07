@@ -29,7 +29,10 @@ public class Constants {
 	public static final String PREFERENCES_CHINESE_SIGN = "preferences:chinese_sign";
 	public static final String PREFERENCES_CHINESE_SIGN_CORRECTED = "preferences:chinese_sign_corrected";
 	public static final String PREFERENCES_SHOW_NOTIFICATIONS = "preferences:show_notifications";
-	public static final String PREFERENCES_NOTIFICATIONS_TIME_HOUR = "preference_show_notifications_time_hour";
-	public static final String PREFERENCES_NOTIFICATIONS_TIME_MINUTE = "preference_show_notifications_time_minute";
+	public static final String PREFERENCES_NOTIFICATIONS_TIME_HOUR = "preference:show_notifications_time_hour";
+	public static final String PREFERENCES_NOTIFICATIONS_TIME_MINUTE = "preference:show_notifications_time_minute";
+	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT = "preferences:show_interstitial_advertisement";
+	public static final String PREFERENCES_SHOW_BANNER_ADVERTISEMENT = "preferences:show_banner_advertisement";
+	
 
 }

@@ -14,6 +14,9 @@
     <color name="screen_window_background">#000</color>
     
     <color name="dialog_window_background">#172841</color>
-    <color name="dialog_title_text_color">#fff</color>
+    <color name="dialog_main_text_color">#fff</color>
+    <color name="dialog_main_text_color_pressed">#0f87b9</color>
+    <color name="dialog_summary_text_color">#ccc</color>
+    <color name="dialog_summary_text_color_disabled">#5fabcc</color>
     
 </resources>

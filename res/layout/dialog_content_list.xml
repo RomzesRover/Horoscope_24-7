@@ -33,7 +33,7 @@
                 android:singleLine="true"
                 android:text="@string/preference_zodiac_sign_1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/dialog_title_text_color"
+                android:textColor="@color/dialog_main_text_color"
                 android:textSize="@dimen/dialog_content_margin_text_size_title" />
 
             <TextView
