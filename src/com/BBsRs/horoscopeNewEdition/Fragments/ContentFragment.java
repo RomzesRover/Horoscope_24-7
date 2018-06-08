@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
@@ -37,6 +39,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ScrollView;
 
 import com.BBsRs.SFUIFontsEverywhere.CustomTypefaceSpan;
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.SFUIFontsEverywhere.SFUIFontsPath;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.BaseFragment;
@@ -58,6 +61,9 @@ public class ContentFragment extends BaseFragment{
     
     TextView textContent;
     ScrollView scrollView;
+    RelativeLayout errorLayout;
+    TextView errorMessage;
+    Button errorRetryButton;
     
     //handler
     Handler handler = new Handler();
@@ -82,6 +88,9 @@ public class ContentFragment extends BaseFragment{
       	//init views
       	textContent = (TextView)contentView.findViewById(R.id.textContent);
       	scrollView = (ScrollView)contentView.findViewById(R.id.scrollview);
+      	errorLayout = (RelativeLayout)contentView.findViewById(R.id.errorLayout);
+    	errorMessage = (TextView)contentView.findViewById(R.id.errorMessage);
+    	errorRetryButton = (Button)contentView.findViewById(R.id.errorRetryButton);
 		
 		mPullToRefreshLayout = (PullToRefreshLayout) contentView.findViewById(R.id.ptr_layout);
 		
@@ -100,26 +109,60 @@ public class ContentFragment extends BaseFragment{
             	updateList();
             } else {
 	        	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
-	        	//set up content text view
-	        	finalString = new SpannableString[horoscopeCollection.size()];
-	        	int index = 0;
-	        	for (HoroscopeCollection one : horoscopeCollection){
-	        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
-	        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	        		index++;
+	        	if (horoscopeCollection == null){
+            		scrollView.setVisibility(View.GONE);
+                	errorLayout.setVisibility(View.VISIBLE);
+                	errorRetryButton.setEnabled(true);
+                	//with fly up animation
+                	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+                	errorLayout.startAnimation(flyUpAnimation);
+	        	} else {
+		        	//set up content text view
+		        	finalString = new SpannableString[horoscopeCollection.size()];
+		        	int index = 0;
+		        	for (HoroscopeCollection one : horoscopeCollection){
+		        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+		        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+		                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+		                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		        		index++;
+		        	}
+		        	textContent.setText(TextUtils.concat(finalString));
+		        	
+		        	scrollView.setVisibility(View.VISIBLE);
+		        	//with fly up animation
+		        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+		        	scrollView.startAnimation(flyUpAnimation);
 	        	}
-	        	textContent.setText(TextUtils.concat(finalString));
-	        	
-	        	scrollView.setVisibility(View.VISIBLE);
-	        	//with fly up animation
-	        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-	        	scrollView.startAnimation(flyUpAnimation);
             }
         }
+        
+        //programing error button
+        errorRetryButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				updateList();
+		        errorRetryButton.setEnabled(false);
+            	//hide error 
+            	Animation flyDownAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim_out);
+            	errorLayout.startAnimation(flyDownAnimation);
+            	flyDownAnimation.setAnimationListener(new AnimationListener(){
+					@Override
+					public void onAnimationEnd(Animation arg0) {
+						errorLayout.setVisibility(View.INVISIBLE);
+					}
+					@Override
+					public void onAnimationRepeat(Animation arg0) { }
+					@Override
+					public void onAnimationStart(Animation arg0) { }
+            	});
+			}
+		});
 		
+        //set fonts
+  		SFUIFonts.LIGHT.apply(getActivity(), errorMessage);
+  		SFUIFonts.LIGHT.apply(getActivity(), errorRetryButton);
 		
 		return contentView;
 	}
@@ -273,6 +316,7 @@ public class ContentFragment extends BaseFragment{
                     	Thread.sleep(200);
                     	
 					} catch (Exception e) {
+						horoscopeCollection = null;
 						e.printStackTrace();
 					}
                     return null;
@@ -280,6 +324,17 @@ public class ContentFragment extends BaseFragment{
 
                 @Override
                 protected void onPostExecute(Void result) {
+                	if (horoscopeCollection == null){
+                		scrollView.setVisibility(View.GONE);
+                    	errorLayout.setVisibility(View.VISIBLE);
+                    	errorRetryButton.setEnabled(true);
+                    	//with fly up animation
+                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+                    	errorLayout.startAnimation(flyUpAnimation);
+                		return;
+                	}
+                	//hide error 
+    				errorLayout.setVisibility(View.INVISIBLE);
                 	//set up content text view
                 	finalString = new SpannableString[horoscopeCollection.size()];
                 	int index = 0;
