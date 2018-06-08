@@ -26,9 +26,17 @@
                     android:padding="@dimen/fragment_content_text_padding"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="17sp" />
-
             </LinearLayout>
         </ScrollView>
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_darkness_fade" />
 
 </RelativeLayout>
