@@ -11,7 +11,10 @@ import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLa
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -134,7 +137,46 @@ public class ContentFragment extends BaseFragment{
         super.onResume();
         setTitle(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
+        
+        //register receiver
+        try {
+        	getActivity().registerReceiver(forceShowUpdateLine, new IntentFilter(Constants.INTENT_FORCE_SHOW_UPDATE_LINE));
+            getActivity().registerReceiver(forceHideUpdateLine, new IntentFilter(Constants.INTENT_FORCE_HIDE_UPDATE_LINE));
+        } catch (Exception e){
+        	e.printStackTrace();
+        }
 	}
+	
+	public void onPause(){
+		//unregister receiver
+        try {
+        	getActivity().unregisterReceiver(forceShowUpdateLine);
+    		getActivity().unregisterReceiver(forceHideUpdateLine);
+        } catch (Exception e){
+        	e.printStackTrace();
+        }
+		
+		super.onPause();
+	}
+	
+	private BroadcastReceiver forceShowUpdateLine = new BroadcastReceiver(){
+		@Override
+		public void onReceive(Context arg0, Intent arg1) {
+			
+			boolean active = loadM != null && loadM.getStatus() != AsyncTask.Status.FINISHED;
+			
+			if (active)
+				mPullToRefreshLayout.setRefreshing(true);
+		}
+	};
+	
+	
+	private BroadcastReceiver forceHideUpdateLine = new BroadcastReceiver(){
+		@Override
+		public void onReceive(Context arg0, Intent arg1) {
+			mPullToRefreshLayout.setRefreshComplete();
+		}
+	};
 	
 	public void updateList(){
 		sPref.edit().putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false).commit();

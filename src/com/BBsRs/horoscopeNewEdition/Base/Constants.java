@@ -35,6 +35,8 @@ public class Constants {
 	public static final String PREFERENCES_SHOW_BANNER_ADVERTISEMENT = "preferences:show_banner_advertisement";
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";
+	public static final String INTENT_FORCE_HIDE_UPDATE_LINE = "intent:force_hide_update_line";
+	public static final String INTENT_FORCE_SHOW_UPDATE_LINE = "intent:force_show_update_line";
 	
 
 }

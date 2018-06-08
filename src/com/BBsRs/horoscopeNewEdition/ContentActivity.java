@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout.DrawerListener;
+import android.view.View;
 
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
@@ -28,9 +30,31 @@ public class ContentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setIcon(R.drawable.ic_menu);
         
+        //init slider menu
 		final SliderMenu sliderMenu = addonSlider().obtainDefaultSliderMenu(R.layout.menu);
 		sliderMenu.setInverseTextColorWhenSelected(false);
         addonSlider().setOverlayActionBar(true);
+        try {
+        	addonSlider().setDrawerListener(new DrawerListener(){
+        		@Override
+        		public void onDrawerClosed(View arg0) {
+        			Intent i = new Intent(Constants.INTENT_FORCE_SHOW_UPDATE_LINE);
+        			sendBroadcast(i);
+        		}
+        		@Override
+        		public void onDrawerOpened(View arg0) {
+        			Intent i3 = new Intent(Constants.INTENT_FORCE_HIDE_UPDATE_LINE);
+        			sendBroadcast(i3);
+        		}
+        		@Override
+        		public void onDrawerSlide(View arg0, float arg1) { }
+        		@Override
+        		public void onDrawerStateChanged(int arg0) {}
+        	});
+        } catch (Exception e){
+        	e.printStackTrace();
+        	//Error on tablets !!
+        }
         
         //init bundles
         Bundle yesterday  = new Bundle();
