@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="zodiac_stars_imgs">
+        <item>@drawable/zod_aries_star</item>
+        <item>@drawable/zod_taurus_star</item>
+        <item>@drawable/zod_gemini_star</item>
+        <item>@drawable/zod_cancer_star</item>
+        <item>@drawable/zod_leo_star</item>
+        <item>@drawable/zod_virgo_star</item>
+        <item>@drawable/zod_libra_star</item>
+        <item>@drawable/zod_scorpio_star</item>
+        <item>@drawable/zod_sagittarius_star</item>
+        <item>@drawable/zod_capricorn_star</item>
+        <item>@drawable/zod_aquarius_star</item>
+        <item>@drawable/zod_pisces_star</item>
+    </string-array>
+    
+    <string-array name="zodiac_lines_imgs">
+        <item>@drawable/zod_aries_lines</item>
+        <item>@drawable/zod_taurus_lines</item>
+        <item>@drawable/zod_gemini_lines</item>
+        <item>@drawable/zod_cancer_lines</item>
+        <item>@drawable/zod_leo_lines</item>
+        <item>@drawable/zod_virgo_lines</item>
+        <item>@drawable/zod_libra_lines</item>
+        <item>@drawable/zod_scorpio_lines</item>
+        <item>@drawable/zod_sagittarius_lines</item>
+        <item>@drawable/zod_capricorn_lines</item>
+        <item>@drawable/zod_aquarius_lines</item>
+        <item>@drawable/zod_pisces_lines</item>
+    </string-array>
+    
+    <string-array name="zodiac_signs_imgs">
+        <item>@drawable/zod_aries_sign</item>
+        <item>@drawable/zod_taurus_sign</item>
+        <item>@drawable/zod_gemini_sign</item>
+        <item>@drawable/zod_cancer_sign</item>
+        <item>@drawable/zod_leo_sign</item>
+        <item>@drawable/zod_virgo_sign</item>
+        <item>@drawable/zod_libra_sign</item>
+        <item>@drawable/zod_scorpio_sign</item>
+        <item>@drawable/zod_sagittarius_sign</item>
+        <item>@drawable/zod_capricorn_sign</item>
+        <item>@drawable/zod_aquarius_sign</item>
+        <item>@drawable/zod_pisces_sign</item>
+    </string-array>
+</resources>

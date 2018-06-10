@@ -93,7 +93,7 @@ public class ContentActivity extends BaseActivity {
 		
 		//set curent page to mainFragment only if fisrt launch Activity
 		if ((savedInstanceState == null))
-			sliderMenu.setCurrentPage(7);
+			sliderMenu.setCurrentPage(2);
     }
     
     @Override

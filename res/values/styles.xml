@@ -9,6 +9,10 @@
         <item name="homeAsUpIndicator">@drawable/contenttheme_ic_navigation_drawer</item>
     </style>
     
+    <style name="SplashScreenTheme" parent="@style/Holo.Theme.NoActionBar">
+        <item name="android:windowBackground">@drawable/backgroung_screen</item>
+    </style>
+    
     <style name="Widget.AppCompat.Base.ActionBar.Solid.Custom" parent="@style/Widget.AppCompat.Base.ActionBar.Solid">
         <item name="android:background">@drawable/ic_action_bar_background</item>
         <item name="android:subtitleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Custom</item>

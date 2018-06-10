@@ -9,6 +9,8 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     
+    <string name="introduce_slogan">Your personal daily assistant</string>
+    
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_retry">Retry</string>
     
