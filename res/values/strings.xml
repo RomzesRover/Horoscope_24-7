@@ -23,6 +23,8 @@
     
     <string name="preference_notifications">Notifications</string>
     <string name="preference_show_notification_1">Show notifications</string>
+    <string name="preference_show_notification_2">Notifications will popup at the setted time.</string>
+    <string name="preference_show_notification_3">Notifications is disabled.</string>
     <string name="preference_time_1">Time</string>
     
     <string name="ok">Ok</string>

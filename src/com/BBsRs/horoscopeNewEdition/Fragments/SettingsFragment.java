@@ -225,6 +225,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				showNotifications.setChecked(!showNotifications.isChecked());
 				notificationTime.setEnabled(showNotifications.isChecked());
+				showNotifications.setSummary(showNotifications.isChecked() ? getResources().getString(R.string.preference_show_notification_2) : getResources().getString(R.string.preference_show_notification_3));
 				
 				Editor ed = sPref.edit();   
 				ed.putBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, showNotifications.isChecked()); 	
@@ -268,6 +269,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
         notificationTime.setEnabled(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true));
         notificationTime.setSummary(intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8)) + ":" + intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0)));
+        showNotifications.setSummary(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true) ? getResources().getString(R.string.preference_show_notification_2) : getResources().getString(R.string.preference_show_notification_3));
     }
     
     String intPlusZero(int s){
