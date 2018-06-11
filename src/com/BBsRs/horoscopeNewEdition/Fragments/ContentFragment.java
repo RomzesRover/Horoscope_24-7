@@ -101,41 +101,27 @@ public class ContentFragment extends BaseFragment{
         .setup(mPullToRefreshLayout);
 		
 		 //if we have saved info after screen rotating or pause/stop app
-        if(savedInstanceState == null) {
-        	//refresh on open to load data when app first time started
-    		updateList();
-        } else{
-        	if (sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false)){
-            	updateList();
-            } else {
-	        	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
-	        	if (horoscopeCollection == null){
-            		scrollView.setVisibility(View.GONE);
-                	errorLayout.setVisibility(View.VISIBLE);
-                	errorRetryButton.setEnabled(true);
-                	//with fly up animation
-                	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-                	errorLayout.startAnimation(flyUpAnimation);
-	        	} else {
-		        	//set up content text view
-		        	finalString = new SpannableString[horoscopeCollection.size()];
-		        	int index = 0;
-		        	for (HoroscopeCollection one : horoscopeCollection){
-		        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
-		        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-		                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-		                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		        		index++;
-		        	}
-		        	textContent.setText(TextUtils.concat(finalString));
-		        	
-		        	scrollView.setVisibility(View.VISIBLE);
-		        	//with fly up animation
-		        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-		        	scrollView.startAnimation(flyUpAnimation);
+        if(savedInstanceState != null) {
+        	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
+        	if (horoscopeCollection != null){
+        		//set up content text view
+	        	finalString = new SpannableString[horoscopeCollection.size()];
+	        	int index = 0;
+	        	for (HoroscopeCollection one : horoscopeCollection){
+	        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+	        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	        		index++;
 	        	}
-            }
+	        	textContent.setText(TextUtils.concat(finalString));
+	        	
+	        	scrollView.setVisibility(View.VISIBLE);
+	        	//with fly up animation
+	        	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+	        	scrollView.startAnimation(flyUpAnimation);
+        	}
         }
         
         //programing error button
@@ -144,19 +130,6 @@ public class ContentFragment extends BaseFragment{
 			public void onClick(View v) {
 				updateList();
 		        errorRetryButton.setEnabled(false);
-            	//hide error 
-            	Animation flyDownAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim_out);
-            	errorLayout.startAnimation(flyDownAnimation);
-            	flyDownAnimation.setAnimationListener(new AnimationListener(){
-					@Override
-					public void onAnimationEnd(Animation arg0) {
-						errorLayout.setVisibility(View.INVISIBLE);
-					}
-					@Override
-					public void onAnimationRepeat(Animation arg0) { }
-					@Override
-					public void onAnimationStart(Animation arg0) { }
-            	});
 			}
 		});
 		
@@ -188,9 +161,22 @@ public class ContentFragment extends BaseFragment{
         } catch (Exception e){
         	e.printStackTrace();
         }
+        
+        //load curr
+        if (sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false) || horoscopeCollection == null){
+        	updateList();
+        }
 	}
 	
+	@Override
 	public void onPause(){
+		//stop load curr
+		if (loadM != null && loadM.getStatus() == AsyncTask.Status.RUNNING){
+			mPullToRefreshLayout.setRefreshing(false);
+			mPullToRefreshLayout.setRefreshComplete();
+			loadM.cancel(true);
+		}
+		
 		//unregister receiver
         try {
         	getActivity().unregisterReceiver(forceShowUpdateLine);
@@ -272,6 +258,14 @@ public class ContentFragment extends BaseFragment{
 		@Override
 		public void onRefreshStarted(View view) {
 			loadM = new AsyncTask<Void, Void, Void>() {
+				
+				HoroscopeComLoader horoscopeComLoader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+				
+			    @Override
+			    protected void onCancelled() {
+			    	horoscopeComLoader.abortLoad();
+			    	super.onCancelled();
+			    }
 				 
                 @Override
                 protected Void doInBackground(Void... params) {
@@ -299,11 +293,37 @@ public class ContentFragment extends BaseFragment{
 							});
                 		}
                 		
+                    	//hide error 
+                		if (errorLayout.getVisibility() == View.VISIBLE){
+							handler.post(new Runnable(){
+								@Override
+								public void run() {
+			                    	Animation flyDownAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim_out);
+			                    	errorLayout.startAnimation(flyDownAnimation);
+			                    	flyDownAnimation.setAnimationListener(new AnimationListener(){
+			        					@Override
+			        					public void onAnimationEnd(Animation arg0) {
+			        						errorLayout.setVisibility(View.INVISIBLE);
+			        					}
+			        					@Override
+			        					public void onAnimationRepeat(Animation arg0) { }
+			        					@Override
+			        					public void onAnimationStart(Animation arg0) { }
+			                    	});
+								}
+							});
+                		}
+                		
+                		if (isCancelled()) return null;
+                		
                 		//sleep to prevent lags in animations
                 		Thread.sleep(250);
                 		
-                		HoroscopeComLoader horoscopeComLoader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                		if (isCancelled()) return null;
+                		
                 		horoscopeCollection = horoscopeComLoader.loadCurrList();
+                		
+                		if (isCancelled()) return null;
                 		
                     	handler.post(new Runnable(){
 							@Override
@@ -311,6 +331,8 @@ public class ContentFragment extends BaseFragment{
 								mPullToRefreshLayout.setRefreshComplete();
 							}
                     	});
+                    	
+                    	if (isCancelled()) return null;
                     	
                     	//sleep to prevent lags in animations
                     	Thread.sleep(200);
@@ -324,35 +346,36 @@ public class ContentFragment extends BaseFragment{
 
                 @Override
                 protected void onPostExecute(Void result) {
-                	if (horoscopeCollection == null){
-                		scrollView.setVisibility(View.GONE);
-                    	errorLayout.setVisibility(View.VISIBLE);
-                    	errorRetryButton.setEnabled(true);
-                    	//with fly up animation
-                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-                    	errorLayout.startAnimation(flyUpAnimation);
-                		return;
+                	if (!isCancelled()){
+	                	if (horoscopeCollection == null){
+	                		scrollView.setVisibility(View.GONE);
+	                    	errorLayout.setVisibility(View.VISIBLE);
+	                    	errorRetryButton.setEnabled(true);
+	                    	//with fly up animation
+	                    	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+	                    	errorLayout.startAnimation(flyUpAnimation);
+	                		return;
+	                	}
+	                	//hide error 
+	    				errorLayout.setVisibility(View.INVISIBLE);
+	                	//set up content text view
+	                	finalString = new SpannableString[horoscopeCollection.size()];
+	                	int index = 0;
+	                	for (HoroscopeCollection one : horoscopeCollection){
+	                		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+	                		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                        finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                		index++;
+	                	}
+	                	textContent.setText(TextUtils.concat(finalString));
+	                	
+	                	scrollView.setVisibility(View.VISIBLE);
+	                	//with fly up animation
+	                	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
+	                	scrollView.startAnimation(flyUpAnimation);
                 	}
-                	//hide error 
-    				errorLayout.setVisibility(View.INVISIBLE);
-                	//set up content text view
-                	finalString = new SpannableString[horoscopeCollection.size()];
-                	int index = 0;
-                	for (HoroscopeCollection one : horoscopeCollection){
-                		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
-                		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                		index++;
-                	}
-                	textContent.setText(TextUtils.concat(finalString));
-                	
-                	scrollView.setVisibility(View.VISIBLE);
-                	//with fly up animation
-                	Animation flyUpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fly_up_anim);
-                	scrollView.startAnimation(flyUpAnimation);
-
                 }
             };
 			

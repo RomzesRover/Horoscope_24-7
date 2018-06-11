@@ -49,6 +49,7 @@ public class LoaderActivity extends BaseActivity {
 		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.subTitle)));
 	}
 	
+	@Override
 	public void onPause(){
 		//stopp all delayed stuff
 		handler.removeCallbacks(mainTask);
@@ -60,6 +61,7 @@ public class LoaderActivity extends BaseActivity {
 		super.onPause();
 	}
 	
+	@Override
 	public void onResume(){
 		super.onResume();
 		
