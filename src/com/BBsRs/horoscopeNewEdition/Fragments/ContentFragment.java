@@ -101,7 +101,7 @@ public class ContentFragment extends BaseFragment{
         .setup(mPullToRefreshLayout);
 		
 		 //if we have saved info after screen rotating or pause/stop app
-        if(savedInstanceState != null) {
+        if(savedInstanceState != null && !sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false)) {
         	horoscopeCollection = savedInstanceState.getParcelableArrayList(Constants.EXTRA_HOROSCOPE_COLLECTION);
         	if (horoscopeCollection != null){
         		//set up content text view
