@@ -33,6 +33,7 @@ public class Constants {
 	public static final String PREFERENCES_NOTIFICATIONS_TIME_MINUTE = "preference:show_notifications_time_minute";
 	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT = "preferences:show_interstitial_advertisement";
 	public static final String PREFERENCES_SHOW_BANNER_ADVERTISEMENT = "preferences:show_banner_advertisement";
+	public static final String PREFERENCES_HOROSCOPE_COLLECTION_TIME = "preferences:horoscope_collection_time";
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";
 	public static final String INTENT_FORCE_HIDE_UPDATE_LINE = "intent:force_hide_update_line";

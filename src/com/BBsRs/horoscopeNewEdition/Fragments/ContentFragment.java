@@ -163,13 +163,16 @@ public class ContentFragment extends BaseFragment{
         }
         
         //load curr
-        if (sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false) || horoscopeCollection == null){
+        if (sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false) || horoscopeCollection == null || (System.currentTimeMillis() - sPref.getLong(Constants.PREFERENCES_HOROSCOPE_COLLECTION_TIME, System.currentTimeMillis()) > 7200000)){
         	updateList();
         }
 	}
 	
 	@Override
 	public void onPause(){
+		//save time
+		sPref.edit().putLong(Constants.PREFERENCES_HOROSCOPE_COLLECTION_TIME, System.currentTimeMillis()).commit();
+		
 		//stop load curr
 		if (loadM != null && loadM.getStatus() == AsyncTask.Status.RUNNING){
 			mPullToRefreshLayout.setRefreshing(false);
