@@ -12,12 +12,6 @@ public class Constants {
 	public static final int BUNDLE_LIST_TYPE_YEARLY = 5;
 	
 	public static final String PREFERENCES_FORCE_UPDATE_X = "preferences_force_update_";
-	public static final String PREFERENCES_FORCE_UPDATE_YESTERDAY = "preferences_force_update_0";
-	public static final String PREFERENCES_FORCE_UPDATE_TODAY = "preferences_force_update_1";
-	public static final String PREFERENCES_FORCE_UPDATE_TOMORROW = "preferences_force_update_2";
-	public static final String PREFERENCES_FORCE_UPDATE_WEEKLY = "preferences_force_update_3";
-	public static final String PREFERENCES_FORCE_UPDATE_MONTHLY = "preferences_force_update_4";
-	public static final String PREFERENCES_FORCE_UPDATE_YEARLY = "preferences_force_update_5";
 	
 	public static final String EXTRA_HOROSCOPE_COLLECTION = "extra:horoscope_collection";
 	

@@ -176,12 +176,9 @@ public class SettingsFragment extends BasePreferenceFragment {
 					@Override
 					public void onClick(View v) {
 						Editor ed = sPref.edit();
-						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_YESTERDAY, true);
-						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_TODAY, true);
-						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_TOMORROW, true);
-						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_WEEKLY, true);
-						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_MONTHLY, true);
-						ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_YEARLY, true);
+						for (int i = 0; i <= 5; i++){
+							ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+i, true);
+						}
 						ed.commit();
 						zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
 						alert.dismiss();
