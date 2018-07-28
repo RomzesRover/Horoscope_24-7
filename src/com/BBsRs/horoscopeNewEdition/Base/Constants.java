@@ -33,5 +33,8 @@ public class Constants {
 	public static final String INTENT_FORCE_HIDE_UPDATE_LINE = "intent:force_hide_update_line";
 	public static final String INTENT_FORCE_SHOW_UPDATE_LINE = "intent:force_show_update_line";
 	
+	public static final String BROADCAST_INTENT_OPEN_APP = "broadcast:intent_open_app";
+	public static final String BROADCAST_INTENT_CLOSE_NOTIF = "broadcast:intent_close_notif";
+	
 
 }

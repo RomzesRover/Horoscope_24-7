@@ -1,10 +1,15 @@
 package com.BBsRs.horoscopeNewEdition;
 
+import java.util.Calendar;
+
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -16,6 +21,7 @@ import android.widget.ImageView;
 import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
+import com.BBsRs.horoscopeNewEdition.Services.NotificationService;
 
 public class LoaderActivity extends BaseActivity {
 	
@@ -33,6 +39,15 @@ public class LoaderActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    
+	    if (!isTaskRoot()) {
+	        // Android launched another instance of the root activity into an existing task
+	        //  so just quietly finish and go away, dropping the user back into the activity
+	        //  at the top of the stack (ie: the last state of this task)
+	        finish();
+	        return;
+	    }
+	    
         setContentView(R.layout.activity_loader);
         
         //set up preferences
@@ -141,6 +156,8 @@ public class LoaderActivity extends BaseActivity {
 	Runnable startApp = new Runnable(){
 		@Override
 		public void run() {
+			//update notif time al
+			scheduleUpdate(getApplicationContext());
         	//create intent
         	Intent refresh = new Intent(getApplicationContext(), ContentActivity.class);
 			//restart activity
@@ -151,5 +168,42 @@ public class LoaderActivity extends BaseActivity {
 		    finish();
 		}
 	};
+	
+    private void scheduleUpdate(Context context) {
+    	cancelUpdates(context);
+    	
+    	if (!sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true))
+    		return;
+    	
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        
+        Calendar currentDate = Calendar.getInstance();
+		currentDate.setTimeInMillis(System.currentTimeMillis());
+		currentDate.add(Calendar.SECOND, +30);
+		
+        Calendar workDate = Calendar.getInstance();
+        workDate.setTimeInMillis(System.currentTimeMillis());
+		
+		//send notification everyday at morning
+        workDate.set(Calendar.HOUR_OF_DAY, sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8));
+        workDate.set(Calendar.MINUTE, sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0));
+        workDate.set(Calendar.SECOND, 0);
+		
+        if (workDate.before(currentDate)){
+        	workDate.add(Calendar.DATE, +1);
+        }
+        
+        am.set(AlarmManager.RTC_WAKEUP, workDate .getTimeInMillis(), getUpdateIntent(context));
+    }
+    
+    public static PendingIntent getUpdateIntent(Context context) {
+        Intent i = new Intent(context, NotificationService.class);
+        return PendingIntent.getService(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+    
+    public static void cancelUpdates(Context context) {
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        am.cancel(getUpdateIntent(context));
+    }
 
 }

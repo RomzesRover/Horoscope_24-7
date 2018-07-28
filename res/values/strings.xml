@@ -27,6 +27,13 @@
     <string name="preference_show_notification_3">Notifications is disabled.</string>
     <string name="preference_time_1">Time</string>
     
+    <string-array name="notification_messages">
+        <item>A good day starts with a fresh horoscope reading!</item>
+        <item>Do not forget to learn your horoscope for today!</item>
+        <item>We have just been informed that awaits you today!</item>
+        <item>Let\'s find out if the stars favor you today!</item>
+    </string-array>
+    
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     
