@@ -1,5 +1,7 @@
 package com.BBsRs.horoscopeNewEdition.Base;
 
+import java.util.Locale;
+
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.TextView;
 
@@ -9,6 +11,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +24,17 @@ import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.R;
 
 public class BaseActivity extends Activity {
+	
+	public void setLocale(String lang) {
+		 Locale myLocale;
+	     myLocale = new Locale(lang);
+	     Resources res = getResources();
+	     DisplayMetrics dm = res.getDisplayMetrics();
+	     Configuration conf = res.getConfiguration();
+	     conf.locale = myLocale;
+	     res.updateConfiguration(conf, dm);
+	}
+	
 	@Override
 	public void onResume() {
 		super.onResume();
