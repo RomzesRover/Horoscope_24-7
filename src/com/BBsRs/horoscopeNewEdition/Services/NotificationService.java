@@ -1,7 +1,6 @@
 package com.BBsRs.horoscopeNewEdition.Services;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 import org.holoeverywhere.preference.PreferenceManager;
@@ -20,7 +19,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.BBsRs.horoscopeNewEdition.LoaderActivity;
 import com.BBsRs.horoscopeNewEdition.R;
@@ -47,6 +45,9 @@ public class NotificationService extends Service {
     	
     	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	
+    	if (!sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true))
+    		this.stopSelf();
     	
 		registerReceiver(startActivity, new IntentFilter(Constants.BROADCAST_INTENT_OPEN_APP));
 		registerReceiver(deleteNotification, new IntentFilter(Constants.BROADCAST_INTENT_CLOSE_NOTIF));

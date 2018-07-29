@@ -24,7 +24,10 @@ import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.BasePreferenceFragment;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
+import com.BBsRs.horoscopeNewEdition.Services.NotificationService;
 
 public class SettingsFragment extends BasePreferenceFragment {
 	
@@ -209,6 +213,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 				ed.putInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, hour);				
 				ed.commit();
 				notificationTime.setSummary(intPlusZero(hour) + ":" + intPlusZero(minute));
+				scheduleUpdate(getActivity());
 				return false;
 			}
         });
@@ -224,6 +229,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 				Editor ed = sPref.edit();   
 				ed.putBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, showNotifications.isChecked()); 	
 				ed.commit();
+				scheduleUpdate(getActivity());
 				return false;
 			}
         });
@@ -415,4 +421,41 @@ public class SettingsFragment extends BasePreferenceFragment {
     	
     	return personalNumber;
 	}
+	
+    private void scheduleUpdate(Context context) {
+    	cancelUpdates(context);
+    	
+    	if (!sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true))
+    		return;
+    	
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        
+        Calendar currentDate = Calendar.getInstance();
+		currentDate.setTimeInMillis(System.currentTimeMillis());
+		currentDate.add(Calendar.SECOND, +30);
+		
+        Calendar workDate = Calendar.getInstance();
+        workDate.setTimeInMillis(System.currentTimeMillis());
+		
+		//send notification everyday at morning
+        workDate.set(Calendar.HOUR_OF_DAY, sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8));
+        workDate.set(Calendar.MINUTE, sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0));
+        workDate.set(Calendar.SECOND, 0);
+		
+        if (workDate.before(currentDate)){
+        	workDate.add(Calendar.DATE, +1);
+        }
+        
+        am.set(AlarmManager.RTC_WAKEUP, workDate .getTimeInMillis(), getUpdateIntent(context));
+    }
+    
+    public static PendingIntent getUpdateIntent(Context context) {
+        Intent i = new Intent(context, NotificationService.class);
+        return PendingIntent.getService(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+    
+    public static void cancelUpdates(Context context) {
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        am.cancel(getUpdateIntent(context));
+    }
 }
