@@ -137,5 +137,10 @@
         <item>Dog</item>
         <item>Pig</item>
     </string-array>
+    
+    <string-array name="languages">
+        <item>English</item>
+        <item>Russian</item>
+    </string-array>
 
 </resources>
