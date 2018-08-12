@@ -3,6 +3,7 @@ package com.BBsRs.horoscopeNewEdition.Base;
 import java.util.Locale;
 
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.TextView;
 
 import android.animation.Animator;
@@ -25,14 +26,23 @@ import com.BBsRs.horoscopeNewEdition.R;
 
 public class BaseActivity extends Activity {
 	
-	public void setLocale(String lang) {
-		 Locale myLocale;
-	     myLocale = new Locale(lang);
-	     Resources res = getResources();
-	     DisplayMetrics dm = res.getDisplayMetrics();
-	     Configuration conf = res.getConfiguration();
-	     conf.locale = myLocale;
-	     res.updateConfiguration(conf, dm);
+	public void setLocale(SharedPreferences sPref) {
+		String lang = "en";
+	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
+	    case 1:
+	    	lang = "ru";
+	    	break;
+	    case 0: default:
+	    	lang = "en";
+	    	break;
+	    }
+		Locale myLocale;
+		myLocale = new Locale(lang);
+		Resources res = getResources();
+		DisplayMetrics dm = res.getDisplayMetrics();
+		Configuration conf = res.getConfiguration();
+		conf.locale = myLocale;
+		res.updateConfiguration(conf, dm);
 	}
 	
 	@Override

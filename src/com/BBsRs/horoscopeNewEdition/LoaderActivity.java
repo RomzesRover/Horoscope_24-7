@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -53,16 +52,7 @@ public class LoaderActivity extends BaseActivity {
         sPref = PreferenceManager.getDefaultSharedPreferences(this);
 	    
         //set app lang
-	    String locale = "en";
-	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
-	    case 1:
-	    	locale = "ru";
-	    	break;
-	    case 0: default:
-	    	locale = "en";
-	    	break;
-	    }
-        setLocale(locale);
+        setLocale(sPref);
 	    
         //start allother
         setContentView(R.layout.activity_loader);

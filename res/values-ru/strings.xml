@@ -4,143 +4,110 @@
     <string name="app_name">Гороскоп</string>
     <string name="version_name">3.0 Alpha</string>
     
-    <string name="app_name_to_upper_case">HOROSCOPE</string>
-    <string name="application_to_upper_case">APPLICATION</string>
-    <string name="settings">Settings</string>
-    <string name="about">About</string>
+    <string name="app_name_to_upper_case">ГОРОСКОП</string>
+    <string name="application_to_upper_case">ПРИЛОЖЕНИЕ</string>
+    <string name="settings">Настройки</string>
+    <string name="about">О приложении</string>
     
     <string name="introduce_slogan">Ваш личный ежедневный помощник</string>
     
-    <string name="error_message">Check your connection and try again.</string>
-    <string name="error_retry">Retry</string>
+    <string name="error_message">Проверьте ваше подключение к сети, и попробуйте снова.</string>
+    <string name="error_retry">Попробовать снова</string>
     
-    <string name="preference_base">Base</string>
-    <string name="preference_date_1">Birth date</string>
-    <string name="preference_date_check">Check your data is correct</string>
-    <string name="preference_date_set">Looks like %1$s is your zodiac sign, %2$s is your chinese zodiac sign, %3$d is your life-path number.</string>
-    <string name="preference_zodiac_sign_1">Zodiac sign</string>
-    <string name="preference_language_1">Language</string>
+    <string name="preference_base">Основные</string>
+    <string name="preference_date_1">День рождения</string>
+    <string name="preference_date_check">Проверьте правильность введеных данных</string>
+    <string name="preference_date_set">Кажется %1$s ваш знак зодиака, %2$s ваш Китайский знак зодиака, %3$d ваше число пути.</string>
+    <string name="preference_zodiac_sign_1">Знак зодиака</string>
+    <string name="preference_language_1">Язык</string>
     
-    <string name="preference_notifications">Notifications</string>
-    <string name="preference_show_notification_1">Show notifications</string>
-    <string name="preference_show_notification_2">Notifications will popup at the setted time.</string>
-    <string name="preference_show_notification_3">Notifications is disabled.</string>
-    <string name="preference_time_1">Time</string>
+    <string name="preference_notifications">Уведомления</string>
+    <string name="preference_show_notification_1">Показ уведомлений</string>
+    <string name="preference_show_notification_2">Уведомления будут приходить в указанное время если смартфон активен, иначе позже.</string>
+    <string name="preference_show_notification_3">Уведомления выключены.</string>
+    <string name="preference_time_1">Время</string>
     
     <string-array name="notification_messages">
-        <item>A good day starts with a fresh horoscope reading!</item>
-        <item>Do not forget to learn your horoscope for today!</item>
-        <item>We have just been informed that awaits you today!</item>
-        <item>Let\'s find out if the stars favor you today!</item>
+        <item>Хороший день начинается с прочтения свежего гороскопа!</item>
+        <item>Не забудьте узнать ваш прогноз на сегодня!</item>
+        <item>Нам только что сообщили, что ждёт вас сегодня!</item>
+        <item>Давайте выясним, благоволят ли звезды вам сегодня!</item>
     </string-array>
     
     <string name="ok">Ok</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Отмена</string>
     
-    <string name="loveapp">Love this app?</string>
+    <string name="loveapp">Нравится это приложение?</string>
     <string name="googleplay">Google Play</string>
-    <string name="googleplay_summary">Leave us review on Google Play</string>
-    <string name="share">Share app</string>
-    <string name="share_text_comment">Here is my horoscope for %1$s for %2$s zodiac sign.</string>
-    <string name="share_summary">Share app page to friends</string>
-    <string name="share_comment">Here is a handy app with horoscopes:</string>
+    <string name="googleplay_summary">Оставьте отзыв на Google Play</string>
+    <string name="share">Поделиться</string>
+    <string name="share_text_comment">Мой гороскоп на %1$s для знака зодиака %2$s.</string>
+    <string name="share_summary">Поделитесь приложением с друзьями</string>
+    <string name="share_comment">Вот удобное приложение с гороскопами:</string>
     <string name="share_google_play">Google Play</string>
-    <string name="share_google_play_summary">Link to the page of application on Google Play</string>
+    <string name="share_google_play_summary">Страница приложения в Google Play</string>
     <string name="share_link_google_play">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeNewEdition</string>
-    <string name="share_landing">Landing</string>
-    <string name="share_landing_summary">Link to the landing page on brothers rovers\'s website</string>
-    <string name="share_link_landing">http://brothers-rovers.ru/horoscope_en.html</string>
-    <string name="advertisement">Advertisement</string>
-    <string name="advertisement_summary">Turn off the advertisement</string>
-    <string name="advertisement_interstitials">Interstitials</string>
-    <string name="advertisement_interstitials_summary">You can disable interstitial advertisement for free</string>
-    <string name="advertisement_interstitials_disabled_summary">Interstitial advertisement is disabled</string>
-    <string name="advertisement_banners">Banners</string>
-    <string name="advertisement_banners_summary">You can disable advertisement banners and get extra functions for 2.45$</string>
-    <string name="advertisement_banners_disabled_summary">Banners advertisement is successful disabled</string>
+    <string name="share_landing">Личная</string>
+    <string name="share_landing_summary">Личная страница приложения на сайте brothers rovers</string>
+    <string name="share_link_landing">http://brothers-rovers.ru/horoscope_ru.html</string>
+    <string name="advertisement">Реклама</string>
+    <string name="advertisement_summary">Отключите рекламу</string>
+    <string name="advertisement_interstitials">Межстраничная</string>
+    <string name="advertisement_interstitials_summary">Вы можете отключить Межстраничную рекламу бесплатно.</string>
+    <string name="advertisement_interstitials_disabled_summary">Межстраничная реклама успешно отключена</string>
+    <string name="advertisement_banners">Баннеры</string>
+    <string name="advertisement_banners_summary">Вы можете отключить баннерную рекламу за 99р.</string>
+    <string name="advertisement_banners_disabled_summary">Баннерная реклама успешно отключена</string>
     
-    <string name="feedback">Feedback</string>
+    <string name="feedback">Обратная связь</string>
     <string name="instagram">Instagram</string>
-    <string name="instagram_summary">Follow the updates or ask questions</string>
+    <string name="instagram_summary">Подписывайтесь на обновления и задавайте вопросы</string>
     <string name="instagram_link">https://www.instagram.com/dailyhoroscopefree/</string>
-    <string name="vk">VKontakte</string>
-    <string name="vk_summary">Follow the updates or ask questions</string>
+    <string name="vk">ВКонтакте</string>
+    <string name="vk_summary">Подписывайтесь на обновления и задавайте вопросы</string>
     <string name="vk_link">https://vk.com/brothersrovers</string>
     <string name="facebook">Facebook</string>
-    <string name="facebook_summary">Follow the updates or ask questions</string>
+    <string name="facebook_summary">Подписывайтесь на обновления и задавайте вопросы</string>
     <string name="facebook_link">https://www.facebook.com/horoscopeFullNew/</string>
     
-    <string name="developer">Developer</string>
+    <string name="developer">Разработчик</string>
     <string name="brothersrovers">Brothers Rovers</string>
-    <string name="brothersrovers_summary">Founded in Russia, Bashkortostan</string>
+    <string name="brothersrovers_summary">Основано в России, Башкортостан</string>
     <string name="brothersrovers_link">http://brothers-rovers.ru/</string>
     
-    
-    <string-array name="horoscope_com_horoscopes">
-    	<item>Yesterday</item>
-        <item>Today</item>
-        <item>Tomorrow</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
-        <item>Year 2018</item>
-    </string-array>
-    <string-array name="horoscope_com_kinds">
-    	<item>Sun sign</item>
-        <item>Love</item>
-        <item>Career</item>
-        <item>Money</item>
-        <item>Health</item>
-        <item>Chinese</item>
-        <item>Numerology</item>
-    </string-array>
-    <string-array name="horoscope_com_yearly_zodiac_signs">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
-    </string-array>
-    
     <string-array name="zodiac_signs">
-        <item>Ram / Aries</item>
-        <item>Bull / Taurus</item>
-        <item>Twins / Gemini</item>
-        <item>Crab / Cancer</item>
-        <item>Lion / Leo</item>
-        <item>Maiden / Virgo</item>
-        <item>Scales / Libra</item>
-        <item>Scorpion / Scorpio</item>
-        <item>Archer / Sagittarius</item>
-        <item>Goat-horned / Capricorn</item>
-        <item>Water-Bearer / Aquarius</item>
-        <item>Fish / Pisces</item>
+        <item>Овен</item>
+        <item>Телец</item>
+        <item>Близнецы</item>
+        <item>Рак</item>
+        <item>Лев</item>
+        <item>Дева</item>
+        <item>Весы</item>
+        <item>Скорпион</item>
+        <item>Стрелец</item>
+        <item>Козерог</item>
+        <item>Водолей</item>
+        <item>Рыбы</item>
     </string-array>
     
     <string-array name="chinese_zodiac_signs">
-        <item>Rat</item>
-        <item>Ox</item>
-        <item>Tiger</item>
-        <item>Rabbit</item>
-        <item>Dragon</item>
-		<item>Snake</item>
-        <item>Horse</item>
-        <item>Goat</item>
-        <item>Monkey</item>
-        <item>Rooster</item>
-        <item>Dog</item>
-        <item>Pig</item>
+        <item>Крыса/мышь</item>
+        <item>Бык/вол</item>
+        <item>Тигр</item>
+        <item>Кролик/кот</item>
+        <item>Дракон</item>
+		<item>Змея</item>
+        <item>Лошадь</item>
+        <item>Коза/овца</item>
+        <item>Обезьяна</item>
+        <item>Петух</item>
+        <item>Собака</item>
+        <item>Свинья/кабан</item>
     </string-array>
     
     <string-array name="languages">
         <item>English</item>
-        <item>Russian</item>
+        <item>Русский</item>
     </string-array>
 
 </resources>
