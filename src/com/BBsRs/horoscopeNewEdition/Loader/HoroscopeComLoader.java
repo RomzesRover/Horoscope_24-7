@@ -12,24 +12,13 @@ import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 
-public class HoroscopeComLoader {
+public class HoroscopeComLoader extends Loader{
 	
-	int listType;
-    // preferences 
-    SharedPreferences sPref;
-    Context context;
-    boolean cancelLoad = false;
-	
-	public HoroscopeComLoader(int _listType, SharedPreferences _sPref, Context _context){
-		listType = _listType;
-		sPref = _sPref;
-		context = _context;
+	public HoroscopeComLoader(int listType, SharedPreferences sPref, Context context) {
+		super(listType, sPref, context);
 	}
-	
-	public void abortLoad(){
-		cancelLoad = true;
-	}
-	
+
+	@Override
 	public ArrayList<HoroscopeCollection> loadCurrList(){
 		try {
 			Document doc;

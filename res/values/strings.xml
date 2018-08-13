@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <string name="user_agent">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17</string>
+    <integer name="user_timeout">10000</integer>
 
     <string name="app_name">Horoscope</string>
     <string name="version_name">3.0 Alpha</string>
@@ -23,7 +26,7 @@
     
     <string name="preference_notifications">Notifications</string>
     <string name="preference_show_notification_1">Show notifications</string>
-    <string name="preference_show_notification_2">Notifications will popup at the setted time.</string>
+    <string name="preference_show_notification_2">Notifications will popup at the setted time if smartphone is in active, otherwise later.</string>
     <string name="preference_show_notification_3">Notifications is disabled.</string>
     <string name="preference_time_1">Time</string>
     
@@ -40,7 +43,7 @@
     <string name="loveapp">Love this app?</string>
     <string name="googleplay">Google Play</string>
     <string name="googleplay_summary">Leave us review on Google Play</string>
-    <string name="share">Share app</string>
+    <string name="share">Share</string>
     <string name="share_text_comment">Here is my horoscope for %1$s for %2$s zodiac sign.</string>
     <string name="share_summary">Share app page to friends</string>
     <string name="share_comment">Here is a handy app with horoscopes:</string>
@@ -75,39 +78,6 @@
     <string name="brothersrovers_summary">Founded in Russia, Bashkortostan</string>
     <string name="brothersrovers_link">http://brothers-rovers.ru/</string>
     
-    
-    <string-array name="horoscope_com_horoscopes">
-    	<item>Yesterday</item>
-        <item>Today</item>
-        <item>Tomorrow</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
-        <item>Year 2018</item>
-    </string-array>
-    <string-array name="horoscope_com_kinds">
-    	<item>Sun sign</item>
-        <item>Love</item>
-        <item>Career</item>
-        <item>Money</item>
-        <item>Health</item>
-        <item>Chinese</item>
-        <item>Numerology</item>
-    </string-array>
-    <string-array name="horoscope_com_yearly_zodiac_signs">
-        <item>aries</item>
-        <item>taurus</item>
-        <item>gemini</item>
-        <item>cancer</item>
-        <item>leo</item>
-        <item>virgo</item>
-        <item>libra</item>
-        <item>scorpio</item>
-        <item>sagittarius</item>
-        <item>capricorn</item>
-        <item>aquarius</item>
-        <item>pisces</item>
-    </string-array>
-    
     <string-array name="zodiac_signs">
         <item>Ram / Aries</item>
         <item>Bull / Taurus</item>
@@ -140,7 +110,7 @@
     
     <string-array name="languages">
         <item>English</item>
-        <item>Russian</item>
+        <item>Русский</item>
     </string-array>
 
 </resources>

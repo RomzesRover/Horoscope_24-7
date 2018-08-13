@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="horoscope_com_horoscopes">
+    	<item>Yesterday</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Year 2018</item>
+    </string-array>
+    <string-array name="horoscope_com_kinds">
+    	<item>Sun sign</item>
+        <item>Love</item>
+        <item>Career</item>
+        <item>Money</item>
+        <item>Health</item>
+        <item>Chinese</item>
+        <item>Numerology</item>
+    </string-array>
+    <string-array name="horoscope_com_yearly_zodiac_signs">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
+</resources>

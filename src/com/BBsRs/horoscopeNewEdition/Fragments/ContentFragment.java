@@ -46,6 +46,8 @@ import com.BBsRs.horoscopeNewEdition.Base.BaseFragment;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 import com.BBsRs.horoscopeNewEdition.Loader.HoroscopeComLoader;
+import com.BBsRs.horoscopeNewEdition.Loader.Loader;
+import com.BBsRs.horoscopeNewEdition.Loader.MailRuLoader;
 
 public class ContentFragment extends BaseFragment{
 	
@@ -107,14 +109,15 @@ public class ContentFragment extends BaseFragment{
         		//set up content text view
 	        	finalString = new SpannableString[horoscopeCollection.size()];
 	        	int index = 0;
-	        	for (HoroscopeCollection one : horoscopeCollection){
-	        		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
-	        		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	                finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-	                finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	        		index++;
-	        	}
+            	for (HoroscopeCollection one : horoscopeCollection){
+            		int htmlFromHtmlOneTitleLength = Html.fromHtml(one.title).length();
+            		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+            		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), htmlFromHtmlOneTitleLength+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), htmlFromHtmlOneTitleLength+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            		index++;
+            	}
 	        	textContent.setText(TextUtils.concat(finalString));
 	        	
 	        	scrollView.setVisibility(View.VISIBLE);
@@ -262,16 +265,27 @@ public class ContentFragment extends BaseFragment{
 		public void onRefreshStarted(View view) {
 			loadM = new AsyncTask<Void, Void, Void>() {
 				
-				HoroscopeComLoader horoscopeComLoader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+				Loader loader = null;
 				
 			    @Override
 			    protected void onCancelled() {
-			    	horoscopeComLoader.abortLoad();
+			    	if (loader != null)
+			    		loader.abortLoad();
 			    	super.onCancelled();
 			    }
 				 
                 @Override
                 protected Void doInBackground(Void... params) {
+                	
+            	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
+            	    case 1:
+            	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+            	    	break;
+            	    case 0: default:
+            	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+            	    	break;
+            	    }
+                	
                 	try {
                 		//hide prev state
                 		horoscopeCollection = null;
@@ -324,7 +338,7 @@ public class ContentFragment extends BaseFragment{
                 		
                 		if (isCancelled()) return null;
                 		
-                		horoscopeCollection = horoscopeComLoader.loadCurrList();
+                		horoscopeCollection = loader.loadCurrList();
                 		
                 		if (isCancelled()) return null;
                 		
@@ -365,11 +379,12 @@ public class ContentFragment extends BaseFragment{
 	                	finalString = new SpannableString[horoscopeCollection.size()];
 	                	int index = 0;
 	                	for (HoroscopeCollection one : horoscopeCollection){
+	                		int htmlFromHtmlOneTitleLength = Html.fromHtml(one.title).length();
 	                		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
-	                		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, one.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-	                        finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), one.title.length()+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                        finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), htmlFromHtmlOneTitleLength+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_NORMAL), htmlFromHtmlOneTitleLength+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 	                		index++;
 	                	}
 	                	textContent.setText(TextUtils.concat(finalString));

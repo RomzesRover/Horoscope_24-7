@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mail_ru_horoscopes">
+        <item>Вчера</item>
+        <item>Сегодня</item>
+        <item>Завтра</item>
+        <item>Неделя</item>
+        <item>Месяц</item>
+        <item>Год</item>
+    </string-array>
+    <string-array name="mail_ru_to_load_zodiac_signs">
+        <item>aries</item>
+        <item>taurus</item>
+        <item>gemini</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>scorpio</item>
+        <item>sagittarius</item>
+        <item>capricorn</item>
+        <item>aquarius</item>
+        <item>pisces</item>
+    </string-array>
+    <string-array name="mail_ru_kinds">
+    	<item>Знак солнца</item>
+        <item>Нумерология</item>
+    </string-array>
+    <string-array name="moths_of_year">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
+    
+    <string-array name="moth_of_year">
+        <item>январь</item>
+        <item>февраль</item>
+        <item>март</item>
+        <item>апрель</item>
+        <item>май</item>
+        <item>июнь</item>
+        <item>июль</item>
+        <item>август</item>
+        <item>сентябрь</item>
+        <item>октябрь</item>
+        <item>ноябрь</item>
+        <item>декабрь</item>
+    </string-array>
+</resources>
