@@ -269,6 +269,13 @@ public class SettingsFragment extends BasePreferenceFragment {
 					public void onClick(View v) {
 						language.setSummary(getResources().getStringArray(R.array.languages)[sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)]);
 						alert.dismiss();
+						Editor ed = sPref.edit();  
+						ed.putBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, true); 	
+						ed.commit();
+						Intent intent = getActivity().getIntent();
+						getActivity().finish();
+						startActivity(intent);
+						getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
 					}
 				});
 		    	

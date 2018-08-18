@@ -4,6 +4,7 @@ import org.holoeverywhere.addon.AddonSlider;
 import org.holoeverywhere.addon.Addons;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
 
 import android.content.BroadcastReceiver;
@@ -87,6 +88,7 @@ public class ContentActivity extends BaseActivity {
         Bundle yearly  = new Bundle();
         yearly.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_YEARLY);
         
+        int prefId=0;
 	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
 	    case 1:
 	        yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.mail_ru_horoscopes)[0]);
@@ -102,6 +104,7 @@ public class ContentActivity extends BaseActivity {
 			sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[3], ContentFragment.class, weekly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[4], ContentFragment.class, monthly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[5], ContentFragment.class, yearly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			prefId=7;
 	    	break;
 	    case 0: default:
 	        yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscope_com_horoscopes)[0]);
@@ -117,6 +120,7 @@ public class ContentActivity extends BaseActivity {
 			sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[3], ContentFragment.class, weekly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[4], ContentFragment.class, monthly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscope_com_horoscopes)[5], ContentFragment.class, yearly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			prefId=7;
 	    	break;
 	    }
         
@@ -128,7 +132,13 @@ public class ContentActivity extends BaseActivity {
 		
 		//set curent page to mainFragment only if fisrt launch Activity
 		if ((savedInstanceState == null))
-			sliderMenu.setCurrentPage(2);
+			if (sPref.getBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, false)){
+				Editor ed = sPref.edit();  
+				ed.putBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, false); 	
+				ed.commit();
+				sliderMenu.setCurrentPage(prefId);
+			} else 
+				sliderMenu.setCurrentPage(2);
     }
     
     @Override

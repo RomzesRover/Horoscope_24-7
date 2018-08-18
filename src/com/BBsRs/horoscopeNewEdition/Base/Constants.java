@@ -29,6 +29,7 @@ public class Constants {
 	public static final String PREFERENCES_SHOW_BANNER_ADVERTISEMENT = "preferences:show_banner_advertisement";
 	public static final String PREFERENCES_HOROSCOPE_COLLECTION_TIME = "preferences:horoscope_collection_time";
 	public static final String PREFERENCES_CURRENT_LANGUAGE = "preferences:current_language";
+	public static final String PREFERENCES_OPEN_SETTINGS_FIRST = "preferences:open_settings_first";
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";
 	public static final String INTENT_FORCE_HIDE_UPDATE_LINE = "intent:force_hide_update_line";
