@@ -67,6 +67,9 @@ public class SettingsFragment extends BasePreferenceFragment {
       	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         
+        //set app lang
+        setLocale(sPref);
+        
         addPreferencesFromResource(R.xml.settings);
         
         //programming each preferences
