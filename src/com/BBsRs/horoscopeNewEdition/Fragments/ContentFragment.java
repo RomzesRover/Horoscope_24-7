@@ -27,6 +27,7 @@ import android.text.Layout.Alignment;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.text.style.AlignmentSpan;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -111,7 +112,7 @@ public class ContentFragment extends BaseFragment{
 	        	int index = 0;
             	for (HoroscopeCollection one : horoscopeCollection){
             		int htmlFromHtmlOneTitleLength = Html.fromHtml(one.title).length();
-            		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+            		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br />"+ one.copyrightLink+"<br /><br />"));
             		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                     finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), htmlFromHtmlOneTitleLength+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -119,6 +120,7 @@ public class ContentFragment extends BaseFragment{
             		index++;
             	}
 	        	textContent.setText(TextUtils.concat(finalString));
+	        	textContent.setMovementMethod(LinkMovementMethod.getInstance());
 	        	
 	        	scrollView.setVisibility(View.VISIBLE);
 	        	//with fly up animation
@@ -380,7 +382,7 @@ public class ContentFragment extends BaseFragment{
 	                	int index = 0;
 	                	for (HoroscopeCollection one : horoscopeCollection){
 	                		int htmlFromHtmlOneTitleLength = Html.fromHtml(one.title).length();
-	                		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br /><br />"));
+	                		finalString[index] = new SpannableString(Html.fromHtml(one.title +"<br /><br />"+ one.content+"<br />"+ one.copyrightLink+"<br /><br />"));
 	                		finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.MEDIUM)), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 	                        finalString[index].setSpan(new AlignmentSpan.Standard(Alignment.ALIGN_CENTER), 0, htmlFromHtmlOneTitleLength, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 	                        finalString[index].setSpan(new CustomTypefaceSpan("", Typeface.createFromAsset(getActivity().getAssets(), SFUIFontsPath.LIGHT)), htmlFromHtmlOneTitleLength+1, finalString[index].length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -388,6 +390,7 @@ public class ContentFragment extends BaseFragment{
 	                		index++;
 	                	}
 	                	textContent.setText(TextUtils.concat(finalString));
+	                	textContent.setMovementMethod(LinkMovementMethod.getInstance());
 	                	
 	                	scrollView.setVisibility(View.VISIBLE);
 	                	//with fly up animation

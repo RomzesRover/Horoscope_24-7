@@ -31,4 +31,6 @@
         <item>aquarius</item>
         <item>pisces</item>
     </string-array>
+    
+    <string name="horoscope_com_copyright">© horoscope.com</string>
 </resources>

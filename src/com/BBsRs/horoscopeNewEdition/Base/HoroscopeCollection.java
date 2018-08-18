@@ -22,11 +22,12 @@ public class HoroscopeCollection implements Parcelable, Serializable {
 	private static final long serialVersionUID = -4356107655512129128L;
 	public String title;
 	public String content;
-	
+	public String copyrightLink;
 
-  public HoroscopeCollection(String _title, String _content) {
+  public HoroscopeCollection(String _title, String _content, String _copyrightLink) {
 	    title = _title;
 	    content = _content;
+	    copyrightLink = _copyrightLink;
   }
   
 
@@ -39,12 +40,14 @@ public int describeContents() {
 private HoroscopeCollection(Parcel in) {
     title = in.readString();
     content = in.readString();
+    copyrightLink = in.readString();
 }
 
 @Override
 public void writeToParcel(Parcel out, int flags) {
      out.writeString(title);
      out.writeString(content);
+     out.writeString(copyrightLink);
 }
 
 public static final Parcelable.Creator<HoroscopeCollection> CREATOR = new Parcelable.Creator<HoroscopeCollection>() {

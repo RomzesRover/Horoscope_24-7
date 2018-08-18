@@ -55,4 +55,6 @@
         <item>ноябрь</item>
         <item>декабрь</item>
     </string-array>
+    
+    <string name="mail_ru_copyright">© horo.mail.ru</string>
 </resources>

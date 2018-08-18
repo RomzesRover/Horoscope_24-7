@@ -22,4 +22,7 @@
     <color name="intro_main_text">#fff</color>
     <color name="intro_second_text">#8c8d92</color>
     
+    <color name="content_text">#fff</color>
+    <color name="content_link">#576586</color>
+    
 </resources>
