@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -50,7 +51,10 @@ public class LoaderActivity extends BaseActivity {
 	    
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(this);
-	    
+        
+        //set date format
+        sPref.edit().putInt(Constants.PREFERENCES_DATE_FORMAT, getResources().getInteger(R.integer.date_format)).commit();
+	  
         //set app lang
         setLocale(sPref);
 	    

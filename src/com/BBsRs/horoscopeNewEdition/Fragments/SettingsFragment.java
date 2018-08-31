@@ -348,19 +348,12 @@ public class SettingsFragment extends BasePreferenceFragment {
     public void updateSummary(){
         //update summary
     	SimpleDateFormat format1;
+    	if (sPref.getInt(Constants.PREFERENCES_DATE_FORMAT, 0) == 1 && sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0) == 0)
+    		format1 = new SimpleDateFormat("MM.dd.yyyy");
+    	else
+    		format1 = new SimpleDateFormat("dd.MM.yyyy");
         cal = Calendar.getInstance();
         cal.set(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20), sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH)), sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)));
-        switch(getResources().getInteger(R.integer.date_format)){
-        case 0: 
-        	format1 = new SimpleDateFormat("dd.MM.yyyy");
-        	break;
-        case 1:
-        	format1 = new SimpleDateFormat("MM.dd.yyyy");
-        	break;
-        default:
-        	format1 = new SimpleDateFormat("dd.MM.yyyy");
-        	break;
-        }
         dateBorn.setSummary(format1.format(cal.getTime()));
         zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
         language.setSummary(getResources().getStringArray(R.array.languages)[sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)]);
