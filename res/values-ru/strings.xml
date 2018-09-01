@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<integer name="default_language">1</integer>
     <string name="app_name">Гороскоп</string>
     <string name="version_name">3.0 Alpha</string>
     
@@ -37,6 +37,7 @@
     <string name="ok">Ok</string>
     <string name="cancel">Отмена</string>
     
+    <string name="start">Начать!</string>
     <string name="loveapp">Нравится это приложение?</string>
     <string name="googleplay">Google Play</string>
     <string name="googleplay_summary">Оставьте отзыв на Google Play</string>

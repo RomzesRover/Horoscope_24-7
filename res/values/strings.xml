@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+    <integer name="default_language">0</integer>
     <string name="user_agent">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17</string>
     <integer name="user_timeout">10000</integer>
 
@@ -40,6 +40,7 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     
+    <string name="start">Start!</string>
     <string name="loveapp">Love this app?</string>
     <string name="googleplay">Google Play</string>
     <string name="googleplay_summary">Leave us review on Google Play</string>

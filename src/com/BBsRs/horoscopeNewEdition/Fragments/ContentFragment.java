@@ -279,7 +279,7 @@ public class ContentFragment extends BaseFragment{
                 @Override
                 protected Void doInBackground(Void... params) {
                 	
-            	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
+            	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
             	    case 1:
             	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
             	    	break;

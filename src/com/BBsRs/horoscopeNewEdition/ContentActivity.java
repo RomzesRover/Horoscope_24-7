@@ -89,7 +89,7 @@ public class ContentActivity extends BaseActivity {
         yearly.putInt(Constants.BUNDLE_LIST_TYPE, Constants.BUNDLE_LIST_TYPE_YEARLY);
         
         int prefId=0;
-	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
+	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
 	    case 1:
 	        yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.mail_ru_horoscopes)[0]);
 	        today.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.mail_ru_horoscopes)[1]);

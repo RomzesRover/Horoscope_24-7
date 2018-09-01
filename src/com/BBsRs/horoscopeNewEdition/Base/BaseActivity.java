@@ -28,7 +28,7 @@ public class BaseActivity extends Activity {
 	
 	public void setLocale(SharedPreferences sPref) {
 		String lang = "en";
-	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)){
+	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
 	    case 1:
 	    	lang = "ru";
 	    	break;

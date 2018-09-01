@@ -264,13 +264,13 @@ public class SettingsFragment extends BasePreferenceFragment {
 		            }
 		        });
 		        
-		        final int indexCalculated = sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0);
+		        final int indexCalculated = sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language));
 		        list.setItemChecked(indexCalculated, true);
 				
 				apply.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						language.setSummary(getResources().getStringArray(R.array.languages)[sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)]);
+						language.setSummary(getResources().getStringArray(R.array.languages)[sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))]);
 						alert.dismiss();
 						Editor ed = sPref.edit();  
 						ed.putBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, true); 	
@@ -348,7 +348,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     public void updateSummary(){
         //update summary
     	SimpleDateFormat format1;
-    	if (sPref.getInt(Constants.PREFERENCES_DATE_FORMAT, 0) == 1 && sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0) == 0)
+    	if (sPref.getInt(Constants.PREFERENCES_DATE_FORMAT, 0) == 1 && sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language)) == 0)
     		format1 = new SimpleDateFormat("MM.dd.yyyy");
     	else
     		format1 = new SimpleDateFormat("dd.MM.yyyy");
@@ -356,7 +356,7 @@ public class SettingsFragment extends BasePreferenceFragment {
         cal.set(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20), sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH)), sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)));
         dateBorn.setSummary(format1.format(cal.getTime()));
         zodiacSign.setSummary(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
-        language.setSummary(getResources().getStringArray(R.array.languages)[sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, 0)]);
+        language.setSummary(getResources().getStringArray(R.array.languages)[sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))]);
         notificationTime.setEnabled(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true));
         notificationTime.setSummary(intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8)) + ":" + intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0)));
         showNotifications.setSummary(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true) ? getResources().getString(R.string.preference_show_notification_2) : getResources().getString(R.string.preference_show_notification_3));
