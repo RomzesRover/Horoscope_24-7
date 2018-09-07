@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="go_astro_de_horoscopes">
+        <item>Gestern</item>
+        <item>Heute</item>
+        <item>Morgen</item>
+        <item>Woche</item>
+        <item>Monat</item>
+    </string-array>
+
+    <string-array name="goastro_de_to_load_zodiac_signs">
+        <item>widder-0</item>
+        <item>stier-1</item>
+        <item>zwillinge-2</item>
+        <item>krebs-3</item>
+        <item>loewe-4</item>
+        <item>jungfrau-5</item>
+        <item>waage-6</item>
+        <item>skorpion-7</item>
+        <item>schuetze-8</item>
+        <item>steinbock-9</item>
+        <item>wassermann-10</item>
+        <item>fische-11</item>
+    </string-array>
+    
+    <string-array name="goastro_de_to_load_zodiac_signs_no_id">
+        <item>widder</item>
+        <item>stier</item>
+        <item>zwillinge</item>
+        <item>krebs</item>
+        <item>loewe</item>
+        <item>jungfrau</item>
+        <item>waage</item>
+        <item>skorpion</item>
+        <item>schuetze</item>
+        <item>steinbock</item>
+        <item>wassermann</item>
+        <item>fische</item>
+    </string-array>
+    
+    <string name="goastro_de_copyright">© goastro.de</string>
+</resources>

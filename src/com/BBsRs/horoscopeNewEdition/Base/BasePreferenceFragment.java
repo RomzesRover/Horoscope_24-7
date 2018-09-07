@@ -15,6 +15,9 @@ public class BasePreferenceFragment extends PreferenceFragment {
 	public void setLocale(SharedPreferences sPref) {
 		String lang = "en";
 	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
+	    case 2:
+	    	lang = "de";
+	    	break;
 	    case 1:
 	    	lang = "ru";
 	    	break;

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer name="default_language">1</integer>
+    <string name="app_name">Horoskop</string>
+    <string name="version_name">3.0 Alpha</string>
+    
+    <string name="app_name_to_upper_case">HOROSKOP</string>
+    <string name="application_to_upper_case">APPLIKATION</string>
+    <string name="settings">die Einstellungen</string>
+    <string name="about">Über App</string>
+    
+    <string name="introduce_slogan">Ihr persönlicher Tagesassistent</string>
+    
+    <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
+    <string name="error_retry">wiederholen</string>
+    
+    <string name="preference_base">Basis</string>
+    <string name="preference_date_1">Geburtsdatum</string>
+    <string name="preference_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
+    <string name="preference_date_set">Es scheint, %1$s dein Sternzeichen, %2$s dein chinesisches Sternzeichen, %3$d ist deine Wegnummer.</string>
+    <string name="preference_zodiac_sign_1">Wählen Sie Ihr Sternzeichen</string>
+    <string name="preference_language_1">Sprache</string>
+    
+    <string name="preference_notifications">Benachrichtigungen</string>
+    <string name="preference_show_notification_1">Benachrichtigungen anzeigen</string>
+    <string name="preference_show_notification_2">Benachrichtigungen werden zur angegebenen Zeit ankommen, wenn das Smartphone aktiv ist, andernfalls später.</string>
+    <string name="preference_show_notification_3">Benachrichtigungen sind deaktiviert.</string>
+    <string name="preference_time_1">Zeit</string>
+    
+    <string-array name="notification_messages">
+		<item>Ein guter Tag beginnt mit einem frischen Horoskop Lesen!</item>
+        <item>Vergessen Sie nicht, Ihr Horoskop für heute lernen!</item>
+        <item>Wir haben gerade darüber informiert, dass Sie heute erwartet!</item>
+        <item>Lassen Sie uns herausfinden, ob die Sterne bevorzugen Sie noch heute!</item>
+    </string-array>
+    
+	<string name="ok">Ok</string>
+    <string name="cancel">Stornieren</string>
+    
+    <string name="start">Starten!</string>
+    <string name="loveapp">Lieben Sie diese App?</string>
+    <string name="googleplay">Google Play</string>
+    <string name="googleplay_summary">Lass uns bei Google Play bewerten</string>
+    <string name="share">App teilen</string>
+    <string name="share_text_comment">Mein Horoskop für den %1$s für Sternzeichen %2$s.</string>
+    <string name="share_summary">App-Seite an Freunde weitergeben</string>
+    <string name="share_comment">Hier ist eine praktische App mit Horoskopen:</string>
+    <string name="share_google_play">Google Play</string>
+    <string name="share_google_play_summary">Link zur Anwendungsseite bei Google Play</string>
+    <string name="share_link_google_play">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeNewEdition</string>
+    <string name="share_landing">Zielseite</string>
+    <string name="share_landing_summary">Link zur Zielseite auf der Brothers Rovers-Website</string>
+    <string name="share_link_landing">http://brothers-rovers.ru/horoscope_de.html</string>
+    <string name="advertisement">Werbung</string>
+    <string name="advertisement_summary">Schalten Sie die Werbung aus</string>
+    <string name="advertisement_interstitials">Interstitials</string>
+    <string name="advertisement_interstitials_summary">Sie können Interstitial-Werbung kostenlos deaktivieren.</string>
+    <string name="advertisement_interstitials_disabled_summary">Interstitielle Werbung ist deaktiviert</string>
+    <string name="advertisement_banners">Banner</string>
+    <string name="advertisement_banners_summary">Sie können Werbebanner deaktivieren und zusätzliche Funktionen erhalten: 2.45 $</string>
+    <string name="advertisement_banners_disabled_summary">Bannerwerbung ist erfolgreich deaktiviert</string>
+    
+    <string name="feedback">Feedback</string>
+    <string name="instagram">Instagram</string>
+    <string name="instagram_summary">Befolgen Sie die Updates oder stellen Sie Fragen</string>
+    <string name="instagram_link">https://www.instagram.com/dailyhoroscopefree/</string>
+    <string name="vk">VKontakte</string>
+    <string name="vk_summary">Befolgen Sie die Updates oder stellen Sie Fragen</string>
+    <string name="vk_link">https://vk.com/brothersrovers</string>
+    <string name="facebook">Facebook</string>
+    <string name="facebook_summary">Befolgen Sie die Updates oder stellen Sie Fragen</string>
+    <string name="facebook_link">https://www.facebook.com/horoscopeFullNew/</string>
+    
+    <string name="developer">Entwickler</string>
+    <string name="brothersrovers">Brothers Rovers</string>
+    <string name="brothersrovers_summary">Gegründet in Russland, Baschkortostan</string>
+    <string name="brothersrovers_link">http://brothers-rovers.ru/</string>
+    
+    <string-array name="zodiac_signs">
+        <item>Widder</item>
+        <item>Stier</item>
+        <item>Zwilling</item>
+        <item>Krebs</item>
+        <item>Löwe</item>
+        <item>Jungfrau</item>
+        <item>Waage</item>
+        <item>Skorpion</item>
+        <item>Schütze</item>
+        <item>Steinbock</item>
+        <item>Wassermann</item>
+        <item>Fische</item>
+    </string-array>
+    
+    <string-array name="languages">
+        <item>English</item>
+        <item>Русский</item>
+        <item>Deutsch</item>
+        <item>Español</item>
+    </string-array>
+
+</resources>

@@ -90,6 +90,20 @@ public class ContentActivity extends BaseActivity {
         
         int prefId=0;
 	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
+	    case 2:
+	        yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.go_astro_de_horoscopes)[0]);
+	        today.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.go_astro_de_horoscopes)[1]);
+	        tomorrow.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.go_astro_de_horoscopes)[2]);
+	        weekly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.go_astro_de_horoscopes)[3]);
+	        monthly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.go_astro_de_horoscopes)[4]);
+			
+			sliderMenu.add(getResources().getStringArray(R.array.go_astro_de_horoscopes)[0], ContentFragment.class, yesterday, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_yesterday).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			sliderMenu.add(getResources().getStringArray(R.array.go_astro_de_horoscopes)[1], ContentFragment.class, today, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_today).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			sliderMenu.add(getResources().getStringArray(R.array.go_astro_de_horoscopes)[2], ContentFragment.class, tomorrow, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_tomorrow).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			sliderMenu.add(getResources().getStringArray(R.array.go_astro_de_horoscopes)[3], ContentFragment.class, weekly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			sliderMenu.add(getResources().getStringArray(R.array.go_astro_de_horoscopes)[4], ContentFragment.class, monthly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			prefId=6;
+	    	break;
 	    case 1:
 	        yesterday.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.mail_ru_horoscopes)[0]);
 	        today.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.mail_ru_horoscopes)[1]);

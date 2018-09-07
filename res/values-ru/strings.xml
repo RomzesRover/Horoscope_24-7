@@ -109,6 +109,8 @@
     <string-array name="languages">
         <item>English</item>
         <item>Русский</item>
+        <item>Deutsch</item>
+        <item>Español</item>
     </string-array>
 
 </resources>
