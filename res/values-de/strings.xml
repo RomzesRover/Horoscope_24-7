@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<integer name="default_language">1</integer>
+	<integer name="default_language">2</integer>
     <string name="app_name">Horoskop</string>
     <string name="version_name">3.0 Alpha</string>
     
@@ -18,7 +18,7 @@
     <string name="preference_date_1">Geburtsdatum</string>
     <string name="preference_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>
     <string name="preference_date_set">Es scheint, %1$s dein Sternzeichen, %2$s dein chinesisches Sternzeichen, %3$d ist deine Wegnummer.</string>
-    <string name="preference_zodiac_sign_1">Wählen Sie Ihr Sternzeichen</string>
+    <string name="preference_zodiac_sign_1">Sternzeichen</string>
     <string name="preference_language_1">Sprache</string>
     
     <string name="preference_notifications">Benachrichtigungen</string>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer name="default_language">3</integer>
+    <string name="app_name">Horóscopo</string>
+    <string name="version_name">3.0 Alpha</string>
+    
+    <string name="app_name_to_upper_case">HORÓSCOPO</string>
+    <string name="application_to_upper_case">APLICACIÓN</string>
+    <string name="settings">Configuraciones</string>
+    <string name="about">Acerca de la aplicación</string>
+    
+    <string name="introduce_slogan">Su asistente personal diaria</string>
+    
+    <string name="error_message">Compruebe su conexión de red y vuelva a intentarlo.</string>
+    <string name="error_retry">Inténtalo de nuevo</string>
+    
+    <string name="preference_base">Principal</string>
+    <string name="preference_date_1">Fecha de nacimiento</string>
+    <string name="preference_date_check">Compruebe los datos introducidos</string>
+    <string name="preference_date_set">Parece que el %1$s es tu signo del zodiaco, la %2$s es tu signo del zodiaco chino, %3$d es tu número de camino.</string>
+    <string name="preference_zodiac_sign_1">Muestra del zodiaco</string>
+    <string name="preference_language_1">Lengua de</string>
+    
+    <string name="preference_notifications">Notificación</string>
+    <string name="preference_show_notification_1">Mostrar notificaciones</string>
+    <string name="preference_show_notification_2">Las notificaciones llegarán a la hora especificada si el teléfono inteligente está activo, de lo contrario, más adelante.</string>
+    <string name="preference_show_notification_3">Las notificaciones están desactivadas.</string>
+    <string name="preference_time_1">Mientras</string>
+    
+    <string-array name="notification_messages">
+        <item>Un buen día comienza con una lectura del horóscopo fresco!!</item>
+        <item>No se olvide de obtener su horóscopo para hoy!</item>
+        <item>Nos acaban de informar que le espera hoy!</item>
+        <item>Vamos a ver si las estrellas que favorecen hoy!</item>
+    </string-array>
+    
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    
+    <string name="start">Сomenzar!</string>
+    <string name="loveapp">Me encanta esta aplicación?</string>
+    <string name="googleplay">Google Play</string>
+    <string name="googleplay_summary">Déjanos revisar en Google Play</string>
+    <string name="share">Compartir aplicación</string>
+    <string name="share_summary">Comparte la página de la aplicación a tus amigos</string>
+    <string name="share_text_comment">Mi horóscopo por %1$s para el signo del zodíaco de %2$s.</string>
+    <string name="share_comment">Aquí hay una aplicación práctica con horóscopos:</string>
+    <string name="share_google_play">Google Play</string>
+    <string name="share_google_play_summary">Enlace a la página de aplicación en Google Play</string>
+    <string name="share_link_google_play">https://play.google.com/store/apps/details?id=com.BBsRs.horoscopeNewEdition</string>
+    <string name="share_landing">Página de destino</string>
+    <string name="share_landing_summary">Enlace a la página de inicio en el sitio web Brothers Rovers</string>
+    <string name="share_link_landing">http://brothers-rovers.ru/horoscope_es.html</string>
+    <string name="advertisement">Anuncio</string>
+    <string name="advertisement_summary">Desactivar el anuncio</string>
+    <string name="advertisement_interstitials">Intersticiales</string>
+    <string name="advertisement_interstitials_summary">Puedes deshabilitar la publicidad intersticial gratis</string>
+    <string name="advertisement_interstitials_disabled_summary">Anuncio intersticial está deshabilitado</string>
+    <string name="advertisement_banners">Banners</string>
+    <string name="advertisement_banners_summary">Puede deshabilitar banners publicitarios y obtener funciones adicionales: 2.45 $</string>
+    <string name="advertisement_banners_disabled_summary">La publicidad de Banners se ha desactivado correctamente</string>
+    
+    <string name="feedback">Realimentación</string>
+    <string name="instagram">Instagram</string>
+    <string name="instagram_summary">Siga las actualizaciones o haga preguntas</string>
+    <string name="instagram_link">https://www.instagram.com/dailyhoroscopefree/</string>
+    <string name="vk">VKontakte</string>
+    <string name="vk_summary">Siga las actualizaciones o haga preguntas</string>
+    <string name="vk_link">https://vk.com/brothersrovers</string>
+    <string name="facebook">Facebook</string>
+    <string name="facebook_summary">Siga las actualizaciones o haga preguntas</string>
+    <string name="facebook_link">https://www.facebook.com/horoscopeFullNew/</string>
+    
+    <string name="developer">Desarrollador</string>
+    <string name="brothersrovers">Brothers Rovers</string>
+    <string name="brothersrovers_summary">Fundado en Rusia, Bashkortostán</string>
+    <string name="brothersrovers_link">http://brothers-rovers.ru/</string>
+    
+    <string-array name="zodiac_signs">
+        <item>Aries</item>
+        <item>Tauro</item>
+        <item>Géminis</item>
+        <item>Cáncer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Escorpión</item>
+        <item>Sagitario</item>
+        <item>Capricornio</item>
+        <item>Acuario</item>
+        <item>Piscis</item>
+    </string-array>
+    
+    <string-array name="chinese_zodiac_signs">
+        <item>Rata</item>
+        <item>Buey</item>
+        <item>Tigre</item>
+        <item>Liebre</item>
+        <item>Dragon</item>
+        <item>Serpiente</item>
+        <item>Caballo</item>
+        <item>Cabra</item>
+        <item>Mono</item>
+        <item>Gallo</item>
+        <item>Perro</item>
+        <item>Cerdo</item>
+    </string-array>
+    
+    <string-array name="languages">
+        <item>English</item>
+        <item>Русский</item>
+        <item>Deutsch</item>
+        <item>Español</item>
+    </string-array>
+
+</resources>
