@@ -10,6 +10,7 @@ public class Constants {
 	public static final int BUNDLE_LIST_TYPE_WEEKLY = 3;
 	public static final int BUNDLE_LIST_TYPE_MONTHLY = 4;
 	public static final int BUNDLE_LIST_TYPE_YEARLY = 5;
+	public static final int BUNDLE_LIST_TYPE_YEARLY_CHINA = 6;
 	
 	public static final String PREFERENCES_FORCE_UPDATE_X = "preferences_force_update_";
 	

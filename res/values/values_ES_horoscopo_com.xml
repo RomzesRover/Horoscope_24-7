@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="horoscopo_com_horoscopes">
+        <item>Hoy</item>
+        <item>Mañana</item>
+        <item>Esta Semana</item>
+        <item>Este Mes</item>
+        <item>Año</item>
+        <item>Año - Chino</item>
+    </string-array>
+    <string-array name="horoscopo_com_kinds">
+    	<item>Signo solar</item>
+        <item>Amor</item>
+        <item>Profesión</item>
+        <item>Dinero</item>
+        <item>Chino</item>
+        <item>Prevision</item>
+        <item>Familia, amigos</item>
+    </string-array>
+    <string-array name="horoscopo_com_yearly_zodiac_signs">
+        <item>aries</item>
+        <item>tauro</item>
+        <item>geminis</item>
+        <item>cancer</item>
+        <item>leo</item>
+        <item>virgo</item>
+        <item>libra</item>
+        <item>escorpion</item>
+        <item>sagitario</item>
+        <item>capricornio</item>
+        <item>acuario</item>
+        <item>piscis</item>
+    </string-array>
+    <string-array name="horoscopo_com_yearly_chinese_zodiac_signs">
+        <item>rata</item>
+        <item>buey</item>
+        <item>tigre</item>
+        <item>liebre</item>
+        <item>dragon</item>
+        <item>serpiente</item>
+        <item>caballo</item>
+        <item>cabra</item>
+        <item>mono</item>
+        <item>gallo</item>
+        <item>perro</item>
+        <item>cerdo</item>
+    </string-array>
+    
+    <string name="horoscopo_com_copyright">© horoscopo.com</string>
+</resources>

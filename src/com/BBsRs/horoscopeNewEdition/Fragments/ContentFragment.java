@@ -48,6 +48,7 @@ import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 import com.BBsRs.horoscopeNewEdition.Loader.GoAstroDeLoader;
 import com.BBsRs.horoscopeNewEdition.Loader.HoroscopeComLoader;
+import com.BBsRs.horoscopeNewEdition.Loader.HoroscopoComLoader;
 import com.BBsRs.horoscopeNewEdition.Loader.Loader;
 import com.BBsRs.horoscopeNewEdition.Loader.MailRuLoader;
 
@@ -281,6 +282,9 @@ public class ContentFragment extends BaseFragment{
                 protected Void doInBackground(Void... params) {
                 	
             	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
+            	    case 3:
+            	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+            	    	break;
             	    case 2:
             	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
             	    	break;
