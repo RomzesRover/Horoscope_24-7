@@ -38,7 +38,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild - "+doc.getElementsByClass("current-day").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild<br>"+doc.getElementsByClass("current-day").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				
 				doc = Jsoup.connect("https://www.goastro.de/tageshoroskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs_no_id)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"-"+sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH))+"-"+(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"-0/")
 				.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get(); if (cancelLoad) return null;
@@ -58,7 +58,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Numeroskop - "+doc.getElementsByClass("china-result__date--color").first().text().replaceAll(".*, ", "")+"<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Numeroskop<br>"+doc.getElementsByClass("china-result__date--color").first().text().replaceAll(".*, ", "")+"<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_TODAY:
 				doc = Jsoup.connect("https://www.goastro.de/horoskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"_1/")
@@ -69,7 +69,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild - "+doc.getElementsByClass("current-day").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild<br>"+doc.getElementsByClass("current-day").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				
 				doc = Jsoup.connect("https://www.goastro.de/tageshoroskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs_no_id)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"-"+sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH))+"-"+(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"-1/")
 				.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get(); if (cancelLoad) return null;
@@ -89,7 +89,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Numeroskop - "+doc.getElementsByClass("china-result__date--color").first().text().replaceAll(".*, ", "")+"<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Numeroskop<br>"+doc.getElementsByClass("china-result__date--color").first().text().replaceAll(".*, ", "")+"<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_TOMORROW:
 				doc = Jsoup.connect("https://www.goastro.de/horoskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"_2/")
@@ -100,7 +100,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild - "+doc.getElementsByClass("current-day").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild<br>"+doc.getElementsByClass("current-day").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				
 				doc = Jsoup.connect("https://www.goastro.de/tageshoroskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs_no_id)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"-"+sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH))+"-"+(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"-2/")
 				.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get(); if (cancelLoad) return null;
@@ -120,7 +120,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Numeroskop - "+doc.getElementsByClass("china-result__date--color").first().text().replaceAll(".*, ", "")+"<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Numeroskop<br>"+doc.getElementsByClass("china-result__date--color").first().text().replaceAll(".*, ", "")+"<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_WEEKLY:
 				doc = Jsoup.connect("https://www.goastro.de/wochenhoroskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"/")
@@ -131,7 +131,7 @@ public class GoAstroDeLoader extends Loader{
 				}
 				if (res.substring(res.length()-12).equals("<br /><br />"))
 					res = res.substring(0, res.length()-12);
-				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild - "+doc.getElementsByClass("detail__title--week").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
+				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild<br>"+doc.getElementsByClass("detail__title--week").first().text().replaceAll(".*, ", ""), res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_MONTHLY:
 				doc = Jsoup.connect("https://www.goastro.de/monatshoroskop-"+context.getResources().getStringArray(R.array.goastro_de_to_load_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"/")
