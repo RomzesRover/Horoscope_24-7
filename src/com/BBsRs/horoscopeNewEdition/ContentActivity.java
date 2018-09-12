@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
@@ -33,10 +34,25 @@ public class ContentActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        //set up preferences
+    	//set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        switch (sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)){
+		 case 1:
+			 setTheme(R.style.ContentThemeDarkFill);
+			 break;
+		 case 2:
+			 setTheme(R.style.ContentThemeFoggyForest);
+			 break;
+		 case 3:
+			 setTheme(R.style.ContentThemeLightFill);
+			 break;
+		 case 0: default:
+			 setTheme(R.style.ContentTheme);
+			 break;
+        }
+    	
+        super.onCreate(savedInstanceState);
         
         //set app lang
         setLocale(sPref);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@color/screen_window_background_foggy_forest"/>
+
+    <item>
+        <bitmap
+            android:gravity="fill"
+            android:src="@drawable/screen_background_foggy_forest"/>
+    </item>
+
+</layer-list>

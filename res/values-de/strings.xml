@@ -26,6 +26,22 @@
     <string name="preference_show_notification_2">Benachrichtigungen werden zur angegebenen Zeit ankommen, wenn das Smartphone aktiv ist, andernfalls später.</string>
     <string name="preference_show_notification_3">Benachrichtigungen sind deaktiviert.</string>
     <string name="preference_time_1">Zeit</string>
+    <string name="preference_appearance">Aussehen</string>
+    <string name="preference_text_size">Textgröße</string>
+    <string name="preference_background_text_color">Hintergrund</string>
+    <string-array name="preference_text_size_values">
+        <item>Extra klein</item>
+        <item>Klein</item>
+        <item>Standard</item>
+        <item>Groß</item>
+        <item>Extra groß!</item>
+    </string-array>
+    <string-array name="preference_background_values">
+        <item>Nachtwald</item>
+        <item>Dunkle Füllung</item>
+        <item>Nebeliger Wald</item>
+        <item>Licht füllen</item>
+    </string-array>
     
     <string-array name="notification_messages">
 		<item>Ein guter Tag beginnt mit einem frischen Horoskop Lesen!</item>

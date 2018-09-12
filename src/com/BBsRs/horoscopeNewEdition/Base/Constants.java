@@ -32,6 +32,8 @@ public class Constants {
 	public static final String PREFERENCES_CURRENT_LANGUAGE = "preferences:current_language";
 	public static final String PREFERENCES_OPEN_SETTINGS_FIRST = "preferences:open_settings_first";
 	public static final String PREFERENCES_DATE_FORMAT = "preferences:date_format";
+	public static final String PREFERENCES_TEXT_SIZE = "preferences:text_size";
+	public static final String PREFERENCES_BACKGROUND_TEXT_COLOR = "preferences:background_text_color";
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";
 	public static final String INTENT_FORCE_HIDE_UPDATE_LINE = "intent:force_hide_update_line";

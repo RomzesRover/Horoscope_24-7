@@ -23,6 +23,23 @@
     <string name="preference_date_set">Looks like %1$s is your zodiac sign, %2$s is your chinese zodiac sign, %3$d is your life-path number.</string>
     <string name="preference_zodiac_sign_1">Zodiac sign</string>
     <string name="preference_language_1">Language</string>
+    <string name="preference_appearance">Appearance</string>
+    <string name="preference_text_size">Text size</string>
+    <string name="preference_background_text_color">Background</string>
+    <string-array name="preference_text_size_values">
+        <item>Extra small</item>
+        <item>Small</item>
+        <item>Default</item>
+        <item>Large</item>
+        <item>Extra large!</item>
+    </string-array>
+    <string-array name="preference_background_values">
+        <item>Night forest</item>
+        <item>Dark fill</item>
+        <item>Foggy forest</item>
+        <item>Light fill</item>
+    </string-array>
+    
     
     <string name="preference_notifications">Notifications</string>
     <string name="preference_show_notification_1">Show notifications</string>

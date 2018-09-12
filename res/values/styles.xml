@@ -1,5 +1,14 @@
 <resources>
     <!-- Application theme. -->
+    <style name="ContentThemeFoggyForest" parent="ContentTheme">
+        <item name="android:windowBackground">@drawable/backgroung_screen_foggy_forest</item>
+    </style>
+    <style name="ContentThemeLightFill" parent="ContentTheme">
+        <item name="android:windowBackground">@drawable/backgroung_screen_light_fill</item>
+    </style>
+    <style name="ContentThemeDarkFill" parent="ContentTheme">
+        <item name="android:windowBackground">@drawable/backgroung_screen_dark_fill</item>
+    </style>
     <style name="ContentTheme" parent="@style/Holo.Theme">
         <item name="android:windowBackground">@drawable/backgroung_screen</item>
         <item name="actionBarStyle">@style/Widget.AppCompat.Base.ActionBar.Solid.Custom</item>

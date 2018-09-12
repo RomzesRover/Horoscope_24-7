@@ -29,6 +29,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -49,7 +50,7 @@ public class SettingsFragment extends BasePreferenceFragment {
     
     Calendar cal;
     
-    Preference zodiacSign, language;
+    Preference zodiacSign, language, textSize, backgroundTextColor;
     DatePreference dateBorn;
     CheckBoxPreference showNotifications;
     TimePreference notificationTime;
@@ -73,6 +74,216 @@ public class SettingsFragment extends BasePreferenceFragment {
         addPreferencesFromResource(R.xml.settings);
         
         //programming each preferences
+        textSize = (Preference) findPreference ("preference_text_size");
+        textSize.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    	
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+		    		      (Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	//init views
+		    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+		    	TextView title = (TextView)content.findViewById(R.id.title);
+		    	Button cancel = (Button)content.findViewById(R.id.cancel);
+		    	Button apply = (Button)content.findViewById(R.id.apply);
+		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+		    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+		    	
+		    	//set fonts
+		    	SFUIFonts.MEDIUM.apply(context, title);
+		    	SFUIFonts.LIGHT.apply(context, cancel);
+		    	SFUIFonts.LIGHT.apply(context, apply);
+		    	
+		    	//view job
+		    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		    	title.setText(context.getResources().getString(R.string.preference_text_size));
+		    	icon.setImageResource(R.drawable.ic_icon_settings_text_size);
+		    	// custom adapter
+		    	final String [] listArray = context.getResources().getStringArray(R.array.preference_text_size_values);
+		        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+		            @Override
+		            public View getView(final int position, View convertView, ViewGroup parent) {
+		            	 View v = super.getView(position, convertView, parent);
+		            	 //set font
+		            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 //set font size
+		            	 switch(position){
+		            	 case 0:
+		            		 ((TextView)v.findViewById(android.R.id.text1)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+		            		 break;
+		            	 case 1:
+		            		 ((TextView)v.findViewById(android.R.id.text1)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+		            		 break;
+		            	 case 3:
+		            		 ((TextView)v.findViewById(android.R.id.text1)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 19);
+		            		 break;
+		            	 case 4:
+		            		 ((TextView)v.findViewById(android.R.id.text1)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 21);
+		            		 break;
+		            	 case 2: default:
+		            		 ((TextView)v.findViewById(android.R.id.text1)).setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+		            		 break;
+		            	 }
+		            	 //set radio
+		                 final RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+		                 if (list.isItemChecked(position)) {
+		                	 radio.setChecked(true);
+		                 } else {
+		                	 radio.setChecked(false);
+		                 }
+		                 
+		                 View.OnClickListener clickItem = new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								sPref.edit().putInt(Constants.PREFERENCES_TEXT_SIZE, position).commit();
+								notifyDataSetChanged();
+								list.setItemChecked(position, true);
+							}
+						};
+		                 
+		                 v.setOnClickListener(clickItem);
+		                 radio.setOnClickListener(clickItem);
+		                 return v;
+		            }
+		        });
+		        
+		        final int indexCalculated = sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2);
+		        list.setItemChecked(indexCalculated, true);
+				
+				apply.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						textSize.setSummary(getResources().getStringArray(R.array.preference_text_size_values)[sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2)]);
+						alert.dismiss();
+					}
+				});
+		    	
+		    	cancel.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						sPref.edit().putInt(Constants.PREFERENCES_TEXT_SIZE, indexCalculated).commit();
+						textSize.setSummary(getResources().getStringArray(R.array.preference_text_size_values)[sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2)]);
+						alert.dismiss();
+					}
+				});
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
+				return false;
+			}
+        });
+        
+        backgroundTextColor = (Preference) findPreference ("preference_background_text_color");
+        backgroundTextColor.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				final Context context = getActivity(); 								// create context
+		 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+		    	
+		    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+		    		      (Context.LAYOUT_INFLATER_SERVICE);
+		    	
+		    	//init views
+		    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+		    	TextView title = (TextView)content.findViewById(R.id.title);
+		    	Button cancel = (Button)content.findViewById(R.id.cancel);
+		    	Button apply = (Button)content.findViewById(R.id.apply);
+		    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+		    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+		    	
+		    	//set fonts
+		    	SFUIFonts.MEDIUM.apply(context, title);
+		    	SFUIFonts.LIGHT.apply(context, cancel);
+		    	SFUIFonts.LIGHT.apply(context, apply);
+		    	
+		    	//view job
+		    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		    	title.setText(context.getResources().getString(R.string.preference_background_text_color));
+		    	icon.setImageResource(R.drawable.ic_icon_settings_background_text_color);
+		    	// custom adapter
+		    	final String [] listArray = context.getResources().getStringArray(R.array.preference_background_values);
+		        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice_icon, listArray){
+		            @Override
+		            public View getView(final int position, View convertView, ViewGroup parent) {
+		            	 View v = super.getView(position, convertView, parent);
+		            	 //set font
+		            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+		            	 //set icons
+		            	 switch(position){
+		            	 case 1:
+		            		 ((ImageView)v.findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bg_icon_dark_fill);
+		            		 break;
+		            	 case 2:
+		            		 ((ImageView)v.findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bg_icon_foggy_forest);
+		            		 break;
+		            	 case 3:
+		            		 ((ImageView)v.findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bg_icon_light_fill);
+		            		 break;
+		            	 case 0: default:
+		            		 ((ImageView)v.findViewById(R.id.imageView1)).setImageResource(R.drawable.ic_bg_icon_night_forest);
+		            		 break;
+		            	 }
+		            	 //set radio
+		                 final RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+		                 if (list.isItemChecked(position)) {
+		                	 radio.setChecked(true);
+		                 } else {
+		                	 radio.setChecked(false);
+		                 }
+		                 
+		                 View.OnClickListener clickItem = new View.OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								sPref.edit().putInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, position).commit();
+								notifyDataSetChanged();
+								list.setItemChecked(position, true);
+							}
+						};
+		                 
+		                 v.setOnClickListener(clickItem);
+		                 radio.setOnClickListener(clickItem);
+		                 return v;
+		            }
+		        });
+		        
+		        final int indexCalculated = sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0);
+		        list.setItemChecked(indexCalculated, true);
+				
+				apply.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						backgroundTextColor.setSummary(getResources().getStringArray(R.array.preference_background_values)[sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)]);
+						alert.dismiss();
+						Editor ed = sPref.edit();  
+						ed.putBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, true); 	
+						ed.commit();
+						Intent intent = getActivity().getIntent();
+						getActivity().finish();
+						startActivity(intent);
+						getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+					}
+				});
+		    	
+		    	cancel.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						sPref.edit().putInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, indexCalculated).commit();
+						backgroundTextColor.setSummary(getResources().getStringArray(R.array.preference_background_values)[sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)]);
+						alert.dismiss();
+					}
+				});
+		    	
+		    	build.setView(content);
+		    	alert = build.create();															// show dialog
+		    	alert.show();
+				return false;
+			}
+        });
+        
         dateBorn = (DatePreference) findPreference ("preference_date_born");
         cal = Calendar.getInstance();
         dateBorn.setDay(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)));
@@ -360,6 +571,8 @@ public class SettingsFragment extends BasePreferenceFragment {
         notificationTime.setEnabled(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true));
         notificationTime.setSummary(intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_HOUR, 8)) + ":" + intPlusZero(sPref.getInt(Constants.PREFERENCES_NOTIFICATIONS_TIME_MINUTE, 0)));
         showNotifications.setSummary(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true) ? getResources().getString(R.string.preference_show_notification_2) : getResources().getString(R.string.preference_show_notification_3));
+        textSize.setSummary(getResources().getStringArray(R.array.preference_text_size_values)[sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2)]);
+        backgroundTextColor.setSummary(getResources().getStringArray(R.array.preference_background_values)[sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)]);
     }
     
     String intPlusZero(int s){

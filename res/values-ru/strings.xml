@@ -26,6 +26,22 @@
     <string name="preference_show_notification_2">Уведомления будут приходить в указанное время если смартфон активен, иначе позже.</string>
     <string name="preference_show_notification_3">Уведомления выключены.</string>
     <string name="preference_time_1">Время</string>
+    <string name="preference_appearance">Внешний вид</string>
+    <string name="preference_text_size">Размер текста</string>
+    <string name="preference_background_text_color">Фон</string>
+    <string-array name="preference_text_size_values">
+        <item>Оч. маленький</item>
+        <item>Меленький</item>
+        <item>Стандартный</item>
+        <item>Крупный</item>
+        <item>Оч. крупный!</item>
+    </string-array>
+    <string-array name="preference_background_values">
+        <item>Ночной лес</item>
+        <item>Темная заливка</item>
+        <item>Туманный лес</item>
+        <item>Светлая заливка</item>
+    </string-array>
     
     <string-array name="notification_messages">
         <item>Хороший день начинается с прочтения свежего гороскопа!</item>

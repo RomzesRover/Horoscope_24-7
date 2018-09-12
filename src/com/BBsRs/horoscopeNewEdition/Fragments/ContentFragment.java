@@ -29,6 +29,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.AlignmentSpan;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.BBsRs.SFUIFontsEverywhere.CustomTypefaceSpan;
@@ -69,6 +71,7 @@ public class ContentFragment extends BaseFragment{
     RelativeLayout errorLayout;
     TextView errorMessage;
     Button errorRetryButton;
+    ImageView fade;
     
     //handler
     Handler handler = new Handler();
@@ -96,6 +99,7 @@ public class ContentFragment extends BaseFragment{
       	errorLayout = (RelativeLayout)contentView.findViewById(R.id.errorLayout);
     	errorMessage = (TextView)contentView.findViewById(R.id.errorMessage);
     	errorRetryButton = (Button)contentView.findViewById(R.id.errorRetryButton);
+    	fade = (ImageView)contentView.findViewById(R.id.imageView1);
 		
 		mPullToRefreshLayout = (PullToRefreshLayout) contentView.findViewById(R.id.ptr_layout);
 		
@@ -160,6 +164,34 @@ public class ContentFragment extends BaseFragment{
         super.onResume();
         setTitle(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
+        
+        switch (sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2)){
+	   	 case 0:
+			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+			 break;
+		 case 1:
+			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+			 break;
+		 case 3:
+			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19);
+			 break;
+		 case 4:
+			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21);
+			 break;
+		 case 2: default:
+			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+			 break;
+        }
+        switch (sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)){
+		 case 2: case 3:
+			 fade.setImageResource(R.drawable.ic_lightness_fade);
+			 textContent.setTextColor(getResources().getColor(R.color.content_text_dark));
+			 break;
+		 case 0: case 1: default:
+			 fade.setImageResource(R.drawable.ic_darkness_fade);
+			 textContent.setTextColor(getResources().getColor(R.color.content_text));
+			 break;
+        }
         
         //register receiver
         try {

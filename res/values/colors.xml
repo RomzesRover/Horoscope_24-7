@@ -12,6 +12,9 @@
     <color name="action_bar_color">#092650</color>
     
     <color name="screen_window_background">#000</color>
+    <color name="screen_window_background_foggy_forest">#fff</color>
+    <color name="screen_window_background_light_fill">#fefcf5</color>
+    <color name="screen_window_background_dark_fill">#0c182a</color>
     
     <color name="dialog_window_background">#172841</color>
     <color name="dialog_main_text_color">#fff</color>
@@ -24,5 +27,8 @@
     
     <color name="content_text">#fff</color>
     <color name="content_link">#576586</color>
+    
+    <color name="content_text_dark">#000</color>
+    <color name="content_link_dark">#576586</color>
     
 </resources>

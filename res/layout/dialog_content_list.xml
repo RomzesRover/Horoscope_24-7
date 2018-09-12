@@ -14,7 +14,7 @@
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dialog_icon_padding"
+            android:padding="@dimen/dialog_icon_padding_for_other_icons"
             android:src="@drawable/ic_icon_settings_sign" />
 
         <LinearLayout

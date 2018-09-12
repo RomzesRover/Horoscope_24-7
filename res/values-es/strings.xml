@@ -26,6 +26,22 @@
     <string name="preference_show_notification_2">Las notificaciones llegarán a la hora especificada si el teléfono inteligente está activo, de lo contrario, más adelante.</string>
     <string name="preference_show_notification_3">Las notificaciones están desactivadas.</string>
     <string name="preference_time_1">Mientras</string>
+    <string name="preference_appearance">Apariencia</string>
+    <string name="preference_text_size">Tamano del texto</string>
+    <string name="preference_background_text_color">Fondo</string>
+    <string-array name="preference_text_size_values">
+        <item>Extra Pequeño</item>
+        <item>Pequeña</item>
+        <item>Defecto</item>
+        <item>Grande</item>
+        <item>¡Extra grande!</item>
+    </string-array>
+    <string-array name="preference_background_values">
+        <item>Bosque nocturno</item>
+        <item>Relleno oscuro</item>
+        <item>Bosque brumoso</item>
+        <item>Relleno de luz</item>
+    </string-array>
     
     <string-array name="notification_messages">
         <item>Un buen día comienza con una lectura del horóscopo fresco!!</item>
