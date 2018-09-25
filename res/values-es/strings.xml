@@ -10,6 +10,7 @@
     <string name="about">Acerca de la aplicación</string>
     
     <string name="introduce_slogan">Su asistente personal diaria</string>
+    <string name="first_launch_message">En la configuración puede cambiar el tamaño de la fuente y el fondo.</string>
     
     <string name="error_message">Compruebe su conexión de red y vuelva a intentarlo.</string>
     <string name="error_retry">Inténtalo de nuevo</string>

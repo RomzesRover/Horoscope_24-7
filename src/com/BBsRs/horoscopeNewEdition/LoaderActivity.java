@@ -44,6 +44,7 @@ public class LoaderActivity extends BaseActivity {
     LinearLayout IntroLayout;
     ImageView stars, sign, lines;
     Button language, dateBorn, zodiacSign, start;
+    TextView commSign;
  
     //handler
     Handler handler = new Handler();
@@ -90,12 +91,14 @@ public class LoaderActivity extends BaseActivity {
         dateBorn = (Button)findViewById(R.id.date_born);
         zodiacSign = (Button)findViewById(R.id.zodiac_sign);
         start = (Button)findViewById(R.id.start);
+        commSign = (TextView)findViewById(R.id.subTitle_3);
 
 		//set fonts
 		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.title)));
 		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.subTitle)));
 		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.title_2)));
 		SFUIFonts.ULTRALIGHT.apply(this, ((TextView)this.findViewById(R.id.subTitle_2)));
+		SFUIFonts.ULTRALIGHT.apply(this, commSign);
 		SFUIFonts.ULTRALIGHT.apply(this, language);
 		SFUIFonts.ULTRALIGHT.apply(this, dateBorn);
 		SFUIFonts.ULTRALIGHT.apply(this, zodiacSign);
@@ -220,7 +223,7 @@ public class LoaderActivity extends BaseActivity {
 							}
 							
 							ed.commit();
-							Toast.makeText(LoaderActivity.this, String.format(getResources().getString(R.string.preference_date_set), getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber(day, month+1)], getResources().getStringArray(R.array.chinese_zodiac_signs)[chineseSignCalculated], lifePathNumber), Toast.LENGTH_LONG).show();
+							commSign.setText(String.format(getResources().getString(R.string.preference_date_set), getResources().getStringArray(R.array.zodiac_signs)[zodiacNumber(day, month+1)], getResources().getStringArray(R.array.chinese_zodiac_signs)[chineseSignCalculated], lifePathNumber));
 							updateSummary();
 							
 							handler.postDelayed(showStartButton, 500);
@@ -370,7 +373,7 @@ public class LoaderActivity extends BaseActivity {
         dateBorn.setText(format1.format(cal.getTime()));
         zodiacSign.setText(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]);
     }
-	
+    
 	Runnable mainTask = new Runnable(){
 		@Override
 		public void run() {
@@ -448,9 +451,11 @@ public class LoaderActivity extends BaseActivity {
 			try{
 				if (start.getVisibility() != View.VISIBLE){
 					start.setVisibility(View.VISIBLE);
+					commSign.setVisibility(View.VISIBLE);
 	            	//with fly up animation
 	            	Animation flyUpAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fly_up_anim);
 	            	start.startAnimation(flyUpAnimation);
+	            	commSign.startAnimation(flyUpAnimation);
 				}
 			}
 			catch(Exception e){

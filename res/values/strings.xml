@@ -13,6 +13,7 @@
     <string name="about">About</string>
     
     <string name="introduce_slogan">Your personal daily assistant</string>
+    <string name="first_launch_message">In settings you can change font size and the background.</string>
     
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_retry">Retry</string>

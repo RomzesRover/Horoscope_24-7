@@ -5,11 +5,11 @@ import java.util.Locale;
 import org.holoeverywhere.preference.PreferenceFragment;
 import org.holoeverywhere.preference.SharedPreferences;
 
-import com.BBsRs.horoscopeNewEdition.R;
-
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+
+import com.BBsRs.horoscopeNewEdition.R;
 
 public class BasePreferenceFragment extends PreferenceFragment {
 	public void setLocale(SharedPreferences sPref) {

@@ -10,6 +10,7 @@
     <string name="about">О приложении</string>
     
     <string name="introduce_slogan">Ваш личный ежедневный помощник</string>
+    <string name="first_launch_message">В настройках вы можете изменить размер шрифта и фон.</string>
     
     <string name="error_message">Проверьте ваше подключение к сети, и попробуйте снова.</string>
     <string name="error_retry">Попробовать снова</string>

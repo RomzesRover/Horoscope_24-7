@@ -10,6 +10,7 @@
     <string name="about">Über App</string>
     
     <string name="introduce_slogan">Ihr persönlicher Tagesassistent</string>
+    <string name="first_launch_message">In den Einstellungen können Sie die Schriftgröße und den Hintergrund ändern.</string>
     
     <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
     <string name="error_retry">wiederholen</string>

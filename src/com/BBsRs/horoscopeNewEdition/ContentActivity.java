@@ -6,6 +6,7 @@ import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
+import org.holoeverywhere.widget.Toast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,7 +14,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.util.TypedValue;
 import android.view.View;
 
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
@@ -194,6 +194,12 @@ public class ContentActivity extends BaseActivity {
 				sliderMenu.setCurrentPage(prefId);
 			} else 
 				sliderMenu.setCurrentPage(startId);
+		
+		//show start toast!
+		if (sPref.getBoolean(Constants.PREFERENCES_IS_IT_FIRST_LAUNCH, true)){
+			sPref.edit().putBoolean(Constants.PREFERENCES_IS_IT_FIRST_LAUNCH, false).commit();
+			Toast.makeText(this, getResources().getString(R.string.first_launch_message), Toast.LENGTH_LONG).show();
+		}
     }
     
     @Override
