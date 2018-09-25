@@ -24,6 +24,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -37,6 +39,11 @@ import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Services.NotificationService;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class LoaderActivity extends BaseActivity {
 	
@@ -54,6 +61,8 @@ public class LoaderActivity extends BaseActivity {
     
     //alert dialog
     AlertDialog alert = null;
+    
+    boolean isUserStillInApp = true;
 
 
 	/** Called when the activity is first created. */
@@ -342,12 +351,16 @@ public class LoaderActivity extends BaseActivity {
 		handler.removeCallbacks(showStartButton);
 		handler.removeCallbacks(hideIntro);
 		
+		isUserStillInApp = false;
+		
 		super.onPause();
 	}
 	
 	@Override
 	public void onResume(){
 		super.onResume();
+		
+		isUserStillInApp = true;
 		
 		//delete old image
 		stars.setImageResource(android.R.color.transparent);
@@ -524,18 +537,83 @@ public class LoaderActivity extends BaseActivity {
 	Runnable startApp = new Runnable(){
 		@Override
 		public void run() {
-			//update notif time al
-			scheduleUpdate(getApplicationContext());
-        	//create intent
-        	Intent refresh = new Intent(getApplicationContext(), ContentActivity.class);
-			//restart activity
-		    startActivity(refresh);   
-		    //set  animation
-		    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-		    // stop curr activity
-		    finish();
+			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && sPref.getBoolean(Constants.PREFERENCES_SHOW_BANNER_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext())){
+				loadAndSetupInterstitialAD();
+			} else {
+				sPref.edit().putInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0).commit();
+				showContentActivity();
+			}
 		}
 	};
+	
+	public boolean isGooglePlayServicesAvailable(Context context){
+		try {
+		    int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+		    return resultCode == ConnectionResult.SUCCESS;  
+		} catch (Exception e){
+			e.printStackTrace();
+			return true;
+		}
+	}
+	
+	private InterstitialAd interstitial;
+	public void loadAndSetupInterstitialAD(){
+		try {
+		    interstitial = new InterstitialAd(this);
+		    interstitial.setAdUnitId("ca-app-pub-6690318766939525/2467455298");
+
+		    AdRequest.Builder builder = new AdRequest.Builder();
+			
+			try {
+				final LocationManager mlocManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+				Location loc = mlocManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				if (loc!=null)
+					builder.setLocation(loc);
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+			
+			AdRequest adRequest = builder.build();
+			
+			interstitial.setAdListener(new AdListener() {
+				@Override
+				public void onAdClosed() {
+					int count = sPref.getInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0);
+					count++;
+					sPref.edit().putInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, count).commit();
+					showContentActivity();
+				}
+		        @Override
+		        public void onAdLoaded() {
+		        	if (interstitial !=null && interstitial.isLoaded() && isUserStillInApp) {
+		    			interstitial.show();
+		    		}
+		        }
+		        @Override
+		        public void onAdFailedToLoad(int errorCode) {
+		        	showContentActivity();
+		        }
+		    });
+
+		    interstitial.loadAd(adRequest);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void showContentActivity(){
+		//update notif time al
+		scheduleUpdate(getApplicationContext());
+    	//create intent
+    	Intent refresh = new Intent(getApplicationContext(), ContentActivity.class);
+		//restart activity
+	    startActivity(refresh);   
+	    //set  animation
+	    overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+	    // stop curr activity
+	    finish();
+	}
 	
     private void scheduleUpdate(Context context) {
     	cancelUpdates(context);

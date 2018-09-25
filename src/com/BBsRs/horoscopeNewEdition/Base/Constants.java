@@ -35,6 +35,7 @@ public class Constants {
 	public static final String PREFERENCES_TEXT_SIZE = "preferences:text_size";
 	public static final String PREFERENCES_BACKGROUND_TEXT_COLOR = "preferences:background_text_color";
 	public static final String PREFERENCES_IS_IT_FIRST_LAUNCH = "preferences:is_it_first_launch";
+	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT = "preferences:show_interstitial_advertisement_count";
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";
 	public static final String INTENT_FORCE_HIDE_UPDATE_LINE = "intent:force_hide_update_line";
