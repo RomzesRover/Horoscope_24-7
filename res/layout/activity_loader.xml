@@ -55,16 +55,21 @@
             android:scaleType="centerInside" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/mainIntroLayout"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:visibility="gone" >
+        android:layout_centerHorizontal="true" >
+
+        <LinearLayout
+            android:id="@+id/mainIntroLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:visibility="gone" >
 
         <TextView
             android:id="@+id/title_2"
@@ -182,5 +187,6 @@
             android:textSize="@dimen/dialog_content_margin_text_size_title"
             android:visibility="invisible" />
     </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
