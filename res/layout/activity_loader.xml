@@ -53,6 +53,15 @@
             android:layout_alignBottom="@+id/title"
             android:layout_centerHorizontal="true"
             android:scaleType="centerInside" />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp" />
+
     </RelativeLayout>
 
     <ScrollView

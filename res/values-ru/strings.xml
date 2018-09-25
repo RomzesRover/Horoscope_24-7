@@ -71,11 +71,8 @@
     <string name="advertisement">Реклама</string>
     <string name="advertisement_summary">Отключите рекламу</string>
     <string name="advertisement_interstitials">Межстраничная</string>
-    <string name="advertisement_interstitials_summary">Вы можете отключить Межстраничную рекламу бесплатно.</string>
+    <string name="advertisement_interstitials_summary">Вы можете отключить Межстраничную рекламу за 49р.</string>
     <string name="advertisement_interstitials_disabled_summary">Межстраничная реклама успешно отключена</string>
-    <string name="advertisement_banners">Баннеры</string>
-    <string name="advertisement_banners_summary">Вы можете отключить баннерную рекламу за 99р.</string>
-    <string name="advertisement_banners_disabled_summary">Баннерная реклама успешно отключена</string>
     
     <string name="feedback">Обратная связь</string>
     <string name="instagram">Instagram</string>

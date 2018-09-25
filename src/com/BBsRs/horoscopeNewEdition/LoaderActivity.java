@@ -537,7 +537,7 @@ public class LoaderActivity extends BaseActivity {
 	Runnable startApp = new Runnable(){
 		@Override
 		public void run() {
-			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && sPref.getBoolean(Constants.PREFERENCES_SHOW_BANNER_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext())){
+			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext())){
 				loadAndSetupInterstitialAD();
 			} else {
 				sPref.edit().putInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0).commit();

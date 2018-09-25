@@ -71,11 +71,8 @@
     <string name="advertisement">Anuncio</string>
     <string name="advertisement_summary">Desactivar el anuncio</string>
     <string name="advertisement_interstitials">Intersticiales</string>
-    <string name="advertisement_interstitials_summary">Puedes deshabilitar la publicidad intersticial gratis</string>
+    <string name="advertisement_interstitials_summary">Puede deshabilitar publicidad intersticial por 0.99 $</string>
     <string name="advertisement_interstitials_disabled_summary">Anuncio intersticial está deshabilitado</string>
-    <string name="advertisement_banners">Banners</string>
-    <string name="advertisement_banners_summary">Puede deshabilitar banners publicitarios y obtener funciones adicionales: 2.45 $</string>
-    <string name="advertisement_banners_disabled_summary">La publicidad de Banners se ha desactivado correctamente</string>
     
     <string name="feedback">Realimentación</string>
     <string name="instagram">Instagram</string>

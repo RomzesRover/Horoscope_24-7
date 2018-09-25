@@ -71,11 +71,8 @@
     <string name="advertisement">Werbung</string>
     <string name="advertisement_summary">Schalten Sie die Werbung aus</string>
     <string name="advertisement_interstitials">Interstitials</string>
-    <string name="advertisement_interstitials_summary">Sie können Interstitial-Werbung kostenlos deaktivieren.</string>
+    <string name="advertisement_interstitials_summary">Sie können die Interstitial-Werbung für 0,99 $ deaktivieren</string>
     <string name="advertisement_interstitials_disabled_summary">Interstitielle Werbung ist deaktiviert</string>
-    <string name="advertisement_banners">Banner</string>
-    <string name="advertisement_banners_summary">Sie können Werbebanner deaktivieren und zusätzliche Funktionen erhalten: 2.45 $</string>
-    <string name="advertisement_banners_disabled_summary">Bannerwerbung ist erfolgreich deaktiviert</string>
     
     <string name="feedback">Feedback</string>
     <string name="instagram">Instagram</string>

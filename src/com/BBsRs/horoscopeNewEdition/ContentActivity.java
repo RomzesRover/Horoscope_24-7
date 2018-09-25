@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.View;
 
@@ -21,6 +22,8 @@ import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Fragments.AboutFragment;
 import com.BBsRs.horoscopeNewEdition.Fragments.ContentFragment;
 import com.BBsRs.horoscopeNewEdition.Fragments.SettingsFragment;
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 
 
 @Addons(AddonSlider.class)
@@ -28,6 +31,19 @@ public class ContentActivity extends BaseActivity {
 	public AddonSlider.AddonSliderA addonSlider() {
 		return addon(AddonSlider.class);
 	}
+	
+	private final Handler handler = new Handler();
+	
+	//!--------------------------------------------------------BILLING-----------------------------------------------------!
+//	private static final String PRODUCT_ID = "android.test.purchased";
+//	private static final String LICENSE_KEY = null;
+    private static final String PRODUCT_ID = "ad_disabler";
+    private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+
+																																																																																																															// YOUR
+	private BillingProcessor bp;
+	private boolean readyToPurchase = false;
+	//!--------------------------------------------------------BILLING-----------------------------------------------------!
 	
 	// preferences 
     SharedPreferences sPref;
@@ -200,7 +216,44 @@ public class ContentActivity extends BaseActivity {
 			sPref.edit().putBoolean(Constants.PREFERENCES_IS_IT_FIRST_LAUNCH, false).commit();
 			Toast.makeText(this, getResources().getString(R.string.first_launch_message), Toast.LENGTH_LONG).show();
 		}
+		
+		initBilling();
     }
+    
+	public void initBilling(){
+		bp = new BillingProcessor(ContentActivity.this, LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(String productId, TransactionDetails details) { 
+            	sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, false).commit();
+            	handler.postDelayed(new Runnable(){
+					@Override
+					public void run() {
+						sendBroadcast(new Intent(Constants.INTENT_NAME_HIDE_ANY_DIALOG));
+					}
+            	}, 500);
+            }
+            @Override
+            public void onBillingError(int errorCode, Throwable error) { }
+            @Override
+            public void onBillingInitialized() {
+            	readyToPurchase = true;
+            	if (bp.isPurchased(PRODUCT_ID)){
+            		sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, false).commit();
+            	} else {
+            		sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true).commit();
+            	}
+            }
+            @Override
+            public void onPurchaseHistoryRestored() { }
+		});
+	}
+	
+	@Override
+	public void onDestroy() {
+		if (bp != null)
+			bp.release();
+		super.onDestroy();
+	}
     
     @Override
 	public void onResume(){
@@ -209,6 +262,7 @@ public class ContentActivity extends BaseActivity {
         //register receiver
         try {
 	        super.registerReceiver(openMenuDrawer, new IntentFilter(Constants.INTENT_OPEN_DRAWER_MENU));
+	        super.registerReceiver(showBuyDialog, new IntentFilter(Constants.INTENT_NAME_SHOW_BUY_DIALOG));
         } catch (Exception e){
         	e.printStackTrace();
         }
@@ -219,12 +273,30 @@ public class ContentActivity extends BaseActivity {
 		//unregister receiver
         try {
             super.unregisterReceiver(openMenuDrawer);
+            super.unregisterReceiver(showBuyDialog);
         } catch (Exception e){
         	e.printStackTrace();
         }
         
         super.onPause();
     }
+    
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (!bp.handleActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data);
+	}
+	
+	private BroadcastReceiver showBuyDialog = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	if (!readyToPurchase) {
+	            Toast.makeText(getApplication(), "Billing not initialized.", Toast.LENGTH_LONG).show();
+	        } else{
+	        	bp.purchase(ContentActivity.this, PRODUCT_ID);
+	        }
+	    }
+	};
     
 	private BroadcastReceiver openMenuDrawer = new BroadcastReceiver() {
 

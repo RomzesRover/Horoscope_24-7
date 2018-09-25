@@ -8,17 +8,16 @@ import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.widget.Button;
-import org.holoeverywhere.widget.CheckBox;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.R;
@@ -192,56 +191,29 @@ public class AboutFragment extends BasePreferenceFragment {
 		    	View content = inflater.inflate(R.layout.dialog_content_advertisement, null);
 		    	Button cancel = (Button)content.findViewById(R.id.cancel);
 		    	Button apply = (Button)content.findViewById(R.id.apply);
-		    	final TextView intAdsSummary = (TextView)content.findViewById(R.id.TextView04);
-		    	
-		    	final CheckBox intAds = (CheckBox)content.findViewById(R.id.TextView06);
 		    	
 		    	//set fonts
 		    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
 		    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
 		    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
-		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView05));
-		    	SFUIFonts.LIGHT.apply(context, intAdsSummary);
 		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView051));
 		    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView041));
 		    	
-		    	//set check boxs
-		    	intAds.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-					@Override
-					public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-						intAdsSummary.setText(arg1 ? R.string.advertisement_interstitials_summary : R.string.advertisement_interstitials_disabled_summary);
-					}
-		    	});
-		    	
-		    	intAds.setChecked(sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true));
-		    	
 		    	//view job
-		    	final RelativeLayout makeToggleInterstitials = (RelativeLayout)content.findViewById(R.id.make_toggle_intestitials);
-		    	makeToggleInterstitials.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						intAds.setChecked(!intAds.isChecked());
-					}
-				});
-		    	
 		    	final RelativeLayout makeBuyNoAd = (RelativeLayout)content.findViewById(R.id.make_buy_no_ad);
 		    	makeBuyNoAd.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-//						TODO getActivity().sendBroadcast(new Intent(Constants.INTENT_NAME_SHOW_BUY_DIALOG));
+						getActivity().sendBroadcast(new Intent(Constants.INTENT_NAME_SHOW_BUY_DIALOG));
 					}
 				});
 		    	
-		    	if (sPref.getBoolean(Constants.PREFERENCES_SHOW_BANNER_ADVERTISEMENT, true)){
-		    		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_banners_summary));
+		    	if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true)){
+		    		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_interstitials_summary));
 		    	} else {
-		    		intAdsSummary.setTextColor(getActivity().getResources().getColor(R.color.dialog_summary_text_color_disabled));
 		    		((TextView)content.findViewById(R.id.TextView041)).setTextColor(getActivity().getResources().getColor(R.color.dialog_summary_text_color_disabled));
-		    		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_banners_disabled_summary));
+		    		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_interstitials_disabled_summary));
 		    		((TextView)content.findViewById(R.id.TextView051)).setTextColor(getActivity().getResources().getColor(R.color.dialog_summary_text_color));
-		    		((TextView)content.findViewById(R.id.TextView05)).setTextColor(getActivity().getResources().getColor(R.color.dialog_summary_text_color));
-		    		intAds.setEnabled(false);
-		    		makeToggleInterstitials.setClickable(false);
 		    		makeBuyNoAd.setClickable(false);
 		    		
 		    		cancel.setVisibility(View.GONE);
@@ -251,7 +223,6 @@ public class AboutFragment extends BasePreferenceFragment {
 		    	apply.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, intAds.isChecked()).commit();
 						alert.dismiss();
 					}
 				});
@@ -283,6 +254,34 @@ public class AboutFragment extends BasePreferenceFragment {
         getListView().setBackgroundColor(getResources().getColor(R.color.slider_menu_background));
         getListView().setDivider(getResources().getDrawable(R.color.slider_menu_custom_divider));
         getListView().setSelector(getResources().getDrawable(R.drawable.slider_menu_selector));
+        
+        //receivers
+  		try {
+  			getActivity().registerReceiver(hideAnyDialog, new IntentFilter(Constants.INTENT_NAME_HIDE_ANY_DIALOG));
+  		} catch (Exception e) {
+  			e.printStackTrace();
+  		}
     }
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+        
+		//receivers
+		try{
+			getActivity().unregisterReceiver(hideAnyDialog);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+    }
+    
+	private BroadcastReceiver hideAnyDialog = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	if (alert != null && alert.isShowing()) {
+	    		alert.dismiss();
+	        }
+	    }
+	};
 
 }

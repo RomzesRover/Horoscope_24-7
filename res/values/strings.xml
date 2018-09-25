@@ -75,11 +75,8 @@
     <string name="advertisement">Advertisement</string>
     <string name="advertisement_summary">Turn off the advertisement</string>
     <string name="advertisement_interstitials">Interstitials</string>
-    <string name="advertisement_interstitials_summary">You can disable interstitial advertisement for free</string>
+    <string name="advertisement_interstitials_summary">You can disable interstitial advertisement for 0.99$</string>
     <string name="advertisement_interstitials_disabled_summary">Interstitial advertisement is disabled</string>
-    <string name="advertisement_banners">Banners</string>
-    <string name="advertisement_banners_summary">You can disable advertisement banners and get extra functions for 2.45$</string>
-    <string name="advertisement_banners_disabled_summary">Banners advertisement is successful disabled</string>
     
     <string name="feedback">Feedback</string>
     <string name="instagram">Instagram</string>

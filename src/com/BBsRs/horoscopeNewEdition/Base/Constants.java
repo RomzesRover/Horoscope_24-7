@@ -27,7 +27,6 @@ public class Constants {
 	public static final String PREFERENCES_NOTIFICATIONS_TIME_HOUR = "preference:show_notifications_time_hour";
 	public static final String PREFERENCES_NOTIFICATIONS_TIME_MINUTE = "preference:show_notifications_time_minute";
 	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT = "preferences:show_interstitial_advertisement";
-	public static final String PREFERENCES_SHOW_BANNER_ADVERTISEMENT = "preferences:show_banner_advertisement";
 	public static final String PREFERENCES_HOROSCOPE_COLLECTION_TIME = "preferences:horoscope_collection_time";
 	public static final String PREFERENCES_CURRENT_LANGUAGE = "preferences:current_language";
 	public static final String PREFERENCES_OPEN_SETTINGS_FIRST = "preferences:open_settings_first";
@@ -43,6 +42,7 @@ public class Constants {
 	
 	public static final String BROADCAST_INTENT_OPEN_APP = "broadcast:intent_open_app";
 	public static final String BROADCAST_INTENT_CLOSE_NOTIF = "broadcast:intent_close_notif";
+	public static final String INTENT_NAME_SHOW_BUY_DIALOG = "intent:name_show_buy_dialog";
+	public static final String INTENT_NAME_HIDE_ANY_DIALOG = "intent:name_hide_any_dialog";
 	
-
 }

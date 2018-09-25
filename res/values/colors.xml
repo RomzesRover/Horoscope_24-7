@@ -20,7 +20,7 @@
     <color name="dialog_main_text_color">#fff</color>
     <color name="dialog_main_text_color_pressed">#0f87b9</color>
     <color name="dialog_summary_text_color">#ccc</color>
-    <color name="dialog_summary_text_color_disabled">#5fabcc</color>
+    <color name="dialog_summary_text_color_disabled">#767676</color>
     
     <color name="intro_main_text">#fff</color>
     <color name="intro_second_text">#8c8d92</color>
