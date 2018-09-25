@@ -2,7 +2,7 @@
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="fragment_content_text_padding">16dp</dimen>
-    <dimen name="loader_buttons_margin">45dp</dimen>
+    <dimen name="loader_buttons_margin">202.5dp</dimen>
     
     <dimen name="dialog_icon_padding">16dp</dimen>
     <dimen name="dialog_icon_padding_for_other_icons">10dp</dimen>
