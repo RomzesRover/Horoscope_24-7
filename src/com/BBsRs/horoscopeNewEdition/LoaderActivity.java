@@ -2,6 +2,7 @@ package com.BBsRs.horoscopeNewEdition;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.AlertDialog;
@@ -563,6 +564,17 @@ public class LoaderActivity extends BaseActivity {
 		    interstitial.setAdUnitId("ca-app-pub-6690318766939525/2467455298");
 
 		    AdRequest.Builder builder = new AdRequest.Builder();
+		    
+			Calendar birthday = Calendar.getInstance();
+			birthday.setTimeInMillis(System.currentTimeMillis());
+			
+			try {
+				birthday.set(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, 1995), sPref.getInt(Constants.PREFERENCES_MONTH_BORN, 4), sPref.getInt(Constants.PREFERENCES_DAY_BORN, 10));
+			} catch (Exception e){
+				e.printStackTrace();
+				birthday.set(2000, 04, 10);
+			}
+			builder.setBirthday(new Date(birthday.getTimeInMillis()));
 			
 			try {
 				final LocationManager mlocManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
