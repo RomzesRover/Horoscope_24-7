@@ -2,7 +2,7 @@
 <resources>
 	<integer name="default_language">2</integer>
     <string name="app_name">Horoskop</string>
-    <string name="version_name">3.0 Alpha</string>
+    <string name="version_name">3.0 Release b1</string>
     
     <string name="app_name_to_upper_case">HOROSKOP</string>
     <string name="application_to_upper_case">APPLIKATION</string>

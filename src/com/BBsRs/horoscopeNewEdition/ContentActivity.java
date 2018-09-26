@@ -1,11 +1,16 @@
 package com.BBsRs.horoscopeNewEdition;
 
+import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.addon.AddonSlider;
 import org.holoeverywhere.addon.Addons;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.slider.SliderMenu;
+import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.RelativeLayout;
+import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
 import android.content.BroadcastReceiver;
@@ -17,6 +22,7 @@ import android.os.Handler;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.View;
 
+import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Fragments.AboutFragment;
@@ -39,6 +45,7 @@ public class ContentActivity extends BaseActivity {
 //	private static final String LICENSE_KEY = null;
     private static final String PRODUCT_ID = "ad_disabler";
     private static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmn5/MyJmRJkvKCLyD4BUvpOrK2Yv6Sk9GNQjiv7VvKPNnzSwrWERbfmQjgbCfxgqkuyOP5lailx769HfGDJWmPcHqknvcZGX7C369rGbMQubAfIg146f8mKjLY63YabY9Gx6O+8mScHLvsJCVzTcGVttKDReChA7/X5UxbIljZ/HZGd57nUUSp5xWuaw+Vh1cA49x5tftx7gbBkWKKWMb34sWAqdtd7kSulj/a8l9Kd1mm3AH6zvcarrxbs6+wnf602lWJNlTP9YeMxDFeUQTbSWM62PVkDpapiK6EH3HbvbMCCxeUWolMPkqTHLtBEzP/Y7CLExZ7kuEfYoI4pTWQIDAQAB"; // PUT YOUR MERCHANT KEY HERE;
+    
 
 																																																																																																															// YOUR
 	private BillingProcessor bp;
@@ -218,6 +225,83 @@ public class ContentActivity extends BaseActivity {
 		}
 		
 		initBilling();
+    	handler.postDelayed(new Runnable(){
+			@Override
+			public void run() {
+				showDisableADDialog();
+			}
+    	}, 500);
+    }
+    
+    AlertDialog alert = null;
+    public void showDisableADDialog(){
+    	int count = sPref.getInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0);
+    	if (count == 0 || count % 5 != 0 || !sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true)){
+			return;
+		}
+    	sPref.edit().putInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0).commit();
+    	
+    	if (!sPref.getBoolean(Constants.PREFERENCES_SHOW_ADVERTISEMENT_DIALOG, true)){
+			sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_ADVERTISEMENT_DIALOG, true).commit();
+			return;
+    	}
+    	sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_ADVERTISEMENT_DIALOG, false).commit();
+    	
+    	final Context context = this; 								// create context
+ 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+    		
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	
+    	//init views
+    	View content = inflater.inflate(R.layout.dialog_content_advertisement, null);
+    	Button cancel = (Button)content.findViewById(R.id.cancel);
+    	Button apply = (Button)content.findViewById(R.id.apply);
+    	
+    	//set fonts
+    	SFUIFonts.MEDIUM.apply(context, (TextView)content.findViewById(R.id.title));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.cancel));
+    	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView051));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView041));
+    	
+    	//view job
+    	final RelativeLayout makeBuyNoAd = (RelativeLayout)content.findViewById(R.id.make_buy_no_ad);
+    	makeBuyNoAd.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				context.sendBroadcast(new Intent(Constants.INTENT_NAME_SHOW_BUY_DIALOG));
+			}
+		});
+    	
+    	if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true)){
+    		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_interstitials_summary));
+    	} else {
+    		((TextView)content.findViewById(R.id.TextView041)).setTextColor(context.getResources().getColor(R.color.dialog_summary_text_color_disabled));
+    		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_interstitials_disabled_summary));
+    		((TextView)content.findViewById(R.id.TextView051)).setTextColor(context.getResources().getColor(R.color.dialog_summary_text_color));
+    		makeBuyNoAd.setClickable(false);
+    		
+    		cancel.setVisibility(View.GONE);
+    		apply.setText(cancel.getText());
+    	}
+    	
+    	apply.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
+    	cancel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				alert.dismiss();
+			}
+		});
+    	
+    	build.setView(content);
+    	alert = build.create();															// show dialog
+    	alert.show();
     }
     
 	public void initBilling(){
