@@ -261,7 +261,7 @@ public class ContentFragment extends BaseFragment{
 				        customOnRefreshListener.onRefreshStarted(null);
 					}
 				}
-	      	}, 100);
+	      	}, 300);
 		}
 	}
 	
