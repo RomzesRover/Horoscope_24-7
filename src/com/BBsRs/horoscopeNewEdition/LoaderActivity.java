@@ -38,6 +38,7 @@ import android.widget.ImageView;
 
 import com.BBsRs.SFUIFontsEverywhere.SFUIFonts;
 import com.BBsRs.horoscopeNewEdition.Base.BaseActivity;
+import com.BBsRs.horoscopeNewEdition.Base.Connectivity;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
 import com.BBsRs.horoscopeNewEdition.Services.NotificationService;
 import com.google.android.gms.ads.AdListener;
@@ -538,7 +539,7 @@ public class LoaderActivity extends BaseActivity {
 	Runnable startApp = new Runnable(){
 		@Override
 		public void run() {
-			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext())){
+			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
 				loadAndSetupInterstitialAD();
 			} else {
 				sPref.edit().putInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0).commit();
