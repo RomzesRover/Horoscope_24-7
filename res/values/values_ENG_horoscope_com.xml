@@ -6,8 +6,8 @@
         <item>Tomorrow</item>
         <item>Weekly</item>
         <item>Monthly</item>
-        <item>Year 2018</item>
-        <item>Chinese Year 2018</item>
+        <item>Year</item>
+        <item>Chinese Year</item>
     </string-array>
     <string-array name="horoscope_com_kinds">
     	<item>Sun sign</item>
