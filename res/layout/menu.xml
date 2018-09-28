@@ -8,7 +8,7 @@
     <ListView
         android:id="@+id/slider_menu"
         android:layout_width="match_parent"
-        android:divider="@color/slider_menu_custom_divider"
+        android:listDivider="@color/slider_menu_custom_divider"
         android:layout_height="match_parent"
         android:dividerHeight="0.5dip" 
         android:listSelector="@drawable/slider_menu_selector"/>

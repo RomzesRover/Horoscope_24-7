@@ -2,7 +2,7 @@
 
     <item android:drawable="@android:color/transparent" android:state_enabled="true" android:state_window_focused="false"/>
     <item android:drawable="@android:color/transparent" android:state_enabled="false" android:state_window_focused="false"/>
-    <item android:drawable="@color/slider_menu_selector_color" android:state_pressed="true"/>
+    <item android:drawable="@drawable/slider_menu_list_pressed" android:state_pressed="true"/>
     <item android:drawable="@android:color/transparent" android:state_enabled="true" android:state_focused="true"/>
     <item android:drawable="@android:color/transparent" android:state_enabled="true"/>
     <item android:drawable="@@android:color/transparent" android:state_focused="true"/>
