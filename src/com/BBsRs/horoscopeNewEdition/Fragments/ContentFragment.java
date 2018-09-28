@@ -213,6 +213,8 @@ public class ContentFragment extends BaseFragment{
 		sPref.edit().putLong(Constants.PREFERENCES_HOROSCOPE_COLLECTION_TIME, System.currentTimeMillis()).commit();
 		
 		//stop load curr
+		//stopp all delayed stuff
+		handler.removeCallbacks(update);
 		if (loadM != null && loadM.getStatus() == AsyncTask.Status.RUNNING){
 			mPullToRefreshLayout.setRefreshing(false);
 			mPullToRefreshLayout.setRefreshComplete();
@@ -252,18 +254,20 @@ public class ContentFragment extends BaseFragment{
 	public void updateList(){
 		sPref.edit().putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false).commit();
 		if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
-			handler.postDelayed(new Runnable(){
-				@Override
-				public void run() {
-					if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
-						//refresh on open to load data when app first time started
-				        mPullToRefreshLayout.setRefreshing(true);
-				        customOnRefreshListener.onRefreshStarted(null);
-					}
-				}
-	      	}, 300);
+			handler.postDelayed(update, 300);
 		}
 	}
+	
+	Runnable update = new Runnable(){
+		@Override
+		public void run() {
+			if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
+				//refresh on open to load data when app first time started
+		        mPullToRefreshLayout.setRefreshing(true);
+		        customOnRefreshListener.onRefreshStarted(null);
+			}
+		}
+	};
 	
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -312,23 +316,22 @@ public class ContentFragment extends BaseFragment{
 				 
                 @Override
                 protected Void doInBackground(Void... params) {
-                	
-            	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
-            	    case 3:
-            	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
-            	    	break;
-            	    case 2:
-            	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
-            	    	break;
-            	    case 1:
-            	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
-            	    	break;
-            	    case 0: default:
-            	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
-            	    	break;
-            	    }
-                	
                 	try {
+                	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
+                	    case 3:
+                	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	break;
+                	    case 2:
+                	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	break;
+                	    case 1:
+                	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	break;
+                	    case 0: default:
+                	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	break;
+                	    }
+                	    
                 		//hide prev state
                 		horoscopeCollection = null;
                 		if (scrollView.getVisibility() == View.VISIBLE){
