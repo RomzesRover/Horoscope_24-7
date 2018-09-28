@@ -225,13 +225,15 @@ public class ContentActivity extends BaseActivity {
 		}
 		
 		initBilling();
-    	handler.postDelayed(new Runnable(){
-			@Override
-			public void run() {
-				showDisableADDialog();
-			}
-    	}, 500);
+    	handler.postDelayed(showDisableADDialogHandler, 500);
     }
+    
+	Runnable showDisableADDialogHandler = new Runnable(){
+		@Override
+		public void run() {
+			showDisableADDialog();
+		}
+	};
     
     AlertDialog alert = null;
     public void showDisableADDialog(){
@@ -354,6 +356,9 @@ public class ContentActivity extends BaseActivity {
     
     @Override
 	public void onPause(){
+    	//stopp all delayed stuff
+    	handler.removeCallbacks(showDisableADDialogHandler);
+    	
 		//unregister receiver
         try {
             super.unregisterReceiver(openMenuDrawer);
