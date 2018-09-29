@@ -319,16 +319,16 @@ public class ContentFragment extends BaseFragment{
                 	try {
                 	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
                 	    case 3:
-                	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
                 	    	break;
                 	    case 2:
-                	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
                 	    	break;
                 	    case 1:
-                	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
                 	    	break;
                 	    case 0: default:
-                	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity());
+                	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
                 	    	break;
                 	    }
                 	    

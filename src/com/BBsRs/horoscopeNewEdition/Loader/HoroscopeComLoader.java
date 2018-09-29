@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
@@ -14,8 +15,8 @@ import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 
 public class HoroscopeComLoader extends Loader{
 	
-	public HoroscopeComLoader(int listType, SharedPreferences sPref, Context context) {
-		super(listType, sPref, context);
+	public HoroscopeComLoader(int listType, SharedPreferences sPref, Context context, Handler handler) {
+		super(listType, sPref, context, handler);
 	}
 
 	@Override

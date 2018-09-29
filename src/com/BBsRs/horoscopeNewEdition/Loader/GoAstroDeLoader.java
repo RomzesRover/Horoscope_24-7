@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
@@ -16,8 +17,8 @@ import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 
 public class GoAstroDeLoader extends Loader{
 	
-	public GoAstroDeLoader(int listType, SharedPreferences sPref, Context context) {
-		super(listType, sPref, context);
+	public GoAstroDeLoader(int listType, SharedPreferences sPref, Context context, Handler handler) {
+		super(listType, sPref, context, handler);
 	}
 
 	@Override

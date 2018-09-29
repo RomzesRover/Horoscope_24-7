@@ -55,6 +55,6 @@
         <item>ноябрь</item>
         <item>декабрь</item>
     </string-array>
-    
+    <string name="next_year_predict">Прогноз на 2019 год внизу!</string>
     <string name="mail_ru_copyright">© horo.mail.ru</string>
 </resources>
