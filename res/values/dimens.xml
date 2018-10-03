@@ -14,5 +14,7 @@
     <dimen name="dialog_content_margin_element">3dp</dimen>
     <dimen name="dialog_content_margin_text_size_title">18sp</dimen>
     <dimen name="dialog_content_margin_text_size_summary">15sp</dimen>
+    
+    <dimen name="content_fragment_error_button_padding">30dp</dimen>
 
 </resources>

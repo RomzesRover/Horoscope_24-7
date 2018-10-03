@@ -182,14 +182,23 @@ public class ContentFragment extends BaseFragment{
 			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
 			 break;
         }
+        int paddingErrorButton = getResources().getDimensionPixelOffset(R.dimen.content_fragment_error_button_padding);
         switch (sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)){
 		 case 2: case 3:
 			 fade.setImageResource(R.drawable.ic_lightness_fade);
 			 textContent.setTextColor(getResources().getColor(R.color.content_text_dark));
+			 errorMessage.setTextColor(getResources().getColor(R.color.content_text_dark));
+			 errorRetryButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom_inverse));
+			 errorRetryButton.setBackgroundResource(R.drawable.button_custom_dark);
+			 errorRetryButton.setPadding(paddingErrorButton, 0, paddingErrorButton, 0);
 			 break;
 		 case 0: case 1: default:
 			 fade.setImageResource(R.drawable.ic_darkness_fade);
 			 textContent.setTextColor(getResources().getColor(R.color.content_text));
+			 errorMessage.setTextColor(getResources().getColor(R.color.content_text));
+			 errorRetryButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom));
+			 errorRetryButton.setBackgroundResource(R.drawable.button_custom);
+			 errorRetryButton.setPadding(paddingErrorButton, 0, paddingErrorButton, 0);
 			 break;
         }
         
