@@ -121,7 +121,7 @@ public class HoroscopeComLoader extends Loader{
 	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("money").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("money").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
 				break;
 			}
-			return horoscopeCollection;
+			return horoscopeCollection.size() == 0 ? null : horoscopeCollection;
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;

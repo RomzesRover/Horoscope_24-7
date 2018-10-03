@@ -95,7 +95,7 @@ public class HoroscopoComLoader extends Loader{
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[3] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementsByClass("horoscope-box").get(0).child(4).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
 	    		break;
 			}
-			return horoscopeCollection;
+			return horoscopeCollection.size() == 0 ? null : horoscopeCollection;
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;

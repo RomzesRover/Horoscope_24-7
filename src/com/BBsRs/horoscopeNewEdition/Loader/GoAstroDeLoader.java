@@ -146,7 +146,7 @@ public class GoAstroDeLoader extends Loader{
 				horoscopeCollection.add(new HoroscopeCollection("Sonnenschild", res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.goastro_de_copyright)+"</a>"));
 				break;
 			}
-			return horoscopeCollection;
+			return horoscopeCollection.size() == 0 ? null : horoscopeCollection;
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;

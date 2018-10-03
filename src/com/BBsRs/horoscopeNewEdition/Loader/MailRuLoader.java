@@ -194,7 +194,7 @@ public class MailRuLoader extends Loader{
             	}
 				break;
 			}
-			return horoscopeCollection;
+			return horoscopeCollection.size() == 0 ? null : horoscopeCollection;
 		} catch (Exception e){
 			e.printStackTrace();
 			return null;
