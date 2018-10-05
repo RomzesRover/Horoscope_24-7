@@ -160,7 +160,7 @@ public class ContentFragment extends BaseFragment{
   		
   		//compatibility setup
   		if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
-  			femaleIndex=0;
+  			femaleIndex=sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0);
   			maleIndex=0;
   			//init views
   			compatibilityLayout = (LinearLayout)contentView.findViewById(R.id.compatibilityLayout);

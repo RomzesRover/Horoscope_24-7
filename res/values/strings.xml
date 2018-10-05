@@ -5,7 +5,7 @@
     <integer name="user_timeout">10000</integer>
 
     <string name="app_name">Horoscope</string>
-    <string name="version_name">3.0 Release b2</string>
+    <string name="version_name">3.0 Release b3</string>
     
     <string name="app_name_to_upper_case">HOROSCOPE</string>
     <string name="application_to_upper_case">APPLICATION</string>

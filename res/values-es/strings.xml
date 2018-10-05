@@ -2,7 +2,6 @@
 <resources>
 	<integer name="default_language">3</integer>
     <string name="app_name">Horóscopo</string>
-    <string name="version_name">3.0 Release b2</string>
     
     <string name="app_name_to_upper_case">HORÓSCOPO</string>
     <string name="application_to_upper_case">APLICACIÓN</string>
