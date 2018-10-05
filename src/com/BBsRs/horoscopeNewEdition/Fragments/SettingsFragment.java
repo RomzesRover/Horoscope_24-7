@@ -312,7 +312,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 						ed.putInt(Constants.PREFERENCES_CHINESE_SIGN, chineseSignCalculated);
 						ed.putInt(Constants.PREFERENCES_CHINESE_SIGN_CORRECTED, chineseSignCorrected(chineseSignCalculated));
 						
-						for (int i = 0; i <= 5; i++){
+						for (int i = 0; i <= 7; i++){
 							ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+i, true);
 						}
 						
@@ -392,7 +392,7 @@ public class SettingsFragment extends BasePreferenceFragment {
 					@Override
 					public void onClick(View v) {
 						Editor ed = sPref.edit();
-						for (int i = 0; i <= 5; i++){
+						for (int i = 0; i <= 7; i++){
 							ed.putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+i, true);
 						}
 						ed.commit();
