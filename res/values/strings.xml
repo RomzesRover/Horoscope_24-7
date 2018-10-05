@@ -16,6 +16,7 @@
     <string name="first_launch_message">In settings you can change font size and the background.</string>
     
     <string name="error_message">Check your connection and try again.</string>
+    <string name="error_message_sumarry">If the error persists, you need to update the application via Google Play.\nIf the update is not available, report this to the developer through any form of feedback.</string>
     <string name="error_retry">Retry</string>
     
     <string name="male">Male</string>

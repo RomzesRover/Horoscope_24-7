@@ -12,6 +12,7 @@
     <string name="first_launch_message">En la configuración puede cambiar el tamaño de la fuente y el fondo.</string>
     
     <string name="error_message">Compruebe su conexión de red y vuelva a intentarlo.</string>
+    <string name="error_message_sumarry">Si el error persiste, debe actualizar la aplicación a través de Google Play.\nSi la actualización no está disponible, infórmeselo al desarrollador a través de cualquier forma de comentarios.</string>
     <string name="error_retry">Inténtalo de nuevo</string>
     
     <string name="male">Un hombre</string>

@@ -87,6 +87,7 @@
             android:visibility="gone" >
 
             <LinearLayout
+                android:id="@+id/errorMessageButtonLinearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -117,6 +118,19 @@
                     android:textColor="@drawable/button_color_custom"
                     android:textSize="@dimen/dialog_content_margin_text_size_title" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/errorMessageSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_below="@+id/errorMessageButtonLinearLayout"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/error_message_sumarry"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/dialog_summary_text_color_disabled"
+                android:textSize="15sp" />
         </RelativeLayout>
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
 

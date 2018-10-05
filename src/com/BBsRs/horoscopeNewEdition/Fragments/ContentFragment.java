@@ -74,7 +74,7 @@ public class ContentFragment extends BaseFragment{
     TextView textContent;
     ScrollView scrollView;
     RelativeLayout errorLayout;
-    TextView errorMessage;
+    TextView errorMessage, errorMessageSummary;
     Button errorRetryButton, firstSignButton, secondSignButton;
     ImageView fade, compatibilityIcon;
     LinearLayout compatibilityLayout;
@@ -108,6 +108,7 @@ public class ContentFragment extends BaseFragment{
       	scrollView = (ScrollView)contentView.findViewById(R.id.scrollview);
       	errorLayout = (RelativeLayout)contentView.findViewById(R.id.errorLayout);
     	errorMessage = (TextView)contentView.findViewById(R.id.errorMessage);
+    	errorMessageSummary = (TextView)contentView.findViewById(R.id.errorMessageSummary);
     	errorRetryButton = (Button)contentView.findViewById(R.id.errorRetryButton);
     	fade = (ImageView)contentView.findViewById(R.id.imageView1);
 		
@@ -156,12 +157,13 @@ public class ContentFragment extends BaseFragment{
 		
         //set fonts
   		SFUIFonts.LIGHT.apply(getActivity(), errorMessage);
+  		SFUIFonts.LIGHT.apply(getActivity(), errorMessageSummary);
   		SFUIFonts.LIGHT.apply(getActivity(), errorRetryButton);
   		
   		//compatibility setup
-  		if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
+  		if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == Constants.BUNDLE_LIST_TYPE_COMPATIBILITY){
   			femaleIndex=sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0);
-  			maleIndex=0;
+  			maleIndex=sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0);
   			//init views
   			compatibilityLayout = (LinearLayout)contentView.findViewById(R.id.compatibilityLayout);
   	    	firstSignButton = (Button)contentView.findViewById(R.id.firstSignButton);
@@ -361,7 +363,7 @@ public class ContentFragment extends BaseFragment{
 	@Override
     public void onResume() {
         super.onResume();
-        if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7)
+        if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == Constants.BUNDLE_LIST_TYPE_COMPATIBILITY)
         	setTitle(bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
         else
         	setTitle(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
@@ -395,7 +397,7 @@ public class ContentFragment extends BaseFragment{
 			 errorRetryButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom_inverse));
 			 errorRetryButton.setBackgroundResource(R.drawable.button_custom_dark);
 			 errorRetryButton.setPadding(paddingErrorButton, 0, paddingErrorButton, 0);
-			 if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
+			 if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == Constants.BUNDLE_LIST_TYPE_COMPATIBILITY){
 				 compatibilityIcon.setImageResource(R.drawable.ic_icon_compatibility_dark);
 				 firstSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.compatibility_left_drawable_female_dark, 0, 0, 0);
 				 secondSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.compatibility_left_drawable_male_dark, 0, 0, 0);
@@ -414,7 +416,7 @@ public class ContentFragment extends BaseFragment{
 			 errorRetryButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom));
 			 errorRetryButton.setBackgroundResource(R.drawable.button_custom);
 			 errorRetryButton.setPadding(paddingErrorButton, 0, paddingErrorButton, 0);
-			 if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
+			 if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == Constants.BUNDLE_LIST_TYPE_COMPATIBILITY){
 				 compatibilityIcon.setImageResource(R.drawable.ic_icon_compatibility);
 				 firstSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.symbol_female, 0, 0, 0);
 				 secondSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.symbol_male, 0, 0, 0);
