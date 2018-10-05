@@ -182,7 +182,7 @@ public class ContentActivity extends BaseActivity {
 			sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[4], ContentFragment.class, monthly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[5], ContentFragment.class, yearly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.mail_ru_horoscopes)[6], ContentFragment.class, compatibility, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_compatibility).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-			prefId=7;
+			prefId=8;
 			startId=2;
 	    	break;
 	    case 0: default:

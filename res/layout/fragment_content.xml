@@ -38,8 +38,8 @@
                         android:background="@drawable/button_custom_half"
                         android:drawableLeft="@drawable/symbol_female"
                         android:ellipsize="end"
-                        android:paddingLeft="4dp"
-                        android:paddingRight="36dp"
+                        android:paddingLeft="@dimen/content_fragment_loader_button_imapge_left"
+                        android:paddingRight="@dimen/content_fragment_loader_button_imapge_right"
                         android:singleLine="true"
                         android:textColor="@color/intro_main_text"
                         android:textSize="@dimen/dialog_content_margin_text_size_title" />
@@ -60,8 +60,8 @@
                         android:background="@drawable/button_custom_half"
                         android:drawableLeft="@drawable/symbol_male"
                         android:ellipsize="end"
-                        android:paddingLeft="4dp"
-                        android:paddingRight="36dp"
+                        android:paddingLeft="@dimen/content_fragment_loader_button_imapge_left"
+                        android:paddingRight="@dimen/content_fragment_loader_button_imapge_right"
                         android:singleLine="true"
                         android:textColor="@color/intro_main_text"
                         android:textSize="@dimen/dialog_content_margin_text_size_title" />
@@ -111,8 +111,8 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/button_custom"
-                    android:paddingLeft="@dimen/content_fragment_error_button_padding"
-                    android:paddingRight="@dimen/content_fragment_error_button_padding"
+                    android:paddingLeft="@dimen/content_fragment_loader_error_button_padding"
+                    android:paddingRight="@dimen/content_fragment_loader_error_button_padding"
                     android:text="@string/error_retry"
                     android:textColor="@drawable/button_color_custom"
                     android:textSize="@dimen/dialog_content_margin_text_size_title" />

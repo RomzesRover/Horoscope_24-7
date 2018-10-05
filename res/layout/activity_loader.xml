@@ -61,7 +61,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="25dp" />
-
     </RelativeLayout>
 
     <ScrollView
@@ -80,122 +79,122 @@
             android:paddingRight="0dp"
             android:visibility="gone" >
 
-        <TextView
-            android:id="@+id/title_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/intro_main_text"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/intro_main_text"
+                android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/subTitle_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:text="@string/introduce_slogan"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/intro_second_text"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/subTitle_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="@string/introduce_slogan"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/intro_second_text"
+                android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/language"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/loader_buttons_margin"
-            android:layout_marginRight="@dimen/loader_buttons_margin"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_custom_half"
-            android:drawableLeft="@drawable/ic_icon_settings_language"
-            android:ellipsize="end"
-            android:paddingLeft="8dp"
-            android:paddingRight="40dp"
-            android:singleLine="true"
-            android:text="@string/preference_language_1"
-            android:textColor="@color/intro_main_text"
-            android:textSize="@dimen/dialog_content_margin_text_size_title" />
+            <Button
+                android:id="@+id/language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/loader_buttons_margin"
+                android:layout_marginRight="@dimen/loader_buttons_margin"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_custom_half"
+                android:drawableLeft="@drawable/ic_icon_settings_language"
+                android:ellipsize="end"
+                android:paddingLeft="@dimen/content_fragment_loader_button_imapge_left"
+                android:paddingRight="@dimen/content_fragment_loader_button_imapge_right"
+                android:singleLine="true"
+                android:text="@string/preference_language_1"
+                android:textColor="@color/intro_main_text"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
 
-        <Button
-            android:id="@+id/date_born"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/loader_buttons_margin"
-            android:layout_marginRight="@dimen/loader_buttons_margin"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_custom_half"
-            android:drawableLeft="@drawable/ic_icon_settings_date_born"
-            android:ellipsize="end"
-            android:paddingLeft="8dp"
-            android:paddingRight="40dp"
-            android:singleLine="true"
-            android:text="@string/preference_date_1"
-            android:textColor="@color/intro_main_text"
-            android:textSize="@dimen/dialog_content_margin_text_size_title" />
+            <Button
+                android:id="@+id/date_born"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/loader_buttons_margin"
+                android:layout_marginRight="@dimen/loader_buttons_margin"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_custom_half"
+                android:drawableLeft="@drawable/ic_icon_settings_date_born"
+                android:ellipsize="end"
+                android:paddingLeft="@dimen/content_fragment_loader_button_imapge_left"
+                android:paddingRight="@dimen/content_fragment_loader_button_imapge_right"
+                android:singleLine="true"
+                android:text="@string/preference_date_1"
+                android:textColor="@color/intro_main_text"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
 
-        <Button
-            android:id="@+id/zodiac_sign"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/loader_buttons_margin"
-            android:layout_marginRight="@dimen/loader_buttons_margin"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_custom_half"
-            android:drawableLeft="@drawable/ic_icon_settings_sign"
-            android:ellipsize="end"
-            android:paddingLeft="8dp"
-            android:paddingRight="40dp"
-            android:singleLine="true"
-            android:text="@string/preference_zodiac_sign_1"
-            android:textColor="@color/intro_main_text"
-            android:textSize="@dimen/dialog_content_margin_text_size_title" />
+            <Button
+                android:id="@+id/zodiac_sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/loader_buttons_margin"
+                android:layout_marginRight="@dimen/loader_buttons_margin"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_custom_half"
+                android:drawableLeft="@drawable/ic_icon_settings_sign"
+                android:ellipsize="end"
+                android:paddingLeft="@dimen/content_fragment_loader_button_imapge_left"
+                android:paddingRight="@dimen/content_fragment_loader_button_imapge_right"
+                android:singleLine="true"
+                android:text="@string/preference_zodiac_sign_1"
+                android:textColor="@color/intro_main_text"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
 
-        <TextView
-            android:id="@+id/subTitle_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/loader_buttons_margin"
-            android:layout_marginRight="@dimen/loader_buttons_margin"
-            android:layout_marginTop="5dp"
-            android:ellipsize="end"
-            android:gravity="center_horizontal"
-            android:lines="3"
-            android:minLines="3"
-            android:text="@string/preference_date_set"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/intro_second_text"
-            android:textSize="15sp"
-            android:visibility="invisible" />
+            <TextView
+                android:id="@+id/subTitle_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/loader_buttons_margin"
+                android:layout_marginRight="@dimen/loader_buttons_margin"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:lines="3"
+                android:minLines="3"
+                android:text="@string/preference_date_set"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/intro_second_text"
+                android:textSize="15sp"
+                android:visibility="invisible" />
 
-        <Button
-            android:id="@+id/start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="@dimen/loader_buttons_margin"
-            android:layout_marginRight="@dimen/loader_buttons_margin"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_custom_half"
-            android:ellipsize="end"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:singleLine="true"
-            android:text="@string/start"
-            android:textColor="@color/intro_main_text"
-            android:textSize="@dimen/dialog_content_margin_text_size_title"
-            android:visibility="invisible" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="@dimen/loader_buttons_margin"
+                android:layout_marginRight="@dimen/loader_buttons_margin"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_custom_half"
+                android:ellipsize="end"
+                android:paddingLeft="@dimen/content_fragment_loader_error_button_padding"
+                android:paddingRight="@dimen/content_fragment_loader_error_button_padding"
+                android:singleLine="true"
+                android:text="@string/start"
+                android:textColor="@color/intro_main_text"
+                android:textSize="@dimen/dialog_content_margin_text_size_title"
+                android:visibility="invisible" />
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

@@ -76,7 +76,7 @@ public class ContentFragment extends BaseFragment{
     RelativeLayout errorLayout;
     TextView errorMessage;
     Button errorRetryButton, firstSignButton, secondSignButton;
-    ImageView fade;
+    ImageView fade, compatibilityIcon;
     LinearLayout compatibilityLayout;
 	//alert dialog
     AlertDialog alert = null;
@@ -166,6 +166,7 @@ public class ContentFragment extends BaseFragment{
   			compatibilityLayout = (LinearLayout)contentView.findViewById(R.id.compatibilityLayout);
   	    	firstSignButton = (Button)contentView.findViewById(R.id.firstSignButton);
   	    	secondSignButton = (Button)contentView.findViewById(R.id.secondSignButton);
+  	    	compatibilityIcon = (ImageView)contentView.findViewById(R.id.imageView2);
   	    	compatibilityLayout.setVisibility(View.VISIBLE);
   	    	
   	    	firstSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[femaleIndex]);
@@ -383,7 +384,9 @@ public class ContentFragment extends BaseFragment{
 			 textContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
 			 break;
         }
-        int paddingErrorButton = getResources().getDimensionPixelOffset(R.dimen.content_fragment_error_button_padding);
+        int paddingErrorButton = getResources().getDimensionPixelOffset(R.dimen.content_fragment_loader_error_button_padding);
+        int paddingImageButtonLeft = getResources().getDimensionPixelOffset(R.dimen.content_fragment_loader_button_imapge_left);
+        int paddingImageButtonRight = getResources().getDimensionPixelOffset(R.dimen.content_fragment_loader_button_imapge_right);
         switch (sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)){
 		 case 2: case 3:
 			 fade.setImageResource(R.drawable.ic_lightness_fade);
@@ -392,6 +395,17 @@ public class ContentFragment extends BaseFragment{
 			 errorRetryButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom_inverse));
 			 errorRetryButton.setBackgroundResource(R.drawable.button_custom_dark);
 			 errorRetryButton.setPadding(paddingErrorButton, 0, paddingErrorButton, 0);
+			 if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
+				 compatibilityIcon.setImageResource(R.drawable.ic_icon_compatibility_dark);
+				 firstSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.compatibility_left_drawable_female_dark, 0, 0, 0);
+				 secondSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.compatibility_left_drawable_male_dark, 0, 0, 0);
+				 firstSignButton.setBackgroundResource(R.drawable.button_custom_dark);
+				 secondSignButton.setBackgroundResource(R.drawable.button_custom_dark);
+				 firstSignButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom_inverse));
+				 secondSignButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom_inverse));
+				 firstSignButton.setPadding(paddingImageButtonLeft, 0, paddingImageButtonRight, 0);
+				 secondSignButton.setPadding(paddingImageButtonLeft, 0, paddingImageButtonRight, 0);
+			 }
 			 break;
 		 case 0: case 1: default:
 			 fade.setImageResource(R.drawable.ic_darkness_fade);
@@ -400,6 +414,17 @@ public class ContentFragment extends BaseFragment{
 			 errorRetryButton.setTextColor(getResources().getColorStateList(R.drawable.button_color_custom));
 			 errorRetryButton.setBackgroundResource(R.drawable.button_custom);
 			 errorRetryButton.setPadding(paddingErrorButton, 0, paddingErrorButton, 0);
+			 if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
+				 compatibilityIcon.setImageResource(R.drawable.ic_icon_compatibility);
+				 firstSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.symbol_female, 0, 0, 0);
+				 secondSignButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.symbol_male, 0, 0, 0);
+				 firstSignButton.setBackgroundResource(R.drawable.button_custom_half);
+				 secondSignButton.setBackgroundResource(R.drawable.button_custom_half);
+				 firstSignButton.setTextColor(getResources().getColor(R.color.intro_main_text));
+				 secondSignButton.setTextColor(getResources().getColor(R.color.intro_main_text));
+				 firstSignButton.setPadding(paddingImageButtonLeft, 0, paddingImageButtonRight, 0);
+				 secondSignButton.setPadding(paddingImageButtonLeft, 0, paddingImageButtonRight, 0);
+			 }
 			 break;
         }
         
