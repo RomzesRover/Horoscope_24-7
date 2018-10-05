@@ -17,8 +17,8 @@ import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 
 public class MailRuLoader extends Loader{
 	
-	public MailRuLoader(int listType, SharedPreferences sPref, Context context, Handler handler) {
-		super(listType, sPref, context, handler);
+	public MailRuLoader(int listType, SharedPreferences sPref, Context context, Handler handler, int femaleIndex, int maleIndex) {
+		super(listType, sPref, context, handler, femaleIndex, maleIndex);
 	}
 	
 	@Override
@@ -192,6 +192,48 @@ public class MailRuLoader extends Loader{
     					res = res.substring(0, res.length()-12);    
                 	horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[1] + "<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), "<strong>"+String.valueOf(cal.get(Calendar.YEAR))+" год</strong> - " + res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
             	}
+				break;
+			case Constants.BUNDLE_LIST_TYPE_COMPATIBILITY:
+				String[] result;
+				switch(femaleIndex){
+				case 11:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_11)[maleIndex].split("#");
+					break;
+				case 10:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_10)[maleIndex].split("#");
+					break;
+				case 9:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_9)[maleIndex].split("#");
+					break;
+				case 8:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_8)[maleIndex].split("#");
+					break;
+				case 7:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_7)[maleIndex].split("#");
+					break;
+				case 6:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_6)[maleIndex].split("#");
+					break;
+				case 5:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_5)[maleIndex].split("#");
+					break;
+				case 4:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_4)[maleIndex].split("#");
+					break;
+				case 3:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_3)[maleIndex].split("#");
+					break;
+				case 2:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_2)[maleIndex].split("#");
+					break;
+				case 1:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_1)[maleIndex].split("#");
+					break;
+				case 0: default:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_mail_ru_0)[maleIndex].split("#");
+					break;
+				}
+				horoscopeCollection.add(new HoroscopeCollection("<i>Результат: "+result[0]+"%</i><br />Женщина - "+context.getResources().getStringArray(R.array.zodiac_signs)[femaleIndex]+"<br />Мужчина - "+context.getResources().getStringArray(R.array.zodiac_signs)[maleIndex], result[1], "<a href=\"https://horo.mail.ru/compatibility/zodiac/\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
 				break;
 			}
 			return horoscopeCollection.size() == 0 ? null : horoscopeCollection;

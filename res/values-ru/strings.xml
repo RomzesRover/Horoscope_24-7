@@ -15,6 +15,9 @@
     <string name="error_message">Проверьте ваше подключение к сети, и попробуйте снова.</string>
     <string name="error_retry">Попробовать снова</string>
     
+    <string name="male">Мужчина</string>
+    <string name="female">Женщина</string>
+    
     <string name="preference_base">Основные</string>
     <string name="preference_date_1">День рождения</string>
     <string name="preference_date_check">Проверьте правильность введеных данных</string>

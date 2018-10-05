@@ -3,9 +3,14 @@ package com.BBsRs.horoscopeNewEdition.Fragments;
 import java.util.ArrayList;
 
 import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.widget.ArrayAdapter;
 import org.holoeverywhere.widget.Button;
+import org.holoeverywhere.widget.LinearLayout;
+import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
 
@@ -70,8 +75,13 @@ public class ContentFragment extends BaseFragment{
     ScrollView scrollView;
     RelativeLayout errorLayout;
     TextView errorMessage;
-    Button errorRetryButton;
+    Button errorRetryButton, firstSignButton, secondSignButton;
     ImageView fade;
+    LinearLayout compatibilityLayout;
+	//alert dialog
+    AlertDialog alert = null;
+    //compatibility data
+    int femaleIndex=-1, maleIndex=-1;
     
     //handler
     Handler handler = new Handler();
@@ -147,7 +157,195 @@ public class ContentFragment extends BaseFragment{
         //set fonts
   		SFUIFonts.LIGHT.apply(getActivity(), errorMessage);
   		SFUIFonts.LIGHT.apply(getActivity(), errorRetryButton);
-		
+  		
+  		//compatibility setup
+  		if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7){
+  			femaleIndex=0;
+  			maleIndex=0;
+  			//init views
+  			compatibilityLayout = (LinearLayout)contentView.findViewById(R.id.compatibilityLayout);
+  	    	firstSignButton = (Button)contentView.findViewById(R.id.firstSignButton);
+  	    	secondSignButton = (Button)contentView.findViewById(R.id.secondSignButton);
+  	    	compatibilityLayout.setVisibility(View.VISIBLE);
+  	    	
+  	    	firstSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[femaleIndex]);
+  	    	secondSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[maleIndex]);
+  	    	
+  	    	firstSignButton.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					final Context context = getActivity(); 								// create context
+			 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+			    	
+			    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+			    		      (Context.LAYOUT_INFLATER_SERVICE);
+			    	
+			    	//init views
+			    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+			    	TextView title = (TextView)content.findViewById(R.id.title);
+			    	Button cancel = (Button)content.findViewById(R.id.cancel);
+			    	Button apply = (Button)content.findViewById(R.id.apply);
+			    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+			    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+			    	
+			    	//set fonts
+			    	SFUIFonts.MEDIUM.apply(context, title);
+			    	SFUIFonts.LIGHT.apply(context, cancel);
+			    	SFUIFonts.LIGHT.apply(context, apply);
+			    	
+			    	//view job
+			    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+			    	title.setText(context.getResources().getString(R.string.female));
+			    	icon.setImageResource(R.drawable.symbol_female);
+			    	// custom adapter
+			    	final String [] listArray = context.getResources().getStringArray(R.array.zodiac_signs);
+			        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+			            @Override
+			            public View getView(final int position, View convertView, ViewGroup parent) {
+			            	 View v = super.getView(position, convertView, parent);
+			            	 //set font
+			            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+			            	 //set radio
+			                 final RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+			                 if (list.isItemChecked(position)) {
+			                	 radio.setChecked(true);
+			                 } else {
+			                	 radio.setChecked(false);
+			                 }
+			                 
+			                 View.OnClickListener clickItem = new View.OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									femaleIndex = position;
+									notifyDataSetChanged();
+									list.setItemChecked(position, true);
+								}
+							};
+			                 
+			                 v.setOnClickListener(clickItem);
+			                 radio.setOnClickListener(clickItem);
+			                 return v;
+			            }
+			        });
+			        
+			        final int indexCalculated = femaleIndex;
+			        list.setItemChecked(indexCalculated, true);
+					
+					apply.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							updateList();
+							firstSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[femaleIndex]);
+							alert.dismiss();
+						}
+					});
+			    	
+			    	cancel.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							femaleIndex = indexCalculated;
+							firstSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[femaleIndex]);
+							alert.dismiss();
+						}
+					});
+			    	
+			    	build.setView(content);
+			    	alert = build.create();															// show dialog
+			    	alert.show();
+				}
+			});
+  	    	
+  	    	secondSignButton.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					final Context context = getActivity(); 								// create context
+			 		AlertDialog.Builder build = new AlertDialog.Builder(context); 				// create build for alert dialog
+			    	
+			    	LayoutInflater inflater = (LayoutInflater)context.getSystemService
+			    		      (Context.LAYOUT_INFLATER_SERVICE);
+			    	
+			    	//init views
+			    	View content = inflater.inflate(R.layout.dialog_content_list, null);
+			    	TextView title = (TextView)content.findViewById(R.id.title);
+			    	Button cancel = (Button)content.findViewById(R.id.cancel);
+			    	Button apply = (Button)content.findViewById(R.id.apply);
+			    	final ListView list = (ListView)content.findViewById(R.id.listView1);
+			    	ImageView icon = (ImageView)content.findViewById(R.id.icon);
+			    	
+			    	//set fonts
+			    	SFUIFonts.MEDIUM.apply(context, title);
+			    	SFUIFonts.LIGHT.apply(context, cancel);
+			    	SFUIFonts.LIGHT.apply(context, apply);
+			    	
+			    	//view job
+			    	list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+			    	title.setText(context.getResources().getString(R.string.male));
+			    	icon.setImageResource(R.drawable.symbol_male);
+			    	// custom adapter
+			    	final String [] listArray = context.getResources().getStringArray(R.array.zodiac_signs);
+			        list.setAdapter(new ArrayAdapter<String>(context, R.layout.ic_simple_single_choice, listArray){
+			            @Override
+			            public View getView(final int position, View convertView, ViewGroup parent) {
+			            	 View v = super.getView(position, convertView, parent);
+			            	 //set font
+			            	 SFUIFonts.LIGHT.apply(context, ((TextView)v.findViewById(android.R.id.text1)));
+			            	 //set radio
+			                 final RadioButton radio = (RadioButton) v.findViewById(R.id.radioButton1);
+			                 if (list.isItemChecked(position)) {
+			                	 radio.setChecked(true);
+			                 } else {
+			                	 radio.setChecked(false);
+			                 }
+			                 
+			                 View.OnClickListener clickItem = new View.OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									maleIndex = position;
+									notifyDataSetChanged();
+									list.setItemChecked(position, true);
+								}
+							};
+			                 
+			                 v.setOnClickListener(clickItem);
+			                 radio.setOnClickListener(clickItem);
+			                 return v;
+			            }
+			        });
+			        
+			        final int indexCalculated = maleIndex;
+			        list.setItemChecked(indexCalculated, true);
+					
+					apply.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							updateList();
+							secondSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[maleIndex]);
+							alert.dismiss();
+						}
+					});
+			    	
+			    	cancel.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							maleIndex = indexCalculated;
+							secondSignButton.setText(getResources().getStringArray(R.array.zodiac_signs)[maleIndex]);
+							alert.dismiss();
+						}
+					});
+			    	
+			    	build.setView(content);
+			    	alert = build.create();															// show dialog
+			    	alert.show();
+				}
+			});
+  	    	
+  	    	//set fonts
+  			SFUIFonts.LIGHT.apply(getActivity(), firstSignButton);
+  	  		SFUIFonts.LIGHT.apply(getActivity(), secondSignButton);
+  		}
+  		
 		return contentView;
 	}
 	
@@ -162,7 +360,10 @@ public class ContentFragment extends BaseFragment{
 	@Override
     public void onResume() {
         super.onResume();
-        setTitle(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+        if (bundle.getInt(Constants.BUNDLE_LIST_TYPE) == 7)
+        	setTitle(bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
+        else
+        	setTitle(getResources().getStringArray(R.array.zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+";"+bundle.getString(Constants.BUNDLE_LIST_TITLE_NAME));
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_action_bar_background));
         
         switch (sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2)){
@@ -328,16 +529,16 @@ public class ContentFragment extends BaseFragment{
                 	try {
                 	    switch(sPref.getInt(Constants.PREFERENCES_CURRENT_LANGUAGE, getResources().getInteger(R.integer.default_language))){
                 	    case 3:
-                	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
+                	    	loader = new HoroscopoComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler, femaleIndex, maleIndex);
                 	    	break;
                 	    case 2:
-                	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
+                	    	loader = new GoAstroDeLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler, femaleIndex, maleIndex);
                 	    	break;
                 	    case 1:
-                	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
+                	    	loader = new MailRuLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler, femaleIndex, maleIndex);
                 	    	break;
                 	    case 0: default:
-                	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler);
+                	    	loader = new HoroscopeComLoader(bundle.getInt(Constants.BUNDLE_LIST_TYPE), sPref, getActivity(), handler, femaleIndex, maleIndex);
                 	    	break;
                 	    }
                 	    

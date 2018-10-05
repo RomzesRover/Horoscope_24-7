@@ -17,12 +17,15 @@ public class Loader {
     Context context;
     boolean cancelLoad = false;
     Handler handler;
+    int femaleIndex=-1, maleIndex=-1;
 	
-	public Loader(int _listType, SharedPreferences _sPref, Context _context, Handler _handler){
+	public Loader(int _listType, SharedPreferences _sPref, Context _context, Handler _handler, int _femaleIndex, int _maleIndex){
 		listType = _listType;
 		sPref = _sPref;
 		context = _context;
 		handler = _handler;
+		femaleIndex = _femaleIndex;
+		maleIndex = _maleIndex;
 	}
 	
 	public void abortLoad(){

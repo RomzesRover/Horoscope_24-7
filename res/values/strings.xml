@@ -18,6 +18,9 @@
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_retry">Retry</string>
     
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    
     <string name="preference_base">Base</string>
     <string name="preference_date_1">Birth date</string>
     <string name="preference_date_check">Check your data is correct</string>

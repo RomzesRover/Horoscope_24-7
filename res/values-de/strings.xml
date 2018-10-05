@@ -15,6 +15,9 @@
     <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
     <string name="error_retry">wiederholen</string>
     
+    <string name="male">Ein Mann</string>
+    <string name="female">Eine Frau</string>
+    
     <string name="preference_base">Basis</string>
     <string name="preference_date_1">Geburtsdatum</string>
     <string name="preference_date_check">Überprüfen Sie Ihre Daten korrekt sind</string>

@@ -16,17 +16,65 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/compatibilityLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <Button
+                        android:id="@+id/firstSignButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/loader_buttons_margin"
+                        android:layout_marginRight="@dimen/loader_buttons_margin"
+                        android:background="@drawable/button_custom_half"
+                        android:drawableLeft="@drawable/symbol_female"
+                        android:ellipsize="end"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="36dp"
+                        android:singleLine="true"
+                        android:textColor="@color/intro_main_text"
+                        android:textSize="@dimen/dialog_content_margin_text_size_title" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_icon_compatibility" />
+
+                    <Button
+                        android:id="@+id/secondSignButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/loader_buttons_margin"
+                        android:layout_marginRight="@dimen/loader_buttons_margin"
+                        android:background="@drawable/button_custom_half"
+                        android:drawableLeft="@drawable/symbol_male"
+                        android:ellipsize="end"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="36dp"
+                        android:singleLine="true"
+                        android:textColor="@color/intro_main_text"
+                        android:textSize="@dimen/dialog_content_margin_text_size_title" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/textContent"
                     android:layout_width="match_parent"
-                    android:textColorLink="@color/content_link"
-                    android:textColor="@color/content_text"
                     android:layout_height="match_parent"
                     android:padding="@dimen/fragment_content_text_padding"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/content_text"
+                    android:textColorLink="@color/content_link"
                     android:textSize="17sp" />
             </LinearLayout>
         </ScrollView>
@@ -60,10 +108,10 @@
                     android:id="@+id/errorRetryButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/button_custom"
                     android:paddingLeft="@dimen/content_fragment_error_button_padding"
-                    android:layout_gravity="center_horizontal"
                     android:paddingRight="@dimen/content_fragment_error_button_padding"
                     android:text="@string/error_retry"
                     android:textColor="@drawable/button_color_custom"

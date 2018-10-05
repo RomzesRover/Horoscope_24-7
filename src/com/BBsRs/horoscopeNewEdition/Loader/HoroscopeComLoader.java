@@ -15,8 +15,8 @@ import com.BBsRs.horoscopeNewEdition.Base.HoroscopeCollection;
 
 public class HoroscopeComLoader extends Loader{
 	
-	public HoroscopeComLoader(int listType, SharedPreferences sPref, Context context, Handler handler) {
-		super(listType, sPref, context, handler);
+	public HoroscopeComLoader(int listType, SharedPreferences sPref, Context context, Handler handler, int femaleIndex, int maleIndex) {
+		super(listType, sPref, context, handler, femaleIndex, maleIndex);
 	}
 
 	@Override

@@ -15,6 +15,9 @@
     <string name="error_message">Compruebe su conexión de red y vuelva a intentarlo.</string>
     <string name="error_retry">Inténtalo de nuevo</string>
     
+    <string name="male">Un hombre</string>
+    <string name="female">Una mujer</string>
+    
     <string name="preference_base">Principal</string>
     <string name="preference_date_1">Fecha de nacimiento</string>
     <string name="preference_date_check">Compruebe los datos introducidos</string>
