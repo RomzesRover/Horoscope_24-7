@@ -4,7 +4,7 @@
 	<dimen name="loader_buttons_margin">157.5dp</dimen>
     
     <dimen name="dialog_icon_padding">8dp</dimen>
-    <dimen name="dialog_icon_padding_for_other_icons">5dp</dimen>
+    <dimen name="dialog_icon_padding_for_other_icons">4dp</dimen>
     <dimen name="dialog_horizontal_margin">5dp</dimen>
     <dimen name="dialog_content_margin">2.5dp</dimen>
     <dimen name="dialog_content_margin_whole">6dp</dimen>
