@@ -8,6 +8,7 @@
         <item>Monthly</item>
         <item>Year</item>
         <item>Chinese Year</item>
+        <item>Compatibility</item>
     </string-array>
     <string-array name="horoscope_com_kinds">
     	<item>Sun sign</item>

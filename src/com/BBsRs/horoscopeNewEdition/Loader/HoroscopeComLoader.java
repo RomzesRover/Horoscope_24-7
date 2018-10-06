@@ -120,6 +120,48 @@ public class HoroscopeComLoader extends Loader{
 	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("work").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("work").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
 	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("money").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("money").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
 				break;
+			case Constants.BUNDLE_LIST_TYPE_COMPATIBILITY:
+				String result;
+				switch(femaleIndex){
+				case 11:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_11)[maleIndex];
+					break;
+				case 10:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_10)[maleIndex];
+					break;
+				case 9:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_9)[maleIndex];
+					break;
+				case 8:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_8)[maleIndex];
+					break;
+				case 7:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_7)[maleIndex];
+					break;
+				case 6:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_6)[maleIndex];
+					break;
+				case 5:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_5)[maleIndex];
+					break;
+				case 4:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_4)[maleIndex];
+					break;
+				case 3:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_3)[maleIndex];
+					break;
+				case 2:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_2)[maleIndex];
+					break;
+				case 1:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_1)[maleIndex];
+					break;
+				case 0: default:
+					result = context.getResources().getStringArray(R.array.compatibility_lookup_table_horoscope_com_0)[maleIndex];
+					break;
+				}
+				horoscopeCollection.add(new HoroscopeCollection("Female - "+context.getResources().getStringArray(R.array.zodiac_signs)[femaleIndex]+"<br />Male - "+context.getResources().getStringArray(R.array.zodiac_signs)[maleIndex], result, "<a href=\"https://www.horoscope.com/us/games/compatibility/game-love-compatibility.aspx\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>"));
+				break;
 			}
 			return horoscopeCollection.size() == 0 ? null : horoscopeCollection;
 		} catch (Exception e){
