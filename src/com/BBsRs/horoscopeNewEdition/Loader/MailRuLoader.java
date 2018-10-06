@@ -108,7 +108,7 @@ public class MailRuLoader extends Loader{
 						res = res.substring(0, res.length()-12); 
 					horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[0], "<strong>"+doc.getElementsByClass("p-prediction__right").first().child(1).child(0).text().replaceFirst("Прогноз на ", "")+"</strong> - "+ res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
 				} catch(Exception e){
-					
+					e.printStackTrace();
 				}
 				break;
 			case Constants.BUNDLE_LIST_TYPE_MONTHLY:
@@ -133,7 +133,7 @@ public class MailRuLoader extends Loader{
 						res = res.substring(0, res.length()-12); 
 					horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[0], "<strong>"+doc.getElementsByClass("p-prediction__right").first().child(1).child(0).text().replaceFirst("Прогноз на ", "")+"</strong> - "+ res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
 				} catch(Exception e){
-					
+					e.printStackTrace();
 				}
 				
             	doc = Jsoup.connect("https://horo.mail.ru/numerology/calc/32/?v1="+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20))+"-"+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"-"+intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"&v2="+String.valueOf(cal.get(Calendar.YEAR))+"-"+intPlusZero(cal.get(Calendar.MONTH)+1)+"-"+intPlusZero(cal.get(Calendar.DAY_OF_MONTH)))

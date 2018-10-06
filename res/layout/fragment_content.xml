@@ -129,7 +129,7 @@
                 android:gravity="center"
                 android:text="@string/error_message_sumarry"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/dialog_summary_text_color_disabled"
+                android:textColor="@color/intro_second_text"
                 android:textSize="15sp" />
         </RelativeLayout>
     </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
