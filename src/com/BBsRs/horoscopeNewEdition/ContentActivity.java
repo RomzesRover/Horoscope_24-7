@@ -17,6 +17,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
@@ -241,6 +242,9 @@ public class ContentActivity extends BaseActivity {
     
     AlertDialog alert = null;
     public void showDisableADDialog(){
+    	if (!sPref.getBoolean(Constants.PREFERENCES_SHOW_ADVERTISEMENT_DIALOG_GLOBAL, true)){
+			return;
+    	}
     	int count = sPref.getInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0);
     	if (count == 0 || count % 5 != 0 || !sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true)){
 			return;
@@ -259,7 +263,7 @@ public class ContentActivity extends BaseActivity {
     	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	
     	//init views
-    	View content = inflater.inflate(R.layout.dialog_content_advertisement, null);
+    	View content = inflater.inflate(R.layout.dialog_content_promote, null);
     	Button cancel = (Button)content.findViewById(R.id.cancel);
     	Button apply = (Button)content.findViewById(R.id.apply);
     	
@@ -269,6 +273,8 @@ public class ContentActivity extends BaseActivity {
     	SFUIFonts.LIGHT.apply(context, (Button)content.findViewById(R.id.apply));
     	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView051));
     	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView041));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView0051));
+    	SFUIFonts.LIGHT.apply(context, (TextView)content.findViewById(R.id.TextView0041));
     	
     	//view job
     	final RelativeLayout makeBuyNoAd = (RelativeLayout)content.findViewById(R.id.make_buy_no_ad);
@@ -276,6 +282,19 @@ public class ContentActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				context.sendBroadcast(new Intent(Constants.INTENT_NAME_SHOW_BUY_DIALOG));
+				alert.dismiss();
+			}
+		});
+    	final RelativeLayout googlePlay = (RelativeLayout)content.findViewById(R.id.make_google_review);
+    	googlePlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try { 
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setData(Uri.parse("market://details?id="+context.getPackageName()));
+					startActivity(intent);
+				} catch(Exception e) {}   
+				alert.dismiss();
 			}
 		});
     	
@@ -286,9 +305,6 @@ public class ContentActivity extends BaseActivity {
     		((TextView)content.findViewById(R.id.TextView041)).setText(getString(R.string.advertisement_interstitials_disabled_summary));
     		((TextView)content.findViewById(R.id.TextView051)).setTextColor(context.getResources().getColor(R.color.dialog_summary_text_color));
     		makeBuyNoAd.setClickable(false);
-    		
-    		cancel.setVisibility(View.GONE);
-    		apply.setText(cancel.getText());
     	}
     	
     	apply.setOnClickListener(new View.OnClickListener() {
@@ -301,6 +317,7 @@ public class ContentActivity extends BaseActivity {
     	cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				sPref.edit().putBoolean(Constants.PREFERENCES_SHOW_ADVERTISEMENT_DIALOG_GLOBAL, false).commit();
 				alert.dismiss();
 			}
 		});

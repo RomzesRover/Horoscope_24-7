@@ -37,6 +37,7 @@ public class Constants {
 	public static final String PREFERENCES_IS_IT_FIRST_LAUNCH = "preferences:is_it_first_launch";
 	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT = "preferences:show_interstitial_advertisement_count";
 	public static final String PREFERENCES_SHOW_ADVERTISEMENT_DIALOG = "preferences:show_advertisement_dialog";
+	public static final String PREFERENCES_SHOW_ADVERTISEMENT_DIALOG_GLOBAL = "preferences:show_advertisement_dialog_global";
 	
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";

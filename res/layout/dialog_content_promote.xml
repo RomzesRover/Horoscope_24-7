@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_window_background"
+    android:orientation="vertical"
+    android:padding="@dimen/dialog_content_margin_whole" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/dialog_icon_size"
+            android:layout_height="@dimen/dialog_icon_size"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_icon_compatibility" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/icon"
+            android:ellipsize="end"
+            android:lines="1"
+            android:singleLine="true"
+            android:text="@string/rate_app"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/dialog_main_text_color"
+            android:textSize="@dimen/dialog_content_margin_text_size_title" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dialog_content_margin" >
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/make_google_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dialog_content_margin_element"
+                    android:background="@drawable/slider_menu_selector" >
+
+                    <TextView
+                        android:id="@+id/TextView0051"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/TextView0061"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:paddingLeft="@dimen/dialog_horizontal_margin"
+                        android:paddingRight="@dimen/dialog_horizontal_margin"
+                        android:paddingTop="@dimen/dialog_horizontal_margin"
+                        android:singleLine="true"
+                        android:text="@string/googleplay"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/dialog_main_text_color"
+                        android:textSize="@dimen/dialog_content_margin_text_size_title" />
+
+                    <TextView
+                        android:id="@+id/TextView0041"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/TextView0051"
+                        android:layout_alignRight="@+id/TextView0051"
+                        android:layout_below="@+id/TextView0051"
+                        android:paddingBottom="@dimen/dialog_horizontal_margin"
+                        android:paddingLeft="@dimen/dialog_horizontal_margin"
+                        android:paddingRight="@dimen/dialog_horizontal_margin"
+                        android:text="@string/googleplay_summary"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/dialog_summary_text_color"
+                        android:textColorHint="@color/dialog_summary_text_color"
+                        android:textColorLink="@color/dialog_summary_text_color"
+                        android:textSize="@dimen/dialog_content_margin_text_size_summary" />
+
+                    <ImageView
+                        android:id="@+id/TextView0061"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@+id/TextView0041"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center"
+                        android:scaleType="center"
+                        android:src="@drawable/logo_google_play" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/make_buy_no_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dialog_content_margin_element"
+                    android:background="@drawable/slider_menu_selector" >
+
+                    <TextView
+                        android:id="@+id/TextView051"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/TextView061"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:paddingLeft="@dimen/dialog_horizontal_margin"
+                        android:paddingRight="@dimen/dialog_horizontal_margin"
+                        android:paddingTop="@dimen/dialog_horizontal_margin"
+                        android:singleLine="true"
+                        android:text="@string/advertisement_interstitials"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/dialog_main_text_color"
+                        android:textSize="@dimen/dialog_content_margin_text_size_title" />
+
+                    <TextView
+                        android:id="@+id/TextView041"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/TextView051"
+                        android:layout_alignRight="@+id/TextView051"
+                        android:layout_below="@+id/TextView051"
+                        android:paddingBottom="@dimen/dialog_horizontal_margin"
+                        android:paddingLeft="@dimen/dialog_horizontal_margin"
+                        android:paddingRight="@dimen/dialog_horizontal_margin"
+                        android:text="@string/advertisement_interstitials_summary"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/dialog_summary_text_color"
+                        android:textColorHint="@color/dialog_summary_text_color"
+                        android:textColorLink="@color/dialog_summary_text_color"
+                        android:textSize="@dimen/dialog_content_margin_text_size_summary" />
+
+                    <ImageView
+                        android:id="@+id/TextView061"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@+id/TextView041"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center"
+                        android:scaleType="center"
+                        android:src="@drawable/logo_premium" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dialog_content_margin_buttons_list"
+            android:layout_marginTop="@dimen/dialog_content_margin_buttons"
+            android:layout_weight="0.01" >
+
+            <Button
+                android:id="@+id/apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/button_custom"
+                android:paddingLeft="@dimen/content_fragment_loader_error_button_padding"
+                android:paddingRight="@dimen/content_fragment_loader_error_button_padding"
+                android:text="@string/ok_later"
+                android:textColor="@drawable/button_color_custom"
+                android:textSize="@dimen/dialog_content_margin_text_size_title" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/apply"
+                android:background="@drawable/button_custom"
+                android:paddingLeft="@dimen/content_fragment_loader_error_button_padding"
+                android:paddingRight="@dimen/content_fragment_loader_error_button_padding"
+                android:text="@string/cancel_rate"
+                android:textColor="@drawable/button_color_custom"
+                android:textSize="@dimen/dialog_content_margin_text_size_title"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

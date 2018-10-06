@@ -56,9 +56,12 @@
     
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
+    <string name="ok_later">Luego</string>
+    <string name="cancel_rate">No quiero</string>
     
     <string name="start">Сomenzar!</string>
     <string name="loveapp">Me encanta esta aplicación?</string>
+    <string name="rate_app">Califica la aplicación!</string>
     <string name="googleplay">Google Play</string>
     <string name="googleplay_summary">Déjanos revisar en Google Play</string>
     <string name="share">Compartir aplicación</string>
