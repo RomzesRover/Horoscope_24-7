@@ -83,7 +83,7 @@
             android:id="@+id/errorLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/dialog_icon_padding"
+            android:padding="16dp"
             android:visibility="gone" >
 
             <LinearLayout
