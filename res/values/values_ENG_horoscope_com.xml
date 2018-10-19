@@ -48,5 +48,6 @@
         <item>pig</item>
     </string-array>
     
+    <string name="next_year_predict_en">The forecast for 2019 below!</string>
     <string name="horoscope_com_copyright">© horoscope.com</string>
 </resources>

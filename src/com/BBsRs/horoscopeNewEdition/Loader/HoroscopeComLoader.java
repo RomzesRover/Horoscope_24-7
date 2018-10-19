@@ -1,8 +1,10 @@
 package com.BBsRs.horoscopeNewEdition.Loader;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.widget.Toast;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -24,6 +26,7 @@ public class HoroscopeComLoader extends Loader{
 		try {
 			Document doc;
 			ArrayList<HoroscopeCollection> horoscopeCollection = new ArrayList<HoroscopeCollection>();
+			Calendar cal = Calendar.getInstance();
 			
 			if (sPref.getBoolean(Constants.PREFERENCES_USE_PROXY_SERVER, false)){
 				loadAndSetupProxyServer("https://www.horoscope.com/");
@@ -107,22 +110,62 @@ public class HoroscopeComLoader extends Loader{
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscope_com_kinds)[6] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), doc.getElementsByClass("main-horoscope").get(0).child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>"));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_YEARLY:
-				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=personal").proxy(proxy).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("personal").child(0).html(), doc.getElementById("personal").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=career").proxy(proxy).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("career").child(0).html(), doc.getElementById("career").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_single").proxy(proxy).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("singles").child(0).html(), doc.getElementById("singles").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_couples").proxy(proxy).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("couples").child(0).html(), doc.getElementById("couples").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+				if (cal.get(Calendar.YEAR) == 2018){
+					doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=personal").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("personal").child(0).html(), "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("personal").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=career").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("career").child(0).html(), "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("career").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_single").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("singles").child(0).html(), "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("singles").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_couples").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("couples").child(0).html(), "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("couples").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+				}
+				try {
+					doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2019-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=personal").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("personal").child(0).html(), "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("personal").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2019-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=career").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("career").child(0).html(), "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("career").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2019-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_single").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("singles").child(0).html(), "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("singles").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2019-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+".aspx?type=love_couples").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("couples").child(0).html(), "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("couples").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		if (cal.get(Calendar.YEAR) == 2018)
+			    		handler.post(new Runnable(){
+							@Override
+							public void run() {
+								Toast.makeText(context, context.getResources().getString(R.string.next_year_predict_en), Toast.LENGTH_LONG).show();
+							}
+	            		});
+				} catch(Exception e){
+					e.printStackTrace();
+				}
 				break;
 			case Constants.BUNDLE_LIST_TYPE_YEARLY_CHINA:
-				doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-chinese-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs_chinese)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]+".aspx").proxy(proxy).get();
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("overview").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("overview").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("love").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("love").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("family").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("family").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("work").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("work").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
-	    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("money").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], doc.getElementById("money").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+				if (cal.get(Calendar.YEAR) == 2018){
+					doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2018-chinese-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs_chinese)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]+".aspx").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("overview").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("overview").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("love").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("love").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("family").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("family").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("work").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("work").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("money").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2018 year"+"</strong> - " + doc.getElementById("money").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+				}
+				try {
+					doc = Jsoup.connect("https://www.horoscope.com/us/horoscopes/yearly/2019-chinese-horoscope-"+context.getResources().getStringArray(R.array.horoscope_com_yearly_zodiac_signs_chinese)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]+".aspx").proxy(proxy).get();
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("overview").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("overview").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("love").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("love").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("family").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("family").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("work").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("work").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		horoscopeCollection.add(new HoroscopeCollection(doc.getElementById("money").child(0).html() + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>"+"2019 year"+"</strong> - " + doc.getElementById("money").child(1).html(), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscope_com_copyright)+"</a>")); if (cancelLoad) return null;
+		    		if (cal.get(Calendar.YEAR) == 2018)
+			    		handler.post(new Runnable(){
+							@Override
+							public void run() {
+								Toast.makeText(context, context.getResources().getString(R.string.next_year_predict_en), Toast.LENGTH_LONG).show();
+							}
+	            		});
+				} catch(Exception e){
+					e.printStackTrace();
+				}
 				break;
 			case Constants.BUNDLE_LIST_TYPE_COMPATIBILITY:
 				String result;
