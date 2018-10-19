@@ -13,7 +13,6 @@ import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
-import org.holoeverywhere.widget.Toast;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;

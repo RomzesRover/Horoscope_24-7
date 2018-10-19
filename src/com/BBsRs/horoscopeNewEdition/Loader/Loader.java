@@ -113,7 +113,7 @@ public class Loader {
 				} catch (Exception e){
 					e.printStackTrace();
 				}
-				if (cancelLoad) return;
+				if (cancelLoad) break;
 			}
 		} catch (Exception e){
 			e.printStackTrace();

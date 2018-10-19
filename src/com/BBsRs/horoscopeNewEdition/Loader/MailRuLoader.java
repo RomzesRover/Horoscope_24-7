@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 
 import com.BBsRs.horoscopeNewEdition.R;
 import com.BBsRs.horoscopeNewEdition.Base.Constants;
