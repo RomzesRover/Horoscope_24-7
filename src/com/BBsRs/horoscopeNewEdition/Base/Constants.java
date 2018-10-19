@@ -24,7 +24,7 @@ public class Constants {
 	public static final String PREFERENCES_PERSONAL_NUMBER = "preferences:personal_number";
 	public static final String PREFERENCES_CHINESE_SIGN = "preferences:chinese_sign";
 	public static final String PREFERENCES_CHINESE_SIGN_CORRECTED = "preferences:chinese_sign_corrected";
-	public static final String PREFERENCES_SHOW_NOTIFICATIONS = "preferences:show_notifications";
+	public static final String PREFERENCES_SHOW_NOTIFICATIONS = "preference_show_notifications";
 	public static final String PREFERENCES_NOTIFICATIONS_TIME_HOUR = "preference:show_notifications_time_hour";
 	public static final String PREFERENCES_NOTIFICATIONS_TIME_MINUTE = "preference:show_notifications_time_minute";
 	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT = "preferences:show_interstitial_advertisement";
@@ -38,6 +38,9 @@ public class Constants {
 	public static final String PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT = "preferences:show_interstitial_advertisement_count";
 	public static final String PREFERENCES_SHOW_ADVERTISEMENT_DIALOG = "preferences:show_advertisement_dialog";
 	public static final String PREFERENCES_SHOW_ADVERTISEMENT_DIALOG_GLOBAL = "preferences:show_advertisement_dialog_global";
+	public static final String PREFERENCES_PROXY_SERVER_SAVED_IP = "preferences:proxy_server_saved_ip";
+	public static final String PREFERENCES_PROXY_SERVER_SAVED_PORT = "preferences:proxy_server_saved_port";
+	public static final String PREFERENCES_USE_PROXY_SERVER = "preference_proxy";
 	
 	
 	public static final String INTENT_OPEN_DRAWER_MENU = "intent:open_drawer_menu";

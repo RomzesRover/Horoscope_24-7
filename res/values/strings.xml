@@ -16,8 +16,10 @@
     <string name="first_launch_message">In settings you can change font size and the background.</string>
     
     <string name="error_message">Check your connection and try again.</string>
-    <string name="error_message_sumarry">If the error persists, you need to update the application via Google Play.\nIf the update is not available, report this to the developer through any form of feedback.</string>
+    <string name="error_message_sumarry">If the error persists, you need to update the application via Google Play.\nIf the update is not available, report this to the developer through any form of feedback.\nPress the button one more time to try load with proxy.</string>
     <string name="error_retry">Retry</string>
+    <string name="proxy_setting_up">Determining proxy-server for chosen target..</string>
+    <string name="proxy_settet_up">Proxy-server %1$s:%2$s determined!\nYou can disable proxy in settings.</string>
     
     <string name="male">Male</string>
     <string name="female">Female</string>
@@ -28,6 +30,8 @@
     <string name="preference_date_set">Looks like %1$s is your zodiac sign, %2$s is your chinese zodiac sign, %3$d is your life-path number.</string>
     <string name="preference_zodiac_sign_1">Zodiac sign</string>
     <string name="preference_language_1">Language</string>
+    <string name="preference_proxy">Proxy</string>
+    
     <string name="preference_appearance">Appearance</string>
     <string name="preference_text_size">Text size</string>
     <string name="preference_background_text_color">Background</string>

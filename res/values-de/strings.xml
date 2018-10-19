@@ -12,8 +12,10 @@
     <string name="first_launch_message">In den Einstellungen können Sie die Schriftgröße und den Hintergrund ändern.</string>
     
     <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
-    <string name="error_message_sumarry">Wenn der Fehler weiterhin besteht, müssen Sie die Anwendung über Google Play aktualisieren.\nWenn das Update nicht verfügbar ist, melden Sie dies dem Entwickler über eine beliebige Form von Feedback.</string>
+    <string name="error_message_sumarry">Wenn der Fehler weiterhin besteht, müssen Sie die Anwendung über Google Play aktualisieren.\nWenn das Update nicht verfügbar ist, melden Sie dies dem Entwickler über eine beliebige Form von Feedback.\nDrücken Sie die Taste noch einmal, um mit dem Proxy zu laden.</string>
     <string name="error_retry">wiederholen</string>
+    <string name="proxy_setting_up">Ermitteln des Proxy-Servers für das ausgewählte Ziel..</string>
+    <string name="proxy_settet_up">Proxy-Server %1$s:%2$s ermittelt!\nSie können den Proxy in den Einstellungen deaktivieren.</string>
     
     <string name="male">Ein Mann</string>
     <string name="female">Eine Frau</string>
@@ -24,6 +26,7 @@
     <string name="preference_date_set">Es scheint, %1$s dein Sternzeichen, %2$s dein chinesisches Sternzeichen, %3$d ist deine Wegnummer.</string>
     <string name="preference_zodiac_sign_1">Sternzeichen</string>
     <string name="preference_language_1">Sprache</string>
+    <string name="preference_proxy">Proxy</string>
     
     <string name="preference_notifications">Benachrichtigungen</string>
     <string name="preference_show_notification_1">Benachrichtigungen anzeigen</string>

@@ -12,8 +12,10 @@
     <string name="first_launch_message">В настройках вы можете изменить размер шрифта и фон.</string>
     
     <string name="error_message">Проверьте ваше подключение к сети, и попробуйте снова.</string>
-    <string name="error_message_sumarry">Если ошибка повторяется, необходимо обновить приложение, через Google Play.\nЕсли обновление недоступно сообщите об этом разработчику через любую форму связи.</string>
+    <string name="error_message_sumarry">Если ошибка повторяется, необходимо обновить приложение, через Google Play.\nЕсли обновление недоступно сообщите об этом разработчику через любую форму связи.\nНажмите кнопку еще раз, что бы попробовать загрузить с прокси.</string>
     <string name="error_retry">Попробовать снова</string>
+    <string name="proxy_setting_up">Определение прокси-сервера для выбранной цели..</string>
+    <string name="proxy_settet_up">Прокси-сервер %1$s:%2$s определен!\nВы можете отключить прокси в настройках.</string>
     
     <string name="male">Мужчина</string>
     <string name="female">Женщина</string>
@@ -24,6 +26,7 @@
     <string name="preference_date_set">Кажется %1$s ваш знак зодиака, %2$s ваш Китайский знак зодиака, %3$d ваше число пути.</string>
     <string name="preference_zodiac_sign_1">Знак зодиака</string>
     <string name="preference_language_1">Язык</string>
+    <string name="preference_proxy">Прокси</string>
     
     <string name="preference_notifications">Уведомления</string>
     <string name="preference_show_notification_1">Показ уведомлений</string>

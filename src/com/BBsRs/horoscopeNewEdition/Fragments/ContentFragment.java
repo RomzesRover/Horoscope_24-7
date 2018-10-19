@@ -13,6 +13,7 @@ import org.holoeverywhere.widget.ListView;
 import org.holoeverywhere.widget.RadioButton;
 import org.holoeverywhere.widget.RelativeLayout;
 import org.holoeverywhere.widget.TextView;
+import org.holoeverywhere.widget.Toast;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
@@ -81,7 +82,7 @@ public class ContentFragment extends BaseFragment{
 	//alert dialog
     AlertDialog alert = null;
     //compatibility data
-    int femaleIndex=-1, maleIndex=-1;
+    int femaleIndex=-1, maleIndex=-1, errorPressed=0;
     
     //handler
     Handler handler = new Handler();
@@ -152,6 +153,12 @@ public class ContentFragment extends BaseFragment{
 			public void onClick(View v) {
 				updateList();
 		        errorRetryButton.setEnabled(false);
+		        errorPressed++;
+		        if (errorPressed==3){
+		        	sPref.edit().putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_IP, "").commit();
+					sPref.edit().putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_PORT, "").commit();
+		        	sPref.edit().putBoolean(Constants.PREFERENCES_USE_PROXY_SERVER, true).commit();
+		        }
 			}
 		});
 		
@@ -442,6 +449,8 @@ public class ContentFragment extends BaseFragment{
         if (sPref.getBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false) || horoscopeCollection == null || (System.currentTimeMillis() - sPref.getLong(Constants.PREFERENCES_HOROSCOPE_COLLECTION_TIME, System.currentTimeMillis()) > 7200000)){
         	updateList();
         }
+        
+        errorPressed=0;
 	}
 	
 	@Override
@@ -603,6 +612,9 @@ public class ContentFragment extends BaseFragment{
 			        					@Override
 			        					public void onAnimationEnd(Animation arg0) {
 			        						errorLayout.setVisibility(View.INVISIBLE);
+			        						//show additional message
+			        						if (errorPressed>1)
+			        							errorMessageSummary.setVisibility(View.VISIBLE);
 			        					}
 			        					@Override
 			        					public void onAnimationRepeat(Animation arg0) { }

@@ -12,7 +12,9 @@ import org.holoeverywhere.preference.DatePreference.OnDateSetListener;
 import org.holoeverywhere.preference.Preference;
 import org.holoeverywhere.preference.Preference.OnPreferenceChangeListener;
 import org.holoeverywhere.preference.Preference.OnPreferenceClickListener;
+import org.holoeverywhere.preference.PreferenceCategory;
 import org.holoeverywhere.preference.PreferenceManager;
+import org.holoeverywhere.preference.PreferenceScreen;
 import org.holoeverywhere.preference.SharedPreferences;
 import org.holoeverywhere.preference.SharedPreferences.Editor;
 import org.holoeverywhere.preference.TimePreference;
@@ -50,10 +52,12 @@ public class SettingsFragment extends BasePreferenceFragment {
     
     Calendar cal;
     
+    PreferenceScreen preferenceScreen;
     Preference zodiacSign, language, textSize, backgroundTextColor;
     DatePreference dateBorn;
-    CheckBoxPreference showNotifications;
+    CheckBoxPreference showNotifications, proxyPreference;
     TimePreference notificationTime;
+    PreferenceCategory proxyPreferenceCategory;
     
 	//alert dialog
     AlertDialog alert = null;
@@ -72,6 +76,9 @@ public class SettingsFragment extends BasePreferenceFragment {
         setLocale(sPref);
         
         addPreferencesFromResource(R.xml.settings);
+        
+        //
+        preferenceScreen = (PreferenceScreen) findPreference("preference_screen");
         
         //programming each preferences
         textSize = (Preference) findPreference ("preference_text_size");
@@ -540,6 +547,26 @@ public class SettingsFragment extends BasePreferenceFragment {
 				return false;
 			}
         });
+        
+        proxyPreferenceCategory = (PreferenceCategory) findPreference ("proxy_preference_category");
+        proxyPreference = (CheckBoxPreference) findPreference ("preference_proxy");
+        proxyPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				proxyPreference.setChecked(!proxyPreference.isChecked());
+				
+				Editor ed = sPref.edit();   
+				ed.putBoolean(Constants.PREFERENCES_USE_PROXY_SERVER, proxyPreference.isChecked()); 	
+				ed.putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_IP, "");
+				ed.putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_PORT, "");
+				ed.commit();
+				scheduleUpdate(getActivity());
+				
+				if (!proxyPreference.isChecked())
+					preferenceScreen.removePreference(proxyPreferenceCategory);
+				return false;
+			}
+        });
 
     }
     
@@ -573,6 +600,11 @@ public class SettingsFragment extends BasePreferenceFragment {
         showNotifications.setSummary(sPref.getBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, true) ? getResources().getString(R.string.preference_show_notification_2) : getResources().getString(R.string.preference_show_notification_3));
         textSize.setSummary(getResources().getStringArray(R.array.preference_text_size_values)[sPref.getInt(Constants.PREFERENCES_TEXT_SIZE, 2)]);
         backgroundTextColor.setSummary(getResources().getStringArray(R.array.preference_background_values)[sPref.getInt(Constants.PREFERENCES_BACKGROUND_TEXT_COLOR, 0)]);
+        if (sPref.getBoolean(Constants.PREFERENCES_USE_PROXY_SERVER, false)){
+        	proxyPreference.setSummary(sPref.getString(Constants.PREFERENCES_PROXY_SERVER_SAVED_IP, "")+":"+sPref.getString(Constants.PREFERENCES_PROXY_SERVER_SAVED_PORT, ""));
+        } else {
+        	preferenceScreen.removePreference(proxyPreferenceCategory);
+        }
     }
     
     String intPlusZero(int s){
