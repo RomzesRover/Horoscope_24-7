@@ -357,6 +357,7 @@ public class LoaderActivity extends BaseActivity {
 		handler.removeCallbacks(hideStartTitle);
 		handler.removeCallbacks(showStartButton);
 		handler.removeCallbacks(hideIntro);
+		handler.removeCallbacks(startAppTooLongDelay);
 		
 		isUserStillInApp = false;
 		
@@ -544,13 +545,20 @@ public class LoaderActivity extends BaseActivity {
 	Runnable startApp = new Runnable(){
 		@Override
 		public void run() {
-//			loadAndSetupInterstitialAD();
 			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
 				loadAndSetupInterstitialAD();
+				handler.postDelayed(startAppTooLongDelay, 40000);
 			} else {
 				sPref.edit().putInt(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT_COUNT, 0).commit();
 				showContentActivity();
 			}
+		}
+	};
+	
+	Runnable startAppTooLongDelay = new Runnable(){
+		@Override
+		public void run() {
+			showContentActivity();
 		}
 	};
 	
