@@ -180,10 +180,15 @@ public class LoaderActivity extends BaseActivity {
 					@Override
 					public void onClick(View v) {
 						alert.dismiss();
-						Intent intent = getIntent();
-						finish();
-						startActivity(intent);
-						overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+						handler.postDelayed(new Runnable(){
+							@Override
+							public void run() {
+								Intent intent = getIntent();
+								finish();
+								startActivity(intent);
+								overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+							}
+						}, 500);
 					}
 				});
 		    	
@@ -539,6 +544,7 @@ public class LoaderActivity extends BaseActivity {
 	Runnable startApp = new Runnable(){
 		@Override
 		public void run() {
+//			loadAndSetupInterstitialAD();
 			if (sPref.getBoolean(Constants.PREFERENCES_SHOW_INTERSTITIAL_ADVERTISEMENT, true) && isGooglePlayServicesAvailable(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
 				loadAndSetupInterstitialAD();
 			} else {

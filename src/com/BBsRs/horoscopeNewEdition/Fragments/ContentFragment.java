@@ -499,7 +499,7 @@ public class ContentFragment extends BaseFragment{
 	public void updateList(){
 		sPref.edit().putBoolean(Constants.PREFERENCES_FORCE_UPDATE_X+bundle.getInt(Constants.BUNDLE_LIST_TYPE), false).commit();
 		if (loadM == null || loadM.getStatus() != AsyncTask.Status.RUNNING){
-			handler.postDelayed(update, 300);
+			handler.postDelayed(update, 700);
 		}
 	}
 	

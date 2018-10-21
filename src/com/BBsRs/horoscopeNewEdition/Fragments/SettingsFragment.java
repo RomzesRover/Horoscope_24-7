@@ -31,6 +31,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,9 @@ public class SettingsFragment extends BasePreferenceFragment {
     CheckBoxPreference showNotifications, proxyPreference;
     TimePreference notificationTime;
     PreferenceCategory proxyPreferenceCategory;
+    
+    //handler
+    Handler handler = new Handler();
     
 	//alert dialog
     AlertDialog alert = null;
@@ -268,10 +272,16 @@ public class SettingsFragment extends BasePreferenceFragment {
 						Editor ed = sPref.edit();  
 						ed.putBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, true); 	
 						ed.commit();
-						Intent intent = getActivity().getIntent();
-						getActivity().finish();
-						startActivity(intent);
-						getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+						
+						handler.postDelayed(new Runnable(){
+							@Override
+							public void run() {
+								Intent intent = getActivity().getIntent();
+								getActivity().finish();
+								startActivity(intent);
+								getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+							}
+						}, 500);
 					}
 				});
 		    	
@@ -493,10 +503,16 @@ public class SettingsFragment extends BasePreferenceFragment {
 						Editor ed = sPref.edit();  
 						ed.putBoolean(Constants.PREFERENCES_OPEN_SETTINGS_FIRST, true); 	
 						ed.commit();
-						Intent intent = getActivity().getIntent();
-						getActivity().finish();
-						startActivity(intent);
-						getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+						
+						handler.postDelayed(new Runnable(){
+							@Override
+							public void run() {
+								Intent intent = getActivity().getIntent();
+								getActivity().finish();
+								startActivity(intent);
+								getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+							}
+						}, 500);
 					}
 				});
 		    	
