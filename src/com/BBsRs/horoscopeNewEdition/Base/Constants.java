@@ -49,6 +49,7 @@ public class Constants {
 	
 	public static final String BROADCAST_INTENT_OPEN_APP = "broadcast:intent_open_app";
 	public static final String BROADCAST_INTENT_CLOSE_NOTIF = "broadcast:intent_close_notif";
+	public static final String BROADCAST_INTENT_DISABLE_NOTIF = "broadcast:intent_disable_notif";
 	public static final String INTENT_NAME_SHOW_BUY_DIALOG = "intent:name_show_buy_dialog";
 	public static final String INTENT_NAME_HIDE_ANY_DIALOG = "intent:name_hide_any_dialog";
 	

@@ -62,6 +62,7 @@
         <item>We have just been informed that awaits you today!</item>
         <item>Let\'s find out if the stars favor you today!</item>
     </string-array>
+    <string name="notification_action">Turn off notifications.</string>
     
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>

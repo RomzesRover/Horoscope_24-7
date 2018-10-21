@@ -56,6 +56,7 @@
         <item>Wir haben gerade darüber informiert, dass Sie heute erwartet!</item>
         <item>Lassen Sie uns herausfinden, ob die Sterne bevorzugen Sie noch heute!</item>
     </string-array>
+    <string name="notification_action">Benachrichtigungen deaktivieren.</string>
     
 	<string name="ok">Ok</string>
     <string name="cancel">Stornieren</string>

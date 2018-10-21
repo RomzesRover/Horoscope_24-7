@@ -56,6 +56,7 @@
         <item>Нам только что сообщили, что ждёт вас сегодня!</item>
         <item>Давайте выясним, благоволят ли звезды вам сегодня!</item>
     </string-array>
+    <string name="notification_action">Выключить уведомления.</string>
     
     <string name="ok">Ok</string>
     <string name="cancel">Отмена</string>

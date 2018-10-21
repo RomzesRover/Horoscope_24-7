@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.holoeverywhere.preference.PreferenceManager;
 import org.holoeverywhere.preference.SharedPreferences;
+import org.holoeverywhere.preference.SharedPreferences.Editor;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -29,7 +30,7 @@ public class NotificationService extends Service {
 	NotificationCompat.Builder mBuilder;
 	Notification notification;
 	NotificationManager mNotificationManager;
-	PendingIntent contentIntent, PendingDeleteIntent;
+	PendingIntent contentIntent, PendingDeleteIntent, disableNotificationsIntent;
 	
     // preferences 
     SharedPreferences sPref; 
@@ -51,11 +52,13 @@ public class NotificationService extends Service {
     	
 		registerReceiver(startActivity, new IntentFilter(Constants.BROADCAST_INTENT_OPEN_APP));
 		registerReceiver(deleteNotification, new IntentFilter(Constants.BROADCAST_INTENT_CLOSE_NOTIF));
+		registerReceiver(disableNotification, new IntentFilter(Constants.BROADCAST_INTENT_DISABLE_NOTIF));
     	
     	//create notification manager
     	mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     	contentIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(Constants.BROADCAST_INTENT_OPEN_APP), 0);
     	PendingDeleteIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(Constants.BROADCAST_INTENT_CLOSE_NOTIF), 0);
+    	disableNotificationsIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(Constants.BROADCAST_INTENT_DISABLE_NOTIF), 0);
     	
     	scheduleUpdate(getApplicationContext());
     	
@@ -69,6 +72,7 @@ public class NotificationService extends Service {
 		try {
 			unregisterReceiver(startActivity);
 			unregisterReceiver(deleteNotification);
+			unregisterReceiver(disableNotification);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -88,6 +92,7 @@ public class NotificationService extends Service {
 			Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 			
 			mBuilder.setContentTitle(NotificationService.this.getString(R.string.app_name))
+			.addAction(0, NotificationService.this.getString(R.string.notification_action), disableNotificationsIntent)
 			.setContentText(NotificationService.this.getResources().getStringArray(R.array.notification_messages)[randomNum])
 			.setSmallIcon(R.drawable.ic_notification)
 			.setContentIntent(contentIntent)
@@ -123,6 +128,19 @@ public class NotificationService extends Service {
 	private BroadcastReceiver deleteNotification = new BroadcastReceiver() {
 	    @Override
 	    public void onReceive(Context context, Intent intent) {
+	    	//user decide to kill the service
+	    	stopSelf();
+	    }
+	};
+	
+	private BroadcastReceiver disableNotification = new BroadcastReceiver() {
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	    	Editor ed = sPref.edit();   
+			ed.putBoolean(Constants.PREFERENCES_SHOW_NOTIFICATIONS, false); 	
+			ed.commit();
+			scheduleUpdate(getApplicationContext());
+			mNotificationManager.cancel(25);
 	    	//user decide to kill the service
 	    	stopSelf();
 	    }

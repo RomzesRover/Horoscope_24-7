@@ -56,6 +56,7 @@
         <item>Nos acaban de informar que le espera hoy!</item>
         <item>Vamos a ver si las estrellas que favorecen hoy!</item>
     </string-array>
+    <string name="notification_action">Desactivar notificaciones.</string>
     
     <string name="ok">Ok</string>
     <string name="cancel">Cancelar</string>
