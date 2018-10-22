@@ -234,7 +234,7 @@ public class ContentActivity extends BaseActivity {
 		}
 		
 		initBilling();
-    	handler.postDelayed(showDisableADDialogHandler, 500);
+    	handler.postDelayed(showDisableADDialogHandler, 1000);
     }
     
 	Runnable showDisableADDialogHandler = new Runnable(){
