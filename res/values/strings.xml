@@ -14,6 +14,7 @@
     
     <string name="introduce_slogan">Your personal daily assistant</string>
     <string name="first_launch_message">In settings you can change font size and the background.</string>
+    <string name="info_about_date_picker">Swipe up, down.</string>
     
     <string name="error_message">Check your connection and try again.</string>
     <string name="error_message_sumarry">If the error persists, you need to update the application via Google Play.\nIf the update is not available, report this to the developer through any form of feedback.\nPress the button one more time to try load with proxy.</string>

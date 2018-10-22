@@ -209,6 +209,7 @@ public class LoaderActivity extends BaseActivity {
 		dateBorn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				Toast.makeText(getApplicationContext(), getString(R.string.info_about_date_picker), Toast.LENGTH_LONG).show();
 				//init date dialog
 				final Calendar currDate = Calendar.getInstance();
 			    //date change listener

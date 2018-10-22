@@ -10,6 +10,7 @@
     
     <string name="introduce_slogan">Ihr persönlicher Tagesassistent</string>
     <string name="first_launch_message">In den Einstellungen können Sie die Schriftgröße und den Hintergrund ändern.</string>
+    <string name="info_about_date_picker">Wischen Sie nach oben, nach unten.</string>
     
     <string name="error_message">Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
     <string name="error_message_sumarry">Wenn der Fehler weiterhin besteht, müssen Sie die Anwendung über Google Play aktualisieren.\nWenn das Update nicht verfügbar ist, melden Sie dies dem Entwickler über eine beliebige Form von Feedback.\nDrücken Sie die Taste noch einmal, um mit dem Proxy zu laden.</string>
