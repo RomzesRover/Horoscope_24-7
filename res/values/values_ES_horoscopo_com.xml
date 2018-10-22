@@ -7,6 +7,7 @@
         <item>Este Mes</item>
         <item>Año</item>
         <item>Año - Chino</item>
+        <item>Compatibilidad</item>
     </string-array>
     <string-array name="horoscopo_com_kinds">
     	<item>Signo solar</item>

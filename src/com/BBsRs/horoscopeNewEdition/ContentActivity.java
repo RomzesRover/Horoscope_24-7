@@ -142,14 +142,16 @@ public class ContentActivity extends BaseActivity {
 	        monthly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscopo_com_horoscopes)[3]);
 	        yearly.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscopo_com_horoscopes)[4]);
 	        yearlyChina.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscopo_com_horoscopes)[5]);
-			
+	        compatibility.putString(Constants.BUNDLE_LIST_TITLE_NAME, getResources().getStringArray(R.array.horoscopo_com_horoscopes)[6]);
+	        
 			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[0], ContentFragment.class, today, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_today).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[1], ContentFragment.class, tomorrow, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_tomorrow).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[2], ContentFragment.class, weekly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_week).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[3], ContentFragment.class, monthly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_month).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[4], ContentFragment.class, yearly, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
 			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[5], ContentFragment.class, yearlyChina, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_all_other).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
-			prefId=7;
+			sliderMenu.add(getResources().getStringArray(R.array.horoscopo_com_horoscopes)[6], ContentFragment.class, compatibility, new int[]{R.color.slider_menu_selected_color, R.color.slider_menu_selected_color}).setIcon(R.drawable.ic_icon_compatibility).setCustomLayout(R.layout.custom_slider_menu_item_selectable).setTextAppereance(1);
+			prefId=8;
 			startId=1;
 	    	break;
 	    case 2:
