@@ -32,6 +32,13 @@ public class HoroscopoComLoader extends Loader{
 				loadAndSetupProxyServer("https://www.horoscopo.com/");
 			}
 			
+			int lifePathNumber = sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3);
+			lifePathNumber-=1;
+			if (lifePathNumber==10)
+				lifePathNumber=9;
+			if (lifePathNumber==21)
+				lifePathNumber=10;
+			
 			String one = "";
 			
 			switch(listType){
@@ -51,6 +58,10 @@ public class HoroscopoComLoader extends Loader{
 	    		doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/chinos-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
 	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[4] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>" + one.substring(0, one.indexOf('-')) + "</strong>" + one.substring(one.indexOf('-'), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
+	    		
+	    		doc = Jsoup.connect("https://www.horoscopo.com/numerologia/diaria-"+context.getResources().getStringArray(R.array.horoscopo_com_numerology_signs)[lifePathNumber]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
+	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[7] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), "<strong>" + one.substring(0, one.indexOf('-')) + "</strong>" + one.substring(one.indexOf('-'), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
 				break;
 			case Constants.BUNDLE_LIST_TYPE_TOMORROW:
 				doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/general-diaria-manana-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
@@ -68,6 +79,10 @@ public class HoroscopoComLoader extends Loader{
 	    		doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/chinos-diaria-manana-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
 	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[4] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>" + one.substring(0, one.indexOf('-')) + "</strong>" + one.substring(one.indexOf('-'), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
+	    		
+	    		doc = Jsoup.connect("https://www.horoscopo.com/numerologia/diaria-manana-"+context.getResources().getStringArray(R.array.horoscopo_com_numerology_signs)[lifePathNumber]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
+	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[7] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), "<strong>" + one.substring(0, one.indexOf('-')) + "</strong>" + one.substring(one.indexOf('-'), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
 	    		break;
 			case Constants.BUNDLE_LIST_TYPE_WEEKLY:
 				doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/general-semanal-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
@@ -93,6 +108,10 @@ public class HoroscopoComLoader extends Loader{
 	    		doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/chinos-semanal-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
 	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[4] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>" + one.substring(0, one.indexOf('-', one.indexOf('-')+1)) + "</strong>" + one.substring(one.indexOf('-', one.indexOf('-')+1), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
+	    		
+	    		doc = Jsoup.connect("https://www.horoscopo.com/numerologia/semanal-"+context.getResources().getStringArray(R.array.horoscopo_com_numerology_signs)[lifePathNumber]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
+	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[7] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), "<strong>" + one.substring(0, one.indexOf('-', one.indexOf('-')+1)) + "</strong>" + one.substring(one.indexOf('-', one.indexOf('-')+1), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
 	    		break;
 			case Constants.BUNDLE_LIST_TYPE_MONTHLY:
 				doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/mensual-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
@@ -114,6 +133,10 @@ public class HoroscopoComLoader extends Loader{
 	    		doc = Jsoup.connect("https://www.horoscopo.com/horoscopos/chinos-mensual-"+context.getResources().getStringArray(R.array.horoscopo_com_yearly_chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 0)]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
 	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
 	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[4] + " - " + context.getResources().getStringArray(R.array.chinese_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_CHINESE_SIGN, 1)], "<strong>" + one.substring(0, one.indexOf('-')) + "</strong>" + one.substring(one.indexOf('-'), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
+	    		
+	    		doc = Jsoup.connect("https://www.horoscopo.com/numerologia/mensual-"+context.getResources().getStringArray(R.array.horoscopo_com_numerology_signs)[lifePathNumber]).userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
+	    		one = doc.getElementsByClass("horoscope-box").get(0).child(4).html();
+	    		horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.horoscopo_com_kinds)[7] + " - " + sPref.getInt(Constants.PREFERENCES_PERSONAL_NUMBER, 3), "<strong>" + one.substring(0, one.indexOf('-')) + "</strong>" + one.substring(one.indexOf('-'), one.length()), "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.horoscopo_com_copyright)+"</a>"));
 	    		break;
 			case Constants.BUNDLE_LIST_TYPE_YEARLY:
 				if (cal.get(Calendar.YEAR) == 2018){

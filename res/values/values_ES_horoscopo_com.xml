@@ -17,6 +17,7 @@
         <item>Chino</item>
         <item>Prevision</item>
         <item>Familia, amigos</item>
+        <item>Numerología</item>
     </string-array>
     <string-array name="horoscopo_com_yearly_zodiac_signs">
         <item>aries</item>
@@ -45,6 +46,20 @@
         <item>gallo</item>
         <item>perro</item>
         <item>cerdo</item>
+    </string-array>
+    
+    <string-array name="horoscopo_com_numerology_signs">
+        <item>uno</item>
+        <item>dos</item>
+        <item>tres</item>
+        <item>cuatro</item>
+        <item>cinco</item>
+        <item>seis</item>
+        <item>siete</item>
+        <item>ocho</item>
+        <item>nueve</item>
+        <item>once</item>
+        <item>veintidos</item>
     </string-array>
     
     <string name="next_year_predict_es">El pronóstico para 2019 a continuación!</string>
