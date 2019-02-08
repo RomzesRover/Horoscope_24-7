@@ -171,31 +171,35 @@ public class MailRuLoader extends Loader{
 					res = res.substring(0, res.length()-12);    
             	horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[1] + "<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), "<strong>"+String.valueOf(cal.get(Calendar.YEAR))+" год</strong> - " + res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
             	
-            	if (cal.get(Calendar.YEAR) == 2018){
-            		handler.post(new Runnable(){
-						@Override
-						public void run() {
-							Toast.makeText(context, context.getResources().getString(R.string.next_year_predict), Toast.LENGTH_LONG).show();
-						}
-            		});
-    				cal.add(Calendar.DATE, +365);
-    				doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.mail_ru_to_load_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"/2019/")
-    				.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
-    				res = doc.getElementsByClass("article__text").first().child(0).html();
-    				res = res.replaceAll("<p>", "");
-    				res = res.replaceAll("</p>", "<br /><br />");
-    				if (res.substring(res.length()-12).equals("<br /><br />"))
-    					res = res.substring(0, res.length()-12); 
-    				horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[0], "<strong>"+doc.getElementsByClass("p-prediction__right").first().child(1).child(0).text().replaceFirst("Прогноз на ", "")+"</strong> - "+ res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
-                	doc = Jsoup.connect("https://horo.mail.ru/numerology/calc/33/?v1="+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20))+"-"+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"-"+intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"&v2="+String.valueOf(cal.get(Calendar.YEAR))+"-"+intPlusZero(cal.get(Calendar.MONTH)+1)+"-"+intPlusZero(cal.get(Calendar.DAY_OF_MONTH)))
-                	.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
-    				res = doc.getElementsByClass("article__text").first().child(0).html();
-    				res = res.replaceAll("<p>", "");
-    				res = res.replaceAll("</p>", "<br /><br />");
-    				if (res.substring(res.length()-12).equals("<br /><br />"))
-    					res = res.substring(0, res.length()-12);    
-                	horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[1] + "<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), "<strong>"+String.valueOf(cal.get(Calendar.YEAR))+" год</strong> - " + res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
-            	}
+            	try {
+	            	if (cal.get(Calendar.YEAR) == 2019){
+	    				cal.add(Calendar.DATE, +365);
+	    				doc = Jsoup.connect("http://horo.mail.ru/prediction/"+context.getResources().getStringArray(R.array.mail_ru_to_load_zodiac_signs)[sPref.getInt(Constants.PREFERENCES_ZODIAC_SIGN, 0)]+"/2020/")
+	    				.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
+	    				res = doc.getElementsByClass("article__text").first().child(0).html();
+	    				res = res.replaceAll("<p>", "");
+	    				res = res.replaceAll("</p>", "<br /><br />");
+	    				if (res.substring(res.length()-12).equals("<br /><br />"))
+	    					res = res.substring(0, res.length()-12); 
+	    				horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[0], "<strong>"+doc.getElementsByClass("p-prediction__right").first().child(1).child(0).text().replaceFirst("Прогноз на ", "")+"</strong> - "+ res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
+	                	doc = Jsoup.connect("https://horo.mail.ru/numerology/calc/33/?v1="+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20))+"-"+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"-"+intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"&v2="+String.valueOf(cal.get(Calendar.YEAR))+"-"+intPlusZero(cal.get(Calendar.MONTH)+1)+"-"+intPlusZero(cal.get(Calendar.DAY_OF_MONTH)))
+	                	.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).proxy(proxy).get(); if (cancelLoad) return null;
+	    				res = doc.getElementsByClass("article__text").first().child(0).html();
+	    				res = res.replaceAll("<p>", "");
+	    				res = res.replaceAll("</p>", "<br /><br />");
+	    				if (res.substring(res.length()-12).equals("<br /><br />"))
+	    					res = res.substring(0, res.length()-12);    
+	                	horoscopeCollection.add(new HoroscopeCollection(context.getResources().getStringArray(R.array.mail_ru_kinds)[1] + "<br />" + intPlusZero(sPref.getInt(Constants.PREFERENCES_DAY_BORN, cal.get(Calendar.DAY_OF_MONTH)))+"."+intPlusZero(sPref.getInt(Constants.PREFERENCES_MONTH_BORN, cal.get(Calendar.MONTH))+1)+"."+String.valueOf(sPref.getInt(Constants.PREFERENCES_YEAR_BORN, cal.get(Calendar.YEAR)-20)), "<strong>"+String.valueOf(cal.get(Calendar.YEAR))+" год</strong> - " + res, "<a href=\""+doc.location()+"\">"+context.getResources().getString(R.string.mail_ru_copyright)+"</a>"));
+	                	handler.post(new Runnable(){
+							@Override
+							public void run() {
+								Toast.makeText(context, context.getResources().getString(R.string.next_year_predict), Toast.LENGTH_LONG).show();
+							}
+	            		});
+	            	}
+            	} catch(Exception e){
+					e.printStackTrace();
+				}
 				break;
 			case Constants.BUNDLE_LIST_TYPE_COMPATIBILITY:
 				String[] result;
