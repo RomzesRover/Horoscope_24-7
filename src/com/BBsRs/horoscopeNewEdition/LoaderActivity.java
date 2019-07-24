@@ -83,6 +83,11 @@ public class LoaderActivity extends BaseActivity {
         //set up preferences
         sPref = PreferenceManager.getDefaultSharedPreferences(this);
         
+	    //drop proxy usage
+	    sPref.edit().putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_IP, "").commit();
+		sPref.edit().putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_PORT, "").commit();
+    	sPref.edit().putBoolean(Constants.PREFERENCES_USE_PROXY_SERVER, false).commit();
+        
         //set date format
         sPref.edit().putInt(Constants.PREFERENCES_DATE_FORMAT, getResources().getInteger(R.integer.date_format)).commit();
 	  
