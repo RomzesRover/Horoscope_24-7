@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.BBsRs.horoscopeNewEdition"
     android:installLocation="auto"
-    android:versionCode="32"
-    android:versionName="3.0 Release b5" >
+    android:versionCode="33"
+    android:versionName="3.0 Release b6" >
 
     <uses-sdk
         android:minSdkVersion="9"
