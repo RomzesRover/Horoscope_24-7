@@ -17,6 +17,7 @@
     <string name="error_retry">Попробовать снова</string>
     <string name="proxy_setting_up">Определение прокси-сервера для выбранной цели..</string>
     <string name="proxy_settet_up">Прокси-сервер %1$s:%2$s определен!\nВы можете отключить прокси в настройках.</string>
+    <string name="proxy_settet_down">Не удалось определить доступный прокси-сервер.</string>
     
     <string name="male">Мужчина</string>
     <string name="female">Женщина</string>

@@ -78,13 +78,16 @@ public class Loader {
 				}
 			});
 			
-			doci = Jsoup.connect("https://free-proxy-list.net/uk-proxy.html")
+			doci = Jsoup.connect("https://free-proxy-list.net/anonymous-proxy.html")
 			.userAgent(context.getResources().getString(R.string.user_agent)).timeout(context.getResources().getInteger(R.integer.user_timeout)).get();  if (cancelLoad) return;
 			Elements col = doci.select("table").get(0).select("tr");
 			col.remove(0);
 			col.remove(col.size()-1);
 			for (Element one : col){
 				if (cancelLoad) return;
+				
+				//take only russian proxy
+				if (!one.select("td").get(2).text().equals("RU")) continue;
 				
 				ip = one.select("td").get(0).text();
 				port = one.select("td").get(1).text();
@@ -109,13 +112,23 @@ public class Loader {
 							Toast.makeText(context, String.format(context.getString(R.string.proxy_settet_up), ipF, portF),  Toast.LENGTH_LONG).show();
 						}
 					});
-					break;
+					return;
 				} catch (Exception e){
 					e.printStackTrace();
 				}
-				if (cancelLoad) break;
+				if (cancelLoad) return;
 			}
+			throw new Exception("No available proxy");
 		} catch (Exception e){
+			sPref.edit().putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_IP, "").commit();
+			sPref.edit().putString(Constants.PREFERENCES_PROXY_SERVER_SAVED_PORT, "").commit();
+        	sPref.edit().putBoolean(Constants.PREFERENCES_USE_PROXY_SERVER, false).commit();
+			handler.post(new Runnable(){
+				@Override
+				public void run() {
+					Toast.makeText(context, context.getString(R.string.proxy_settet_down),  Toast.LENGTH_LONG).show();
+				}
+			});
 			e.printStackTrace();
 		}
 	}

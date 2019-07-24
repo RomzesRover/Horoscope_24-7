@@ -21,6 +21,7 @@
     <string name="error_retry">Retry</string>
     <string name="proxy_setting_up">Determining proxy-server for chosen target..</string>
     <string name="proxy_settet_up">Proxy-server %1$s:%2$s determined!\nYou can disable proxy in settings.</string>
+    <string name="proxy_settet_down">Can\'t determine available proxy-server.</string>
     
     <string name="male">Male</string>
     <string name="female">Female</string>

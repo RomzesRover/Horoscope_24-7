@@ -17,6 +17,7 @@
     <string name="error_retry">Inténtalo de nuevo</string>
     <string name="proxy_setting_up">Determinando el servidor proxy para el destino elegido..</string>
     <string name="proxy_settet_up">Proxy-server %1$s:%2$s determinado!\nPuede desactivar el proxy en la configuración.</string>
+    <string name="proxy_settet_down">No se puede determinar el servidor proxy disponible.</string>
     
     <string name="male">Un hombre</string>
     <string name="female">Una mujer</string>

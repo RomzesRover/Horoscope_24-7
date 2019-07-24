@@ -17,6 +17,7 @@
     <string name="error_retry">wiederholen</string>
     <string name="proxy_setting_up">Ermitteln des Proxy-Servers für das ausgewählte Ziel..</string>
     <string name="proxy_settet_up">Proxy-Server %1$s:%2$s ermittelt!\nSie können den Proxy in den Einstellungen deaktivieren.</string>
+    <string name="proxy_settet_down">Der verfügbare Proxy-Server kann nicht ermittelt werden.</string>
     
     <string name="male">Ein Mann</string>
     <string name="female">Eine Frau</string>
